@@ -77,14 +77,9 @@ h1 a {
     position: relative;
     top: 0;
     background-color: transparent;
-    overflow-x: scroll;
     border-bottom: 1px solid #aaa;
     margin-bottom: 2px;
     padding-bottom: 2px;
-}
-
-#list .title a {
-    white-space: nowrap;
 }
 
 #list .footer {
