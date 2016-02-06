@@ -37,7 +37,7 @@ $(document).ready(function () {
                                     </span>\
                                 </div>\
                             </div>\
-                        <div>\
+                        </div>\
                     </div>");
 
                 var versions;
