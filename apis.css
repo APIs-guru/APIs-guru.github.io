@@ -1,0 +1,155 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding: 0;
+    margin: 0 auto;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+#list .api-card {
+    background-color: #eee;
+    border: solid 1px #777;
+    margin-left: 10px;
+    margin-bottom: 40px;
+    -moz-box-shadow: 0 0 2px 1px #ccc;
+    -webkit-box-shadow: 0 0 2px 1px #ccc;
+    box-shadow: 0 0 2px 1px #ccc;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.api-card .header {
+    -moz-border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
+    -khtml-border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
+}
+
+.api-card .footer {
+    -moz-border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
+    -khtml-border-radius: 0 0 10px 10px;
+    border-radius: 0 0 10px 10px;
+}
+
+#head {
+    border-top: solid 1px gray;
+}
+
+#head p,
+#head p a,
+h1 a {
+    text-decoration: none;
+    color: #2b768f;
+}
+
+#list {
+    margin-top: 40px;
+}
+
+.api-card .content {
+    padding: 0 15px;
+    height: 150px;
+    overflow-y: scroll;
+    border-top: solid 1px #aaa;
+    border-bottom: solid 1px #aaa;
+    background-color: #fff;
+}
+
+.api-card .logo {
+    height: 64px;
+    background: no-repeat center;
+    background-size: contain;
+}
+
+.api-card .title {
+    font-size: 1.2em;
+    text-align: center;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 5px;
+    position: relative;
+    top: 0;
+    background-color: transparent;
+    overflow-x: scroll;
+}
+
+#list .title a {
+    white-space: nowrap;
+}
+
+#list .footer {
+    position: relative;
+    text-align: center;
+    padding: 10px 15px;
+}
+
+.api-card .footer > div:first-child {
+    color: #999;
+}
+
+.api-card .versions {
+    white-space: nowrap;
+}
+
+.api-card .footer ul.dropdown-menu {
+    padding: 5px 5px 0 5px;
+}
+
+.api-card .dropdown-menu li {
+    margin-bottom: 5px;
+    min-width: 100px;
+    white-space: nowrap;
+    text-align: right;
+}
+
+.api-card .dropdown-menu li span {
+    right: 5px;
+}
+
+.api-card .footer .dropdown-menu > li > a {
+    display: inline;
+}
+
+#head {
+    margin: 0;
+    padding: 0;
+    -webkit-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.75)
+    -moz-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.75)
+}
+
+#head p {
+    color: #fff;
+    font-size: 0.8em;
+    margin-left: 20px;
+}
+
+#footer {
+    position: relative;
+}
+
+#footer img {
+    border-top: solid 1px gray;
+    border-bottom: solid 1px gray;
+}
+
+#footer .copyright {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+}
+
+.truncate {
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
