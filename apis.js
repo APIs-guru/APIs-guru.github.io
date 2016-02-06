@@ -13,7 +13,7 @@ $(document).ready(function () {
                 var contact = info.contact || {};
                 var logo = info['x-logo'] || {};
                 var logoUrl = logo.url || 'no-logo.png';
-                var logoBg = logo.backgroundColor || '#fff';
+                var logoBg = logo.backgroundColor || '#eee';
 
                 var card = $(
                     "<div class='col-xs-6 col-sm-4 col-md-3 .col-lg-2'>\

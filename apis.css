@@ -48,11 +48,6 @@ h1 a {
     color: #2b768f;
 }
 
-#head img:first-child {
-    max-height: 250px;
-    background-color: #fff5cc;
-}
-
 #list {
     margin-top: 40px;
 }
