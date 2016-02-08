@@ -10,7 +10,9 @@ $(document).ready(function () {
                 var preferred = apis.preferred;
                 var api = apis.versions[preferred];
                 var info = api.info;
+                var externalDocs = api.externalDocs || {};
                 var contact = info.contact || {};
+                var externalUrl = externalDocs.url || contact.url;
                 var logo = info['x-logo'] || {};
                 var logoUrl = logo.url || 'no-logo.png';
                 var logoBg = logo.backgroundColor || '#eee';
@@ -23,7 +25,7 @@ $(document).ready(function () {
                             </div>\
                             <div class='content'>\
                                 <div class='title'>\
-                                    <a href='" + (contact.url || '') + "' target='_blank'>" + info.title + "</a>\
+                                    <a href='" + (externalUrl || '') + "' target='_blank'>" + info.title + "</a>\
                                 </div>\
                                 <div>" + marked(info.description || '') + "</div>\
                             </div>\
