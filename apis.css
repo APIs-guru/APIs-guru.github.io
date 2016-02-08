@@ -138,11 +138,11 @@ h1 a {
     border-bottom: solid 1px gray;
 }
 
-#footer .copyright {
+#footer .author {
     position: absolute;
     width: 100%;
     text-align: center;
-    bottom: 0;
+    bottom: 10px;
 }
 
 .truncate {
