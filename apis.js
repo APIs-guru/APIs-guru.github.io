@@ -28,7 +28,7 @@ $(document).ready(function () {
                                 <div>" + marked(info.description || '') + "</div>\
                             </div>\
                             <div class='footer'>\
-                                <div>Swagger 2.0</div>\
+                                <div style='font-size: .8em'>OpenAPI(fka Swagger) 2.0</div>\
                                 <div class='versions'>\
                                     <div style='display: inline-block; vertical-align: bottom;' class='truncate'>" + preferred + "</div>\
                                     <span>\
