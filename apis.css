@@ -12,7 +12,6 @@ body {
 #list .api-card {
     background-color: #eee;
     border: solid 1px #777;
-    margin-left: 10px;
     margin-bottom: 40px;
     -moz-box-shadow: 0 0 2px 1px #ccc;
     -webkit-box-shadow: 0 0 2px 1px #ccc;
