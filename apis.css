@@ -124,6 +124,10 @@ h1 a {
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.75)
 }
 
+#head a {
+    color: inherit;
+}
+
 #head p {
     color: #fff;
     font-size: 0.8em;
