@@ -25,7 +25,7 @@ $(document).ready(function () {
                             </div>\
                             <div class='content'>\
                                 <div class='title'>\
-                                    <a href='" + (externalUrl || '') + "' target='_blank'>" + info.title + "</a>\
+                                    " + (externalUrl ? "<a href='" + (externalUrl || '') + "' target='_blank'>" + info.title + "</a>" : info.title) + "\
                                 </div>\
                                 <div>" + marked(info.description || '') + "</div>\
                             </div>\
