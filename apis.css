@@ -98,9 +98,10 @@ img.api-logo {
 }
 
 .panel-footer .dropdown-toggle {
-  width: 24px;
-  padding-left: 8px;
-  padding-right: 8px;
+  width: 16px;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-right: 2px !important;
 }
 
 .panel-footer .btn-group {

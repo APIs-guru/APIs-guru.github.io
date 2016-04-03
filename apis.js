@@ -31,9 +31,8 @@ $(document).ready(function () {
                           </div>\
                           <div class='panel-footer'>\
                               <div class='footer-description'> OpenAPI/Swagger 2.0: </div>\
-                              <div class='versions'>\
-                                  <span class='truncate'>" + preferred + "</span>\
-                                  <span>\
+                              <div class='versions'><span class='truncate'>" + preferred + "</span>\
+                              <span>\
                                       <a href='" + api.swaggerUrl + "' target='_blank' class='label label-primary'>json</a> \
                                       <a href='" + api.swaggerYamlUrl + "' target='_blank' class='label label-primary'>yaml</a>\
                                   </span>\
