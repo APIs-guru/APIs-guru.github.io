@@ -15,31 +15,31 @@ $(document).ready(function () {
                 var externalUrl = externalDocs.url || contact.url;
                 var logo = info['x-logo'] || {};
                 var logoUrl = logo.url || 'no-logo.png';
-                var logoBg = logo.backgroundColor || '#eee';
+                var logoBg = logo.backgroundColor || 'transparent';
 
                 var card = $(
                     "<div class='col-xs-6 col-sm-4 col-md-3 .col-lg-2'>\
-                        <div class='api-card'>\
-                            <div style='padding: 5px 15px; border-radius: 9px 9px 0 0; background-color: " + logoBg + ";'>\
-                                <div class='logo' style='background-image: url(\"" + logoUrl + "\");'/>\
-                            </div>\
-                            <div class='content'>\
-                                <div class='title'>\
-                                    " + (externalUrl ? "<a href='" + (externalUrl || '') + "' target='_blank'>" + info.title + "</a>" : info.title) + "\
-                                </div>\
-                                <div>" + marked(info.description || '') + "</div>\
-                            </div>\
-                            <div class='footer'>\
-                                <div style='font-size: .8em'>OpenAPI(fka Swagger) 2.0</div>\
-                                <div class='versions'>\
-                                    <div style='display: inline-block; vertical-align: bottom;' class='truncate'>" + preferred + "</div>\
-                                    <span>\
-                                        <a href='" + api.swaggerUrl + "' target='_blank' class='label label-primary'>json</a> \
-                                        <a href='" + api.swaggerYamlUrl + "' target='_blank' class='label label-primary'>yaml</a>\
-                                    </span>\
-                                </div>\
-                            </div>\
-                        </div>\
+                      <div class='panel panel-default text-center'>\
+                          <div class='panel-heading'>\
+                            " + (externalUrl ? "<a href='" + (externalUrl || '') + "' target='_blank'>" + info.title + "</a>" : info.title) + "\
+                          </div>\
+                          <div class='panel-body'>\
+                              <div class='text-center panel-body-logo'>\
+                                <img src='" + logoUrl + "' style='background-color: " + logoBg + "'; class='api-logo'>\
+                              </div>\
+                              <div class='panel-body-description line-clamp line-clamp-3'>" + marked(info.description || '') + "</div>\
+                          </div>\
+                          <div class='panel-footer'>\
+                              <div class='footer-description'> OpenAPI/Swagger 2.0: </div>\
+                              <div class='versions'>\
+                                  <span class='truncate'>" + preferred + "</span>\
+                                  <span>\
+                                      <a href='" + api.swaggerUrl + "' target='_blank' class='label label-primary'>json</a> \
+                                      <a href='" + api.swaggerYamlUrl + "' target='_blank' class='label label-primary'>yaml</a>\
+                                  </span>\
+                              </div>\
+                          </div>\
+                      </div>\
                     </div>");
 
                 var versions;
@@ -50,7 +50,7 @@ $(document).ready(function () {
                         </button>\
                         <ul class='dropdown-menu'></ul>\
                     </div>");
-                card.find('.versions').append(versionsGroup);
+                card.find('.versions').prepend(versionsGroup);
 
                 $.each(apis.versions, function (version, api) {
                     if (version != preferred) {

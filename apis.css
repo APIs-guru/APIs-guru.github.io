@@ -9,35 +9,112 @@ body {
     font-family: Verdana, Geneva, sans-serif;
 }
 
-#list .api-card {
-    background-color: #eee;
-    border: solid 1px #777;
-    margin-bottom: 40px;
-    -moz-box-shadow: 0 0 2px 1px #ccc;
-    -webkit-box-shadow: 0 0 2px 1px #ccc;
-    box-shadow: 0 0 2px 1px #ccc;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -khtml-border-radius: 10px;
-    border-radius: 10px;
+img.api-logo {
+  max-width: 100%;
+  max-height: 100%;
+  padding: 10px;
 }
 
-.api-card .header {
-    -moz-border-radius: 10px 10px 0 0;
-    -webkit-border-radius: 10px 10px 0 0;
-    -khtml-border-radius: 10px 10px 0 0;
-    border-radius: 10px 10px 0 0;
+.text-center.panel-body-logo {
+  height: 100px;
+  vertical-align: middle;
+  line-height: 90px;
+  padding: 5px;
 }
 
-.api-card .footer {
-    -moz-border-radius: 0 0 10px 10px;
-    -webkit-border-radius: 0 0 10px 10px;
-    -khtml-border-radius: 0 0 10px 10px;
-    border-radius: 0 0 10px 10px;
+.panel-body-description:empty:before {
+  content: 'No description';
+  text-align: center;
+  color: #a2a2a2;
+  display: block;
 }
 
-#head {
-    border-top: solid 1px gray;
+.panel-body-description {
+  margin-top: 15px;
+}
+
+.panel-heading {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* multibrowser line clamp. Credits: http://codepen.io/siiron/pen/jfBhy/ */
+.line-clamp {
+	display            : block;
+	display            : -webkit-box;
+	-webkit-box-orient : vertical;
+	position           : relative;
+
+	line-height        : 1.2;
+	overflow           : hidden;
+	text-overflow      : ellipsis;
+	padding            : 0 !important;
+}
+
+.line-clamp:after {
+	content    : '...';
+	text-align : right;
+	bottom     : 0;
+	right      : 0;
+	width      : 25%;
+	display    : block;
+	position   : absolute;
+	height     : calc(1em * 1.2);
+	background : linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 75%);
+}
+
+@supports (-webkit-line-clamp: 1) {
+	.line-clamp:after	{
+		display : none !important;
+	}
+}
+.line-clamp-3 {
+	-webkit-line-clamp : 3;
+	height             : calc(1em * 1.2 * 3);
+}
+
+.versions > span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.panel-footer ul.dropdown-menu {
+    padding: 5px;
+    transform: translateX(-50%);
+    margin-left: 12px;
+    margin-top: 5px;
+}
+
+.panel-footer ul.dropdown-menu li {
+  margin-bottom: 5px;
+  min-width: 100px;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.panel-footer ul.dropdown-menu li:last-child {
+  margin-bottom: 0;
+}
+
+.panel-footer .dropdown-toggle {
+  width: 24px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.panel-footer .btn-group {
+  margin: 0;
+}
+
+.dropdown-menu li a:hover {
+    color: white;
+}
+
+.footer-description {
+  font-size: 0.8em;
+  color: #a2a2a2;
+  margin-bottom: 0.1em;
 }
 
 #head p,
@@ -51,35 +128,6 @@ h1 a {
     margin-top: 40px;
 }
 
-.api-card .content {
-    padding: 0 15px;
-    height: 150px;
-    overflow-y: auto;
-    border-top: solid 1px #aaa;
-    border-bottom: solid 1px #aaa;
-    background-color: #fff;
-}
-
-.api-card .logo {
-    height: 64px;
-    background: no-repeat center;
-    background-size: contain;
-}
-
-.api-card .title {
-    font-size: 1.2em;
-    text-align: center;
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-    padding-top: 5px;
-    position: relative;
-    top: 0;
-    background-color: transparent;
-    border-bottom: 1px solid #aaa;
-    margin-bottom: 2px;
-    padding-bottom: 2px;
-}
 
 #list .footer {
     position: relative;
@@ -87,40 +135,12 @@ h1 a {
     padding: 10px 15px;
 }
 
-.api-card .footer > div:first-child {
-    color: #999;
-}
-
-.api-card .versions {
-    white-space: nowrap;
-}
-
-.api-card .footer ul.dropdown-menu {
-    padding: 5px 5px 0 5px;
-}
-
-.api-card .dropdown-menu li {
-    margin-bottom: 5px;
-    min-width: 100px;
-    white-space: nowrap;
-    text-align: right;
-}
-
-.api-card .dropdown-menu li span {
-    right: 5px;
-}
-
-.api-card .footer .dropdown-menu > li > a {
-    display: inline;
-}
-
 #head {
     position: relative;
     margin: 0;
     padding: 0;
-    -webkit-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.75)
-    -moz-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.75);
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.75)
+    -webkit-box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
 }
 
 #head a {
@@ -138,8 +158,8 @@ h1 a {
     border-bottom: solid 1px gray;
     margin: 0;
     padding: 0;
-    -webkit-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.75) -moz-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.75);
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
 }
 
 #footer .author {
@@ -154,4 +174,5 @@ h1 a {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: inline-block;
 }
