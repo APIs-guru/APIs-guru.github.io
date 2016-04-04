@@ -1,12 +1,46 @@
-html {
-    margin: 0;
-    padding: 0;
+body {
+  font-family: Verdana, Geneva, sans-serif;
 }
 
-body {
-    padding: 0;
-    margin: 0 auto;
-    font-family: Verdana, Geneva, sans-serif;
+body .container .jumbotron {
+  position: relative;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+}
+
+.jumbotron .links {
+  position: absolute;
+  bottom: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+#fork_me_image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+}
+
+#list {
+  margin-top: 40px;
+}
+
+.panel-footer {
+  position: relative;
+  bottom: -1px;
+}
+.panel-heading {
+  position: relative;
+  top: -1px;
+}
+
+.panel-body-logo {
+  height: 100px;
+  vertical-align: middle;
+  line-height: 90px;
+  padding: 5px;
 }
 
 img.api-logo {
@@ -15,11 +49,8 @@ img.api-logo {
   padding: 10px;
 }
 
-.text-center.panel-body-logo {
-  height: 100px;
-  vertical-align: middle;
-  line-height: 90px;
-  padding: 5px;
+.panel-body-description {
+  margin-top: 15px;
 }
 
 .panel-body-description:empty:before {
@@ -29,14 +60,61 @@ img.api-logo {
   display: block;
 }
 
-.panel-body-description {
-  margin-top: 15px;
-}
-
 .panel-heading {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.truncate {
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.versions > span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.panel-footer ul.dropdown-menu {
+  padding: 5px;
+  transform: translateX(-50%);
+  margin-left: 12px;
+  margin-top: 5px;
+}
+
+.panel-footer ul.dropdown-menu li {
+  margin-bottom: 5px;
+  min-width: 100px;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.panel-footer ul.dropdown-menu li:last-child {
+  margin-bottom: 0;
+}
+
+.panel-footer .dropdown-toggle {
+  width: 16px;
+  padding: 2px 4px;
+  margin-right: 2px !important;
+}
+
+.panel-footer .btn-group {
+  margin: 0;
+}
+
+.dropdown-menu li a:hover {
+  color: white;
+}
+
+.footer-description {
+  font-size: 0.8em;
+  color: #a2a2a2;
+  margin-bottom: 0.1em;
 }
 
 /* multibrowser line clamp. Credits: http://codepen.io/siiron/pen/jfBhy/ */
@@ -72,108 +150,4 @@ img.api-logo {
 .line-clamp-3 {
 	-webkit-line-clamp : 3;
 	height             : calc(1em * 1.2 * 3);
-}
-
-.versions > span {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.panel-footer ul.dropdown-menu {
-    padding: 5px;
-    transform: translateX(-50%);
-    margin-left: 12px;
-    margin-top: 5px;
-}
-
-.panel-footer ul.dropdown-menu li {
-  margin-bottom: 5px;
-  min-width: 100px;
-  white-space: nowrap;
-  text-align: right;
-}
-
-.panel-footer ul.dropdown-menu li:last-child {
-  margin-bottom: 0;
-}
-
-.panel-footer .dropdown-toggle {
-  width: 16px;
-  padding-left: 4px;
-  padding-right: 4px;
-  margin-right: 2px !important;
-}
-
-.panel-footer .btn-group {
-  margin: 0;
-}
-
-.dropdown-menu li a:hover {
-    color: white;
-}
-
-.footer-description {
-  font-size: 0.8em;
-  color: #a2a2a2;
-  margin-bottom: 0.1em;
-}
-
-#head p,
-#head p a,
-h1 a {
-    text-decoration: none;
-    color: #2b768f;
-}
-
-#list {
-    margin-top: 40px;
-}
-
-
-#list .footer {
-    position: relative;
-    text-align: center;
-    padding: 10px 15px;
-}
-
-#head {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    -webkit-box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
-}
-
-#head a {
-    color: inherit;
-}
-
-#head p {
-    color: #fff;
-    font-size: 0.8em;
-    margin-left: 20px;
-}
-
-#footer {
-    position: relative;
-    border-bottom: solid 1px gray;
-    margin: 0;
-    padding: 0;
-    -webkit-box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
-}
-
-#footer .author {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    bottom: 10px;
-}
-
-.truncate {
-    max-width: 100px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
 }
