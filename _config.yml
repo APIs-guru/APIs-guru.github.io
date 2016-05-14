@@ -1,0 +1,70 @@
+# Title, decription, tagline and URL for your site
+# Can be used in your theme by calling 'site.title' and so on
+title: APIs.guru - Wikipedia for WEB APIs
+description: Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue
+url: http://APIs.guru
+
+# Used so Jekyll outputs the site correctly so Gulp can do what it wants
+source: src
+destination: dist
+exclude: ['assets']
+
+# Same as the title etc for your site but can instead be
+# called by using 'site.author.name' and so on
+# NOTE: Don't use @ in front of your Twitter username
+author:
+  name: APIs.guru
+  email: founders@apis.guru
+  uri: http://apis.guru
+  bio: APIs.guru - Wikipedia for WEB APIs
+  twitter: APIs_guru
+  github: APIs-guru/api-models
+
+# _config.build.yml overwrites these options when you run `gulp build`
+# Enables future posts (posts with dates in the future) and drafts
+future: true
+show_drafts: true
+# Disables the more accurate related posts for faster generating of the site
+lsi: false
+# Only make the last 10 posts so generating isn't slow
+limit_posts: 10
+
+# Permalink structure and pagination options
+permalink: pretty
+paginate: 10
+paginate_path: 'page:num'
+excerpt_separator: '<!--more-->'
+
+# Markdown library and options
+markdown: redcarpet
+redcarpet:
+  extensions: ['no_intra_emphasis', 'tables', 'fenced_code_blocks', 'autolink', 'smart',
+              'strikethrough', 'superscript', 'underline', 'highlight', 'footnotes']
+highlighter: true
+
+# Extending Jekyll
+gems:
+  - jekyll-archives
+  - jekyll-feed
+  - jekyll-gist
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Settings for archives
+jekyll-archives:
+  enabled:
+    - year
+    - month
+    - categories
+    - tags
+  layouts:
+    year: 'year-archive'
+    month: 'month-archive'
+    category: 'category-archive'
+    tag: 'tag-archive'
+  permalinks:
+    year: '/archive/:year/'
+    month: '/archive/:year/:month/'
+    category: '/category/:name/'
+    tags: '/tag/:name/'

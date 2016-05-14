@@ -1,0 +1,128 @@
+---
+layout: main
+title: Home
+order: 1
+---
+
+<section class="jumbotron">
+  <h1> API<small>S.GURU</small></h1>
+  <h2> Wikipedia for WEB APIs </h2>
+  <img class="big icon logo" src="assets/images/logo.svg" />
+</section>
+<div class="wrapper home">
+  <section class="links">
+    {% include social-links.html %}
+  </section>
+  <section>
+    <div class="moto">
+      Our goal is to create a machine-readable Wikipedia for REST APIs with the following principals:
+    </div>
+    <div class="principles">
+      <i class="vertical-line"></i>
+      <div class="principle"> Open source, community driven project </div>
+      <div class="principle"> Only publicly available APIs (free or paid) </div>
+      <div class="principle"> Anyone can add or change an API, not only API owners </div>
+      <div class="principle"> All data can be accessed through a REST API </div>
+    </div>
+  </section>
+  <section class="numbers">
+    <div class="number">
+      <i>  {% include svg/number-romb.svg %} </i>
+      <div class="number-value">
+        230
+      </div>
+      <div class="desciption">
+        API descriptions
+      </div>
+    </div>
+    <div class="number">
+      <i> {% include svg/number-romb.svg %} </i>
+      <div class="number-value">
+        1344
+      </div>
+      <div class="desciption">
+        Endpoints
+      </div>
+    </div>
+    <div class="number">
+      <i> {% include svg/number-romb.svg %} </i>
+      <div class="number-value">
+        200
+      </div>
+      <div class="desciption">
+        Stars on GitHub
+      </div>
+    </div>
+  </section>
+  <section class="activities">
+    <header>
+      What APIs.guru does?
+    </header>
+    <i class="big icon">
+      {% include svg/light-bulb.svg %}
+    </i>
+    <div class="activities-row">
+      <div class="activities-column">
+        <svg class="connect-line left">
+          <line x1="100%" y1="0" x2="0" y2="95%" vector-effect="non-scaling-stroke" stroke="#666666" stroke-width="2"  />
+        </svg>
+        <div class="activity">
+          <i class="medium icon">
+            {% include svg/filter.svg %}
+          </i>
+          <div class="activity-description"> Search for public API spec </div>
+        </div>
+        <div class="activity">
+          <i class="medium icon">
+            {% include svg/big-romb.svg %}
+          </i>
+          <div class="activity-description"> Filter out private and non-reliable APIs </div>
+        </div>
+        <div class="activity">
+          <i class="medium icon">
+            {% include svg/update.svg %}
+          </i>
+          <div class="activity-description"> Update specs on daily basis </div>
+        </div>
+      </div>
+      <div class="activities-column">
+        <svg class="connect-line right">
+          <line x1="0" y1="0" x2="100%" y2="95%" vector-effect="non-scaling-stroke" stroke="#666666" stroke-width="2"  />
+        </svg>
+        <div class="activity">
+          <i class="medium icon">
+            {% include svg/convert.svg %}
+          </i>
+          <div class="activity-description"> Convert different formats into Swagger 2.0 </div>
+        </div>
+        <div class="activity">
+          <i class="medium icon">
+            {% include svg/fix.svg %}
+          </i>
+          <div class="activity-description"> Correct mistakes, ~80% of specs have them</div>
+        </div>
+        <div class="activity">
+          <i class="medium icon">
+            {% include svg/big-romb.svg %}
+          </i>
+          <div class="activity-description"> Add additional data, like: logo, categories </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="contribution-process">
+    <header>
+      Contribution process
+    </header>
+    {% include svg/contribution-graph.svg %}
+  </section>
+  <section class="browse-cta">
+    <a class="button cta" href="/browse-apis/"> Browse APIs </a>
+  </section>
+  <section class="join-movement">
+    <header class="wide">
+      Join the movement
+    </header>
+
+  </section>
+</div>

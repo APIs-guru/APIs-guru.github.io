@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    {% include head.html %}
+  </head>
+
+  <body>
+
+    {% include header.html %}
+
+    <div class="page-content">
+      {{content}}
+    </div>
+
+    {% include footer.html %}
+
+  <!-- JS -->
+  <!-- inject:js -->
+  <script src="/assets/javascript/apis.js"></script>
+  <script src="/assets/javascript/index.js"></script>
+  <!-- endinject -->
+
+  </body>
+
+</html>
