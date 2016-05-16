@@ -6,7 +6,7 @@ $(document).ready(function () {
 
   $.ajax({
     type: "GET",
-    url: "https://apis-guru.github.io/api-models/api/v1/list.json",
+    url: "https://apis.guru/api-models/api/v1/list.json",
     dataType: 'json',
     cache: false,
     success: function (data) {
