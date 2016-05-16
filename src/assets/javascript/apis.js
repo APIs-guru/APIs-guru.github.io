@@ -19,6 +19,7 @@ $(document).ready(function () {
         var contact = info.contact || {};
         var externalUrl = externalDocs.url || contact.url;
         var logo = info['x-logo'] || {};
+        logo.url = logo.url && logo.url.replace(/^https:\/\/apis-guru.github.io/, 'https://apis.guru');
 
         var versions = [];
         $.each(apis.versions, function (version, api) {
