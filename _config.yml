@@ -2,7 +2,7 @@
 # Can be used in your theme by calling 'site.title' and so on
 title: APIs.guru - Wikipedia for WEB APIs
 description: Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue
-url: http://APIs.guru
+url: https://APIs.guru
 
 # Used so Jekyll outputs the site correctly so Gulp can do what it wants
 source: src
@@ -15,7 +15,7 @@ exclude: ['assets']
 author:
   name: APIs.guru
   email: founders@apis.guru
-  uri: http://apis.guru
+  uri: https://apis.guru
   bio: APIs.guru - Wikipedia for WEB APIs
   twitter: APIs_guru
   github: APIs-guru/api-models
