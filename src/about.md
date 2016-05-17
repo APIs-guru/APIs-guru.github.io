@@ -5,12 +5,25 @@ permalink: /about/
 order: 3
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+We are independent API-consultants.
+We used to work a lot with different API description formats: RAML, API Blueprint,
+OpenAPI (fka Swagger), Avro.
 
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jglovier" %} /
-[jekyll-new](https://github.com/jglovier/jekyll-new)
+It was taking us tons of time to search for API specifications. That's why we have started APIs.guru project!
 
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+## Other projects
+We are also working on other OpenAPI/Swagger related projects:
+
+- [api-spec-converter](https://github.com/lucybot/api-spec-converter) (together with [lucybot](http://lucybot.com/))
+- [ReDoc](https://github.com/Rebilly/ReDoc) (sponsored by [Rebilly](https://www.rebilly.com/))
+- [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo) (sponsored by [Rebilly](https://www.rebilly.com/))
+
+## Team
+
+- [Ivan Goncharov](https://github.com/IvanGoncharov)
+- [Roman Hotsiy](https://github.com/RomanGotsiy)
+
+## Contacts
+
+- [founders@apis.guru](mailto:founders@apis.guru)
+- Skype: __ivangon4arov__
