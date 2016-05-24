@@ -290,24 +290,23 @@ section.activities {
 }
 
 a.button {
-  border: 1px solid $brand-color-dark;
-  font-size: 1.5rem;
-  border-radius: 10px;
-  color: white;
+  border: 2px solid #636262;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  font-weight: 600;
+  color: #636262;
   text-decoration: none;
-  //font-weight: normal;
-  padding: 1rem 3rem;
+  padding: 1.2rem 3.5rem;
+  background: linear-gradient(90deg,$brand-color-light 0,$brand-color-light 50%,$brand-color 0,#ECC04C);
+
 
   background: $brand-color; /* Old browsers */
-  background: -moz-linear-gradient(top, $brand-color-light 0%, $brand-color-light 50%, $brand-color 50%, $brand-color-dark 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, $brand-color-light 0%, $brand-color-light 50%, $brand-color 50%,$brand-color-dark 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, $brand-color-light 0%, $brand-color-light 50%, $brand-color 50%,$brand-color-dark 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: linear-gradient(90deg,$brand-color-light 0,$brand-color-light 50%,$brand-color 0,#ECC04C); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, 90deg,$brand-color-light 0,$brand-color-light 50%,$brand-color 0,#ECC04C); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   &:hover {
     background-color: lighten($brand-color, 5%); // Old browsers
-    background: -moz-linear-gradient(top, lighten($brand-color-light, 5%) 0%, lighten($brand-color-light, 5%) 50%, lighten($brand-color, 5%) 50%, lighten($brand-color-dark, 5%) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, lighten($brand-color-light, 5%) 0%, lighten($brand-color-light, 5%) 50%, lighten($brand-color, 5%) 50%, lighten($brand-color-dark, 5%) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, lighten($brand-color-light, 5%) 0%, lighten($brand-color-light, 5%) 50%, lighten($brand-color, 5%) 50%, lighten($brand-color-dark, 5%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-
+    background: linear-gradient(90deg,lighten($brand-color-light, 5%) 0,lighten($brand-color-light, 5%) 50%,lighten($brand-color, 5%) 0,lighten(#ECC04C, 5%)); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, 90deg,lighten($brand-color-light, 5%) 0,lighten($brand-color-light, 5%) 50%,lighten($brand-color, 5%) 0,lighten(#ECC04C, 5%)); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   }
 }
 

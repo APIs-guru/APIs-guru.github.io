@@ -1,0 +1,26 @@
+---
+title: Add API
+---
+<!DOCTYPE html>
+<html>
+
+  <head>
+    {% include head.html %}
+  </head>
+
+  <body>
+    <script type="text/javascript" src="https://rawgit.com/pauldijou/open-issue/master/index.js"></script>
+      <script type="text/javascript">
+          var link = OpenIssue()
+            .provider('github')
+            .repository('APIs-guru/api-models')
+            .labels('add API')
+            .title('Add <name of API> API')
+            .append('## Please post here link to an API spec in any popular format (OpenAPI, Swagger, RAML, WADL, ...) ##\n' +
+            '## It would be also useful if you provided a link to the official API docs and official logo ##')
+            .url();
+
+          window.location.replace(link);
+      </script>
+  </body>
+</body>

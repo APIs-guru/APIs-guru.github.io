@@ -264,7 +264,8 @@ gulp.task('assets', gulp.series(
 // done this way because Jekyll overwrites the whole folder otherwise
 gulp.task('assets:copy', () =>
   gulp.src('.tmp/assets/**/*')
-    .pipe(gulp.dest('dist/assets'))
+    .pipe($.debug({title: 'unicorn:'}))
+    .pipe(gulp.dest('dist/assets/'))
 );
 
 // 'gulp' -- cleans your assets and gzipped files, creates your assets and
@@ -283,7 +284,8 @@ gulp.task('default', gulp.series(
 gulp.task('build', gulp.series(
   gulp.series('clean:assets', 'clean:gzip'),
   gulp.series('assets', 'inject:head', 'inject:footer'),
-  gulp.series('jekyll', 'assets:copy', 'html')
+  gulp.series('jekyll'),
+  gulp.series('assets:copy')
 ));
 
 // 'gulp clean' -- erases your assets and gzipped files
