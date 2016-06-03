@@ -26,4 +26,4 @@ We are also working on other OpenAPI/Swagger related projects:
 ## Contacts
 
 - [founders@apis.guru](mailto:founders@apis.guru)
-- Skype: __ivangon4arov__
+- Skype: __ivangon4arov__ / __roman.gotsiy__
