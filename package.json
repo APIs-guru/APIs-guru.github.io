@@ -8,7 +8,9 @@
     "email": "founders@apis.guru"
   },
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "build": "gulp build --prod",
+    "deploy": "gulp deploy"
   },
   "devDependencies": {
     "autoprefixer": "^6.2.3",

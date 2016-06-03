@@ -264,7 +264,6 @@ gulp.task('assets', gulp.series(
 // done this way because Jekyll overwrites the whole folder otherwise
 gulp.task('assets:copy', () =>
   gulp.src('.tmp/assets/**/*')
-    .pipe($.debug({title: 'unicorn:'}))
     .pipe(gulp.dest('dist/assets/'))
 );
 
