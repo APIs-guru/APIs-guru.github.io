@@ -12,7 +12,7 @@
 
 <!-- CSS -->
 <!-- inject:css -->
-<link rel="stylesheet" href="/assets/stylesheets/style-7e54424995.min.css">
+<link rel="stylesheet" href="/assets/stylesheets/style-f8c0284d9e.min.css">
 <!-- endinject -->
 
 <!-- Icons -->
@@ -94,31 +94,38 @@
 <form id="add_api_form">
   <label class="group-label label-required">Format of the spec:</label>
   <radiogroup class="form-group">
-    <label class="control control--radio">Swagger 1.x
+    <label class="control control--radio">
+      <a target="_blank" href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/1.2.md">Swagger 1.x</a>
   		<input type="radio" name="spec-format" value="Swagger 1.x" required/>
   		<div class="control__indicator"></div>
 	  </label>
-    <label class="control control--radio">OpenAPI(fka Swagger) 2.0
+    <label class="control control--radio">
+      <a target="_blank" href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md"> OpenAPI(fka Swagger) 2.0</a>
   		<input type="radio" name="spec-format" value="OpenAPI(fka Swagger) 2.0"/>
   		<div class="control__indicator"></div>
 	  </label>
-    <label class="control control--radio">I/O Docs
+    <label class="control control--radio">
+      <a target="_blank" href="https://github.com/mashery/iodocs"> I/O Docs </a>
   		<input type="radio" name="spec-format" value="I/O Docs"/>
   		<div class="control__indicator"></div>
 	  </label>
-    <label class="control control--radio">API Blueprint
+    <label class="control control--radio">
+      <a target="_blank" href="https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md"> API Blueprint </a>
   		<input type="radio" name="spec-format" value="API Blueprint"/>
   		<div class="control__indicator"></div>
 	  </label>
-    <label class="control control--radio">Google API Discovery
+    <label class="control control--radio">
+      <a target="_blank" href="https://developers.google.com/discovery/v1/reference/apis"> Google API Discovery </a>
   		<input type="radio" name="spec-format" value="Google API Discovery"/>
   		<div class="control__indicator"></div>
 	  </label>
-    <label class="control control--radio">RAML
+    <label class="control control--radio">
+      <a target="_blank" href="http://raml.org/spec.html"> RAML </a>
   		<input type="radio" name="spec-format" value="RAML"/>
   		<div class="control__indicator"></div>
 	  </label>
-    <label class="control control--radio">WADL
+    <label class="control control--radio">
+      <a target="_blank" href="http://www.w3.org/Submission/wadl/"> WADL </a>
   		<input type="radio" name="spec-format" value="WADL"/>
   		<div class="control__indicator"></div>
 	  </label>
@@ -177,8 +184,8 @@
     return OpenIssue()
       .provider('github')
       .repository('APIs-guru/api-models')
-      .labels(['add_API'])
-      .title('Add ' + details.name + ' API')
+      .labels('add API')
+      .title('Add "' + details.name + '" API')
       .append(body)
       .url();
   }
