@@ -1,4 +1,13 @@
-<header class="site-header">
+<div class="mobile-header">
+  <div class="toggle-button">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="logo"> APIS.GURU </div>
+</div>
+<header class="site-header" id="menu">
   <nav class="site-nav">
     {% assign sorted_pages = site.pages | sort:"order" %}
     {% for my_page in sorted_pages %}

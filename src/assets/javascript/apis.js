@@ -7,7 +7,7 @@ if (window.$) {
 
     $.ajax({
       type: "GET",
-      url: "https://apis-guru.github.io/api-models/api/v1/list.json",
+      url: "https://api.apis.guru/v2/list.json",
       dataType: 'json',
       cache: false,
       success: function (data) {
