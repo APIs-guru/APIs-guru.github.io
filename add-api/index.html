@@ -12,7 +12,7 @@
 
 <!-- CSS -->
 <!-- inject:css -->
-<link rel="stylesheet" href="/assets/stylesheets/style-4fc785ff70.min.css">
+<link rel="stylesheet" href="/assets/stylesheets/style-fbc5613319.min.css">
 <!-- endinject -->
 
 <!-- Icons -->
@@ -46,7 +46,16 @@
 
   <body>
 
-    <header class="site-header">
+    <div class="mobile-header">
+  <div class="toggle-button">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="logo"> APIS.GURU </div>
+</div>
+<header class="site-header" id="menu">
   <nav class="site-nav">
     
     
@@ -70,6 +79,12 @@
     
       
         
+        <a class="page-link" href="/api-docs/">Our API</a>
+        
+      
+    
+      
+        
         <a class="page-link" href="/about/">About</a>
         
       
@@ -78,7 +93,7 @@
 </header>
 
 
-    <div class="page-content">
+    <div class="page-content" id="content">
       <div class="wrapper">
   <h1> Add API </h1>
 <div class="description">
@@ -231,9 +246,10 @@
 
 
   <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.12/slideout.js"></script>
   <!-- inject:js -->
   <script src="/assets/javascript/apis-59ab3a2264.min.js"></script>
-  <script src="/assets/javascript/index-51c1aee2fe.min.js"></script>
+  <script src="/assets/javascript/index-7ced8198f9.min.js"></script>
   <!-- endinject -->
 
   <script>
