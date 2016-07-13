@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://APIs.guru/jekyll/2015/02/03/welcome-to-jekyll/</loc>
+<lastmod>2015-02-03T00:00:00+02:00</lastmod>
+</url>
+<url>
+<loc>https://APIs.guru/404.html</loc>
+</url>
+<url>
+<loc>https://APIs.guru/about/</loc>
+</url>
+<url>
+<loc>https://APIs.guru/add-api/</loc>
+</url>
+<url>
+<loc>https://APIs.guru/api-doc/</loc>
+</url>
+<url>
+<loc>https://APIs.guru/browse-apis/</loc>
+</url>
+<url>
+<loc>https://APIs.guru/</loc>
+</url>
+</urlset>
