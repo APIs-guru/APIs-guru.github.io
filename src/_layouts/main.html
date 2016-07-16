@@ -1,29 +1,15 @@
-<!DOCTYPE html>
-<html>
+---
+layout: base
+image: /branding/banner.svg
+---
 
-  <head>
-    {% include head.html %}
-  </head>
+{% include header.html %}
 
-  <body>
+<div class="page-content" id="content">
+  {{content}}
+</div>
 
-    {% include header.html %}
+{% include footer.html %}
 
-    <div class="page-content" id="content">
-      {{content}}
-    </div>
-
-    {% include footer.html %}
-
-  <!-- JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.12/slideout.js"></script>
-  <!-- inject:js -->
-  <script src="/assets/javascript/apis-59ab3a2264.min.js"></script>
-  <script src="/assets/javascript/index-7ced8198f9.min.js"></script>
-  <!-- endinject -->
-
-  {% include analytics.html %}
-
-  </body>
-
-</html>
+<!-- JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.12/slideout.js"></script>

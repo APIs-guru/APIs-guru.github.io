@@ -207,9 +207,9 @@ blockquote {
 .icon {
   > svg {
     display: inline-block;
-    width: 16px;
-    height: 16px;
-    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    vertical-align: text-bottom;
   }
 
   &.big, &.big > svg {

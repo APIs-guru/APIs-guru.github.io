@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    {% include head.html %}
+  </head>
+
+  <body>
+    {{content}}
+    <!-- inject:js -->
+    <script src="/assets/javascript/apis.js"></script>
+    <script src="/assets/javascript/index.js"></script>
+    <!-- endinject -->
+
+    {% include analytics.html %}
+
+  </body>
+
+</html>

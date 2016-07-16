@@ -1,9 +1,11 @@
 ---
 layout: post
-date: 2015-02-03
+date: 2016-02-03
 title:  Welcome to Jekyll!
 categories: jekyll
+image: /branding/banner.svg
 ---
+![img](https://apis.guru/branding/banner.svg)
 
 You'll find this post in your `_posts` directory - edit this post and re-build
 (or run with the `-w` switch) to see your changes! To add new posts, simply add
@@ -36,4 +38,3 @@ Jekyll. File all bugs/feature requests at [Jekyll's GitHub repo][jekyll-gh].
 [redcarpet]: https://github.com/vmg/redcarpet
 [jekyll-gh]: https://github.com/jekyll/jekyll
 [jekyll]:    http://jekyllrb.com/docs/home/
-[^1]: Who are quite handy
