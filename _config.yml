@@ -30,7 +30,7 @@ lsi: false
 limit_posts: 10
 
 # Permalink structure and pagination options
-permalink: pretty
+permalink: /blog/:title/
 paginate: 10
 paginate_path: 'page:num'
 excerpt_separator: '<!--more-->'

@@ -11,5 +11,10 @@ layout: default
   <div class="post-content" itemprop="articleBody">
     {{ content }}
   </div>
-
+  <div class="social-share">
+    <span> Share: </span>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <div class="g-plus" data-action="share" data-annotation="none"><script src="https://apis.google.com/js/platform.js" async defer></script></div>
+  </div>
+  {% include disqus.html %}
 </article>
