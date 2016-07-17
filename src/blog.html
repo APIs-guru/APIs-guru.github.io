@@ -1,0 +1,24 @@
+---
+title: Blog
+order: 5
+layout: default
+---
+
+{% for post in site.posts %}
+  <article class="blogpost">
+    <header class="post-header">
+      <a href="{{ post.url }}">
+        <h2 itemprop="name headline">{{ post.title }}</h2>
+      </a>
+      <time datetime="{{ post.date | date_to_xmlschema }}">
+        {{ post.date | date: "%b %d" }}
+        <strong> {{ post.date | date: "%Y" }} </strong>
+      </time>
+    </header>
+    <div class="content">
+      {{ post.excerpt | remove: '<p>' | remove: '</p>' }}
+    </div>
+    <a href="{{ post.url }}"> Read more
+    </a>
+  </article>
+{% endfor %}
