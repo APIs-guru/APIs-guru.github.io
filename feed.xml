@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.3">Jekyll</generator><link href="https://APIs.guru/feed.xml" rel="self" type="application/atom+xml" /><link href="https://APIs.guru/" rel="alternate" type="text/html" /><updated>2016-07-14T00:23:03+03:00</updated><id>https://APIs.guru/</id><title>APIs.guru - Wikipedia for WEB APIs</title><subtitle>Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue</subtitle><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><entry><title>Welcome to Jekyll!</title><link href="https://APIs.guru/jekyll/2015/02/03/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2015-02-03T00:00:00+02:00</published><updated>2015-02-03T00:00:00+02:00</updated><id>https://APIs.guru/jekyll/2015/02/03/welcome-to-jekyll</id><content type="html" xml:base="https://APIs.guru/jekyll/2015/02/03/welcome-to-jekyll/">&lt;p&gt;You&amp;rsquo;ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory - edit this post and re-build
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.3">Jekyll</generator><link href="https://APIs.guru/feed.xml" rel="self" type="application/atom+xml" /><link href="https://APIs.guru/" rel="alternate" type="text/html" /><updated>2016-07-17T22:37:33+03:00</updated><id>https://APIs.guru/</id><title>APIs.guru - Wikipedia for WEB APIs</title><subtitle>Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue</subtitle><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><entry><title>Welcome to Jekyll!</title><link href="https://APIs.guru/blog/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2016-02-03T00:00:00+02:00</published><updated>2016-02-03T00:00:00+02:00</updated><id>https://APIs.guru/blog/welcome-to-jekyll</id><content type="html" xml:base="https://APIs.guru/blog/welcome-to-jekyll/">&lt;p&gt;&lt;img src=&quot;https://apis.guru/branding/banner.svg&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;You&amp;rsquo;ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory - edit this post and re-build
 (or run with the &lt;code&gt;-w&lt;/code&gt; switch) to see your changes! To add new posts, simply add
 a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention:
 YYYY-MM-DD-name-of-post.ext.&lt;/p&gt;
@@ -7,7 +9,7 @@ YYYY-MM-DD-name-of-post.ext.&lt;/p&gt;
 
 &lt;p&gt;We&amp;rsquo;ve also added a lot of different settings for &lt;a href=&quot;https://github.com/vmg/redcarpet&quot;&gt;Redcarpet&lt;/a&gt;,
 including being able to &lt;sup&gt;superscript,&lt;/sup&gt; &lt;u&gt;underline&lt;/u&gt;, &lt;mark&gt;highlight&lt;/mark&gt;,
-&lt;del&gt;strikethrough&lt;/del&gt;, and footnotes.&lt;sup id=&quot;fnref1&quot;&gt;&lt;a href=&quot;#fn1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; It even automatically makes links into
+&lt;del&gt;strikethrough&lt;/del&gt;, and footnotes.[&lt;sup&gt;1]&lt;/sup&gt; It even automatically makes links into
 URLs: &lt;a href=&quot;http://www.jekyllrb.com&quot;&gt;www.jekyllrb.com&lt;/a&gt; and you can put multiple underscores in words without
 them leaning all over the place: this_word_has_underscores. It&amp;rsquo;ll also make your
 quotes look nice, like this: &amp;ldquo;hoho&amp;rdquo;, your dashes and hypens will be dashing too:
@@ -22,18 +24,7 @@ print_hi(&amp;#39;Tom&amp;#39;)
 #=&amp;gt; prints &amp;#39;Hi, Tom&amp;#39; to STDOUT.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home/&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of
-Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll&amp;rsquo;s GitHub repo&lt;/a&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-
-&lt;li id=&quot;fn1&quot;&gt;
-&lt;p&gt;Who are quite handy&amp;nbsp;&lt;a href=&quot;#fnref1&quot; rev=&quot;footnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;/ol&gt;
-&lt;/div&gt;</content><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><summary>You&amp;rsquo;ll find this post in your _posts directory - edit this post and re-build
+Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll&amp;rsquo;s GitHub repo&lt;/a&gt;.&lt;/p&gt;</content><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><summary>You&amp;rsquo;ll find this post in your _posts directory - edit this post and re-build
 (or run with the -w switch) to see your changes! To add new posts, simply add
 a file in the _posts directory that follows the convention:
-YYYY-MM-DD-name-of-post.ext.</summary></entry></feed>
+YYYY-MM-DD-name-of-post.ext.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://APIs.guru/branding/banner.svg" /></entry></feed>
