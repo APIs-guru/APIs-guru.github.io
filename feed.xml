@@ -1,30 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.3">Jekyll</generator><link href="https://APIs.guru/feed.xml" rel="self" type="application/atom+xml" /><link href="https://APIs.guru/" rel="alternate" type="text/html" /><updated>2016-07-17T22:39:09+03:00</updated><id>https://APIs.guru/</id><title>APIs.guru - Wikipedia for WEB APIs</title><subtitle>Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue</subtitle><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><entry><title>Welcome to Jekyll!</title><link href="https://APIs.guru/blog/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2016-02-03T00:00:00+02:00</published><updated>2016-02-03T00:00:00+02:00</updated><id>https://APIs.guru/blog/welcome-to-jekyll</id><content type="html" xml:base="https://APIs.guru/blog/welcome-to-jekyll/">&lt;p&gt;&lt;img src=&quot;https://apis.guru/branding/banner.svg&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.3">Jekyll</generator><link href="https://APIs.guru/feed.xml" rel="self" type="application/atom+xml" /><link href="https://APIs.guru/" rel="alternate" type="text/html" /><updated>2016-07-18T23:09:28+03:00</updated><id>https://APIs.guru/</id><title>APIs.guru - Wikipedia for WEB APIs</title><subtitle>Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue</subtitle><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><entry><title>Welcome</title><link href="https://APIs.guru/blog/welcome/" rel="alternate" type="text/html" title="Welcome" /><published>2016-07-18T00:00:00+03:00</published><updated>2016-07-18T00:00:00+03:00</updated><id>https://APIs.guru/blog/welcome</id><content type="html" xml:base="https://APIs.guru/blog/welcome/">&lt;p&gt;&lt;img src=&quot;/assets/images/full-banner.svg&quot; alt=&quot;APIs.guru banner&quot;&gt;&lt;/p&gt;
 
-&lt;p&gt;You&amp;rsquo;ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory - edit this post and re-build
-(or run with the &lt;code&gt;-w&lt;/code&gt; switch) to see your changes! To add new posts, simply add
-a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention:
-YYYY-MM-DD-name-of-post.ext.&lt;/p&gt;
+&lt;p&gt;Hello, readers!
+After a couple years we finally break the vow of silence :)&lt;/p&gt;
+
+&lt;p&gt;As you probably saw on our main page we are building &lt;em&gt;directory of machine-readable API definitions&lt;/em&gt; or how we like to call it &lt;strong&gt;&amp;ldquo;Wikipedia for Web APIs&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;You probably think:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;I understand every individual word like Wikipedia, Web and even API but what the heck your are building and how it can be useful for me?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;And you are not the only one! It&amp;rsquo;s the most frequent question we hear. We improvise a lot so often we don&amp;rsquo;t know the answer ourselves :). That&amp;rsquo;s why we decided to start this blog: to share our vision and ideas.&lt;/p&gt;
 
 &lt;!--more--&gt;
 
-&lt;p&gt;We&amp;rsquo;ve also added a lot of different settings for &lt;a href=&quot;https://github.com/vmg/redcarpet&quot;&gt;Redcarpet&lt;/a&gt;,
-including being able to &lt;sup&gt;superscript,&lt;/sup&gt; &lt;u&gt;underline&lt;/u&gt;, &lt;mark&gt;highlight&lt;/mark&gt;,
-&lt;del&gt;strikethrough&lt;/del&gt;, and footnotes.[&lt;sup&gt;1]&lt;/sup&gt; It even automatically makes links into
-URLs: &lt;a href=&quot;http://www.jekyllrb.com&quot;&gt;www.jekyllrb.com&lt;/a&gt; and you can put multiple underscores in words without
-them leaning all over the place: this_word_has_underscores. It&amp;rsquo;ll also make your
-quotes look nice, like this: &amp;ldquo;hoho&amp;rdquo;, your dashes and hypens will be dashing too:
-&amp;mdash;/&amp;ndash;.&lt;/p&gt;
+&lt;h2&gt;What will this blog be about?&lt;/h2&gt;
 
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+&lt;p&gt;Beyond primary goal of explaining our vision behind APIs.guru there are couple more topics we plan to write on:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;def print_hi(name)
-  puts &amp;quot;Hi, #{name}&amp;quot;
-end
-print_hi(&amp;#39;Tom&amp;#39;)
-#=&amp;gt; prints &amp;#39;Hi, Tom&amp;#39; to STDOUT.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;machine-readable specs and APIs in general;&lt;/li&gt;
+&lt;li&gt;some statistics: we have a few interesting numbers we&amp;rsquo;d like to share;&lt;/li&gt;
+&lt;li&gt;answer questions about APIs.guru, feel free to ask them in comments;&lt;/li&gt;
+&lt;li&gt;news and updates: there are a few exiting projects we plan to release in the next few months&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home/&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of
-Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll&amp;rsquo;s GitHub repo&lt;/a&gt;.&lt;/p&gt;</content><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><summary>You&amp;rsquo;ll find this post in your _posts directory - edit this post and re-build
-(or run with the -w switch) to see your changes! To add new posts, simply add
-a file in the _posts directory that follows the convention:
-YYYY-MM-DD-name-of-post.ext.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://APIs.guru/branding/banner.svg" /></entry></feed>
+&lt;h2&gt;Something to read right now&lt;/h2&gt;
+
+&lt;p&gt;You can read &lt;a href=&quot;http://swagger.io/apis-guru-wikipedia-for-web-apis/&quot;&gt;our guest post&lt;/a&gt; at &lt;a href=&quot;http://swagger.io&quot;&gt;swagger.io&lt;/a&gt; and any of a few 3rd-party articles:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.infoq.com/news/2016/06/apisguru-joins-api-indexes&quot;&gt;APIs.guru Joins Growing List of API Indexes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://medium.com/@bbrennan/api-discovery-with-apis-guru-b74051383430&quot;&gt;API Discovery with APIs.guru&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://apilama.com/2016/04/06/apis-guru/&quot;&gt;A different Wikipedia for Web APIs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.apiful.io/intro/2016/05/09/analyzing-api-specifications.html&quot;&gt;Analyzing Open API Specifications&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In addition, here is a great article to get a bigger picture:
+&lt;a href=&quot;http://nordicapis.com/tips-to-improve-the-discoverability-of-your-api/&quot;&gt;Tips to Improve the Discoverability of Your API&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also, we have spoken at a couple of events and here are slides from the most recent one:&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/1bQy0TT0pwc1if&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/IvanGoncharov5/nordic-api-days-2016-apisguru-wikipedia-for-web-apis&quot; title=&quot;Nordic API days 2016 - APIs.guru Wikipedia for Web APIs&quot; target=&quot;_blank&quot;&gt;Nordic API days 2016 - APIs.guru Wikipedia for Web APIs&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;//www.slideshare.net/IvanGoncharov5&quot; target=&quot;_blank&quot;&gt;Ivan Goncharov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/div&gt;
+
+&lt;h2&gt;Teaser&lt;/h2&gt;
+
+&lt;p&gt;Our next post will be about a tool that we have been developing for last year. This will change the way you document your API.
+If you don&amp;rsquo;t want to miss our next blog posts subscribe to &lt;a href=&quot;https://twitter.com/APIs_guru&quot;&gt;our Twitter&lt;/a&gt;: as a bonus, you will see notifications for all new APIs added to our directory.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Do you have any questions? Don&amp;rsquo;t hesitate to ask them in comments.&lt;/p&gt;</content><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><summary>Hello, readers!
+After a couple years we finally break the vow of silence :)
+
+As you probably saw on our main page we are building directory of machine-readable API definitions or how we like to call it &amp;ldquo;Wikipedia for Web APIs&amp;rdquo;.
+
+You probably think:
+
+
+I understand every individual word like Wikipedia, Web and even API but what the heck your are building and how it can be useful for me?
+
+
+And you are not the only one! It&amp;rsquo;s the most frequent question we hear. We improvise a lot so often we don&amp;rsquo;t know the answer ourselves :). That&amp;rsquo;s why we decided to start this blog: to share our vision and ideas.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://APIs.guru/assets/images/logo-big.png" /></entry></feed>
