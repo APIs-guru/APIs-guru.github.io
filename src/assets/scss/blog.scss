@@ -2,13 +2,6 @@
   margin: 2rem 0;
 }
 
-.post-content {
-  &::first-letter {
-    font-size: 200%;
-    float: left;
-  }
-}
-
 .social-share {
   > span, a, iframe, div {
     vertical-align: middle !important;
@@ -23,116 +16,12 @@ article.blogpost {
     margin-top: 5rem;
   }
 
-  header time {
-    text-align: center;
-    display: block;;
-    position: absolute;
-    top: 0;
-    width: 4rem;
-    height: calc(1.8em * 1.5 + 1em);
-    margin-top: -0.5em;
-    margin-left: -7rem;
-    padding: 0.8em 0 0.8em 0;
-
-    box-sizing: border-box;
-    font-weight: normal;
-    line-height: 1;
-
-    color: $grey-color;
-    background-color: #fff;
-
-    strong {
-      display: block;
-      font-size: 120%;
-      font-weight: 200;
-    }
-
-    &:before, &:after {
-      display: block;
-      position: absolute;
-      left: calc(50% - 0.3rem);
-      width: 0.6rem;
-      height: 0.6rem;
-
-      background-image: url('/assets/images/romb.svg');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
-
-      content: '';
-      display: block;
-    }
-
-    &:before {
-      top: -0.3rem;
-    }
-
-    &:after {
-      bottom: -0.3rem;
-    }
-  }
-
   header h2 {
     font-size: 1.8em;
     color: $text-color;
     font-weight: normal;
     &:hover {
       color: lighten($text-color, 30%);
-    }
-  }
-
-  &:before {
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: -2rem;
-    left: -(7rem - 2rem);
-    border-left: 1px solid #5A6160;
-    margin-left: -1px;
-    content: '';
-  }
-
-
-  &:first-of-type time:before {
-    display: none;
-  }
-
-  &:last-of-type time:after {
-    display: none;
-  }
-  &:last-of-type:before {
-    display: none;
-  }
-}
-
-@include media-query(1100px) {
-  article.blogpost {
-    &:before {
-      display: none;
-    }
-    header {
-      time {
-        position: static;
-        width: auto;
-        height: auto;
-        margin: 0;
-        padding: 0;
-        text-align: left;
-        font-weight: 200;
-        font-size: 90%;
-        margin-bottom: 1rem;
-        &:before, &:after {
-          display: none;
-        }
-
-        strong {
-          display: inline-block;
-          font-size: 1em;
-          &:before {
-            content: ', ';
-          }
-        }
-      }
     }
   }
 }

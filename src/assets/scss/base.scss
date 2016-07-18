@@ -223,6 +223,12 @@ blockquote {
   }
 }
 
+hr {
+  margin: 1rem 0;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-style: solid;
+}
+
 /**
  * Line clamp
  */

@@ -42,6 +42,9 @@ redcarpet:
               'strikethrough', 'superscript', 'underline', 'highlight', 'footnotes']
 highlighter: true
 
+kramdown:
+  input: GFM
+
 # Extending Jekyll
 gems:
   - jekyll-archives
