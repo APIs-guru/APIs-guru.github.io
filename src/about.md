@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+image: /assets/images/logo-fb.png
 permalink: /about/
 order: 40
 ---
