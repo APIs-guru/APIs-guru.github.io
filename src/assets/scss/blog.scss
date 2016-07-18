@@ -2,6 +2,13 @@
   margin: 2rem 0;
 }
 
+.post-content {
+  &::first-letter {
+    font-size: 200%;
+    float: left;
+  }
+}
+
 .social-share {
   > span, a, iframe, div {
     vertical-align: middle !important;
