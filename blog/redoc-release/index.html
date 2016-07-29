@@ -26,8 +26,8 @@
 <!-- Begin Jekyll SEO tag v1.4.0 -->
 <title>ReDoc - Reinventing OpenAPI-powered Documentation - APIs.guru - Wikipedia for WEB APIs</title>
 <meta property="og:title" content="ReDoc - Reinventing OpenAPI-powered Documentation" />
-<meta name="description" content="SwaggerUI proves the possibility to use OpenAPI specs as a single source for generating API documentation. Although we love SwaggerUI we should admit an obvious fact: SwaggerUI is rather an API console than an API documentation.A long time ago in a galaxy far, far away&hellip;.Rebilly adopted Swagger as a definition language for their API, and they were looking for a documentation engine.But they wanted to go beyond the industry standards and document their API to the fullest. Here’s how they did it:- every field in JSON payloads;- in their quest, they had to use almost every OpenAPI feature including lots of Mr. discriminator ;)- resulting spec is really huge: 12K+ lines and growing! (one of the biggest we&rsquo;ve seen in the wild). And believe us - they use all the possible tricks to reduce duplications.So, they approached us with this challenging project: to build a brand new documentation engine - ReDoc." />
-<meta property="og:description" content="SwaggerUI proves the possibility to use OpenAPI specs as a single source for generating API documentation. Although we love SwaggerUI we should admit an obvious fact: SwaggerUI is rather an API console than an API documentation.A long time ago in a galaxy far, far away&hellip;.Rebilly adopted Swagger as a definition language for their API, and they were looking for a documentation engine.But they wanted to go beyond the industry standards and document their API to the fullest. Here’s how they did it:- every field in JSON payloads;- in their quest, they had to use almost every OpenAPI feature including lots of Mr. discriminator ;)- resulting spec is really huge: 12K+ lines and growing! (one of the biggest we&rsquo;ve seen in the wild). And believe us - they use all the possible tricks to reduce duplications.So, they approached us with this challenging project: to build a brand new documentation engine - ReDoc." />
+<meta name="description" content="SwaggerUI proves the possibility to use OpenAPI specs as a single source for generating API documentation. Although we love SwaggerUI we should admit an obvious fact: SwaggerUI is rather an API console than an API documentation.A long time ago in a galaxy far, far away&hellip;.Rebilly adopted Swagger as a definition language for their API, and they were looking for a documentation engine.But they wanted to go beyond the industry standards and document their API to the fullest. Here’s how they did it:every field in JSON payloads;in their quest, they had to use almost every OpenAPI feature including lots of Mr. discriminator ;)resulting spec is really huge: 12K+ lines and growing! (one of the biggest we&rsquo;ve seen in the wild). And believe us - they use all the possible tricks to reduce duplications.So, they approached us with this challenging project: to build a brand new documentation engine - ReDoc." />
+<meta property="og:description" content="SwaggerUI proves the possibility to use OpenAPI specs as a single source for generating API documentation. Although we love SwaggerUI we should admit an obvious fact: SwaggerUI is rather an API console than an API documentation.A long time ago in a galaxy far, far away&hellip;.Rebilly adopted Swagger as a definition language for their API, and they were looking for a documentation engine.But they wanted to go beyond the industry standards and document their API to the fullest. Here’s how they did it:every field in JSON payloads;in their quest, they had to use almost every OpenAPI feature including lots of Mr. discriminator ;)resulting spec is really huge: 12K+ lines and growing! (one of the biggest we&rsquo;ve seen in the wild). And believe us - they use all the possible tricks to reduce duplications.So, they approached us with this challenging project: to build a brand new documentation engine - ReDoc." />
 <link rel="canonical" href="https://APIs.guru/blog/redoc-release/" />
 <meta property="og:url" content="https://APIs.guru/blog/redoc-release/" />
 <meta property="og:site_name" content="APIs.guru - Wikipedia for WEB APIs" />
@@ -42,7 +42,7 @@
     "headline": "ReDoc - Reinventing OpenAPI-powered Documentation",
     "image": "https://APIs.guru/assets/images/blog/redoc-demo.png",
     "datePublished": "2016-07-29T00:00:00+03:00",
-    "description": "SwaggerUI proves the possibility to use OpenAPI specs as a single source for generating API documentation. Although we love SwaggerUI we should admit an obvious fact: SwaggerUI is rather an API console than an API documentation.A long time ago in a galaxy far, far away&hellip;.Rebilly adopted Swagger as a definition language for their API, and they were looking for a documentation engine.But they wanted to go beyond the industry standards and document their API to the fullest. Here’s how they did it:- every field in JSON payloads;- in their quest, they had to use almost every OpenAPI feature including lots of Mr. discriminator ;)- resulting spec is really huge: 12K+ lines and growing! (one of the biggest we&rsquo;ve seen in the wild). And believe us - they use all the possible tricks to reduce duplications.So, they approached us with this challenging project: to build a brand new documentation engine - ReDoc.",
+    "description": "SwaggerUI proves the possibility to use OpenAPI specs as a single source for generating API documentation. Although we love SwaggerUI we should admit an obvious fact: SwaggerUI is rather an API console than an API documentation.A long time ago in a galaxy far, far away&hellip;.Rebilly adopted Swagger as a definition language for their API, and they were looking for a documentation engine.But they wanted to go beyond the industry standards and document their API to the fullest. Here’s how they did it:every field in JSON payloads;in their quest, they had to use almost every OpenAPI feature including lots of Mr. discriminator ;)resulting spec is really huge: 12K+ lines and growing! (one of the biggest we&rsquo;ve seen in the wild). And believe us - they use all the possible tricks to reduce duplications.So, they approached us with this challenging project: to build a brand new documentation engine - ReDoc.",
     "url": "https://APIs.guru/blog/redoc-release/"
   }
 </script>
@@ -119,10 +119,13 @@
 <h1>A long time ago in a galaxy far, far away&hellip;.</h1>
 
 <p><a href="https://www.rebilly.com/">Rebilly</a> adopted Swagger as a definition language for their API, and they were looking for a documentation engine.
-But they wanted to go beyond the industry standards and document their API to the fullest. Here’s how they did it:
-- every field in JSON payloads;
-- in their quest, they had to use almost every OpenAPI feature including lots of Mr. <code>discriminator</code> ;)
-- resulting spec is really huge: 12K+ lines and growing! (one of the biggest we&rsquo;ve seen in the wild). And believe us - they use all the possible tricks to reduce duplications.</p>
+But they wanted to go beyond the industry standards and document their API to the fullest. Here’s how they did it:</p>
+
+<ul>
+<li>every field in JSON payloads;</li>
+<li>in their quest, they had to use almost every OpenAPI feature including lots of Mr. <code>discriminator</code> ;)</li>
+<li>resulting spec is really huge: 12K+ lines and growing! (one of the biggest we&rsquo;ve seen in the wild). And believe us - they use all the possible tricks to reduce duplications.</li>
+</ul>
 
 <p>So, they approached us with this challenging project: to build a brand new documentation engine - <a href="rebilly.github.io/Redoc">ReDoc</a>.</p>
 
@@ -194,6 +197,10 @@ After months of work now we feel confident to make <code>1.0.0</code> release.</
 <hr>
 
 <p>If you need any help with integration ReDoc feel free to ask! Subscribe to our twitter so as not to miss ReDoc new releases and other news. Will you try ReDoc? Tell us in comments bellow :)</p>
+
+<p>Star the project on GitHub <3:
+<center><iframe src="https://ghbtns.com/github-btn.html?user=Rebilly&repo=ReDoc&type=star&count=true&size=large"
+      frameborder="0" scrolling="0" width="130px" height="30px"></iframe></center></p>
 
   </div>
   <div class="social-share">

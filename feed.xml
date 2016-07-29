@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.3">Jekyll</generator><link href="https://APIs.guru/feed.xml" rel="self" type="application/atom+xml" /><link href="https://APIs.guru/" rel="alternate" type="text/html" /><updated>2016-07-29T14:20:26+03:00</updated><id>https://APIs.guru/</id><title>APIs.guru - Wikipedia for WEB APIs</title><subtitle>Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue</subtitle><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><entry><title>ReDoc - Reinventing OpenAPI-powered Documentation</title><link href="https://APIs.guru/blog/redoc-release/" rel="alternate" type="text/html" title="ReDoc - Reinventing OpenAPI-powered Documentation" /><published>2016-07-29T00:00:00+03:00</published><updated>2016-07-29T00:00:00+03:00</updated><id>https://APIs.guru/blog/redoc-release</id><content type="html" xml:base="https://APIs.guru/blog/redoc-release/">&lt;p&gt;SwaggerUI proves the possibility to use OpenAPI specs as a single source for generating API documentation. Although we love SwaggerUI we should admit an obvious fact: SwaggerUI is rather an API console than an API documentation.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.3">Jekyll</generator><link href="https://APIs.guru/feed.xml" rel="self" type="application/atom+xml" /><link href="https://APIs.guru/" rel="alternate" type="text/html" /><updated>2016-07-29T18:36:58+03:00</updated><id>https://APIs.guru/</id><title>APIs.guru - Wikipedia for WEB APIs</title><subtitle>Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue</subtitle><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><entry><title>ReDoc - Reinventing OpenAPI-powered Documentation</title><link href="https://APIs.guru/blog/redoc-release/" rel="alternate" type="text/html" title="ReDoc - Reinventing OpenAPI-powered Documentation" /><published>2016-07-29T00:00:00+03:00</published><updated>2016-07-29T00:00:00+03:00</updated><id>https://APIs.guru/blog/redoc-release</id><content type="html" xml:base="https://APIs.guru/blog/redoc-release/">&lt;p&gt;SwaggerUI proves the possibility to use OpenAPI specs as a single source for generating API documentation. Although we love SwaggerUI we should admit an obvious fact: SwaggerUI is rather an API console than an API documentation.&lt;/p&gt;
 
 &lt;h1&gt;A long time ago in a galaxy far, far away&amp;hellip;.&lt;/h1&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://www.rebilly.com/&quot;&gt;Rebilly&lt;/a&gt; adopted Swagger as a definition language for their API, and they were looking for a documentation engine.
-But they wanted to go beyond the industry standards and document their API to the fullest. Here’s how they did it:
-- every field in JSON payloads;
-- in their quest, they had to use almost every OpenAPI feature including lots of Mr. &lt;code&gt;discriminator&lt;/code&gt; ;)
-- resulting spec is really huge: 12K+ lines and growing! (one of the biggest we&amp;rsquo;ve seen in the wild). And believe us - they use all the possible tricks to reduce duplications.&lt;/p&gt;
+But they wanted to go beyond the industry standards and document their API to the fullest. Here’s how they did it:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;every field in JSON payloads;&lt;/li&gt;
+&lt;li&gt;in their quest, they had to use almost every OpenAPI feature including lots of Mr. &lt;code&gt;discriminator&lt;/code&gt; ;)&lt;/li&gt;
+&lt;li&gt;resulting spec is really huge: 12K+ lines and growing! (one of the biggest we&amp;rsquo;ve seen in the wild). And believe us - they use all the possible tricks to reduce duplications.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;So, they approached us with this challenging project: to build a brand new documentation engine - &lt;a href=&quot;rebilly.github.io/Redoc&quot;&gt;ReDoc&lt;/a&gt;.&lt;/p&gt;
 
@@ -77,15 +80,22 @@ After months of work now we feel confident to make &lt;code&gt;1.0.0&lt;/code&gt
 
 &lt;hr&gt;
 
-&lt;p&gt;If you need any help with integration ReDoc feel free to ask! Subscribe to our twitter so as not to miss ReDoc new releases and other news. Will you try ReDoc? Tell us in comments bellow :)&lt;/p&gt;</content><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><summary>SwaggerUI proves the possibility to use OpenAPI specs as a single source for generating API documentation. Although we love SwaggerUI we should admit an obvious fact: SwaggerUI is rather an API console than an API documentation.
+&lt;p&gt;If you need any help with integration ReDoc feel free to ask! Subscribe to our twitter so as not to miss ReDoc new releases and other news. Will you try ReDoc? Tell us in comments bellow :)&lt;/p&gt;
+
+&lt;p&gt;Star the project on GitHub &lt;3:
+&lt;center&gt;&lt;iframe src=&quot;https://ghbtns.com/github-btn.html?user=Rebilly&amp;repo=ReDoc&amp;type=star&amp;count=true&amp;size=large&quot;
+      frameborder=&quot;0&quot; scrolling=&quot;0&quot; width=&quot;130px&quot; height=&quot;30px&quot;&gt;&lt;/iframe&gt;&lt;/center&gt;&lt;/p&gt;</content><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><summary>SwaggerUI proves the possibility to use OpenAPI specs as a single source for generating API documentation. Although we love SwaggerUI we should admit an obvious fact: SwaggerUI is rather an API console than an API documentation.
 
 A long time ago in a galaxy far, far away&amp;hellip;.
 
 Rebilly adopted Swagger as a definition language for their API, and they were looking for a documentation engine.
 But they wanted to go beyond the industry standards and document their API to the fullest. Here’s how they did it:
-- every field in JSON payloads;
-- in their quest, they had to use almost every OpenAPI feature including lots of Mr. discriminator ;)
-- resulting spec is really huge: 12K+ lines and growing! (one of the biggest we&amp;rsquo;ve seen in the wild). And believe us - they use all the possible tricks to reduce duplications.
+
+
+every field in JSON payloads;
+in their quest, they had to use almost every OpenAPI feature including lots of Mr. discriminator ;)
+resulting spec is really huge: 12K+ lines and growing! (one of the biggest we&amp;rsquo;ve seen in the wild). And believe us - they use all the possible tricks to reduce duplications.
+
 
 So, they approached us with this challenging project: to build a brand new documentation engine - ReDoc.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://APIs.guru/assets/images/blog/redoc-demo.png" /></entry><entry><title>Welcome</title><link href="https://APIs.guru/blog/welcome/" rel="alternate" type="text/html" title="Welcome" /><published>2016-07-18T00:00:00+03:00</published><updated>2016-07-18T00:00:00+03:00</updated><id>https://APIs.guru/blog/welcome</id><content type="html" xml:base="https://APIs.guru/blog/welcome/">&lt;p&gt;&lt;img src=&quot;/assets/images/full-banner.svg&quot; alt=&quot;APIs.guru banner&quot;&gt;&lt;/p&gt;
 
