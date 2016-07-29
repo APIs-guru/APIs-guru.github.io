@@ -331,10 +331,20 @@ $side-menu-width: 256px;
 
 .post-content {
   margin-bottom: $spacing-unit;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $base-font-family;
+  }
+
+
+  h1 {
+    border-bottom: 1px solid #eee;
+  }
 
   h2 {
-    font-size: 2rem;
+    font-size: 1.4rem;
   }
 
   h3 {
