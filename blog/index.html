@@ -12,7 +12,7 @@
 
 <!-- CSS -->
 <!-- inject:css -->
-<link rel="stylesheet" href="/assets/stylesheets/style-dbc05d9a94.min.css">
+<link rel="stylesheet" href="/assets/stylesheets/style-c0f224da34.min.css">
 <!-- endinject -->
 
 <!-- Icons -->
@@ -101,6 +101,34 @@
 <div class="page-content" id="content">
   <div class="wrapper">
   
+  <article class="blogpost">
+    <header class="post-header">
+      <time datetime="2016-07-29T00:00:00+03:00">
+        Jul 29, 2016
+      </time>
+      <a href="/blog/redoc-relese-1/">
+        <h2 itemprop="name headline">ReDoc - Reinventing OpenAPI-powered Documentation</h2>
+      </a>
+    </header>
+    <div class="post-content">
+      <p>SwaggerUI proves the possibility to use OpenAPI specs as a single source for generating API documentation. Although we love SwaggerUI we should admit an obvious fact: SwaggerUI is rather an API console than an API documentation.</p>
+
+<h1>A long time ago in a galaxy far, far away&hellip;.</h1>
+
+<p><a href="https://www.rebilly.com/">Rebilly</a> adopted Swagger as a definition language for their API, and they were looking for a documentation engine.
+But they wanted to go beyond the industry standards and document their API to the fullest. Here’s how they did it:
+- every field in JSON payloads;
+- in their quest, they had to use almost every OpenAPI feature including lots of Mr. <code>discriminator</code> ;)
+- resulting spec is really huge: 12K+ lines and growing! (one of the biggest we&rsquo;ve seen in the wild). And believe us - they use all the possible tricks to reduce duplications.</p>
+
+<p>So, they approached us with this challenging project: to build a brand new documentation engine - <a href="rebilly.github.io/Redoc">ReDoc</a>.</p>
+
+<p><a href="https://rebilly.github.io/ReDoc/"><img src="/assets/images/blog/redoc-demo.png" alt="redoc"></a></p>
+
+    </div>
+    <a href="/blog/redoc-relese-1/"> Read more </a>
+  </article>
+
   <article class="blogpost">
     <header class="post-header">
       <time datetime="2016-07-18T00:00:00+03:00">

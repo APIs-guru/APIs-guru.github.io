@@ -1,4 +1,93 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.3">Jekyll</generator><link href="https://APIs.guru/feed.xml" rel="self" type="application/atom+xml" /><link href="https://APIs.guru/" rel="alternate" type="text/html" /><updated>2016-07-18T23:09:28+03:00</updated><id>https://APIs.guru/</id><title>APIs.guru - Wikipedia for WEB APIs</title><subtitle>Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue</subtitle><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><entry><title>Welcome</title><link href="https://APIs.guru/blog/welcome/" rel="alternate" type="text/html" title="Welcome" /><published>2016-07-18T00:00:00+03:00</published><updated>2016-07-18T00:00:00+03:00</updated><id>https://APIs.guru/blog/welcome</id><content type="html" xml:base="https://APIs.guru/blog/welcome/">&lt;p&gt;&lt;img src=&quot;/assets/images/full-banner.svg&quot; alt=&quot;APIs.guru banner&quot;&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.3">Jekyll</generator><link href="https://APIs.guru/feed.xml" rel="self" type="application/atom+xml" /><link href="https://APIs.guru/" rel="alternate" type="text/html" /><updated>2016-07-29T13:58:41+03:00</updated><id>https://APIs.guru/</id><title>APIs.guru - Wikipedia for WEB APIs</title><subtitle>Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue</subtitle><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><entry><title>ReDoc - Reinventing OpenAPI-powered Documentation</title><link href="https://APIs.guru/blog/redoc-relese-1/" rel="alternate" type="text/html" title="ReDoc - Reinventing OpenAPI-powered Documentation" /><published>2016-07-29T00:00:00+03:00</published><updated>2016-07-29T00:00:00+03:00</updated><id>https://APIs.guru/blog/redoc-relese-1</id><content type="html" xml:base="https://APIs.guru/blog/redoc-relese-1/">&lt;p&gt;SwaggerUI proves the possibility to use OpenAPI specs as a single source for generating API documentation. Although we love SwaggerUI we should admit an obvious fact: SwaggerUI is rather an API console than an API documentation.&lt;/p&gt;
+
+&lt;h1&gt;A long time ago in a galaxy far, far away&amp;hellip;.&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.rebilly.com/&quot;&gt;Rebilly&lt;/a&gt; adopted Swagger as a definition language for their API, and they were looking for a documentation engine.
+But they wanted to go beyond the industry standards and document their API to the fullest. Here’s how they did it:
+- every field in JSON payloads;
+- in their quest, they had to use almost every OpenAPI feature including lots of Mr. &lt;code&gt;discriminator&lt;/code&gt; ;)
+- resulting spec is really huge: 12K+ lines and growing! (one of the biggest we&amp;rsquo;ve seen in the wild). And believe us - they use all the possible tricks to reduce duplications.&lt;/p&gt;
+
+&lt;p&gt;So, they approached us with this challenging project: to build a brand new documentation engine - &lt;a href=&quot;rebilly.github.io/Redoc&quot;&gt;ReDoc&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://rebilly.github.io/ReDoc/&quot;&gt;&lt;img src=&quot;/assets/images/blog/redoc-demo.png&quot; alt=&quot;redoc&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://rebilly.github.io/ReDoc/&quot;&gt;&lt;center&gt;Check out demo!&lt;/center&gt;&lt;/a&gt;&lt;/h4&gt;
+
+&lt;h1&gt;The best part?&lt;/h1&gt;
+
+&lt;p&gt;Together with Rebilly we realized the full potential of ReDoc since other API owners face exactly same problems. That&amp;rsquo;s why we&amp;rsquo;ve decided to open-source it and stick with &lt;strong&gt;vanilla&lt;/strong&gt; &lt;a href=&quot;https://openapis.org/&quot;&gt;OpenAPI&lt;/a&gt;.
+We&amp;rsquo;d love to thank Rebilly and personally &lt;a href=&quot;https://www.linkedin.com/in/adamdaltman&quot;&gt;Adam Altman&lt;/a&gt; for sponsoring this open-source project!
+After months of work now we feel confident to make &lt;code&gt;1.0.0&lt;/code&gt; release.&lt;/p&gt;
+
+&lt;h1&gt;Why should I use ReDoc?&lt;/h1&gt;
+
+&lt;p&gt;Let’s take a look!&lt;/p&gt;
+
+&lt;h2&gt;Extremely easy deployment&lt;/h2&gt;
+
+&lt;p&gt;No, it&amp;rsquo;s really easy. Don&amp;rsquo;t believe us? Take a look at the minimal setup:&lt;/p&gt;
+
+&lt;p&gt;&lt;noscript&gt;&lt;pre&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    &amp;lt;title&amp;gt;API Docs&amp;lt;/title&amp;gt;
+    &amp;lt;!-- needed for mobile devices --&amp;gt;
+    &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1&amp;quot;&amp;gt;
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    &amp;lt;redoc spec-url=&amp;quot;&lt;a href=&quot;http://petstore.swagger.io/v2/swagger.json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/redoc&quot;&gt;http://petstore.swagger.io/v2/swagger.json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/redoc&lt;/a&gt;&amp;gt;
+    &amp;lt;script src=&amp;quot;&lt;a href=&quot;https://rebilly.github.io/ReDoc/releases/latest/redoc.min.js&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/script&quot;&gt;https://rebilly.github.io/ReDoc/releases/latest/redoc.min.js&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/script&lt;/a&gt;&amp;gt;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/RomanGotsiy/f5b0c999410199632cd5bdf4fe0aad5f.js&quot;&gt; &lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all folks! We&amp;rsquo;ve bundled everything (html, css, javascript) into a single file! Also, we&amp;rsquo;re serving the latest release (and all previous releases) from our &lt;a href=&quot;https://github.com/Rebilly/ReDoc#releases&quot;&gt;CDN&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Why else?&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;It&amp;rsquo;s free and open-source project under &lt;a href=&quot;https://github.com/Rebilly/ReDoc/blob/master/LICENSE&quot;&gt;MIT license&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The widest OpenAPI features support (yes, it supports even &lt;code&gt;discriminator&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Neat documentation for nested objects&lt;/li&gt;
+&lt;li&gt;Meaningful request/response samples generated using &lt;a href=&quot;https://github.com/APIs-guru/openapi-sampler&quot;&gt;openapi-sampler&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Code samples support (via &lt;a href=&quot;https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-code-samples&quot;&gt;vendor extension&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Responsive three-panel design with menu/scrolling synchronization&lt;/li&gt;
+&lt;li&gt;Integrate API introduction into side menu - ReDoc takes advantage of markdown headings from OpenAPI &lt;code&gt;description&lt;/code&gt; field. It pulls them into side menu and also supports deep linking.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1&gt;Roadmap&lt;/h1&gt;
+
+&lt;p&gt;Currently, we have the following global key points on our TO-DO list:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Docs pre-rendering (performance and SEO)&lt;/li&gt;
+&lt;li&gt;Built-in API Console&lt;/li&gt;
+&lt;li&gt;Support for external styling&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;What&amp;rsquo;s next? It depends on you! Don&amp;rsquo;t hesitate to open issues and feature requests on &lt;a href=&quot;https://github.com/Rebilly/ReDoc/issues&quot;&gt;GitHub&lt;/a&gt;. PRs are welcome too :)&lt;/p&gt;
+
+&lt;p&gt;Moreover, you can hire APIs.guru to do integration or customization of ReDoc for you needs.&lt;/p&gt;
+
+&lt;h1&gt;Stay tuned&lt;/h1&gt;
+
+&lt;p&gt;At the beginning of the next week, we will release a support tool which will help you to easily setup OpenAPI spec repository with lots of appetizing features.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;If you need any help with integration ReDoc feel free to ask! Subscribe to our twitter so as not to miss ReDoc new releases and other news. Will you try ReDoc? Tell us in comments bellow :)&lt;/p&gt;</content><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><summary>SwaggerUI proves the possibility to use OpenAPI specs as a single source for generating API documentation. Although we love SwaggerUI we should admit an obvious fact: SwaggerUI is rather an API console than an API documentation.
+
+A long time ago in a galaxy far, far away&amp;hellip;.
+
+Rebilly adopted Swagger as a definition language for their API, and they were looking for a documentation engine.
+But they wanted to go beyond the industry standards and document their API to the fullest. Here’s how they did it:
+- every field in JSON payloads;
+- in their quest, they had to use almost every OpenAPI feature including lots of Mr. discriminator ;)
+- resulting spec is really huge: 12K+ lines and growing! (one of the biggest we&amp;rsquo;ve seen in the wild). And believe us - they use all the possible tricks to reduce duplications.
+
+So, they approached us with this challenging project: to build a brand new documentation engine - ReDoc.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://APIs.guru/assets/images/blog/redoc-demo.png" /></entry><entry><title>Welcome</title><link href="https://APIs.guru/blog/welcome/" rel="alternate" type="text/html" title="Welcome" /><published>2016-07-18T00:00:00+03:00</published><updated>2016-07-18T00:00:00+03:00</updated><id>https://APIs.guru/blog/welcome</id><content type="html" xml:base="https://APIs.guru/blog/welcome/">&lt;p&gt;&lt;img src=&quot;/assets/images/full-banner.svg&quot; alt=&quot;APIs.guru banner&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;Hello, readers!
 After a couple years we finally break the vow of silence :)&lt;/p&gt;
