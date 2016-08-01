@@ -10,6 +10,7 @@ SwaggerUI proves the possibility to use OpenAPI specs as a single source for gen
 # A long time ago in a galaxy far, far away....
 [Rebilly](https://www.rebilly.com/) adopted Swagger as a definition language for their API, and they were looking for a documentation engine.
 But they wanted to go beyond the industry standards and document their API to the fullest. Here’s how they did it:
+
 - every field in JSON payloads;
 - in their quest, they had to use almost every OpenAPI feature including lots of Mr. `discriminator` ;)
 - resulting spec is really huge: 12K+ lines and growing! (one of the biggest we've seen in the wild). And believe us - they use all the possible tricks to reduce duplications.
@@ -63,3 +64,7 @@ At the beginning of the next week, we will release a support tool which will hel
 
 -----------------
 If you need any help with integration ReDoc feel free to ask! Subscribe to our twitter so as not to miss ReDoc new releases and other news. Will you try ReDoc? Tell us in comments bellow :)
+
+Star the project on GitHub <3:
+<center><iframe src="https://ghbtns.com/github-btn.html?user=Rebilly&repo=ReDoc&type=star&count=true&size=large"
+      frameborder="0" scrolling="0" width="130px" height="30px"></iframe></center>
