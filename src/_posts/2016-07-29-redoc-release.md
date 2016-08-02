@@ -15,7 +15,7 @@ But they wanted to go beyond the industry standards and document their API to th
 - in their quest, they had to use almost every OpenAPI feature including lots of Mr. `discriminator` ;)
 - resulting spec is really huge: 12K+ lines and growing! (one of the biggest we've seen in the wild). And believe us - they use all the possible tricks to reduce duplications.
 
-So, they approached us with this challenging project: to build a brand new documentation engine - [ReDoc](https://rebilly.github.io/ReDoc).
+So, they approached us with this challenging project: to build a brand new documentation engine - [ReDoc](https://github.com/Rebilly/ReDoc).
 
 [![redoc](/assets/images/blog/redoc-demo.png)](https://rebilly.github.io/ReDoc/)
 
