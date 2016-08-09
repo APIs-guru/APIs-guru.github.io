@@ -15,7 +15,8 @@ It was taking us tons of time to search for API specifications. That's why we ha
 ## Other projects
 We are also working on other OpenAPI/Swagger related projects:
 
-- [api-spec-converter](https://github.com/lucybot/api-spec-converter) (together with [lucybot](http://lucybot.com/))
+- [api-spec-converter](https://github.com/lucybot/api-spec-converter) (together with [LucyBot](http://lucybot.com/))
+- [swagger-converter](https://github.com/apigee-127/swagger-converter) (together with [Apigee](http://apigee.com/))
 - [ReDoc](https://github.com/Rebilly/ReDoc) (sponsored by [Rebilly](https://www.rebilly.com/))
 - [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo) (sponsored by [Rebilly](https://www.rebilly.com/))
 
