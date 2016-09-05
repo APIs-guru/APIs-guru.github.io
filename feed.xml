@@ -1,4 +1,63 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.3">Jekyll</generator><link href="https://APIs.guru/feed.xml" rel="self" type="application/atom+xml" /><link href="https://APIs.guru/" rel="alternate" type="text/html" /><updated>2016-08-09T17:10:20+03:00</updated><id>https://APIs.guru/</id><title>APIs.guru - Wikipedia for WEB APIs</title><subtitle>Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue</subtitle><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><entry><title>ReDoc - Reinventing OpenAPI-powered Documentation</title><link href="https://APIs.guru/blog/redoc-release/" rel="alternate" type="text/html" title="ReDoc - Reinventing OpenAPI-powered Documentation" /><published>2016-07-29T00:00:00+03:00</published><updated>2016-07-29T00:00:00+03:00</updated><id>https://APIs.guru/blog/redoc-release</id><content type="html" xml:base="https://APIs.guru/blog/redoc-release/">&lt;p&gt;SwaggerUI proves the possibility to use OpenAPI specs as a single source for generating API documentation. Although we love SwaggerUI we should admit an obvious fact: SwaggerUI is rather an API console than an API documentation.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.3">Jekyll</generator><link href="https://APIs.guru/feed.xml" rel="self" type="application/atom+xml" /><link href="https://APIs.guru/" rel="alternate" type="text/html" /><updated>2016-09-05T12:33:03+03:00</updated><id>https://APIs.guru/</id><title>APIs.guru - Wikipedia for WEB APIs</title><subtitle>Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue</subtitle><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><entry><title>We change name of our main GitHub repo</title><link href="https://APIs.guru/blog/repo-rename/" rel="alternate" type="text/html" title="We change name of our main GitHub repo" /><published>2016-09-05T00:00:00+03:00</published><updated>2016-09-05T00:00:00+03:00</updated><id>https://APIs.guru/blog/repo-rename</id><content type="html" xml:base="https://APIs.guru/blog/repo-rename/">&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;There is nothing more permanent than a temporary solution&amp;rdquo;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;You may ask, why our main repo is called so weird: &lt;code&gt;api-models&lt;/code&gt;?
+It is easy to explain &lt;code&gt;api&lt;/code&gt; part but &lt;code&gt;models&lt;/code&gt; is something strange and alien in this context.
+If you see &lt;code&gt;api-models&lt;/code&gt; in search results you will probably never expect it to be a collection of API &lt;strong&gt;specs&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;But why we made this mistake when we created the repo?
+At the beginning we were planning to build website with DB to store our collection and Repo was just a temporary solution.
+So we basically used the first thing that came to our mind and didn&amp;rsquo;t think it would have any long-term consequences.&lt;/p&gt;
+
+&lt;p&gt;But we feel it&amp;rsquo;s time to rip off the bandaid:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/blog/repo-rename.png&quot; alt=&quot;repo rename&quot;&gt;&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h1&gt;API models VS API directory&lt;/h1&gt;
+
+&lt;p&gt;What&amp;rsquo;s the difference?
+Let&amp;rsquo;s try to google both terms and see the results:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/blog/repo-rename-google-models-vs-directory.png&quot; alt=&quot;models vs directory&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&amp;ldquo;API directory&amp;rdquo;&lt;/strong&gt; appears to be much more relevant.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h1&gt;Why &amp;ldquo;directory&amp;rdquo;?&lt;/h1&gt;
+
+&lt;p&gt;The answer is simple. We&amp;rsquo;ve just used Google Trends to find what keywords are more popular:
+&lt;img src=&quot;/assets/images/blog/repo-rename-google-trends.png&quot; alt=&quot;google trends&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h1&gt;And what&amp;rsquo;s about &amp;ldquo;openapi&amp;rdquo;?&lt;/h1&gt;
+
+&lt;p&gt;Since we use &amp;ldquo;OpenAPI&amp;rdquo; as the primary format for our collection we want to be on the first page of GitHub search results by keyword &amp;ldquo;OpenAPI&amp;rdquo; (4th page at the moment).
+As far as we know GitHub sorts search results by where the match occurs: in the project name, project description or inside &lt;code&gt;README.md&lt;/code&gt;.
+So placing right keywords in the right places is more important than number of stars, see screenshot:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/blog/github_search_openapi.png&quot; alt=&quot;GitHub search&quot;&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;What do you think about the new name? We&amp;rsquo;d like to hear your opinion in comments.&lt;/p&gt;</content><author><name>APIs.guru</name><email>founders@apis.guru</email><uri>https://apis.guru</uri></author><summary>&amp;ldquo;There is nothing more permanent than a temporary solution&amp;rdquo;.
+
+
+You may ask, why our main repo is called so weird: api-models?
+It is easy to explain api part but models is something strange and alien in this context.
+If you see api-models in search results you will probably never expect it to be a collection of API specs.
+
+But why we made this mistake when we created the repo?
+At the beginning we were planning to build website with DB to store our collection and Repo was just a temporary solution.
+So we basically used the first thing that came to our mind and didn&amp;rsquo;t think it would have any long-term consequences.
+
+But we feel it&amp;rsquo;s time to rip off the bandaid:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://APIs.guru/assets/images/blog/repo-rename.png" /></entry><entry><title>ReDoc - Reinventing OpenAPI-powered Documentation</title><link href="https://APIs.guru/blog/redoc-release/" rel="alternate" type="text/html" title="ReDoc - Reinventing OpenAPI-powered Documentation" /><published>2016-07-29T00:00:00+03:00</published><updated>2016-07-29T00:00:00+03:00</updated><id>https://APIs.guru/blog/redoc-release</id><content type="html" xml:base="https://APIs.guru/blog/redoc-release/">&lt;p&gt;SwaggerUI proves the possibility to use OpenAPI specs as a single source for generating API documentation. Although we love SwaggerUI we should admit an obvious fact: SwaggerUI is rather an API console than an API documentation.&lt;/p&gt;
 
 &lt;h1&gt;A long time ago in a galaxy far, far away&amp;hellip;.&lt;/h1&gt;
 
