@@ -72,7 +72,7 @@ if (window.$) {
         updateCards(data);
 
         var searchInput = $('#search-input')[0];
-        searchInput.addEventListener('change', function( ) { 
+        searchInput.addEventListener('keyup', function( ) { 
             $('#apis-list').empty();
 
             var search = $('#search-input').val().toUpperCase();
