@@ -65,3 +65,6 @@ dist
 # hide the AWS and Rsync credentials file
 aws-credentials.json
 rsync-credentials.json
+
+# tempory files built by jekyll
+index.js
