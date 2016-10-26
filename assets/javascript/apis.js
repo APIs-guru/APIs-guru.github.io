@@ -1,9 +1,67 @@
 'use strict';
 
+function CardModel() {
+    this.preferred = '';
+    this.api = '';
+    this.info = '';
+    this.logo = '';
+    this.externalUrl = '';
+    this.versions = null;
+    this.markedDescription = '';
+};
+
+CardModel.prototype.fromAPIs = function(apis) {
+    this.preferred = apis.preferred;
+    this.api = apis.versions[this.preferred];
+    this.info = this.api.info;
+    this.externalDocs = this.api.externalDocs || {};
+    this.contact = this.info.contact || {};
+    this.externalUrl = this.externalDocs.url || this.contact.url;
+    this.logo = this.info['x-logo'] || {};
+
+    var versions = [];
+    $.each(apis.versions, function (version, api) {
+        if (version === this.preferred) {
+            return;
+        }
+        versions.push({
+            version: version,
+            swaggerUrl: api.swaggerUrl,
+            swaggerYamlUrl: api.swaggerYamlUrl
+        });
+    });
+
+    this.versions = versions.length ? this.versions : null;
+    this.markedDescription = window.marked(this.info.description || '');
+
+    return this;
+};
+
 if (window.$) {
   $(document).ready(function () {
     var cardTemplateSrc = document.querySelector('script[type="text/dot-template"]').innerText;
     var cardTemplate = window.doT.compile(cardTemplateSrc);
+
+    var updateCards = function(data) {
+        var fragment = $(document.createDocumentFragment());
+        $.each(data, function (name, apis) {
+            var model = new CardModel().fromAPIs(apis);
+            var view = cardTemplate(model);
+            fragment.append($(view));
+        });
+
+        $('#apis-list').append(fragment);
+    };
+
+    var filter = function(data, search) {
+        var result = {};
+        $.each(data, function (name, apis) {
+            if (name.toUpperCase().indexOf(search) >= 0) {
+                result[name] = apis;
+            }
+        });
+        return result;
+    };
 
     $.ajax({
       type: "GET",
@@ -11,42 +69,16 @@ if (window.$) {
       dataType: 'json',
       cache: false,
       success: function (data) {
-        var fragment = $(document.createDocumentFragment());
-        $.each(data, function (name, apis) {
-          var preferred = apis.preferred;
-          var api = apis.versions[preferred];
-          var info = api.info;
-          var externalDocs = api.externalDocs || {};
-          var contact = info.contact || {};
-          var externalUrl = externalDocs.url || contact.url;
-          var logo = info['x-logo'] || {};
-          // logo.url = logo.url && logo.url.replace(/^https:\/\/apis-guru.github.io/, 'https://apis.guru');
+        updateCards(data);
 
-          var versions = [];
-          $.each(apis.versions, function (version, api) {
-            if (version === preferred) {
-              return;
-            }
-            versions.push({
-              version: version,
-              swaggerUrl: api.swaggerUrl,
-              swaggerYamlUrl: api.swaggerYamlUrl
-            });
-          });
+        var searchInput = $('#search-input')[0];
+        searchInput.addEventListener('keyup', function( ) { 
+            $('#apis-list').empty();
 
-          var card = cardTemplate({
-            preferred: preferred,
-            api: api,
-            info: info,
-            logo: logo,
-            externalUrl: externalUrl,
-            versions: versions.length ? versions : null,
-            markedDescription: window.marked(info.description || '')
-          });
-          fragment.append($(card));
-        });
-
-        $('#apis-list').append(fragment);
+            var search = $('#search-input').val().toUpperCase();
+            var result = filter(data, search);
+            updateCards(result);
+        }, false);
       }
     });
   });

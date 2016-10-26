@@ -996,6 +996,9 @@ img.api-logo {
 .label.label-primary {
   background-color: #48ACBD; }
 
+input[type="search"] {
+  font-weight: normal; }
+
 /**
  * Syntax highlighting styles
  */
