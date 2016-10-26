@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.9/css/bootstrap-material-design.min.css">
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Browse APIs</title>
+<title>APIs.guru - Wikipedia for WEB APIs</title>
 <meta name="description" content="Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue">
-<link rel="canonical" href="https://APIs.guru/browse-apis/">
+<link rel="canonical" href="https://APIs.guru/archive/2015/">
 
 <!-- CSS -->
 <!-- inject:css -->
-<link rel="stylesheet" href="/assets/stylesheets/style.css">
+<link rel="stylesheet" href="/assets/stylesheets/style-fbc5613319.min.css">
 <!-- endinject -->
 
 <!-- Icons -->
@@ -25,27 +24,29 @@
 
 <!-- SEO -->
 <!-- Begin Jekyll SEO tag v1.4.0 -->
-<title>Browse APIs - APIs.guru - Wikipedia for WEB APIs</title>
-<meta property="og:title" content="Browse APIs" />
+<title>APIs.guru - Wikipedia for WEB APIs - Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue</title>
+<meta property="og:title" content="APIs.guru - Wikipedia for WEB APIs" />
 <meta name="description" content="Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue" />
 <meta property="og:description" content="Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue" />
-<link rel="canonical" href="https://APIs.guru/browse-apis/" />
-<meta property="og:url" content="https://APIs.guru/browse-apis/" />
+<link rel="canonical" href="https://APIs.guru/archive/2015/" />
+<meta property="og:url" content="https://APIs.guru/archive/2015/" />
 <meta property="og:site_name" content="APIs.guru - Wikipedia for WEB APIs" />
-<meta property="og:image" content="https://APIs.guru/assets/images/logo-fb.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-01-01T00:00:00+02:00" />
 <script type="application/ld+json">
   {
     "@context": "http://schema.org",
-    "@type": "WebPage",
-    "headline": "Browse APIs",
-    "image": "https://APIs.guru/assets/images/logo-fb.png",
+    "@type": "BlogPosting",
+    "headline": "APIs.guru - Wikipedia for WEB APIs",
+    "datePublished": "2015-01-01T00:00:00+02:00",
     "description": "Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue",
-    "url": "https://APIs.guru/browse-apis/"
+    "url": "https://APIs.guru/archive/2015/"
   }
 </script>
 <!-- End Jekyll SEO tag -->
 
   </head>
+
   <body>
 
     <div class="mobile-header">
@@ -66,8 +67,6 @@
       
     
       
-    
-      
         
         <a class="page-link" href="/">Home</a>
         
@@ -75,13 +74,7 @@
     
       
         
-        <a class="page-link" href="/blog/">Blog</a>
-        
-      
-    
-      
-        
-        <a class="page-link active" href="/browse-apis/">Browse APIs</a>
+        <a class="page-link" href="/browse-apis/">Browse APIs</a>
         
       
     
@@ -101,72 +94,20 @@
 </header>
 
 
-    <div class="page-content apis-list" id="content">
-      <div class="browse-apis container">
+    <div class="page-content" id="content">
+      <div class="wrapper">
+  <h1>Archive of posts from 2015</h1>
 
-  <h1>
-    <div class="social-links">
-  <a target="=_blank" href="https://github.com/APIs-guru/api-models">
-    <img src="https://img.shields.io/github/stars/APIs-guru/api-models.svg?style=social&amp;label=Star" alt="Star on GitHub">
-  </a>
-  <a target="=_blank" href="https://twitter.com/intent/tweet?text=http%3A%2F%2FAPIs.guru%20-%20Wikipedia%20for%20%23Web%20%23APIs%20by%20@APIs_guru%20pic.twitter.com/UhlhbMw1NP">
-    <img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="Tweet about APIs.guru">
-  </a>
+<ul class="posts">
+
+  <li>
+    <span class="post-date">Feb 3, 2015</span>
+    <a class="post-link" href="/jekyll/2015/02/03/welcome-to-jekyll/">Welcome to Jekyll!</a>
+  </li>
+
+</ul>
+
 </div>
-
-    APIs in Collection:
-  </h1>
-  <div id="apis-list" class="row"></div>
-</div>
-
-<script type="text/dot-template">
-  
-  <div class="col-xs-12 col-sm-4 col-md-3">
-    <div class="panel panel-default text-center">
-      <div class="panel-heading">
-        {{? it.externalUrl }}
-          <a href="{{=it.externalUrl }}" target="_blank">{{=it.info.title }}</a>
-        {{??}}
-          {{=it.info.title }}
-        {{?}}
-      </div>
-      <div class="panel-body">
-        <div class="text-center panel-body-logo">
-          <img src="{{=it.logo.url || '/assets/images/no-logo.svg'}}"
-            style="background-color: {{=it.logo.backgroundColor || 'transparent'}}" class="api-logo">
-        </div>
-        <div class="panel-body-description line-clamp line-clamp-3">{{=it.markedDescription}}</div>
-      </div>
-      <div class="panel-footer">
-        <div class="footer-description"> OpenAPI/Swagger 2.0: </div>
-        <div class='versions'>
-          {{? it.versions }}
-          <div class="btn-group">
-            <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              {{~it.versions :version:index}}
-              <li>
-                <span>{{=version.version}}</span>
-                <span>
-                    <a href="{{=version.swaggerUrl}}" target="_blank" class="label label-primary">json</a>
-                    <a href="{{=version.swaggerYamlUrl}}" target='_blank' class='label label-primary'>yaml</a>
-                </span>
-              </li>
-              {{~}}
-            </ul>
-          </div>{{?}}<span class="truncate">{{=it.preferred}}</span>
-          <span>
-            <a href="{{=it.api.swaggerUrl}}" target="_blank" class="label label-primary">json</a>
-            <a href='{{=it.api.swaggerYamlUrl}}' target="_blank" class="label label-primary">yaml</a>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-</script>
 
     </div>
 
@@ -202,14 +143,10 @@
 
 
   <!-- JS -->
-  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dot/1.0.3/doT.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.12/slideout.js"></script>
   <!-- inject:js -->
-  <script src="/assets/javascript/apis.js"></script>
-  <script src="/assets/javascript/index.js"></script>
+  <script src="/assets/javascript/apis-59ab3a2264.min.js"></script>
+  <script src="/assets/javascript/index-7ced8198f9.min.js"></script>
   <!-- endinject -->
 
   <script>
@@ -222,6 +159,7 @@
   ga('send', 'pageview');
 
 </script>
+
 
   </body>
 
