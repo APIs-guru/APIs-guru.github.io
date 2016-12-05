@@ -79,3 +79,29 @@ $on-laptop:        900px;
     font-weight: bold;
     font-style: normal;
 }
+
+a.baner {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  display: block;
+  font-size: 1.5em;
+  padding: 0.2em 0;
+  background-color: #fed16e;
+  color: #2b2c2b;
+  text-align: center;
+
+  &:visited, &:active {
+    color: #2b2c2b;
+  }
+
+  & + article {
+    padding-top: 3em;
+  }
+}
+
+.about-baner {
+  position: static;
+  margin-bottom: 8rem;
+}
