@@ -1,0 +1,52 @@
+---
+- project: graphql-voyager
+  title: GraphQL Voyager
+  description: Represent any GraphQL API as an interactive graph 🛰️
+  longDescription: |
+    With graphql-voyager you can visually explore your GraphQL API as an interactive graph.
+    This is a great tool when designing or discussing your data model. It includes multiple
+    example GraphQL schemas and also allows you to connect it to your own GraphQL endpoint.
+    What are you waiting for, explore your API!
+  image: assets/images/voyager.png
+  links:
+    - title: GitHub
+      url: https://github.com/APIs-guru/graphql-voyager
+    - title: Demo
+      url: https://apis.guru/graphql-voyager/
+  initialStars: 1310
+
+- project: openapi-directory
+  title: OpenAPI Directory
+  description: Wikipedia for Web APIs. Directory of REST API specs in OpenAPI(fka Swagger) 2.0 format.
+  links:
+    - title: Visit
+      url: /openapi-directory/
+    - title: GitHub
+      url: https://github.com/APIs-guru/openapi-directory
+  initialStars: 532
+
+- project: ReDoc
+  title: ReDoc
+  description: OpenAPI/Swagger-generated API Reference Documentation
+  links:
+    - title: GitHub
+      url: https://github.com/Rebilly/ReDoc
+    - title: Demo
+      url: https://rebilly.github.io/ReDoc/
+  initialStars: 464
+
+- project: graphql-apis
+  title: Public GraphQL APIs
+  description: A collective list of public GraphQL APIs. The repository also links unofficial API proxies.
+  links:
+    - title: GitHub
+      url: https://github.com/APIs-guru/graphql-apis
+  initialStars: 116
+
+- project: generator-openapi-repo
+  title: generator-openapi-repo
+  description: Yeoman generator for OpenAPI/Swagger repo to help you share spec for your API
+  links:
+    - title: GitHub
+      url: https://github.com/Rebilly/generator-openapi-repo
+  initialStars: 39
