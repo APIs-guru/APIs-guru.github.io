@@ -419,7 +419,7 @@ section.work-with {
 .team-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   padding-bottom: 120px;
 
   @media (max-width: 880px) {
@@ -431,7 +431,7 @@ section.work-with {
 .team-member {
   display: flex;
   align-items: center;
-  width: calc(50% - 20px);
+  //width: calc(50% - 20px);
 
   @media (max-width: 880px) {
     width: auto;
