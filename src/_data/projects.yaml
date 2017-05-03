@@ -13,7 +13,36 @@
       url: https://github.com/APIs-guru/graphql-voyager
     - title: Demo
       url: https://apis.guru/graphql-voyager/
-  initialStars: 1310
+  initialStars: 1553
+
+- project: graphql-lodash
+  title: GraphQL Lodash
+  description: Data manipulation for GraphQL queries with lodash syntax 🛠
+  longDescription: |
+    Data manipulation for GraphQL queries with lodash syntax.
+    GraphQL allows to ask for what you need and get exactly that. But what about the
+    shape? GraphQL Lodash gives you the power of lodash right inside your GraphQL
+    Query using @_ directive.
+  image: assets/images/gqlodash-logo.png
+  links:
+    - title: GitHub
+      url: https://github.com/APIs-guru/graphql-lodash
+    - title: Demo
+      url: https://apis.guru/graphql-lodash/
+  initialStars: 178
+
+- project: graphql-faker
+  title: GraphQL Faker
+  description: Mock or extend your GraphQL API with faked data. No coding required. 🎲
+  longDescription: |
+    Mock your future API or extend the existing API with realistic data from faker.js.
+    No coding required. All you need is to write GraphQL IDL. Don't worry, we will
+    provide you with examples in our IDL editor.
+  image: assets/images/faker-logo.png
+  links:
+    - title: GitHub
+      url: https://github.com/APIs-guru/graphql-faker
+  initialStars: 141
 
 - project: openapi-directory
   title: OpenAPI Directory
@@ -23,7 +52,7 @@
       url: /openapi-directory/
     - title: GitHub
       url: https://github.com/APIs-guru/openapi-directory
-  initialStars: 532
+  initialStars: 626
 
 - project: ReDoc
   title: ReDoc
@@ -33,7 +62,7 @@
       url: https://github.com/Rebilly/ReDoc
     - title: Demo
       url: https://rebilly.github.io/ReDoc/
-  initialStars: 464
+  initialStars: 702
 
 - project: graphql-apis
   title: Public GraphQL APIs
@@ -41,7 +70,7 @@
   links:
     - title: GitHub
       url: https://github.com/APIs-guru/graphql-apis
-  initialStars: 116
+  initialStars: 165
 
 - project: generator-openapi-repo
   title: generator-openapi-repo
@@ -49,4 +78,4 @@
   links:
     - title: GitHub
       url: https://github.com/Rebilly/generator-openapi-repo
-  initialStars: 39
+  initialStars: 47

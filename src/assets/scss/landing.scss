@@ -1,5 +1,6 @@
 $accent-color: #5486a1;
 $text-color: #5a5a5a;
+$logo-bg-color: #181818;
 
 .landing-wrap {
   overflow: hidden;
@@ -304,6 +305,10 @@ section.work-with {
         right: -50%;
       }
 
+      &:nth-child(even):before {
+        background: #fcfcfc;
+      }
+
       .project-content {
         width: auto;
         padding-left: 30px;
@@ -323,6 +328,7 @@ section.work-with {
     min-width: 180px;
     height: 180px;
     border-radius: 100%;
+    background-color: $logo-bg-color;
   }
 
   .project-content > .title {
