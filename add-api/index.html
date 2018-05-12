@@ -12,7 +12,7 @@
 
 <!-- CSS -->
 <!-- inject:css -->
-<link rel="stylesheet" href="/assets/stylesheets/style-c87e88217f.min.css">
+<link rel="stylesheet" href="/assets/stylesheets/style-1b8cb0b75f.min.css">
 <!-- endinject -->
 
 <!-- Icons -->
@@ -104,14 +104,14 @@
   <div class="wrapper">
   <h1> Add API </h1>
 <div class="description">
-  <p>This page is help you to submit your API into APIs.guru
-  collection. The most important requirment is presence of machine-readable
-  API specification in one of the popular format, such as: OpenAPI(fka Swagger),
+  <p>This page is help you to submit your API into the APIs.guru
+  directory. The most important requirement is the presence of a machine-readable
+  API specification in one of the popular formats, such as: OpenAPI(fka Swagger),
   RAML, WADL, etc. </p>
   <p><strong> Important note:</strong> we only aggregate API specs, not host them.
-  So please, provide us with stable URL to the spec. We will use it to keep your spec
+  So please, provide us with a stable URL to the spec. We will use it to keep your spec
   up to date: see our <a href="https://github.com/APIs-guru/api-models#update-procedure">
-  update procedure </a></p>
+  update procedure </a>.</p>
 </div>
 <form id="add_api_form">
   <label class="group-label label-required">Format of the spec:</label>
@@ -124,6 +124,11 @@
     <label class="control control--radio">
       <a target="_blank" href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md"> OpenAPI(fka Swagger) 2.0</a>
   		<input type="radio" name="spec-format" value="OpenAPI(fka Swagger) 2.0"/>
+  		<div class="control__indicator"></div>
+	  </label>
+    <label class="control control--radio">
+      <a target="_blank" href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md"> OpenAPI 3.0</a>
+  		<input type="radio" name="spec-format" value="OpenAPI 3.0"/>
   		<div class="control__indicator"></div>
 	  </label>
     <label class="control control--radio">
