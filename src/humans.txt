@@ -3,7 +3,7 @@
 
 # TEAM
     Ivan Goncharov -- @APIs_guru
-    Roman Hotsiy -- @RomanGotsiy
+    Roman Hotsiy -- @RomanHotsiy
 
 # TECHNOLOGY COLOPHON
 
