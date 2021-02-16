@@ -1,0 +1,149 @@
+---
+layout: main
+title: Directory
+image: /assets/images/logo-big.png
+order: 1
+---
+<a href="/#projects" class="baner about-baner">
+   Check our other open-source projects
+</a>
+<section class="jumbotron">
+  <h1> API<small>S.GURU</small></h1>
+  <h2> Wikipedia for WEB APIs </h2>
+  <img class="big icon logo" src="/assets/images/logo.svg" alt="APIs.guru logo"/>
+</section>
+<div class="wrapper home">
+  <section class="links">
+    {% include social-links.html %}
+    <br />
+    <a class="button cta" href="/add-api/"> Add API </a>
+  </section>
+  <section>
+    <div class="moto">
+      Our goal is to create a machine-readable Wikipedia for REST APIs with the following principals:
+    </div>
+    <div class="principles">
+      <i class="vertical-line"></i>
+      <div class="principle"> Open source, community driven project </div>
+      <div class="principle"> Only publicly available APIs (free or paid) </div>
+      <div class="principle"> Anyone can add or change an API, not only API owners </div>
+      <div class="principle"> All data can be accessed through a REST API </div>
+    </div>
+  </section>
+  <section class="numbers">
+    <div class="number">
+      <i>  {% include svg/number-romb.svg %} </i>
+      <div id="numAPIs" class="number-value">
+        1913
+      </div>
+      <div class="description">
+        API descriptions
+      </div>
+    </div>
+    <div class="number">
+      <i> {% include svg/number-romb.svg %} </i>
+      <div id="numEndpoints" class="number-value">
+        58614
+      </div>
+      <div class="description">
+        Endpoints
+      </div>
+    </div>
+    <div class="number">
+      <i> {% include svg/number-romb.svg %} </i>
+      <div class="number-value">
+        2245
+      </div>
+      <div class="description">
+        Stars on GitHub
+      </div>
+    </div>
+  </section>
+  <section class="activities">
+    <header>
+      What does APIs.guru do?
+    </header>
+    <i class="big icon">
+      {% include svg/light-bulb.svg %}
+    </i>
+    <div class="activities-row">
+      <div class="activities-column">
+        <svg class="connect-line left">
+          <line x1="100%" y1="0" x2="0" y2="95%" vector-effect="non-scaling-stroke" stroke="#666666" stroke-width="2"  />
+        </svg>
+        <div class="activity">
+          <i class="medium icon">
+            {% include svg/search.svg %}
+          </i>
+          <div class="activity-description"> Search for public API definitions </div>
+        </div>
+        <div class="activity">
+          <i class="medium icon">
+            {% include svg/filter.svg %}
+          </i>
+          <div class="activity-description"> Filter out private and non-reliable APIs </div>
+        </div>
+        <div class="activity">
+          <i class="medium icon">
+            {% include svg/update.svg %}
+          </i>
+          <div class="activity-description"> Update definitions on a weekly basis </div>
+        </div>
+      </div>
+      <div class="activities-column">
+        <svg class="connect-line right">
+          <line x1="0" y1="0" x2="100%" y2="95%" vector-effect="non-scaling-stroke" stroke="#666666" stroke-width="2"  />
+        </svg>
+        <div class="activity">
+          <i class="medium icon">
+            {% include svg/convert.svg %}
+          </i>
+          <div class="activity-description"> Convert different formats into OpenAPI 3.0 </div>
+        </div>
+        <div class="activity">
+          <i class="medium icon">
+            {% include svg/fix.svg %}
+          </i>
+          <div class="activity-description"> Correct mistakes, ~80% of definitions have some</div>
+        </div>
+        <div class="activity">
+          <i class="medium icon">
+            {% include svg/add.svg %}
+          </i>
+          <div class="activity-description"> Add additional data, like: logo, categories </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="contribution-process">
+    <header>
+      Contribution process
+    </header>
+    {% include svg/contribution-graph.svg %}
+  </section>
+  <section class="browse-cta">
+    <a class="button cta" href="/browse-apis/"> Browse APIs </a>
+  </section>
+  <section class="join-movement">
+    <header class="wide">
+      Join the movement
+    </header>
+
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $.ajax({
+      type: "GET",
+      url: "https://api.apis.guru/v2/metrics.json",
+      dataType: 'json',
+      cache: true,
+      success: function (data) {
+        $('#numAPIs').text(data.numAPIs);
+        $('#numEndpoints').text(data.numEndpoints);
+      }
+    });
+  });
+</script>

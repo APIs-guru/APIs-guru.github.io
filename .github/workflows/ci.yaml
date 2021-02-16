@@ -1,0 +1,32 @@
+name: ci
+
+# Author: @MikeRalphson
+# Issue : n/a
+# Desc  : This workflow runs a build on pushes to master and prs
+
+# run this on push to master
+on:
+  push:
+    branches: [master]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1 # checkout repo content
+    - uses: actions/setup-node@v1 # setup Node.js
+      with:
+        node-version: '12.x'
+    - name: Audit package-lock.json
+      run: npx package-lock-audit ./package-lock.json
+    - name: Install deps
+      run: npm i
+    - name: Run lint
+      run: npm run lint
+    - name: Run sass
+      run: npm run sass
+    - name: Run build
+      run: npm run build

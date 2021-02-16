@@ -1,0 +1,116 @@
+---
+layout: landing
+title: "API tooling development: GraphQL, OpenAPI | APIs.guru"
+excerpt: |
+  API tooling for better developer experience. We create tools to help developers work
+  with GraphQL and OpenAPI/Swagger.
+---
+<div class="landing-wrap">
+  <div class="landing-jumbo" data-scroll-index="0">
+    <header id="main_header">
+      <div class="logo-wrap">
+        {% include svg/logo.svg %}
+        <span class="name"> API<small>s.guru</small> </span>
+      </div>
+      <nav class="landing-nav">
+        <a href="#home" data-scroll-nav="0"> Home </a>
+        <a href="#projects" data-scroll-nav="1"> Projects </a>
+        <a href="#hire-us" data-scroll-nav="2"> Hire us </a>
+        <a href="//blog.apis.guru"> Blog </a>
+      </nav>
+    </header>
+    <section class="main-heading">
+      <h1> API tooling for better developer experience <h1>
+      <h2> We create tools to help developers work with GraphQL and OpenAPI/Swagger </h2>
+    </section>
+    <section class="work-with">
+      <div class="label"> Our projects are used by </div>
+      <div class="companies">
+        <img src="assets/images/companies/discourse.png" />
+        <img src="assets/images/companies/docker.png" />
+        <img src="assets/images/companies/rebilly.svg" style="margin-top: 6px;"/>
+        <img src="assets/images/companies/shopify.png" />
+      </div>
+    </section>
+  </div>
+  <a name="projects"></a>
+  <section class="our-projects" data-scroll-index="1">
+    <h2> Our Projects </h2>
+    <div class="projects-wrap">
+      {% for project in site.data.projects %}
+      {% if project.image != null %}
+        {% assign class = '-big' %}
+      {% else %}
+        {% assign class = '' %}
+      {% endif %}
+
+      <div class="project {{ class }}">
+        {% if project.image != null %}
+          <div class="project-logo" style="background-image: url({{ project.image }})"></div>
+        {% endif %}
+        <div class="project-content">
+          <div class="stars">
+            {% include svg/github.svg %}
+            <span class="stars-count" data-proj="{{ project.project }}">{{ project.initialStars }}</span>
+            {% include svg/star.svg %}
+          </div>
+          <div class="title">
+            <a href={{project.links[0].url}}> {{ project.title }} </a>
+          </div>
+          <div class="description">
+            {% if project.longDescription != null %}
+              {{ project.longDescription }}
+            {% else %}
+              {{ project.description }}
+            {% endif %}
+          </div>
+          <div class="buttons">
+            {% for link in project.links %}
+            <a class="button" href="{{ link.url }}"> {{ link.title }} </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  <div class="hire-us-wrap" data-scroll-index="2">
+    <a name="hire-us"></a>
+    <section class="hire-us">
+      <header>
+        <h2> Hire Us </h2>
+        <p>
+          We have extensive expertise in API tooling development, especially around
+          <strong>GraphQL</strong> and <strong>OpenAPI/Swagger</strong>.
+          You can hire us to customize any of our existing <a href="#projects" data-scroll-nav="1"> projects </a>
+          or to develop a new one.
+        </p>
+      </header>
+      <div class="team-list">
+        <div class="team-member" id="member_roman">
+          <div class="logo">
+            <img src="/assets/images/team/roman.jpg" />
+          </div>
+          <div class="info">
+            <h3> Roman Hotsiy </h3>
+            <a class="button" href="https://github.com/RomanHotsiy"> GitHub </a>
+          </div>
+        </div>
+        <div class="team-member" id="member_roman">
+          <div class="logo">
+            <img src="/assets/images/team/ivan.jpg" />
+          </div>
+          <div class="info">
+            <h3> Ivan Goncharov </h3>
+            <a class="button" href="https://github.com/IvanGoncharov"> GitHub </a>
+          </div>
+        </div>
+      </div>
+      <div class="email">
+        <span> Contact us: </span>
+        <a href="mailto:founders@apis.guru"> founders@apis.guru </a>
+      </div>
+    </section>
+  </div>
+  {% include footer.html %}
+</div>
