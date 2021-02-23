@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>APIs.guru</title>
+<meta name="description" content="Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue.">
+<link rel="canonical" href="https://apis.guru/add-api/">
+
+<!-- CSS -->
+<!-- inject:css -->
+<link rel="stylesheet" href="/assets/stylesheets/style.css">
+<!-- endinject -->
+
+<!-- Icons -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/icon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/images/favicons/icon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/icon-16x16.png">
+<!-- RSS
+{ feed_meta }
+-->
+
+<title>Add API - APIs.guru</title>
+
+<meta name="description" content="APIs.guru - Wikipedia for Web APIs.">
+<meta name="robots" content="index,follow">
+<meta name="author" content="APIs.guru">
+
+<link rel="canonical" href="https://apis.guru/add-api/">
+
+<meta property="og:title" content="Add API - APIs.guru">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://apis.guru/add-api/">
+<meta property="og:description" content="APIs.guru - Wikipedia for Web APIs.">
+<meta property="og:image" content="https://apis.guru/assets/images/logo-big.png">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@APIs_guru">
+<meta name="twitter:url" content="https://apis.guru/add-api/">
+<meta name="twitter:title" content="Add API - APIs.guru">
+<meta name="twitter:description" content="APIs.guru - Wikipedia for Web APIs.">
+<meta name="twitter:image" content="https://apis.guru/assets/images/logo-big.png">
+
+
+
+  </head>
+
+  <body>
+    
+<div class="mobile-header">
+  <div class="toggle-button">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="logo"> APIS.GURU </div>
+</div>
+<header class="site-header" id="menu">
+  <nav class="site-nav">
+     <!-- |sort:order -->
+    
+      
+        
+          <a class="page-link" href="/">Home</a>
+        
+      
+    
+      
+        
+        <a class="page-link" href="/openapi-directory">Directory</a>
+        
+      
+    
+      
+        
+        <a class="page-link" href="/browse-apis">Browse APIs</a>
+        
+      
+    
+      
+        
+          <a class="page-link" href="https://blog.apis.guru/">Blog</a>
+        
+      
+    
+      
+        
+        <a class="page-link" href="/api-doc">Our API</a>
+        
+      
+    
+  </nav>
+</header>
+
+
+<div class="page-content" id="content">
+  
+<div class="wrapper">
+  <h1> Add API </h1>
+<div class="description">
+  <p>This page is help you to submit your API into the APIs.guru
+  directory. The most important requirement is the presence of a machine-readable
+  API definition in one of the popular formats, such as: OpenAPI(fka Swagger),
+  RAML, API Blueprint, etc. </p>
+  <p><strong> Important note:</strong> we only aggregate API definitions, not host them.
+  So please, provide us with a stable URL to the definition. We will use it to keep your definition
+  up to date: see our <a href="https://github.com/APIs-guru/openapi-directory#update-procedure">
+  update procedure </a>.</p>
+</div>
+<form id="add_api_form">
+  <label class="group-label label-required">Format of the definition:</label>
+  <radiogroup class="form-group">
+    <label class="control control--radio">
+      <a target="_blank" href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md"> OpenAPI 3.0</a>
+      <input type="radio" name="spec-format" value="OpenAPI 3.0"/>
+      <div class="control__indicator"></div>
+    </label>
+    <label class="control control--radio">
+      <a target="_blank" href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md"> OpenAPI(fka Swagger) 2.0</a>
+      <input type="radio" name="spec-format" value="OpenAPI(fka Swagger) 2.0"/>
+      <div class="control__indicator"></div>
+    </label>
+    <label class="control control--radio">
+      <a target="_blank" href="https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md"> API Blueprint </a>
+      <input type="radio" name="spec-format" value="API Blueprint"/>
+      <div class="control__indicator"></div>
+    </label>
+    <label class="control control--radio">
+      <a target="_blank" href="https://developers.google.com/discovery/v1/reference/apis"> Google API Discovery </a>
+      <input type="radio" name="spec-format" value="Google API Discovery"/>
+      <div class="control__indicator"></div>
+    </label>
+    <label class="control control--radio">
+      <a target="_blank" href="http://raml.org/spec.html"> RAML </a>
+      <input type="radio" name="spec-format" value="RAML"/>
+      <div class="control__indicator"></div>
+    </label>
+    <label class="control control--radio">
+      <a target="_blank" href="https://getpostman.com"> Postman Collection </a>
+      <input type="radio" name="spec-format" value="Postman"/>
+      <div class="control__indicator"></div>
+    </label>
+    <label class="control control--radio">
+      <a target="_blank" href="http://www.w3.org/Submission/wadl/"> WADL </a>
+      <input type="radio" name="spec-format" value="WADL"/>
+      <div class="control__indicator"></div>
+    </label>
+  </radiogroup>
+  <label class="group-label label-required ">Is the definition official ?</label>
+  <radiogroup class="form-group">
+    <label class="control control--radio"> Official
+      <input type="radio" name="official" value="YES" required/>
+      <div class="control__indicator"></div>
+    </label>
+    <label class="control control--radio"> Non-Official
+      <input type="radio" name="official" value="NO"/>
+      <div class="control__indicator"></div>
+    </label>
+  </radiogroup>
+  <span class="input input--hoshi">
+    <input name="name" class="input__field input__field--hoshi" type="text" required/>
+    <label class="input__label input__label--hoshi input__label--hoshi-color-1">
+      <span class="label-required input__label-content input__label-content--hoshi">API Name</span>
+    </label>
+  </span>
+  <span class="input input--hoshi">
+    <input name="url" class="input__field input__field--hoshi" type="url" required/>
+    <label class="input__label input__label--hoshi input__label--hoshi-color-1">
+      <span class="label-required input__label-content input__label-content--hoshi">URL to the definition</span>
+    </label>
+  </span>
+  <span class="input input--hoshi">
+    <input name="logo" class="input__field input__field--hoshi" type="url"/>
+    <label class="input__label input__label--hoshi input__label--hoshi-color-1">
+      <span class="label-optional input__label-content input__label-content--hoshi">Logo URL (if not in definition)</span>
+    </label>
+  </span>
+  <div class="input input--hoshi">
+    <select name="category" class="input__field input__field--hoshi" type="select" required>
+    <option value=""></option>
+    <option value="analytics">Analytics</option>
+    <option value="backend">Backend</option>
+    <option value="cloud">Cloud</option>
+    <option value="collaboration">Collaboration</option>
+    <option value="customer_relation">Customer Relations</option>
+    <option value="developer_tools">Developer Tools</option>
+    <option value="ecommerce">E-commerce</option>
+    <option value="education">Education</option>
+    <option value="email">email</option>
+    <option value="enterprise">Enterprise</option>
+    <option value="entertainment">Entertainment</option>
+    <option value="financial">Financial</option>
+    <option value="forms">Forms</option>
+    <option value="frontend">Frontend</option>
+    <option value="hosting">Hosting</option>
+    <option value="iot">IoT</option>
+    <option value="location">Location</option>
+    <option value="machine_learning">Machine Learning</option>
+    <option value="marketing">Marketing</option>
+    <option value="media">Media</option>
+    <option value="messaging">Messaging</option>
+    <option value="monitoring">Monitoring</option>
+    <option value="open_data">Open Data</option>
+    <option value="payment">Payment</option>
+    <option value="project_management">Project Management</option>
+    <option value="search">Search</option>
+    <option value="security">Security</option>
+    <option value="social">Social</option>
+    <option value="storage">Storage</option>
+    <option value="support">Support</option>
+    <option value="telecom">Telecoms</option>
+    <option value="text">Text</option>
+    <option value="time_management">Time Management</option>
+    <option value="tools">Tools</option>
+    <option value="transport">Transport</option>
+    </select>
+    <label class="input__label input__label--hoshi input__label--hoshi-color-3" for="category">
+      <span class="input__label-content input__label-content--hoshi">Category (please select the most appropriate)</span>
+    </label>
+  </div>
+  <div class="form-group">
+    <button class="button cta" href="/browse-apis/"> Add API </button>
+  </div>
+</form>
+
+<script type="text/javascript" src="https://rawgit.com/pauldijou/open-issue/master/index.js"></script>
+<script type="text/javascript">
+  var form = document.getElementById('add_api_form');
+  form.onsubmit = addApi;
+  function addApi(e) {
+    e.preventDefault();
+    var details = {
+      format: form['spec-format'].value,
+      official: form.official.value,
+      url: form.url.value,
+      name: form.name.value,
+      category: form.category.value,
+      logo: form.logo.value
+    };
+
+    window.location = buildLink(details);
+    return false;
+  }
+
+  function buildLink(details) {
+    var body = '';
+    for (var prop in details) {
+      body += '**' + prop.capitalizeFirstLetter() + '**: ' + details[prop] + '\n';
+    }
+
+    return OpenIssue()
+      .provider('github')
+      .repository('APIs-guru/openapi-directory')
+      .labels('add API')
+      .title('Add "' + details.name + '" API')
+      .append(body)
+      .url();
+  }
+
+  String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+  }
+</script>
+
+
+</div>
+
+</div>
+
+<footer class="site-footer">
+
+  <div class="wrapper">
+
+    <ul class="social-media-list">
+      
+
+      
+      <li>
+        © 2021 APIs.guru All rights reserved.
+      </li>
+    </ul>
+    <div>
+
+    </div>
+
+</footer>
+
+
+<!-- JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.12/slideout.js"></script>
+
+    <!-- inject:js -->
+    <script src="/assets/javascript/main.js"></script>
+    <!-- endinject -->
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-77831907-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </body>
+
+</html>

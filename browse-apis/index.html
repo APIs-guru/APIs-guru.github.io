@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.9/css/bootstrap-material-design.min.css">
+    <link rel="preconnect" href="https://api.apis.guru">
+    <link rel="preconnect" href="https://img.shields.io">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>APIs.guru</title>
+<meta name="description" content="Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue.">
+<link rel="canonical" href="https://apis.guru/browse-apis/">
+
+<!-- CSS -->
+<!-- inject:css -->
+<link rel="stylesheet" href="/assets/stylesheets/style.css">
+<!-- endinject -->
+
+<!-- Icons -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/icon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/images/favicons/icon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/icon-16x16.png">
+<!-- RSS
+{ feed_meta }
+-->
+
+<title>Browse APIs - APIs.guru</title>
+
+<meta name="description" content="APIs.guru - Wikipedia for Web APIs.">
+<meta name="robots" content="index,follow">
+<meta name="author" content="APIs.guru">
+
+<link rel="canonical" href="https://apis.guru/browse-apis/">
+
+<meta property="og:title" content="Browse APIs - APIs.guru">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://apis.guru/browse-apis/">
+<meta property="og:description" content="APIs.guru - Wikipedia for Web APIs.">
+<meta property="og:image" content="https://apis.guru/assets/images/logo-big.png">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@APIs_guru">
+<meta name="twitter:url" content="https://apis.guru/browse-apis/">
+<meta name="twitter:title" content="Browse APIs - APIs.guru">
+<meta name="twitter:description" content="APIs.guru - Wikipedia for Web APIs.">
+<meta name="twitter:image" content="https://apis.guru/assets/images/logo-big.png">
+
+
+
+  </head>
+  <body>
+
+    <div class="mobile-header">
+  <div class="toggle-button">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="logo"> APIS.GURU </div>
+</div>
+<header class="site-header" id="menu">
+  <nav class="site-nav">
+     <!-- |sort:order -->
+    
+      
+        
+          <a class="page-link" href="/">Home</a>
+        
+      
+    
+      
+        
+        <a class="page-link" href="/openapi-directory">Directory</a>
+        
+      
+    
+      
+        
+        <a class="page-link" href="/browse-apis">Browse APIs</a>
+        
+      
+    
+      
+        
+          <a class="page-link" href="https://blog.apis.guru/">Blog</a>
+        
+      
+    
+      
+        
+        <a class="page-link" href="/api-doc">Our API</a>
+        
+      
+    
+  </nav>
+</header>
+
+
+    <div class="page-content apis-list" id="content">
+      <div class="browse-apis container">
+
+  <h1>
+    <div class="social-links">
+  <a target="=_blank" href="https://github.com/APIs-guru/openapi-directory">
+    <img src="https://img.shields.io/github/stars/APIs-guru/openapi-directory.svg?style=social&amp;label=Star" alt="Stars on GitHub">
+  </a>
+  <a target="=_blank" href="https://twitter.com/intent/tweet?text=http%3A%2F%2FAPIs.guru%20-%20Wikipedia%20for%20%23Web%20%23APIs%20by%20@APIs_guru%20pic.twitter.com/UhlhbMw1NP">
+    <img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="Tweet about APIs.guru">
+  </a>
+</div>
+
+    APIs in Collection:
+  </h1>
+
+  <!-- search -->
+  <div id="search" class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <span class="input input--hoshi">
+            <input id="search-input" name="name" class="input__field input__field--hoshi" type="search" placeholder="Search ..." required/>
+            <label class="input__label input__label--hoshi input__label--hoshi-color-1"></label>
+        </span>
+    </div>
+  </div><!-- end row -->
+
+  <div id="apis-list" class="row"></div>
+</div>
+
+<script type="text/dot-template">
+  
+  <div class="col-xs-12 col-sm-4 col-md-3">
+    <div class="panel panel-default text-center">
+      <div class="panel-heading">
+        {{? it.externalUrl }}
+          <a href="{{=it.externalUrl }}" target="_blank">{{=it.info.title }}</a>
+        {{??}}
+          {{=it.info.title }}
+        {{?}}
+      </div>
+      <div class="panel-body">
+        <div class="text-center panel-body-logo">
+          <img src="{{=it.logo.url || '/assets/images/no-logo.svg'}}" alt="API logo"
+            style="background-color: {{=it.logo.backgroundColor || 'transparent'}}" class="api-logo">
+        </div>
+        <div class="panel-body-description line-clamp line-clamp-3">{{=it.markedDescription}}</div>
+      </div>
+      <div class="panel-footer">
+        <div class="footer-description"> OpenAPI: </div>
+        <div class='versions'>
+          {{? it.versions }}
+          <div class="btn-group">
+            <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              {{~it.versions :version:index}}
+              <li>
+                <span>{{=version.version}}</span>
+                <span>
+                    <a href="{{=version.swaggerUrl}}" target="_blank" class="label label-primary">json</a>
+                    <a href="{{=version.swaggerYamlUrl}}" target='_blank' class='label label-primary'>yaml</a>
+                    <a href='https://redocly.github.io/redoc/?url={{=version.swaggerUrl}}' target="_blank" class="label label-primary">Docs</a>
+                </span>
+              </li>
+              {{~}}
+            </ul>
+          </div>{{?}}<span class="truncate">{{=it.preferred}}</span>
+          <span>
+            <a href="{{=it.api.swaggerUrl}}" target="_blank" class="label label-primary">json</a>
+            <a href='{{=it.api.swaggerYamlUrl}}' target="_blank" class="label label-primary">yaml</a>
+            <a href='https://redocly.github.io/redoc/?url={{=it.api.swaggerUrl}}' target="_blank" class="label label-primary">Docs</a>
+          <div class="btn-group">
+            <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <span class="caret"></span><span aria-label="Tools">&nbsp;🔧</span>
+            </button>
+            <ul class="dropdown-menu">
+              {{~it.integrations :integration:index}}
+              <li>
+                <span>
+                    <a href="{{=integration.template}}" target="_blank" class="label label-primary">{{=integration.text}}</a>
+                </span>
+              </li>
+              {{~}}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</script>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <ul class="social-media-list">
+      
+
+      
+      <li>
+        © 2021 APIs.guru All rights reserved.
+      </li>
+    </ul>
+    <div>
+
+    </div>
+
+</footer>
+
+
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.7.0/marked.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dot/1.0.3/doT.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.12/slideout.js"></script>
+  <!-- inject:js -->
+  <script src="/assets/javascript/apis.js"></script>
+  <script src="/assets/javascript/main.js"></script>
+  <!-- endinject -->
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-77831907-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+
+</html>

@@ -1,0 +1,107 @@
+@charset "utf-8";
+
+// Our variables
+$base-font-family: "Sansation", Helvetica, Arial, sans-serif;
+$base-font-size:   16px;
+$base-font-weight: 200;
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.5;
+
+$navbar-height: 3.5rem;
+
+$spacing-unit:     30px;
+
+$text-color:       #333;
+$background-color: #ffffff;
+$brand-color:      #F5C01B;
+$brand-color-light: #F7D16F;
+$brand-color-dark: #F39925;
+
+$secondary-color: #48ACBD;
+$secondary-color-light: #9DD4E1;
+
+$grey-color:       #666666;
+$grey-color-light: lighten($grey-color, 40%);
+$grey-color-dark:  darken($grey-color, 25%);
+
+// Width of the content area
+$content-width:    900px;
+
+$on-palm:          600px;
+$on-laptop:        900px;
+
+
+
+// Use media queries like this:
+// @include media-query($on-palm) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+
+@font-face {
+    font-family: 'Sansation';
+    src: url('../fonts/Sansation-Regular-webfont.eot');
+    src: url('../fonts/Sansation-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Sansation-Regular-webfont.woff') format('woff'),
+         url('../fonts/Sansation-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/Sansation-Regular-webfont.svg#sansationregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Sansation';
+    src: url('../fonts/Sansation-Light-webfont.eot');
+    src: url('../fonts/Sansation-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Sansation-Light-webfont.woff') format('woff'),
+         url('../fonts/Sansation-Light-webfont.ttf') format('truetype'),
+         url('../fonts/Sansation-Light-webfont.svg#sansation_lightlight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Sansation';
+    src: url('../fonts/Sansation-Bold-webfont.eot');
+    src: url('../fonts/Sansation-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Sansation-Bold-webfont.woff') format('woff'),
+         url('../fonts/Sansation-Bold-webfont.ttf') format('truetype'),
+         url('../fonts/Sansation-Bold-webfont.svg#sansationbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+a.baner {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  display: block;
+  font-size: 1.5em;
+  padding: 0.2em 0;
+  background-color: #fed16e;
+  color: #2b2c2b;
+  text-align: center;
+
+  &:visited, &:active {
+    color: #2b2c2b;
+  }
+
+  & + article {
+    padding-top: 3em;
+  }
+}
+
+.about-baner {
+  position: static;
+  margin-bottom: 8rem;
+}

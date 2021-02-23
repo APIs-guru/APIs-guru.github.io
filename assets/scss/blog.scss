@@ -1,0 +1,27 @@
+#disqus_thread {
+  margin: 2rem 0;
+}
+
+.social-share {
+  > span, a, iframe, div {
+    vertical-align: middle !important;
+  }
+}
+
+article.blogpost {
+  position: relative;
+  margin-bottom: 2rem;
+
+  &:first-child {
+    margin-top: 5rem;
+  }
+
+  header h2 {
+    font-size: 1.8em;
+    color: $text-color;
+    font-weight: normal;
+    &:hover {
+      color: lighten($text-color, 30%);
+    }
+  }
+}
