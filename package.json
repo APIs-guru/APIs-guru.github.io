@@ -1,0 +1,33 @@
+{
+  "name": "ag",
+  "version": "1.0.0",
+  "description": "APIs.guru github pages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint src/assets/javascript/*.js",
+    "sass.all": "sass --update --style compressed --no-source-map ./src/assets/scss:./src/assets/stylesheets",
+    "sass": "npx sass --style compressed --no-source-map ./src/assets/scss/style.scss:./src/assets/stylesheets/style.css",
+    "debug": "DEBUG=Eleventy* npx eleventy --input=./src --output=./_site",
+    "build": "npx eleventy --input=./src --output=./_site",
+    "serve": "npx eleventy --serve --input=./src --output=./_site"
+  },
+  "author": "Mike Ralphson",
+  "license": "MIT",
+  "dependencies": {
+    "@11ty/eleventy": "^0.11.1",
+    "eleventy-plugin-seo": "^0.5.1",
+    "sass": "^1.32.6"
+  },
+  "devDependencies": {
+    "eslint": "^7.19.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikeRalphson/ag.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MikeRalphson/ag/issues"
+  },
+  "homepage": "https://github.com/MikeRalphson/ag#readme"
+}

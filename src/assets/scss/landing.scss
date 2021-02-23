@@ -1,0 +1,477 @@
+$accent-color: #5486a1;
+$text-color: #5a5a5a;
+$logo-bg-color: #181818;
+
+.landing-wrap {
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+  color: $text-color;
+
+  section {
+    width: 70%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .landing-jumbo {
+    padding-top: 30px;
+    height: 80vh;
+    min-height: 600px;
+    position: relative;
+    background-image: url('../images/background-bees.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -30px;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.2);
+      z-index: 0;
+    }
+
+    > div, > header, > section {
+      z-index: 1;
+      position: relative;
+    }
+  }
+
+  .logo-wrap {
+    min-width: 200px;
+    > svg {
+      width: 50px;
+      height: 50px;
+      vertical-align: middle;
+    }
+    > .name {
+      color: white;
+      font-size: 22px;
+      letter-spacing: 0.5px;
+      vertical-align: middle;
+      display: inline-block;
+      font-weight: 500;
+
+      > small {
+        font-size: 18px;
+        font-weight: 300;
+      }
+    }
+  }
+
+
+  a.button, button {
+    font-size: 17px;
+    font-weight: 400;
+    padding: 5px 25px;
+    background: transparent;
+    color: $accent-color;
+    border: 1px solid $accent-color;
+    margin-right: 10px;
+
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $accent-color;
+      color: white;
+    }
+  }
+
+  // a[name] {
+  //   position: relative;
+  //   top: -70px;
+  // }
+}
+
+#main_header {
+  padding: 10px 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+  z-index: 100;
+}
+
+.landing-jumbo > div.sticky-wrapper {
+  z-index: 100;
+}
+
+.landing-wrap .is-sticky header {
+  background-color: rgba(0, 0, 0, 0.7)
+}
+
+@media (max-width: 1000px) {
+  .landing-wrap {
+    section {
+      width: 80%;
+    }
+  }
+
+  #main_header {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
+@media (max-width: 750px) {
+  .landing-wrap {
+    section {
+      width: 90%;
+    }
+  }
+
+  #main_header {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
+@media (max-width: 550px) {
+  .logo-wrap {
+    display: none;
+  }
+}
+
+.landing-nav {
+  margin-top: 5px;
+  max-width: 420px;
+  display: block;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  a {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 2px;
+    font-size: 12px;
+
+    padding: 2px 0;
+    border-bottom: solid 1px transparent;
+
+    // &.active {
+    //   border-bottom-color: white;
+    // }
+  }
+}
+
+section.main-heading {
+  color: white;
+  padding-right: 30%;
+  line-height: 1.2;
+  font-size: 38px;
+
+  h1 {
+    font-size: 1em;;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  h2 {
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.7em;
+  }
+}
+
+@media (max-width: 1600px) {
+  section.main-heading {
+    padding-right: 15%;
+    font-size: 30px
+  }
+}
+
+@media (max-width: 750px) {
+  section.main-heading {
+    padding-right: 0;
+    font-size: 25px;
+  }
+}
+
+section.work-with {
+  > .label {
+    width: 100%;
+    text-align: center;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 10px 0;
+    opacity: 0.6;
+  }
+
+  > .companies {
+    width: 80%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0 30px 0;
+    flex-wrap: wrap;
+
+    > img {
+      width: 20%;
+      max-width: 150px;
+      height: auto;
+      filter: grayscale(100%);
+      opacity: 0.3;
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  section.work-with > .companies {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  section.work-with > .companies > img {
+    width: 120px;
+    padding: 0 10px;
+    margin: 10px 0;
+  }
+  section.work-with > .label {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 320px) {
+  section.work-with > .companies > img {
+    width: 40%;
+  }
+}
+
+
+.our-projects {
+  padding-top: 100px;
+
+  > h2 {
+    text-align: center;
+    margin: 0 0 100px 0;
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 400;
+  }
+
+  > .projects-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    @media (max-width: 800px) {
+      flex-direction: column;
+      // align-items: center;
+    }
+  }
+
+  .project {
+    width: 40%;
+    padding: 60px 0;
+
+    @media (max-width: 800px) {
+      width: auto;
+    }
+
+    &.-big {
+      width: 100%;
+      margin: 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      @media (max-width: 800px) {
+        flex-direction: column;
+      }
+
+      &:before {
+        content: "";
+        display: block;
+        background: #f7f7f7;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+        left: -50%;
+        right: -50%;
+      }
+
+      &:nth-child(even):before {
+        background: #fcfcfc;
+      }
+
+      .project-content {
+        width: auto;
+        padding-left: 30px;
+        flex: 1;
+
+        @media (max-width: 800px) {
+          margin-top: 40px;
+          padding-left: 0;
+        }
+      }
+    }
+  }
+
+  .project-logo {
+    background-size: cover;
+    background-position: center;
+    min-width: 180px;
+    height: 180px;
+    border-radius: 100%;
+    background-color: $logo-bg-color;
+  }
+
+  .project-content > .title {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 25px;
+    letter-spacing: 1px;
+
+    a, a:hover, a:visited {
+      color: $accent-color;
+    }
+  }
+
+  .project-content > .buttons {
+    margin-top: 10px;
+  }
+
+  .project-content > .stars {
+    svg {
+      height: 1.2em;
+      vertical-align: middle;
+    }
+  }
+
+  .stars-count {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px;
+    font-weight: 600;
+  }
+
+  .description {
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  padding-bottom: 50px;
+}
+
+.hire-us-wrap {
+  background-color: #f7f7f7;
+}
+
+.hire-us {
+  overflow: hidden;
+  > header {
+    margin: 100px 0;
+  }
+
+  > header > h2 {
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  > header > p {
+    font-style: italic;
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 17px;
+    @media (max-width: 880px) {
+      width: 90%;
+    }
+  }
+
+  .email {
+    text-align: center;
+    padding-bottom: 100px;
+  }
+
+  .email > span {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .email a {
+    display: block;
+    font-size: 30px;
+    opacity: 0.7;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  strong {
+    font-weight: bold;
+  }
+}
+
+.team-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-bottom: 120px;
+
+  @media (max-width: 880px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.team-member {
+  display: flex;
+  align-items: center;
+  //width: calc(50% - 20px);
+
+  @media (max-width: 880px) {
+    width: auto;
+    margin-top: 30px;
+  }
+
+  .info {
+    padding-left: 20px;
+  }
+
+  p {
+    font-style: italic;
+    margin: 2px 0;
+  }
+
+  h3 {
+    //text-transform: uppercase;
+    color: $accent-color;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 1em;
+
+
+    @media (max-width: 550px) {
+      font-size: 22px;
+    }
+  }
+
+  .logo {
+    > img {
+      max-height: 100px;
+      width: auto;
+      border-radius: 100%;
+      border: 2px solid $accent-color;
+    }
+  }
+}

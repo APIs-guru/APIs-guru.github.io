@@ -1,0 +1,22 @@
+---
+title: Blog
+order: 12
+layout: default
+---
+{% include blog-migrated.html %}
+{% for post in site.posts %}
+  <article class="blogpost">
+    <header class="post-header">
+      <time datetime="{{ post.date | date_to_xmlschema }}">
+        {{ post.date | date: "%b %d" }}, {{ post.date | date: "%Y" }}
+      </time>
+      <a href="{{ post.url }}">
+        <h2 itemprop="name headline">{{ post.title }}</h2>
+      </a>
+    </header>
+    <div class="post-content">
+      {{ post.excerpt }}
+    </div>
+    <a href="{{ post.url }}"> Read more </a>
+  </article>
+{% endfor %}

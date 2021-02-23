@@ -1,0 +1,269 @@
+/**
+ * Reset some basic elements
+ */
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+/**
+ * Basic styling
+ */
+body {
+    font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+    color: $text-color;
+    background-color: $background-color;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-feature-settings: "kern" 1, "liga" off;
+    -moz-font-feature-settings: "kern" 1, "liga" off;
+    -o-font-feature-settings: "kern" 1, "liga" off;
+    font-feature-settings: "kern" 1, "liga" off;
+    font-kerning: normal;
+    width: 100%;
+    height: 100%;
+}
+
+strong {
+  font-weight: normal;
+}
+
+
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure,
+%vertical-rhythm {
+    margin-bottom: $spacing-unit / 2;
+}
+
+
+
+/**
+ * Images
+ */
+img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+
+
+/**
+ * Figures
+ */
+figure > img {
+    display: block;
+}
+
+figcaption {
+    font-size: $small-font-size;
+}
+
+
+
+/**
+ * Lists
+ */
+ul, ol {
+    margin-left: $spacing-unit;
+}
+
+li {
+    > ul,
+    > ol {
+         margin-bottom: 0;
+    }
+}
+
+
+
+/**
+ * Headings
+ */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: $base-font-weight;
+}
+
+
+
+/**
+ * Links
+ */
+a {
+    color: $secondary-color;
+    text-decoration: none;
+
+    &:visited {
+        color: darken($secondary-color, 10%);
+    }
+
+    &:hover {
+        color: $secondary-color-light;
+        text-decoration: none;
+    }
+
+    .icon {
+      path {
+        fill: $secondary-color;
+      }
+    }
+}
+
+
+
+/**
+ * Blockquotes
+ */
+blockquote {
+    color: $grey-color;
+    border-left: 4px solid $grey-color-light;
+    padding-left: $spacing-unit / 2;
+    font-size: 18px;
+    letter-spacing: -1px;
+    font-style: italic;
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+
+
+/**
+ * Code formatting
+ */
+// pre,
+// code {
+//     font-size: 15px;
+//     border: 1px solid $grey-color-light;
+//     border-radius: 3px;
+//     background-color: #eef;
+// }
+//
+// code {
+//     padding: 1px 5px;
+// }
+//
+// pre {
+//     padding: 8px 12px;
+//     overflow-x: auto;
+//
+//     > code {
+//         border: 0;
+//         padding-right: 0;
+//         padding-left: 0;
+//     }
+// }
+
+
+
+/**
+ * Wrapper
+ */
+.wrapper {
+    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
+    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: $spacing-unit;
+    padding-left: $spacing-unit;
+    @extend %clearfix;
+
+    @include media-query($on-laptop) {
+        max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
+        max-width:         calc(#{$content-width} - (#{$spacing-unit}));
+        padding-right: $spacing-unit / 2;
+        padding-left: $spacing-unit / 2;
+    }
+}
+
+
+
+/**
+ * Clearfix
+ */
+%clearfix {
+
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+
+
+/**
+ * Icons
+ */
+.icon {
+  > svg {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: text-bottom;
+  }
+
+  &.big, &.big > svg {
+    height: 8rem;
+    width: 8rem;
+  }
+
+  &.medium, &.medium > svg {
+    height: 3.4rem;
+    width: 3.4rem;
+  }
+}
+
+hr {
+  margin: 1rem 0;
+  border-color: rgba(0, 0, 0, 0.08);
+  border-style: solid;
+  border-top: 0;
+}
+
+/**
+ * Line clamp
+ */
+ /* multibrowser line clamp. Credits: http://codepen.io/siiron/pen/jfBhy/ */
+.line-clamp {
+	display            : block;
+	display            : -webkit-box;
+	-webkit-box-orient : vertical;
+	position           : relative;
+
+	line-height        : 1.2;
+	overflow           : hidden;
+	text-overflow      : ellipsis;
+	padding            : 0 !important;
+}
+
+.line-clamp:after {
+	content    : '...';
+	text-align : right;
+	bottom     : 0;
+	right      : 0;
+	width      : 25%;
+	display    : block;
+	position   : absolute;
+	height     : calc(1em * 1.2);
+	background : linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 75%);
+}
+
+@supports (-webkit-line-clamp: 1) {
+	.line-clamp:after	{
+		display : none !important;
+	}
+}
+.line-clamp-3 {
+	-webkit-line-clamp : 3;
+	height             : calc(1em * 1.2 * 3);
+}

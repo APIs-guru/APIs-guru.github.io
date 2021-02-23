@@ -1,0 +1,28 @@
+<div class="mobile-header">
+  <div class="toggle-button">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="logo"> APIS.GURU </div>
+</div>
+<header class="site-header" id="menu">
+  <nav class="site-nav">
+    {% assign sorted_pages = site.pages %} <!-- |sort:order -->
+    {% for my_page in sorted_pages %}
+      {% if my_page.title != "404: Page not found" and my_page.url != "/feed.xml"
+      and my_page.url != "/add-api/" %}
+        {% if my_page.url == "/" %}
+          <a class="page-link" href="/">Home</a>
+        {% elsif my_page.url == "/blog/" %}
+          <a class="page-link" href="https://blog.apis.guru/">{{ my_page.title }}</a>
+        {% elsif page.url == my_page.url %}
+        <a class="page-link active" href="{{ my_page.url }}">{{ my_page.title }}</a>
+        {% else %}
+        <a class="page-link" href="{{ my_page.url }}">{{ my_page.title }}</a>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </nav>
+</header>

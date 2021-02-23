@@ -1,0 +1,25 @@
+<footer class="site-footer">
+
+  <div class="wrapper">
+
+    <ul class="social-media-list">
+      {% if site.author.github %}
+      <li>
+        {% include icon-github.html username=site.author.github %}
+      </li>
+      {% endif %}
+
+      {% if site.author.twitter %}
+      <li>
+        {% include icon-twitter.html username=site.author.twitter %}
+      </li>
+      {% endif %}
+      <li>
+        © 2021 APIs.guru All rights reserved.
+      </li>
+    </ul>
+    <div>
+
+    </div>
+
+</footer>
