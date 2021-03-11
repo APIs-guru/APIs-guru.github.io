@@ -2,15 +2,15 @@ name: ci
 
 # Author: @MikeRalphson
 # Issue : n/a
-# Desc  : This workflow runs a build on pushes to master and prs
+# Desc  : This workflow runs a build on pushes to code-red-updates and prs
 
-# run this on push to master
+# run this on push to code-red-updates
 on:
   push:
-    branches: [master]
+    branches: [code-red-updates]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [master]
+    branches: [code-red-updates]
 
 jobs:
   build:
