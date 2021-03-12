@@ -18,9 +18,9 @@
           <h3> OpenAPI: </h3>
           <h4>Preferred Version - {{=it.preferred}}</h4>
           <ul class="preferred-api">
-            <li><a href="{{=it.api.swaggerUrl}}" target="_blank" class="label label-primary">json</a></li>
-            <li><a href='{{=it.api.swaggerYamlUrl}}' target="_blank" class="label label-primary">yaml</a></li>
-            <li><a href='https://redocly.github.io/redoc/?url={{=it.api.swaggerUrl}}' target="_blank" class="label label-primary">Docs</a></li>
+            <li><a href="{{=it.api.swaggerUrl}}" target="_blank" >json</a></li>
+            <li><a href='{{=it.api.swaggerYamlUrl}}' target="_blank" >yaml</a></li>
+            <li><a href='https://redocly.github.io/redoc/?url={{=it.api.swaggerUrl}}' target="_blank" >Docs</a></li>
           </ul>
           {{? it.versions }}
           <details>
@@ -30,9 +30,9 @@
               <li>
                 <span>{{=version.version}}</span>
                 <ul>
-                  <li><a href="{{=version.swaggerUrl}}" target="_blank" class="label label-primary">json</a></li>
-                  <li><a href="{{=version.swaggerYamlUrl}}" target='_blank' class='label label-primary'>yaml</a></li>
-                  <li><a href='https://redocly.github.io/redoc/?url={{=version.swaggerUrl}}' target="_blank" class="label label-primary">Docs</a></li>
+                  <li><a href="{{=version.swaggerUrl}}" target="_blank" >json</a></li>
+                  <li><a href="{{=version.swaggerYamlUrl}}" target='_blank'>yaml</a></li>
+                  <li><a href='https://redocly.github.io/redoc/?url={{=version.swaggerUrl}}' target="_blank" >Docs</a></li>
                 </ul>
               </li>
                 {{~}}
@@ -41,9 +41,9 @@
           {{?}}
           <details>
             <summary><h4>Tools</h4></summary>
-            <ul>
+            <ul class="tools">
               {{~it.integrations :integration:index}}
-              <li><a href="{{=integration.template}}" target="_blank" class="label label-primary">{{=integration.text}}</a></li>
+              <li><a href="{{=integration.template}}" target="_blank" >{{=integration.text}}</a></li>
               {{~}}
             </ul>
           </details>
