@@ -50,6 +50,7 @@ function CardModel() {
     this.externalUrl = '';
     this.versions = null;
     this.markedDescription = '';
+    this.cardDescription = '';
 }
 
 CardModel.prototype.fromAPIs = function(apis) {
@@ -75,6 +76,7 @@ CardModel.prototype.fromAPIs = function(apis) {
 
     this.versions = versions.length > 1 ? versions : null;
     this.markedDescription = window.marked(this.info.description || '', { renderer });
+    this.cardDescription = this.markedDescription.replace(/(<([^>]+)>)/gi, "");
     this.integrations = [];
     for (let i of integrations) {
        this.integrations.push({ text: i.text, template: i.template.replace('{swaggerUrl}',this.api.swaggerUrl) });
