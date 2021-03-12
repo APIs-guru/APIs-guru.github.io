@@ -1,0 +1,53 @@
+<script type="text/dot-template">
+    {% raw %}
+    <div class="card">
+        <header>
+            <h2>
+              {{? it.externalUrl }}
+                <a href="{{=it.externalUrl }}" target="_blank">{{=it.info.title }}</a>
+              {{??}}
+                {{=it.info.title }}
+              {{?}}
+            </h2>
+        </header>
+        <section class="api-body">
+            <img src="{{=it.logo.url || '/assets/images/no-logo.svg'}}" alt="{{=it.info.title }} API logo" style="background-color: {{=it.logo.backgroundColor || 'transparent'}}" class="api-logo">
+            <p>{{=it.info.description}}</p>
+        </section>
+        <footer>
+          <h3> OpenAPI: </h3>
+          <h4>Preferred Version - {{=it.preferred}}</h4>
+          <ul class="preferred-api">
+            <li><a href="{{=it.api.swaggerUrl}}" target="_blank" class="label label-primary">json</a></li>
+            <li><a href='{{=it.api.swaggerYamlUrl}}' target="_blank" class="label label-primary">yaml</a></li>
+            <li><a href='https://redocly.github.io/redoc/?url={{=it.api.swaggerUrl}}' target="_blank" class="label label-primary">Docs</a></li>
+          </ul>
+          {{? it.versions }}
+          <details>
+            <summary><h4>Other Versions</h4></summary>
+            <ul class="other-versions">
+              <li>
+                {{~it.versions :version:index}}
+                <span>{{=version.version}}</span>
+                <ul>
+                  <li><a href="{{=version.swaggerUrl}}" target="_blank" class="label label-primary">json</a></li>
+                  <li><a href="{{=version.swaggerYamlUrl}}" target='_blank' class='label label-primary'>yaml</a></li>
+                  <li><a href='https://redocly.github.io/redoc/?url={{=version.swaggerUrl}}' target="_blank" class="label label-primary">Docs</a></li>
+                </ul>
+                {{~}}
+              </li>
+            </ul>
+          </details>
+          {{?}}
+          <details>
+            <summary>Tools</summary>
+            <ul>
+              {{~it.integrations :integration:index}}
+              <li><a href="{{=integration.template}}" target="_blank" class="label label-primary">{{=integration.text}}</a></li>
+              {{~}}
+            </ul>
+          </details>
+        </footer>
+    </div>
+    {% endraw %}
+  </script>

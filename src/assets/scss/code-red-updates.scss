@@ -1,0 +1,32 @@
+@supports not (display: grid)  {
+    .card {
+       margin-bottom: 1.44rem;
+       margin-bottom: var(--s2);
+    }
+ }
+ 
+ @supports (display: grid) { 
+    @media (min-width:1200px) {
+       .container {
+           width: 1170px;
+       }
+    }
+    @media (min-width:992px) {
+       .container {
+           width: 970px;
+       }
+       .col-md-offset-3 { /* this is for the searchbox, update later */
+            margin-left: 25%;
+        }
+    }
+    @media (min-width:768px) {
+       .container {
+           width: 750px;
+       }
+    }
+    @media (min-width:461px) {
+       .container {
+           width: 450px;
+       }
+    }
+ }
