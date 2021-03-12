@@ -2,6 +2,12 @@
     box-sizing: border-box;
 }
 
+#search {
+    position: sticky;
+    top: 55px;
+    background-color: white;
+}
+
 @supports not (display: grid)  {
     .card {
        margin-bottom: 1.44rem;
