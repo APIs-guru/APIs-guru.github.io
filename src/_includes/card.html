@@ -2,7 +2,7 @@
     {% raw %}
     <div class="card">
         <header>
-            <h2>
+            <h2 title="{{=it.info.title }}">
               {{? it.externalUrl }}
                 <a href="{{=it.externalUrl }}" target="_blank">{{=it.info.title }}</a>
               {{??}}
@@ -26,21 +26,21 @@
           <details>
             <summary><h4>Other Versions</h4></summary>
             <ul class="other-versions">
+              {{~it.versions :version:index}}
               <li>
-                {{~it.versions :version:index}}
                 <span>{{=version.version}}</span>
                 <ul>
                   <li><a href="{{=version.swaggerUrl}}" target="_blank" class="label label-primary">json</a></li>
                   <li><a href="{{=version.swaggerYamlUrl}}" target='_blank' class='label label-primary'>yaml</a></li>
                   <li><a href='https://redocly.github.io/redoc/?url={{=version.swaggerUrl}}' target="_blank" class="label label-primary">Docs</a></li>
                 </ul>
-                {{~}}
               </li>
+                {{~}}
             </ul>
           </details>
           {{?}}
           <details>
-            <summary>Tools</summary>
+            <summary><h4>Tools</h4></summary>
             <ul>
               {{~it.integrations :integration:index}}
               <li><a href="{{=integration.template}}" target="_blank" class="label label-primary">{{=integration.text}}</a></li>
