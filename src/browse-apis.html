@@ -21,12 +21,14 @@ order: 10
     </div>
   </div><!-- end row -->
 
-  <div id="apis-list" class="row"></div>
+  <section id="apis-list" class="cards"></section>
 </div>
 
-<script type="text/dot-template">
+{% include card.html %}
+
+<!-- script type="text/dot-template">
   {% raw %}
-  <div class="col-xs-12 col-sm-4 col-md-3">
+  <div class="card">
     <div class="panel panel-default text-center">
       <div class="panel-heading">
         {{? it.externalUrl }}
@@ -86,4 +88,4 @@ order: 10
     </div>
   </div>
   {% endraw %}
-</script>
+</script -->
