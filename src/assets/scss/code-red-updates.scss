@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 @supports not (display: grid)  {
     .card {
        margin-bottom: 1.44rem;
@@ -15,17 +19,46 @@
     text-align: center;
     border: 1px black solid;
     border-radius: 5px;
+    background-color: #eee;
 }
- 
+
+.card h2, .card h3, .card h4 {
+    font-weight: 400;
+}
+
+/* card header*/
 .card header h2 {
-    overflow: ;
-    overflow-wrap: anywhere;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }  
+
+.card header {
+    padding: 10px 15px;
+    color: #388c9a;
+}
+
+.card header a {
+    color: #388c9a;
+    text-decoration: underline;
+}
+
+.card header a:hover {
+    text-decoration: none;
+}
+
+/* api body */
+
+.card .api-body {
+    padding: 15px;
+    background-color: #fff;
+}
 
 .card .api-body img {
         max-width: 100%;
         max-height: 100%;
         padding: 10px;
+        height: 100px;
 }
 
 .card .api-body p {
@@ -34,6 +67,25 @@
     text-overflow: ellipsis;
     -webkit-line-clamp: 3;
     height: calc(1em * 1.2 * 3);
+    margin-top: 15px;
+}
+
+/* api footer */
+
+.card footer ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: space-evenly;
+    margin-left: 0;
+}
+
+.card footer ul.other-versions {
+    flex-direction: column-reverse;
+}
+
+.card footer summary ::marker, .card footer summary h4 {
+    display: inline;
 }
 
 /* dropdowns*/
@@ -89,7 +141,7 @@
     @media (min-width:461px) {
        .cards {
            display: grid;
-           grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+           grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
            grid-column-gap: 1rem;
            grid-row-gap: 1rem;
        }
@@ -102,6 +154,11 @@
    @media (min-width:1200px) {
        .container {
            width: 1170px;
+       }
+   }
+   @media (min-width:1440px) {
+       .container {
+           width: 1400px;
        }
    }
 }
