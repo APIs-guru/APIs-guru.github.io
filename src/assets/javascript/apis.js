@@ -76,7 +76,7 @@ CardModel.prototype.fromAPIs = function(apis) {
 
     this.versions = versions.length > 1 ? versions : null;
     this.markedDescription = window.marked(this.info.description || '', { renderer });
-    this.cardDescription = this.markedDescription.replace(/(<([^>]+)>)/gi, "");
+    this.cardDescription = this.markedDescription.replace(/(<([^>]+)>)/gi, "").split(" ").splice(0,50).join(" ");
     this.integrations = [];
     for (let i of integrations) {
        this.integrations.push({ text: i.text, template: i.template.replace('{swaggerUrl}',this.api.swaggerUrl) });
