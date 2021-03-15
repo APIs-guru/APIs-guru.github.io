@@ -4,11 +4,12 @@
   "title": "APIs.guru",
   "description": "Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue.",
   "pages": [
-    { "title": "Home", "url": "/" },
-    { "title": "Directory", "url": "/openapi-directory" },
-    { "title": "Browse APIs", "url": "/browse-apis" },
-    { "title": "Blog", "url": "/blog/" },
-    { "title": "Our API", "url": "/api-doc" }
+    { "title": "Home", "url": "/", "size":"" },
+    { "title": "About", "url": "/openapi-directory/", "size":"" },
+    { "title": "Browse APIs", "url": "/browse-apis/", "size":"large" },
+    { "title": "Add API", "url": "/add-api/", "size":"large" },
+    { "title": "Blog", "url": "/blog/", "size":"" },
+    { "title": "Our API", "url": "/api-doc/", "size":"" }
   ],
   "data": {
   "projects": [
