@@ -139,7 +139,7 @@ if (window.$) {
       }
     });
 
-    for (let i=0;i<8;i++) { updateCards(dummy); }
+    for (let i=0;i<15;i++) { updateCards(dummy); }
 
     let urlParams = new URLSearchParams(location.search);
     if (urlParams.get('q')) {
