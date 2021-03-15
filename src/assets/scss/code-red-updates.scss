@@ -58,13 +58,13 @@
 .card .api-body {
     padding: 15px;
     background-color: #fff;
+    height: calc(1em * 1.2 * 3 + 150px);
 }
 
 .card .api-body img {
         max-width: 100%;
-        max-height: 100%;
+        max-height: 100px;
         padding: 10px;
-        height: 100px;
 }
 
 .card .api-body p {
