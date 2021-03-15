@@ -34,7 +34,7 @@ $side-menu-width: 256px;
     }
 
     // big link
-    &:nth-child(3) {
+    &.large {
       font-size: 1.5rem;
       padding: 0 1rem;
     }
