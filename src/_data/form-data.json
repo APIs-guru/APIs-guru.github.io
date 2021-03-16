@@ -1,0 +1,210 @@
+{
+    "fields": [
+        {
+            "label": "API Name",
+            "note": "This is a note to accompany the filed",
+            "placeholder": "",
+            "name": "name",
+            "type": "text",
+            "required": true
+        },
+        {
+            "label": "URL to the definition",
+            "note": "Include the protocol, e.g. “https://”",
+            "placeholder": "e.g https://myapi.com",
+            "name": "url",
+            "type": "url",
+            "required": true
+        },
+        {
+            "label": "Logo URL",
+            "note": "If not already in the definition. Include the protocol, e.g. “https://”",
+            "placeholder": "e.g https://myapi.com/logo.svg",
+            "name": "logo",
+            "type": "url",
+            "required": false
+        }
+    ],
+    "definitions": [
+      {
+        "name": "OpenAPI 3.0",
+        "url": "https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md"
+      },
+      {
+        "name": "OpenAPI 2.0 (fka Swagger)",
+        "url": "https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md"
+      },
+      {
+        "name": "API Blueprint",
+        "url": "https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md"
+      },
+      {
+        "name": "Google API Discovery",
+        "url": "https://developers.google.com/discovery/v1/reference/apis"
+      },
+      {
+        "name": "RAML",
+        "url": "http://raml.org/spec.html"
+      },
+      {
+        "name": "Postman Collection",
+        "url": "https://getpostman.com/"
+      },
+      {
+        "name": "WADL",
+        "url": "http://www.w3.org/Submission/wadl/"
+      }
+    ],
+    "official": [
+        {
+            "label": "Official",
+            "value": "YES"
+        },
+        {
+            "label": "Non-Official",
+            "value": "NO"
+        }
+    ],
+    "categories": [
+        {
+            "name": "Analytics",
+            "value": "analytics"
+        },
+        {
+            "name": "Backend",
+            "value": "backend"
+        },
+        {
+            "name": "Cloud",
+            "value": "cloud"
+        },
+        {
+            "name": "Collaboration",
+            "value": "collaboration"
+        },
+        {
+            "name": "Customer Relations",
+            "value": "customer_relation"
+        },
+        {
+            "name": "Developer Tools",
+            "value": "developer_tools"
+        },
+        {
+            "name": "E-Commerce",
+            "value": "ecommerce"
+        },
+        {
+            "name": "Education",
+            "value": "education"
+        },
+        {
+            "name": "email",
+            "value": "email"
+        },
+        {
+            "name": "Enterprise",
+            "value": "enterprise"
+        },
+        {
+            "name": "Entertainment",
+            "value": "entertainment"
+        },
+        {
+            "name": "Financial",
+            "value": "financial"
+        },
+        {
+            "name": "Forms",
+            "value": "forms"
+        },
+        {
+            "name": "Frontend",
+            "value": "frontend"
+        },
+        {
+            "name": "Hosting",
+            "value": "hosting"
+        },
+        {
+            "name": "IoT",
+            "value": "iot"
+        },
+        {
+            "name": "Location",
+            "value": "location"
+        },
+        {
+            "name": "Machine Learning",
+            "value": "machine_learning"
+        },
+        {
+            "name": "Marketing",
+            "value": "marketing"
+        },
+        {
+            "name": "Media",
+            "value": "media"
+        },
+        {
+            "name": "Messaging",
+            "value": "messaging"
+        },
+        {
+            "name": "Monitoring",
+            "value": "monitoring"
+        },
+        {
+            "name": "Open Data",
+            "value": "open_data"
+        },
+        {
+            "name": "Payment",
+            "value": "payment"
+        },
+        {
+            "name": "Project Management",
+            "value": "project_management"
+        },
+        {
+            "name": "Search",
+            "value": "search"
+        },
+        {
+            "name": "Security",
+            "value": "security"
+        },
+        {
+            "name": "Social",
+            "value": "social"
+        },
+        {
+            "name": "Storage",
+            "value": "storage"
+        },
+        {
+            "name": "Support",
+            "value": "support"
+        },
+        {
+            "name": "Telecoms",
+            "value": "telecom"
+        },
+        {
+            "name": "Text",
+            "value": "text"
+        },
+        {
+            "name": "Time Management",
+            "value": "time_management"
+        },
+        {
+            "name": "Tools",
+            "value": "tools"
+        },
+        {
+            "name": "Transport",
+            "value": "transport"
+        }
+    ]
+}
