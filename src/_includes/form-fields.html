@@ -1,8 +1,7 @@
 {% for field in form-data.fields %}
-<span class="input input--hoshi">
-    <input name="{{ field.name }}" class="input__field input__field--hoshi" type="{{ field.type }}" {% if field.required %}required {% endif %}/>
-    <label class="input__label input__label--hoshi input__label--hoshi-color-1">
-        <span class="{% if field.required %}label-required {% endif %}input__label-content input__label-content--hoshi">{{ field.label }}</span>
-    </label>
-</span>
+<div class="field">
+    <label for="{{ field.name }}" class="{% if field.required %} label-required{% endif %}">{{ field.label }}</label>
+    {% if field.note %}<p class="hint" id="{{ field.hintId }}">{{ field.note }}</p> {% endif %}
+    <input name="{{ field.name }}" id="{{ field.name }}" type="{{ field.type }}"{% if field.note %} aria-describedby="{{ field.hintId }}"{% endif %} {% if field.placeholder %}placeholder="{{ field.placeholder }}" {% endif %} {% if field.required %}required {% endif %}/>
+</div>
 {% endfor %}
