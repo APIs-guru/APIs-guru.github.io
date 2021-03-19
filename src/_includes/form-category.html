@@ -1,11 +1,10 @@
-<div class="input input--hoshi">
-    <select name="category" class="input__field input__field--hoshi" type="select" required>
-    <option value=""></option>
-    {% for category in form-data.categories %}
-    <option value="{{ category.value }}">{{ category.name }}</option>
-    {% endfor %}
-    </select>
-    <label class="input__label input__label--hoshi input__label--hoshi-color-3" for="category">
-        <span class="input__label-content input__label-content--hoshi">Category (please select the most appropriate)</span>
-    </label>
+<div class="field">
+    <label for="{{ form-data.category.name }}" class="">{{ form-data.category.label }}</label>
+    {% if form-data.category.note %}<p class="hint">{{ form-data.category.note }}</p> {% endif %}
+    <select name="{{ form-data.category.name }}" class="" type="select" required>
+        <option value=""></option>
+        {% for category in form-data.category.categories %}
+        <option value="{{ category.value }}">{{ category.name }}</option>
+        {% endfor %}
+        </select>
 </div>
