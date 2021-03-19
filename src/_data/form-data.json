@@ -2,10 +2,11 @@
     "fields": [
         {
             "label": "API Name",
-            "note": "This is a note to accompany the filed",
+            "note": "This is a note to accompany the field",
             "placeholder": "",
             "name": "name",
             "type": "text",
+            "hintId":"namehint",
             "required": true
         },
         {
@@ -14,6 +15,7 @@
             "placeholder": "e.g https://myapi.com",
             "name": "url",
             "type": "url",
+            "hintId":"urlhint",
             "required": true
         },
         {
@@ -22,6 +24,7 @@
             "placeholder": "e.g https://myapi.com/logo.svg",
             "name": "logo",
             "type": "url",
+            "hintId":"logohint",
             "required": false
         }
     ],
@@ -65,7 +68,12 @@
             "value": "NO"
         }
     ],
-    "categories": [
+    "category": {
+        "label": "Category",
+        "note": "(Please select the most appropriate)",
+        "name": "category",
+        "hintId":"categoryhint",
+        "categories": [
         {
             "name": "Analytics",
             "value": "analytics"
@@ -206,5 +214,6 @@
             "name": "Transport",
             "value": "transport"
         }
-    ]
+        ]
+    }
 }
