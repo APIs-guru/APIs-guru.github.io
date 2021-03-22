@@ -6,6 +6,8 @@
     position: sticky;
     top: 55px;
     background-color: white;
+    display: flex;
+    flex-direction: column;
 }
 
 @supports not (display: grid)  {
