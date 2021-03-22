@@ -129,9 +129,6 @@ label {
 		border: #388c9a solid 1px;
 		border-radius: 2px;
 		padding: 0.5rem;
-		&::placeholder {
-			color: red;
-		}
 		&:focus {
 			outline: #388c9a solid 3px;
 		}
