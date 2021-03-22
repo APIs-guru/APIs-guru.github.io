@@ -8,6 +8,10 @@
     background-color: white;
     display: flex;
     flex-direction: column;
+    & ::placeholder, & label, & input {
+        text-align: center;
+    }
+
 }
 
 @supports not (display: grid)  {
@@ -116,6 +120,13 @@
 
 .card footer summary {
     cursor: pointer;
+}
+
+.support {
+    text-align: center;
+    & p {
+        font-size: 1.5rem;
+    }
 }
 
 @supports (display: grid) { 
