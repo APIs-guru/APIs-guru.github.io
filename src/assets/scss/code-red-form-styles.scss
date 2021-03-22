@@ -25,6 +25,9 @@ label {
 		text-align: center;
 		display: block;
 	}
+	& button:hover, & button:focus {
+		outline: #388c9a solid 3px;
+	}
 }
 
 /* control positioning */
@@ -69,6 +72,7 @@ label {
 .control:hover input ~ .control__indicator,
 .control input:focus ~ .control__indicator {
 	background: lighten($grey-color-light, 10%);
+	border: $secondary-color solid 1px;
 }
 
 /* Checked state */
@@ -80,6 +84,7 @@ label {
 .control:hover input:checked ~ .control__indicator,
 .control input:checked:focus ~ .control__indicator {
 	background: lighten($secondary-color, 10%);
+	border: $secondary-color solid 1px;
 }
 
 /* Check mark */
@@ -90,12 +95,22 @@ label {
 }
 
 /* Show check mark */
-.control input:checked ~ .control__indicator:after {
+.control input:checked ~ .control__indicator::after {
 	display: block;
+	& input:hover, &input:focus {
+		top: 6px;
+		left: 6px;
+	}
 }
 
+.control--radio input:focus ~ .control__indicator::after, 
+.control--radio input:hover ~ .control__indicator::after {
+	top: 6px;
+	left: 6px;
+	}
+
 /* Radio button inner circle */
-.control--radio .control__indicator:after {
+.control--radio .control__indicator::after {
 	top: 7px;
 	left: 7px;
 	width: 6px;
@@ -103,26 +118,30 @@ label {
 	border-radius: 50%;
 	background: #fff;
 }
+
 /* end radio buttons */
 
 /* input fields */
-.field input {
-	width: 100%;
-	font-size: 1.25rem;
-	border: #388c9a solid 1px;
-	border-radius: 2px;
-	padding: 0.5rem;
-
-	&::placeholder {
-		color: red;
+.field {
+	& input {
+		width: 100%;
+		font-size: 1.25rem;
+		border: #388c9a solid 1px;
+		border-radius: 2px;
+		padding: 0.5rem;
+		&::placeholder {
+			color: red;
+		}
+		&:focus {
+			outline: #388c9a solid 3px;
+		}
 	}
-	&:focus {
-		outline: #388c9a solid 3px;
-	}
-	&:valid {
-		border: #388c9a;
-	} 
-	&:invalid {
-		border: red;
+	& select {
+		font-size: 1.25rem;
+		width: 100%;
+		font-weight: 500;
+		&:focus {
+			outline: #388c9a solid 3px;
+		}
 	}
 }
