@@ -2,7 +2,7 @@
     "fields": [
         {
             "label": "API Name",
-            "note": "This is a note to accompany the field",
+            "note": "What is the name of the API?",
             "placeholder": "",
             "name": "name",
             "type": "text",
