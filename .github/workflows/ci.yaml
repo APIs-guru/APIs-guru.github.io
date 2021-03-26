@@ -4,7 +4,7 @@ name: ci
 # Issue : n/a
 # Desc  : This workflow runs a build on pushes to master and prs
 
-# run this on push to code-red-updates
+# run this on push to master
 on:
   push:
     branches: [master]
