@@ -7,7 +7,7 @@ name: deploy
 # run this on push to code-red-updates
 on: 
   push:
-    branches: [code-red-updates]
+    branches: [master]
 
 jobs:
   deploy:
