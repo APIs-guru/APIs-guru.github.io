@@ -2,7 +2,7 @@ name: ci
 
 # Author: @MikeRalphson
 # Issue : n/a
-# Desc  : This workflow runs a build on pushes to code-red-updates and prs
+# Desc  : This workflow runs a build on pushes to master and prs
 
 # run this on push to code-red-updates
 on:
