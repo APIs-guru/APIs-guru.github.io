@@ -10,7 +10,7 @@ on:
     branches: [code-red-updates]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [code-red-updates]
+    branches: [master]
 
 jobs:
   build:
