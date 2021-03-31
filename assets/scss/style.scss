@@ -6,8 +6,10 @@ The main SCSS file for everything, yep
 @import "base";
 @import "layout";
 @import "index";
-@import "inputs";
+/* @import "inputs"; */
 @import "blog";
 @import "browse-apis.scss";
 @import "syntax-highlighting";
 @import "landing";
+@import "code-red-updates";
+@import "code-red-form-styles";

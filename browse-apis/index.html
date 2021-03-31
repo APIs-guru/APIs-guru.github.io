@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.9/css/bootstrap-material-design.min.css">
     <link rel="preconnect" href="https://api.apis.guru">
     <link rel="preconnect" href="https://img.shields.io">
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>APIs.guru</title>
 <meta name="description" content="Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue.">
 <link rel="canonical" href="https://apis.guru/browse-apis/">
 
@@ -47,7 +44,7 @@
 <meta name="twitter:description" content="APIs.guru - Wikipedia for Web APIs.">
 <meta name="twitter:image" content="https://apis.guru/assets/images/logo-big.png">
 
-
+ 
 
   </head>
   <body>
@@ -73,13 +70,19 @@
     
       
         
-        <a class="page-link" href="/openapi-directory">Directory</a>
+        <a class="page-link " href="/openapi-directory/">About</a>
         
       
     
       
         
-        <a class="page-link" href="/browse-apis">Browse APIs</a>
+        <a class="page-link active large" href="/browse-apis/">Browse APIs</a>
+        
+      
+    
+      
+        
+        <a class="page-link large" href="/add-api/">Add API</a>
         
       
     
@@ -91,7 +94,7 @@
     
       
         
-        <a class="page-link" href="/api-doc">Our API</a>
+        <a class="page-link " href="/api-doc/">Our API</a>
         
       
     
@@ -101,8 +104,8 @@
 
     <div class="page-content apis-list" id="content">
       <div class="browse-apis container">
-
-  <h1>
+  <section class="support jumbotron">
+    <h1>Browse APIs</h1>
     <div class="social-links">
   <a target="=_blank" href="https://github.com/APIs-guru/openapi-directory">
     <img src="https://img.shields.io/github/stars/APIs-guru/openapi-directory.svg?style=social&amp;label=Star" alt="Stars on GitHub">
@@ -112,86 +115,75 @@
   </a>
 </div>
 
-    APIs in Collection:
-  </h1>
-
+    
+    <p>Help support the work that we do by contributing to our Open Collective campaign.</p>
+    <a class="button cta" href="https://opencollective.com/openapi-directory">Support APIs.guru</a>
+    
+</section>
   <!-- search -->
   <div id="search" class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <span class="input input--hoshi">
-            <input id="search-input" name="name" class="input__field input__field--hoshi" type="search" placeholder="Search ..." required/>
-            <label class="input__label input__label--hoshi input__label--hoshi-color-1"></label>
-        </span>
+    <div class="field col-md-6 col-md-offset-3">
+      <label for="search">Filter APIs</label>
+      <input id="search-input" name="search" type="search" placeholder="Search…" required/>
     </div>
-  </div><!-- end row -->
+  </div>
 
-  <div id="apis-list" class="row"></div>
+  <section id="apis-list" class="cards"></section>
 </div>
 
 <script type="text/dot-template">
-  
-  <div class="col-xs-12 col-sm-4 col-md-3">
-    <div class="panel panel-default text-center">
-      <div class="panel-heading">
-        {{? it.externalUrl }}
-          <a href="{{=it.externalUrl }}" target="_blank">{{=it.info.title }}</a>
-        {{??}}
-          {{=it.info.title }}
-        {{?}}
-      </div>
-      <div class="panel-body">
-        <div class="text-center panel-body-logo">
-          <img src="{{=it.logo.url || '/assets/images/no-logo.svg'}}" alt="API logo"
-            style="background-color: {{=it.logo.backgroundColor || 'transparent'}}" class="api-logo">
-        </div>
-        <div class="panel-body-description line-clamp line-clamp-3">{{=it.markedDescription}}</div>
-      </div>
-      <div class="panel-footer">
-        <div class="footer-description"> OpenAPI: </div>
-        <div class='versions'>
+    
+    <div class="card">
+        <header>
+            <h2 title="{{=it.info.title }}">
+              {{? it.externalUrl }}
+                <a href="{{=it.externalUrl }}" target="_blank">{{=it.info.title }}</a>
+              {{??}}
+                {{=it.info.title }}
+              {{?}}
+            </h2>
+        </header>
+        <section class="api-body">
+            <img src="{{=it.logo.url || '/assets/images/no-logo.svg'}}" alt="{{=it.info.title }} API logo" style="background-color: {{=it.logo.backgroundColor || 'transparent'}}" class="api-logo">
+            <p>{{=it.cardDescription}}</p>
+        </section>
+        <footer>
+          <h3> OpenAPI: </h3>
+          <h4>Preferred Version - {{=it.preferred}}</h4>
+          <ul class="preferred-api">
+            <li><a href="{{=it.api.swaggerUrl}}" target="_blank" >json</a></li>
+            <li><a href='{{=it.api.swaggerYamlUrl}}' target="_blank" >yaml</a></li>
+            <li><a href='https://redocly.github.io/redoc/?url={{=it.api.swaggerUrl}}' target="_blank" >Docs</a></li>
+          </ul>
           {{? it.versions }}
-          <div class="btn-group">
-            <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
+          <details>
+            <summary><h4>All Versions</h4></summary>
+            <ul class="other-versions">
               {{~it.versions :version:index}}
               <li>
                 <span>{{=version.version}}</span>
-                <span>
-                    <a href="{{=version.swaggerUrl}}" target="_blank" class="label label-primary">json</a>
-                    <a href="{{=version.swaggerYamlUrl}}" target='_blank' class='label label-primary'>yaml</a>
-                    <a href='https://redocly.github.io/redoc/?url={{=version.swaggerUrl}}' target="_blank" class="label label-primary">Docs</a>
-                </span>
+                <ul>
+                  <li><a href="{{=version.swaggerUrl}}" target="_blank" >json</a></li>
+                  <li><a href="{{=version.swaggerYamlUrl}}" target='_blank'>yaml</a></li>
+                  <li><a href='https://redocly.github.io/redoc/?url={{=version.swaggerUrl}}' target="_blank" >Docs</a></li>
+                </ul>
               </li>
               {{~}}
             </ul>
-          </div>{{?}}<span class="truncate">{{=it.preferred}}</span>
-          <span>
-            <a href="{{=it.api.swaggerUrl}}" target="_blank" class="label label-primary">json</a>
-            <a href='{{=it.api.swaggerYamlUrl}}' target="_blank" class="label label-primary">yaml</a>
-            <a href='https://redocly.github.io/redoc/?url={{=it.api.swaggerUrl}}' target="_blank" class="label label-primary">Docs</a>
-          <div class="btn-group">
-            <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <span class="caret"></span><span aria-label="Tools">&nbsp;🔧</span>
-            </button>
-            <ul class="dropdown-menu">
+          </details>
+          {{?}}
+          <details>
+            <summary><h4>Tools</h4></summary>
+            <ul class="tools">
               {{~it.integrations :integration:index}}
-              <li>
-                <span>
-                    <a href="{{=integration.template}}" target="_blank" class="label label-primary">{{=integration.text}}</a>
-                </span>
-              </li>
+              <li><a href="{{=integration.template}}" target="_blank" >{{=integration.text}}</a></li>
               {{~}}
             </ul>
-          </div>
-        </div>
-      </div>
+          </details>
+        </footer>
     </div>
-  </div>
-  
-</script>
-
+    
+  </script>
     </div>
 
     <footer class="site-footer">
@@ -214,9 +206,8 @@
 
 
   <!-- JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.7.0/marked.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dot/1.0.3/doT.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.12/slideout.js"></script>
   <!-- inject:js -->

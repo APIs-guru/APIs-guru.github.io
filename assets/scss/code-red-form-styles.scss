@@ -1,0 +1,144 @@
+label {
+	font-size: 1.25rem;
+	font-weight: bold;
+	display: block;
+	padding: 0.5em 0.25em;
+}
+
+.label-required:after {
+	content: "*";
+	color: red;
+	display: inline-block;
+	margin-left: 2px;
+}
+
+/* radio buttons */
+/* radio buttons flex to 2 columns */
+.form-group {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin-bottom: 1em;
+
+	&:last-child {
+		margin: 2em 0;
+		text-align: center;
+		display: block;
+	}
+	& button:hover, & button:focus {
+		outline: #388c9a solid 3px;
+	}
+}
+
+/* control positioning */
+.control {
+	font-size: 1rem;
+	position: relative;
+	display: inline-block;
+	width: 50%;
+	box-sizing: border-box;
+	margin-top: 15px;
+	padding-left: 30px;
+	font-weight: bold;
+	color: $grey-color;
+	cursor: pointer;
+
+	@include media-query($on-palm) {
+		width: 100%;
+	}
+}
+
+/* hide the input radio button */
+.control input {
+	opacity: 0;
+}
+
+/* position the pseudo radio button/checkbox */
+.control__indicator {
+	position: absolute;
+	top: 8px;
+	left: 0;
+	width: 20px;
+	height: 20px;
+	background: $grey-color-light;
+}
+
+/* make the pseudo radio button round */
+.control--radio .control__indicator {
+	border-radius: 50%;
+}
+
+/* Hover and focus states */
+.control:hover input ~ .control__indicator,
+.control input:focus ~ .control__indicator {
+	background: lighten($grey-color-light, 10%);
+	border: $secondary-color solid 1px;
+}
+
+/* Checked state */
+.control input:checked ~ .control__indicator {
+	background: $secondary-color;
+}
+
+/* Hover state whilst checked */
+.control:hover input:checked ~ .control__indicator,
+.control input:checked:focus ~ .control__indicator {
+	background: lighten($secondary-color, 10%);
+	border: $secondary-color solid 1px;
+}
+
+/* Check mark */
+.control__indicator:after {
+	position: absolute;
+	display: none;
+	content: '';
+}
+
+/* Show check mark */
+.control input:checked ~ .control__indicator::after {
+	display: block;
+	& input:hover, &input:focus {
+		top: 6px;
+		left: 6px;
+	}
+}
+
+.control--radio input:focus ~ .control__indicator::after, 
+.control--radio input:hover ~ .control__indicator::after {
+	top: 6px;
+	left: 6px;
+	}
+
+/* Radio button inner circle */
+.control--radio .control__indicator::after {
+	top: 7px;
+	left: 7px;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #fff;
+}
+
+/* end radio buttons */
+
+/* input fields */
+.field {
+	& input {
+		width: 100%;
+		font-size: 1.25rem;
+		border: #388c9a solid 1px;
+		border-radius: 2px;
+		padding: 0.5rem;
+		&:focus {
+			outline: #388c9a solid 3px;
+		}
+	}
+	& select {
+		font-size: 1.25rem;
+		width: 100%;
+		font-weight: 500;
+		&:focus {
+			outline: #388c9a solid 3px;
+		}
+	}
+}

@@ -34,7 +34,7 @@ $side-menu-width: 256px;
     }
 
     // big link
-    &:nth-child(3) {
+    &.large {
       font-size: 1.5rem;
       padding: 0 1rem;
     }
@@ -236,7 +236,14 @@ $side-menu-width: 256px;
  */
 
 .social-links {
-    margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 1.5rem;
+  margin-bottom: 1rem;
+  & img {
+    height: 2rem;
+  }
 }
 
 .social-links a {
