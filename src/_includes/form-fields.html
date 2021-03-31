@@ -1,0 +1,7 @@
+{% for field in form-data.fields %}
+<div class="field">
+    <label for="{{ field.name }}" class="{% if field.required %} label-required{% endif %}">{{ field.label }}</label>
+    {% if field.note %}<p class="hint" id="{{ field.hintId }}">{{ field.note }}{% if field.error %} <span class="error">{{ field.error }}</span>{%  endif %}</p> {% endif %}
+    <input name="{{ field.name }}" id="{{ field.name }}" type="{{ field.type }}"{% if field.note %} aria-describedby="{{ field.hintId }}"{% endif %} {% if field.placeholder %}placeholder="{{ field.placeholder }}" {% endif %} {% if field.required %}required {% endif %}/>
+</div>
+{% endfor %}
