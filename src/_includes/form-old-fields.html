@@ -1,8 +1,0 @@
-{% for field in form-data.fields %}
-<span class="input input--hoshi">
-    <input name="{{ field.name }}" class="input__field input__field--hoshi" type="{{ field.type }}" {% if field.required %}required {% endif %}/>
-    <label class="input__label input__label--hoshi input__label--hoshi-color-1">
-        <span class="{% if field.required %}label-required {% endif %}input__label-content input__label-content--hoshi">{{ field.label }}</span>
-    </label>
-</span>
-{% endfor %}
