@@ -3,7 +3,7 @@
     {% for off in form-data.official %}
     <label class="control control--radio">
         {{ off.label }}
-        <input type="radio" name="official" value="{{ off.value }}"/>
+        <input type="radio" name="official" value="{{ off.value }}" {% if off.checked %}checked {% endif %}/>
         <div class="control__indicator"></div>
     </label>
     {% endfor %}

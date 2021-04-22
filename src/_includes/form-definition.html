@@ -3,7 +3,7 @@
     {% for definition in form-data.definitions %}
     <label class="control control--radio">
         {{ definition.name }} <a href="{{ definition.url }}" target="_blank" title="{{ definition.name }} definition details">details</a>
-        <input type="radio" name="spec-format" value="{{ definition.name }}"/>
+        <input type="radio" name="spec-format" value="{{ definition.name }}" {% if definition.checked %}checked {% endif %}/>
         <div class="control__indicator"></div>
     </label>
     {% endfor %}

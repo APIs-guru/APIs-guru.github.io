@@ -31,7 +31,8 @@
     "definitions": [
       {
         "name": "OpenAPI 3.0",
-        "url": "https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md"
+        "url": "https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md",
+        "checked": true
       },
       {
         "name": "OpenAPI 2.0 (fka Swagger)",
@@ -61,7 +62,8 @@
     "official": [
         {
             "label": "Official",
-            "value": "YES"
+            "value": "YES",
+            "checked": true
         },
         {
             "label": "Non-Official",
