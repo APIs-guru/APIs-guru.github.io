@@ -134,6 +134,13 @@ if (window.$) {
             $('#apis-list').empty();
 
             let search = $('#search-input').val().toLowerCase();
+            history.replaceState(null, '', '/browse-apis/' + (search ? '?q='+encodeURIComponent(search) : ''));
+            if (search) {
+              $('#btnCopy').show();
+            }
+            else {
+              $('#btnCopy').hide();
+            }
             let result = filter(data, search);
             updateCards(result);
         }, 333), false);
@@ -146,6 +153,15 @@ if (window.$) {
     if (urlParams.get('q')) {
       $('#search-input').val(urlParams.get('q'));
     }
+
+   $('#btnCopy').on('click',function(){
+     $('#txtCopy').show();
+     $('#txtCopy').val(window.location.href);
+     $('#txtCopy').focus().select();
+     document.execCommand('copy');
+     $('#txtCopy').hide();
+     $('#search-input').focus();
+   });
 
   });
 }
