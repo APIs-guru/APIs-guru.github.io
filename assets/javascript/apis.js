@@ -18,7 +18,7 @@ const integrations = [
  { "text": "Swagger UI", "template": "http://petstore.swagger.io/?url={swaggerUrl}" },
  { "text": "Swagger Editor", "template": "http://editor.swagger.io/?url={swaggerUrl}" },
  { "text": "OpenAPI-GUI", "template": "https://mermade.github.io/openapi-gui/?url={swaggerUrl}" },
- { "text": "Stoplight", "template": "https://elements-demo.stoplight.io/?spec={swaggerUrl}" }
+ { "text": "Stoplight Elements", "template": "https://elements-demo.stoplight.io/?spec={swaggerUrl}" }
 ];
 
 const renderer = new window.marked.Renderer();
