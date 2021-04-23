@@ -17,7 +17,8 @@ const dummy = {
 const integrations = [
  { "text": "Swagger UI", "template": "http://petstore.swagger.io/?url={swaggerUrl}" },
  { "text": "Swagger Editor", "template": "http://editor.swagger.io/?url={swaggerUrl}" },
- { "text": "OpenAPI-GUI", "template": "https://mermade.github.io/openapi-gui/?url={swaggerUrl}" }
+ { "text": "OpenAPI-GUI", "template": "https://mermade.github.io/openapi-gui/?url={swaggerUrl}" },
+ { "text": "Stoplight", "template": "https://elements-demo.stoplight.io/?spec={swaggerUrl}" }
 ];
 
 const renderer = new window.marked.Renderer();
@@ -133,6 +134,13 @@ if (window.$) {
             $('#apis-list').empty();
 
             let search = $('#search-input').val().toLowerCase();
+            history.replaceState(null, '', '/browse-apis/' + (search ? '?q='+encodeURIComponent(search) : ''));
+            if (search) {
+              $('#btnCopy').show();
+            }
+            else {
+              $('#btnCopy').hide();
+            }
             let result = filter(data, search);
             updateCards(result);
         }, 333), false);
@@ -145,6 +153,15 @@ if (window.$) {
     if (urlParams.get('q')) {
       $('#search-input').val(urlParams.get('q'));
     }
+
+   $('#btnCopy').on('click',function(){
+     $('#txtCopy').show();
+     $('#txtCopy').val(window.location.href);
+     $('#txtCopy').focus().select();
+     document.execCommand('copy');
+     $('#txtCopy').hide();
+     $('#search-input').focus();
+   });
 
   });
 }
