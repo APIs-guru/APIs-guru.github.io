@@ -62,6 +62,13 @@ CardModel.prototype.fromAPIs = function(apis) {
     this.contact = this.info.contact || {};
     this.externalUrl = this.externalDocs.url || this.contact.url;
     this.logo = this.info['x-logo'] || {};
+    if (this.api.info['x-origin']) {
+      console.log(this.api.info['x-origin'][0].url);
+      this.origUrl = this.api.info['x-origin'][0].url;
+    }
+    else {
+      this.origUrl = this.api.swaggerUrl;
+    }
 
     var versions = [];
     $.each(apis.versions, function (version, api) {

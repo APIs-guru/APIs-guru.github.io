@@ -18,8 +18,9 @@
           <h3> OpenAPI: </h3>
           <h4>Preferred Version - {{=it.preferred}}</h4>
           <ul class="preferred-api">
-            <li><a href="{{=it.api.swaggerUrl}}" target="_blank" >json</a></li>
-            <li><a href='{{=it.api.swaggerYamlUrl}}' target="_blank" >yaml</a></li>
+            <li><a href="{{=it.api.swaggerUrl}}" target="_blank" >JSON</a></li>
+            <li><a href='{{=it.api.swaggerYamlUrl}}' target="_blank" >YAML</a></li>
+            <li><a href="{{=it.origUrl}}" target='_blank'>Orig</a></li>
             <li><a href='https://redocly.github.io/redoc/?url={{=it.api.swaggerUrl}}' target="_blank" >Docs</a></li>
           </ul>
           {{? it.versions }}
@@ -30,8 +31,8 @@
               <li>
                 <span>{{=version.version}}</span>
                 <ul>
-                  <li><a href="{{=version.swaggerUrl}}" target="_blank" >json</a></li>
-                  <li><a href="{{=version.swaggerYamlUrl}}" target='_blank'>yaml</a></li>
+                  <li><a href="{{=version.swaggerUrl}}" target="_blank" >JSON</a></li>
+                  <li><a href="{{=version.swaggerYamlUrl}}" target='_blank'>YAML</a></li>
                   <li><a href='https://redocly.github.io/redoc/?url={{=version.swaggerUrl}}' target="_blank" >Docs</a></li>
                 </ul>
               </li>
