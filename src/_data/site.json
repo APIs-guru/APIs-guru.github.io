@@ -2,10 +2,9 @@
   "baseurl": "https://apis.guru",
   "url": "",
   "title": "APIs.guru",
-  "description": "Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API spec in any format (OpenAPI, Swagger, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue.",
+  "description": "Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API definition in any format (OpenAPI, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue.",
   "pages": [
     { "title": "Home", "url": "/", "size":"" },
-    { "title": "About", "url": "/openapi-directory/", "size":"" },
     { "title": "Browse APIs", "url": "/browse-apis/", "size":"large" },
     { "title": "Add API", "url": "/add-api/", "size":"large" },
     { "title": "Blog", "url": "/blog/", "size":"" },
@@ -18,7 +17,7 @@
     "title": "GraphQL Voyager",
     "description": "Represent any GraphQL API as an interactive graph 🛰️",
     "longDescription": "With graphql-voyager you can visually explore your GraphQL API as an interactive graph.\nThis is a great tool when designing or discussing your data model. It includes multiple\nexample GraphQL schemas and also allows you to connect it to your own GraphQL endpoint.\nWhat are you waiting for, explore your API!\n",
-    "image": "assets/images/voyager.png",
+    "image": "../assets/images/voyager.png",
     "links": [
       {
         "title": "GitHub",
@@ -36,7 +35,7 @@
     "title": "GraphQL Faker",
     "description": "Mock or extend your GraphQL API with faked data. No coding required. 🎲",
     "longDescription": "Mock your future API or extend the existing API with realistic data from faker.js.\nNo coding required. All you need is to write GraphQL IDL. Don't worry, we will\nprovide you with examples in our IDL editor.\n",
-    "image": "assets/images/faker-logo.png",
+    "image": "../assets/images/faker-logo.png",
     "links": [
       {
         "title": "GitHub",
@@ -50,7 +49,7 @@
     "title": "GraphQL Lodash",
     "description": "Data manipulation for GraphQL queries with lodash syntax 🛠",
     "longDescription": "Data manipulation for GraphQL queries with lodash syntax.\nGraphQL allows to ask for what you need and get exactly that. But what about the\nshape? GraphQL Lodash gives you the power of lodash right inside your GraphQL\nQuery using @_ directive.\n",
-    "image": "assets/images/gqlodash-logo.png",
+    "image": "../assets/images/gqlodash-logo.png",
     "links": [
       {
         "title": "GitHub",
