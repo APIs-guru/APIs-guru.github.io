@@ -4,7 +4,7 @@
   "title": "APIs.guru",
   "description": "Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API definition in any format (OpenAPI, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue.",
   "pages": [
-    { "title": "Home", "url": "/", "size":"" },
+    { "title": "About", "url": "/about/", "size":"" },
     { "title": "Browse APIs", "url": "/browse-apis/", "size":"large" },
     { "title": "Add API", "url": "/add-api/", "size":"large" },
     { "title": "Blog", "url": "/blog/", "size":"" },
