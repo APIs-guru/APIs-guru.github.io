@@ -2,3 +2,4 @@ node_modules/
 _site/
 src/assets/stylesheets
 *.swp
+.DS_Store
