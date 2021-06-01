@@ -63,7 +63,6 @@ CardModel.prototype.fromAPIs = function(apis) {
     this.externalUrl = this.externalDocs.url || this.contact.url;
     this.logo = this.info['x-logo'] || {};
     if (this.api.info['x-origin']) {
-      console.log(this.api.info['x-origin'][0].url);
       this.origUrl = this.api.info['x-origin'][0].url;
     }
     else {
@@ -124,7 +123,6 @@ if (window.$) {
       url: "https://api.apis.guru/v2/list.json",
       dataType: 'json',
       cache: true,
-      headers: { "Accept-Encoding" : "gzip,deflate,br" },
       success: function (data) {
         $('#apis-list').empty();
         let search = $('#search-input').val().toLowerCase();
