@@ -4,10 +4,10 @@ name: deploy
 # Issue : n/a
 # Desc  : This workflow runs a build and deploy to the gh-pages branch for an 11ty project
 
-# run this on push to master
+# run this on push to main
 on: 
   push:
-    branches: [master]
+    branches: [main]
 
 jobs:
   deploy:
