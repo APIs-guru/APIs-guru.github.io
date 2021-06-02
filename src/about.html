@@ -34,7 +34,7 @@ support: true
     <div class="number">
       <i>  {% include svg/number-romb.svg %} </i>
       <div id="numAPIs" class="number-value">
-        1913
+        2,232
       </div>
       <div class="description">
         API descriptions
@@ -43,7 +43,7 @@ support: true
     <div class="number">
       <i> {% include svg/number-romb.svg %} </i>
       <div id="numEndpoints" class="number-value">
-        58614
+        75,747
       </div>
       <div class="description">
         Endpoints
@@ -52,7 +52,7 @@ support: true
     <div class="number">
       <i> {% include svg/number-romb.svg %} </i>
       <div class="number-value">
-        2245
+        2,407
       </div>
       <div class="description">
         Stars on GitHub
@@ -141,8 +141,8 @@ support: true
       dataType: 'json',
       cache: true,
       success: function (data) {
-        $('#numAPIs').text(data.numAPIs);
-        $('#numEndpoints').text(data.numEndpoints);
+        $('#numAPIs').text(data.numAPIs.toLocaleString());
+        $('#numEndpoints').text(data.numEndpoints.toLocaleString());
       }
     });
   });

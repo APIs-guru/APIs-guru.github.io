@@ -36,7 +36,7 @@ support: true
       dataType: 'json',
       cache: true,
       success: function (data) {
-        $('#numAPIs').text(data.numAPIs);
+        $('#numAPIs').text(data.numAPIs.toLocaleString());
       }
     });
   });
