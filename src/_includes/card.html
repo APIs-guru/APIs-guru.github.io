@@ -2,7 +2,9 @@
     {% raw %}
     <div class="card">
         {{? it.classes}}
-        <span class="{{=it.classes}}">{{=it.flashText}}</span>
+          <span class="{{=it.classes}}" title="{{=it.flashTitle}}">{{=it.flashText}}</span>
+        {{??}}
+          <span class="spacer"></span>
         {{?}}
         <header>
             <h2 title="{{=it.info.title }}">

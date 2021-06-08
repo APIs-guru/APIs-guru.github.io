@@ -11,7 +11,8 @@
     & ::placeholder, & label, & input {
         text-align: center;
     }
-
+    padding-bottom: 15px;
+    z-index: 100;
 }
 
 @supports not (display: grid)  {
@@ -50,6 +51,10 @@
 .card header {
     padding: 10px 15px;
     color: #388c9a;
+}
+
+.card .spacer {
+    min-height: 33px;
 }
 
 .card header a {

@@ -48,6 +48,7 @@ function debounce(func, wait, immediate) { // from underscore.js, MIT license
 function CardModel() {
     this.classes = '';
     this.flashText = '';
+    this.flashTitle = '';
     this.preferred = '';
     this.api = '';
     this.info = '';
@@ -99,10 +100,12 @@ CardModel.prototype.fromAPIs = function(apis) {
     if (this.updated >= monthAgo) {
         this.classes = 'flash flash-yellow';
         this.flashText = 'Updated';
+        this.flashTitle = this.updated.toLocaleString();
     }
     if (this.added >= monthAgo) {
         this.classes = 'flash flash-green';
         this.flashText = 'New!';
+        this.flashTitle = this.added.toLocaleString();
     }
 
     this.versions = versions.length > 1 ? versions : null;
