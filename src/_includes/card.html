@@ -1,6 +1,9 @@
 <script type="text/dot-template">
     {% raw %}
     <div class="card">
+        {{? it.classes}}
+        <span class="{{=it.classes}}">{{=it.flashText}}</span>
+        {{?}}
         <header>
             <h2 title="{{=it.info.title }}">
               {{? it.externalUrl }}

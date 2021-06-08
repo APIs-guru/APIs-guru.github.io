@@ -32,6 +32,7 @@
     border: 1px #388c9a solid;
     border-radius: 5px;
     background-color: #eee;
+    overflow: hidden;
 }
 
 .card h2, .card h3, .card h4 {
@@ -69,9 +70,9 @@
 }
 
 .card .api-body img {
-        max-width: 100%;
-        max-height: 100px;
-        padding: 10px;
+    max-width: 100%;
+    max-height: 100px;
+    padding: 10px;
 }
 
 .card .api-body p {
@@ -154,3 +155,20 @@
        }
    }
 }
+
+.flash {
+    display: block;
+    width: 125px;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;
+    text-align: center;
+    color: black;
+    top: 15px;
+    left: -28px;
+    transform: rotate(-45deg);
+}
+
+.flash-green  { background-color: #2c7; }
+.flash-yellow { background-color: #fed16e; }

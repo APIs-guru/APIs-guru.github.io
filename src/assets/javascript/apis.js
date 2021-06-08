@@ -21,6 +21,8 @@ const integrations = [
  { "text": "Stoplight Elements", "template": "https://elements-demo.stoplight.io/?spec={swaggerUrl}" }
 ];
 
+const monthAgo = new Date(new Date().setDate(new Date().getDate()-30));
+
 const renderer = new window.marked.Renderer();
 renderer.code = function(code, language) { return '' };
 renderer.table = function(header, body) { return '' };
@@ -44,6 +46,8 @@ function debounce(func, wait, immediate) { // from underscore.js, MIT license
 }
 
 function CardModel() {
+    this.classes = '';
+    this.flashText = '';
     this.preferred = '';
     this.api = '';
     this.info = '';
@@ -52,6 +56,8 @@ function CardModel() {
     this.versions = null;
     this.markedDescription = '';
     this.cardDescription = '';
+    this.added = null;
+    this.updated = null;
 }
 
 CardModel.prototype.fromAPIs = function(apis) {
@@ -68,9 +74,19 @@ CardModel.prototype.fromAPIs = function(apis) {
     else {
       this.origUrl = this.api.swaggerUrl;
     }
+    this.added = new Date(apis.added);
+    this.updated = this.added;
+    const that = this;
 
     var versions = [];
     $.each(apis.versions, function (version, api) {
+        if (api.updated) {
+            let updatedDate = new Date(api.updated);
+            console.log(updatedDate,that.updated);
+            if (updatedDate >= that.updated) {
+                that.updated = updatedDate;
+            }
+        }
         if (version === this.preferred) {
             return;
         }
@@ -80,6 +96,14 @@ CardModel.prototype.fromAPIs = function(apis) {
             swaggerYamlUrl: api.swaggerYamlUrl
         });
     });
+    if (this.updated >= monthAgo) {
+        this.classes = 'flash flash-yellow';
+        this.flashText = 'Updated';
+    }
+    if (this.added >= monthAgo) {
+        this.classes = 'flash flash-green';
+        this.flashText = 'New!';
+    }
 
     this.versions = versions.length > 1 ? versions : null;
     this.markedDescription = window.marked(this.info.description || '', { renderer });
@@ -139,7 +163,7 @@ if (window.$) {
             $('#apis-list').empty();
 
             let search = $('#search-input').val().toLowerCase();
-            history.replaceState(null, '', '/browse-apis/' + (search ? '?q='+encodeURIComponent(search) : ''));
+            history.replaceState(null, '', '/' + (search ? '?q='+encodeURIComponent(search) : ''));
             if (search) {
               $('#btnCopy').show();
             }
