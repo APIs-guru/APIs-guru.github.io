@@ -131,6 +131,11 @@
 <script type="text/dot-template">
     
     <div class="card">
+        {{? it.classes}}
+          <span class="{{=it.classes}}" title="{{=it.flashTitle}}">{{=it.flashText}}</span>
+        {{??}}
+          <span class="spacer"></span>
+        {{?}}
         <header>
             <h2 title="{{=it.info.title }}">
               {{? it.externalUrl }}
