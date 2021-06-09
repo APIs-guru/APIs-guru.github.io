@@ -8,7 +8,8 @@
     { "title": "Browse APIs", "url": "/", "size":"large" },
     { "title": "Add API", "url": "/add-api/", "size":"large" },
     { "title": "Blog", "url": "/blog/", "size":"" },
-    { "title": "Our API", "url": "/api-doc/", "size":"" }
+    { "title": "Our API", "url": "/api-doc/", "size":"" },
+    { "title": "OpenAPI Tools", "url": "https://apis.guru/awesome-openapi3/", "size":"" }
   ],
   "data": {
   "projects": [
