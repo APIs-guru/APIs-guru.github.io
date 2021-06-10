@@ -108,6 +108,12 @@ CardModel.prototype.fromAPIs = function(apis) {
         this.flashText = 'New!';
         this.flashTitle = this.added.toLocaleString();
     }
+    if (this.api.info['x-tags'] && this.api.info['x-tags'].indexOf('helpWanted')>=0) {
+        const link = (this.api.info['x-issues']||['https://github.com/APIs-guru/openapi-directory/issues'])[0];
+        this.classes = 'flash flash-red';
+        this.flashText = `<a href="${link}" target="_blank">Help Wanted</a>`;
+        this.flashTitle = this.updated.toLocaleString();
+    }
 
     this.versions = versions.length > 1 ? versions : null;
     this.markedDescription = window.marked(this.info.description || '', { renderer });
