@@ -22,6 +22,8 @@ const integrations = [
 ];
 
 const monthAgo = new Date(new Date().setDate(new Date().getDate()-30));
+let category = '';
+let tag = '';
 
 const renderer = new window.marked.Renderer();
 renderer.code = function(code, language) { return '' };
@@ -83,7 +85,6 @@ CardModel.prototype.fromAPIs = function(apis) {
     $.each(apis.versions, function (version, api) {
         if (api.updated) {
             let updatedDate = new Date(api.updated);
-            console.log(updatedDate,that.updated);
             if (updatedDate >= that.updated) {
                 that.updated = updatedDate;
             }
@@ -135,11 +136,21 @@ if (window.$) {
         $('#apis-list').append(fragment);
     };
 
-    var filter = function(data, search) {
+    var filter = function(data, search, category, tag) {
+        if (!(search || category || tag)) return data;
         var result = {};
         $.each(data, function (name, apis) {
-            if (name.toLowerCase().indexOf(search) >= 0) {
+            if (search && name.toLowerCase().indexOf(search) >= 0) {
                 result[name] = apis;
+            }
+            else {
+                const version = apis.versions[apis.preferred];
+                if (category && (version.info['x-apisguru-categories']||[]).indexOf(category)>=0) {
+                    result[name] = apis;
+                }
+                if (tag && (version.info['x-tags']||[]).indexOf(tag)>=0) {
+                    result[name] = apis;
+                }
             }
         });
         return result;
@@ -153,8 +164,8 @@ if (window.$) {
       success: function (data) {
         $('#apis-list').empty();
         let search = $('#search-input').val().toLowerCase();
-        if (search) {
-          let result = filter(data, search);
+        if (search || category || tag) {
+          let result = filter(data, search, category, tag);
           updateCards(result);
         }
         else {
@@ -173,7 +184,7 @@ if (window.$) {
             else {
               $('#btnCopy').hide();
             }
-            let result = filter(data, search);
+            let result = filter(data, search, category, tag);
             updateCards(result);
         }, 333), false);
       }
@@ -185,15 +196,21 @@ if (window.$) {
     if (urlParams.get('q')) {
       $('#search-input').val(urlParams.get('q'));
     }
+    if (urlParams.get('category')) {
+      category = urlParams.get('category').toLowerCase();
+    }
+    if (urlParams.get('tag')) {
+      tag = urlParams.get('tag');
+    }
 
-   $('#btnCopy').on('click',function(){
-     $('#txtCopy').show();
-     $('#txtCopy').val(window.location.href);
-     $('#txtCopy').focus().select();
-     document.execCommand('copy');
-     $('#txtCopy').hide();
-     $('#search-input').focus();
-   });
+    $('#btnCopy').on('click',function(){
+       $('#txtCopy').show();
+       $('#txtCopy').val(window.location.href);
+       $('#txtCopy').focus().select();
+       document.execCommand('copy');
+       $('#txtCopy').hide();
+       $('#search-input').focus();
+    });
 
   });
 }
