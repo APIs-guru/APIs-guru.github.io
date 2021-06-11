@@ -31,12 +31,12 @@
     "definitions": [
       {
         "name": "OpenAPI 3.0",
-        "url": "https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md",
+        "url": "https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md",
         "checked": true
       },
       {
         "name": "OpenAPI 2.0 (fka Swagger)",
-        "url": "https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md"
+        "url": "https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md"
       },
       {
         "name": "API Blueprint",
