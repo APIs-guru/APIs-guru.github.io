@@ -30,9 +30,11 @@ support: true
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
   $(document).ready(function(){
+    var newData = false;
+    if (window.location.href.indexOf('nd=')>=0) newData = true;
     $.ajax({
       type: "GET",
-      url: "https://api.apis.guru/v2/metrics.json",
+      url: (newData ? "https://raw.githubusercontent.com/APIs-guru/openapi-directory/gh-pages/v2/metrics.json" : "https://api.apis.guru/v2/metrics.json"),
       dataType: 'json',
       cache: true,
       success: function (data) {
