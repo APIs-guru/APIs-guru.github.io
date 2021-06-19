@@ -25,6 +25,7 @@ const monthAgo = new Date(new Date().setDate(new Date().getDate()-30));
 let category = '';
 let tag = '';
 let status = '';
+let newData = false;
 
 const renderer = new window.marked.Renderer();
 renderer.code = function(code, language) { return '' };
@@ -169,9 +170,26 @@ if (window.$) {
         return result;
     };
 
+    let urlParams = new URLSearchParams(location.search);
+    if (urlParams.get('q')) {
+        $('#search-input').val(urlParams.get('q'));
+    }
+    if (urlParams.get('category')) {
+       category = urlParams.get('category').toLowerCase();
+    }
+    if (urlParams.get('tag')) {
+       tag = urlParams.get('tag');
+    }
+    if (urlParams.get('status')) {
+       status = urlParams.get('status').toLowerCase();
+    }
+    if (urlParams.get('nd')) {
+       newData = true;
+    }
+
     $.ajax({
       type: "GET",
-      url: "https://api.apis.guru/v2/list.json",
+      url: (newData ? "https://raw.githubusercontent.com/APIs-guru/openapi-directory/gh-pages/v2/list.json" : "https://api.apis.guru/v2/list.json"),
       dataType: 'json',
       cache: true,
       success: function (data) {
@@ -204,20 +222,6 @@ if (window.$) {
     });
 
     for (let i=0;i<15;i++) { updateCards(dummy); }
-
-    let urlParams = new URLSearchParams(location.search);
-    if (urlParams.get('q')) {
-        $('#search-input').val(urlParams.get('q'));
-    }
-    if (urlParams.get('category')) {
-       category = urlParams.get('category').toLowerCase();
-    }
-    if (urlParams.get('tag')) {
-       tag = urlParams.get('tag');
-    }
-    if (urlParams.get('status')) {
-       status = urlParams.get('status').toLowerCase();
-    }
 
     $('#btnCopy').on('click',function(){
         $('#txtCopy').show();
