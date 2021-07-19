@@ -1,4 +1,4 @@
-'use strict';
+import * as tempura from "./tempura.js";
 
 const dummy = {
   loading: {
@@ -128,16 +128,15 @@ CardModel.prototype.fromAPIs = function(name, apis) {
     return this;
 };
 
-if (window.$) {
-  $(document).ready(function () {
-    var cardTemplateSrc = document.querySelector('script[type="text/dot-template"]').innerText;
-    var cardTemplate = window.doT.compile(cardTemplateSrc);
+export function loadAPIs() {
+    var cardTemplateSrc = document.querySelector('script[type="text/tempura"]').innerText;
+    var cardTemplate = tempura.compile(cardTemplateSrc);
 
     var updateCards = function(data) {
         var fragment = $(document.createDocumentFragment());
         $.each(data, function (name, apis) {
             var model = new CardModel().fromAPIs(name, apis);
-            var view = cardTemplate(model);
+            var view = cardTemplate({it:model});
             fragment.append($(view));
         });
 
@@ -232,5 +231,5 @@ if (window.$) {
         $('#search-input').focus();
     });
 
-  });
 }
+
