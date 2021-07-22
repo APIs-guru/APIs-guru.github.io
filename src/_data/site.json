@@ -11,6 +11,10 @@
     { "title": "Our API", "url": "/api-doc/", "size":"" },
     { "title": "OpenAPI Tools", "url": "https://apis.guru/awesome-openapi3/", "size":"" }
   ],
+  "author": {
+     "github": "APIs-guru",
+     "twitter": "APIs_guru"
+  },
   "data": {
   "projects": [
   {
