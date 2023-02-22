@@ -215,7 +215,7 @@
 </div>
 
     <div class="field">
-    <label for="category" class="">Category</label>
+    <label for="category" class="label-required">Category</label>
     <p class="hint">(Please select the most appropriate)</p> 
     <select name="category" class="" type="select" required>
         <option value=""></option>
@@ -292,6 +292,7 @@
         
         </select>
 </div>
+
     <div class="form-group">
       <button class="button cta" href="/browse-apis/"> Add API </button>
     </div>
@@ -302,6 +303,27 @@
   form.onsubmit = addApi;
   function addApi(e) {
     e.preventDefault();
+
+    try {
+      let up = new URL(form.url.value);
+      if (!up.pathname || up.pathname === '/') {
+        alert('Please specify a machine-readable API definition location, not a website root URL');
+        return(false);
+      }
+      if (up.pathname.endsWith('.html')) {
+        alert('Please specify a machine-readable API definition location, not an html page');
+        return(false);
+      }
+      if ((up.hostname.indexOf('localhost')>=0) || (up.hostname.indexOf('127.0.0.1')>=0)) {
+        alert('Please specify a non-localhost URL');
+        return(false);
+      }
+    }
+    catch (ex) {
+      alert(ex.message);
+      return false;
+    }
+
     var details = {
       format: form['spec-format'].value,
       official: form.official.value,
@@ -361,7 +383,7 @@
       </li>
       
       <li>
-        © 2021 APIs.guru All rights reserved.
+        © 2023 APIs.guru All rights reserved.
       </li>
     </ul>
 
