@@ -1,5 +1,5 @@
 <div class="field">
-    <label for="{{ form-data.category.name }}" class="">{{ form-data.category.label }}</label>
+    <label for="{{ form-data.category.name }}" class="label-required">{{ form-data.category.label }}</label>
     {% if form-data.category.note %}<p class="hint">{{ form-data.category.note }}</p> {% endif %}
     <select name="{{ form-data.category.name }}" class="" type="select" required>
         <option value=""></option>
