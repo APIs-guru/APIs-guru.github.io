@@ -21,6 +21,27 @@ support: false
   form.onsubmit = addApi;
   function addApi(e) {
     e.preventDefault();
+
+    try {
+      let up = new URL(form.url.value);
+      if (!up.pathname || up.pathname === '/') {
+        alert('Please specify a machine-readable API definition location, not a website root URL');
+        return(false);
+      }
+      if (up.pathname.endsWith('.html')) {
+        alert('Please specify a machine-readable API definition location, not an html page');
+        return(false);
+      }
+      if ((up.hostname.indexOf('localhost')>=0) || (up.hostname.indexOf('127.0.0.1')>=0)) {
+        alert('Please specify a non-localhost URL');
+        return(false);
+      }
+    }
+    catch (ex) {
+      alert(ex.message);
+      return false;
+    }
+
     var details = {
       format: form['spec-format'].value,
       official: form.official.value,
