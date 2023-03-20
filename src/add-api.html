@@ -19,7 +19,7 @@ support: false
 <script type="text/javascript">
   var form = document.getElementById('add_api_form');
   form.onsubmit = addApi;
-  function addApi(e) {
+  async function addApi(e) {
     e.preventDefault();
 
     try {
@@ -40,6 +40,22 @@ support: false
     catch (ex) {
       alert(ex.message);
       return false;
+    }
+    try {
+      const res = await fetch(`https://cors.redoc.ly/${form.url.value}`,
+        {method:'head'});
+      const ct = res.headers.get('content-type');
+      if (res.status >= 400) {
+        alert(`Error ${res.status} accessing that URL`);
+        return false;
+      }
+      if (ct && ct.startsWith('text/html')) {
+        alert('That looks like a web-page, not a machine-readable API definition');
+        return(false);
+      }
+    }
+    catch (ex) {
+      console.log(ex.message);
     }
 
     var details = {
