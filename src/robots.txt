@@ -1,4 +1,5 @@
 # www.robotstxt.org/
+Sitemap: https://apis.guru/sitemap.xml
 
 # Allow crawling of all content
 User-agent: *
