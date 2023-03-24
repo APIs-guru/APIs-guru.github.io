@@ -65,13 +65,13 @@ function CardModel() {
     this.updated = null;
 }
 
-CardModel.prototype.fromAPIs = function(apis) {
+CardModel.prototype.fromAPIs = function(name, apis) {
     this.preferred = apis.preferred;
     this.api = apis.versions[this.preferred];
     this.info = this.api.info;
     this.externalDocs = this.api.externalDocs || {};
     this.contact = this.info.contact || {};
-    this.externalUrl = this.externalDocs.url || this.contact.url;
+    this.externalUrl = this.externalDocs.url || this.contact.url || 'https://'+name.split(':')[0];
     this.logo = this.info['x-logo'] || {};
     if (this.api.info['x-origin']) {
       this.origUrl = this.api.info['x-origin'][0].url;
@@ -136,7 +136,7 @@ if (window.$) {
     var updateCards = function(data) {
         var fragment = $(document.createDocumentFragment());
         $.each(data, function (name, apis) {
-            var model = new CardModel().fromAPIs(apis);
+            var model = new CardModel().fromAPIs(name, apis);
             var view = cardTemplate(model);
             fragment.append($(view));
         });
