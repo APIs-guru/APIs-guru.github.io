@@ -15,12 +15,12 @@
   "author": "Mike Ralphson",
   "license": "MIT",
   "dependencies": {
-    "@11ty/eleventy": "^0.12.1",
-    "eleventy-plugin-seo": "^0.5.1",
-    "sass": "^1.34.0"
+    "@11ty/eleventy": "^2.0.0",
+    "eleventy-xml-plugin": "^0.1.0",
+    "sass": "1.60"
   },
   "devDependencies": {
-    "eslint": "^7.27.0"
+    "eslint": "^8.36.0"
   },
   "repository": {
     "type": "git",
