@@ -13,13 +13,13 @@ support: true
 </section>
 <div class="wrapper home">
   <section class="links">
-    {% include social-links.html %}
+    {% include 'social-links.html' %}
     <br />
     <a class="button cta" href="/add-api/"> Add API </a>
     <p />
     <br />
     <div class="motto" style="font-size:1.5em;">The OpenAPI Directory is maintained by <a href="https://twitter.com/PermittedSoc">Mike Ralphson</a>. <strong>The project is supported by <a href="https://www.apideck.com/">Apideck</a></strong>.</div>
-    {% include support-no-h1.html %}
+    {% include 'support-no-h1.html' %}
   </section>
   <section>
     <div class="motto">
@@ -35,7 +35,7 @@ support: true
   </section>
   <section class="numbers">
     <div class="number">
-      <i>  {% include svg/number-romb.svg %} </i>
+      <i>  {% include 'svg/number-romb.svg' %} </i>
       <div id="numAPIs" class="number-value">
         2,232
       </div>
@@ -44,7 +44,7 @@ support: true
       </div>
     </div>
     <div class="number">
-      <i> {% include svg/number-romb.svg %} </i>
+      <i> {% include 'svg/number-romb.svg' %} </i>
       <div id="numEndpoints" class="number-value">
         75,747
       </div>
@@ -53,7 +53,7 @@ support: true
       </div>
     </div>
     <div class="number">
-      <i> {% include svg/number-romb.svg %} </i>
+      <i> {% include 'svg/number-romb.svg' %} </i>
       <div class="number-value">
         2,407
       </div>
@@ -67,7 +67,7 @@ support: true
       What does APIs.guru do?
     </header>
     <i class="big icon">
-      {% include svg/light-bulb.svg %}
+      {% include 'svg/light-bulb.svg' %}
     </i>
     <div class="activities-row">
       <div class="activities-column">
@@ -76,19 +76,19 @@ support: true
         </svg>
         <div class="activity">
           <i class="medium icon">
-            {% include svg/search.svg %}
+            {% include 'svg/search.svg' %}
           </i>
           <div class="activity-description"> Search for public API definitions </div>
         </div>
         <div class="activity">
           <i class="medium icon">
-            {% include svg/filter.svg %}
+            {% include 'svg/filter.svg' %}
           </i>
           <div class="activity-description"> Filter out private and non-reliable APIs </div>
         </div>
         <div class="activity">
           <i class="medium icon">
-            {% include svg/update.svg %}
+            {% include 'svg/update.svg' %}
           </i>
           <div class="activity-description"> Update definitions on a weekly basis </div>
         </div>
@@ -99,19 +99,19 @@ support: true
         </svg>
         <div class="activity">
           <i class="medium icon">
-            {% include svg/convert.svg %}
+            {% include 'svg/convert.svg' %}
           </i>
           <div class="activity-description"> Convert different formats into OpenAPI 3.0 </div>
         </div>
         <div class="activity">
           <i class="medium icon">
-            {% include svg/fix.svg %}
+            {% include 'svg/fix.svg' %}
           </i>
           <div class="activity-description"> Correct mistakes, ~80% of definitions have some</div>
         </div>
         <div class="activity">
           <i class="medium icon">
-            {% include svg/add.svg %}
+            {% include 'svg/add.svg' %}
           </i>
           <div class="activity-description"> Add additional data, like: logo, categories </div>
         </div>
@@ -122,7 +122,7 @@ support: true
     <header>
       Contribution process
     </header>
-    {% include svg/contribution-graph.svg %}
+    {% include 'svg/contribution-graph.svg' %}
   </section>
   <section class="browse-cta">
     <a class="button cta" href="/browse-apis/"> Browse APIs </a>

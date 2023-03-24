@@ -10,7 +10,7 @@ support: true
    Check out our other open-source projects
 </a>
 <div class="browse-apis container">
-  {% include support.html %}
+  {% include 'support.html' %}
   <!-- search -->
   <div id="search" class="row">
     <div class="field col-md-6 col-md-offset-3">
@@ -25,7 +25,7 @@ support: true
   <section id="apis-list" class="cards"></section>
 </div>
 
-{% include card.html %}
+{% include 'card.html' %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>

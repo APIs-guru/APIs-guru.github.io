@@ -23,9 +23,9 @@ excerpt: |
         {% endif %}
         <div class="project-content">
           <div class="stars">
-            {% include svg/github.svg %}
+            {% include 'svg/github.svg' %}
             <span class="stars-count" data-proj="{{ project.project }}">{{ project.initialStars }}</span>
-            {% include svg/star.svg %}
+            {% include 'svg/star.svg' %}
           </div>
           <div class="title">
             <a href={{project.links[0].url}}> {{ project.title }} </a>

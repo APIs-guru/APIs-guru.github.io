@@ -2,7 +2,8 @@
   "baseurl": "https://apis.guru",
   "url": "",
   "title": "APIs.guru",
-  "description": "Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API definition in any format (OpenAPI, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue.",
+  "logo": "assets/images/logo.svg",
+  "description": "Our goal is to create a machine-readable Wikipedia for WEB APIs. If you have an API definition in any format (OpenAPI, Postman, RAML, WADL, API Blueprint etc) for any public API, please, feel free to open an issue.",
   "pages": [
     { "title": "About", "url": "/about/", "size":"" },
     { "title": "Browse APIs", "url": "/", "size":"large" },
