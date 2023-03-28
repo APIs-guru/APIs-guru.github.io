@@ -1,5 +1,3 @@
-'use strict';
-
 function domReady(cb) {
   document.addEventListener("DOMContentLoaded", cb, false);
 }

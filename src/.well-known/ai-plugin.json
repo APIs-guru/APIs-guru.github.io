@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "APIs.guru Plugin",
+  "name_for_model": "apis.giru",
+  "description_for_human": "Plugin for accessing APIs.guru OpenAPI Directory.",
+  "description_for_model": "Plugin for accessing APIs.guru OpenAPI Directory.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://api.apis.guru/v2/openapi.yaml",
+    "is_user_authenticated": false
+  },
+  "logo_url": "https://api.apis.guru/logo.svg",
+  "contact_email": "mike.ralphson@gmail.com",
+  "legal_info_url": "https://apis.guru"
+}

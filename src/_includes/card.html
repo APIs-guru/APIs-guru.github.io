@@ -1,56 +1,57 @@
-<script type="text/dot-template">
+<script type="text/tempura">
     {% raw %}
+    {{#expect it}}
     <div class="card">
-        {{? it.classes}}
-          <span class="{{=it.classes}}" title="{{=it.flashTitle}}"><strong>{{=it.flashText}}</strong></span>
-        {{??}}
+        {{#if it.classes}}
+          <span class="{{{it.classes}}}" title="{{{it.flashTitle}}}"><strong>{{{it.flashText}}}</strong></span>
+        {{#else}}
           <span class="spacer"></span>
-        {{?}}
+        {{/if}}
         <header>
-            <h2 title="{{=it.info.title }}">
-              {{? it.externalUrl }}
-                <a href="{{=it.externalUrl }}" target="_blank">{{=it.info.title }}</a>
-              {{??}}
-                {{=it.info.title }}
-              {{?}}
+            <h2 title="{{{it.info.title}}}">
+              {{#if it.externalUrl }}
+                <a href="{{{it.externalUrl}}}" target="_blank">{{it.info.title}}</a>
+              {{#else}}
+                {{it.info.title}}
+              {{/if}}
             </h2>
         </header>
         <section class="api-body">
-            <img src="{{=it.logo.url || 'assets/images/no-logo.svg'}}" alt="{{=it.info.title }} API logo" style="background-color: {{=it.logo.backgroundColor || 'transparent'}}" class="api-logo">
-            <p>{{=it.cardDescription}}</p>
+            <img src="{{it.logo.url || 'assets/images/no-logo.svg'}}" alt="{{it.info.title }} API logo" style="background-color: {{it.logo.backgroundColor || 'transparent'}}" class="api-logo">
+            <p>{{it.cardDescription}}</p>
         </section>
         <footer>
           <h3> OpenAPI: </h3>
-          <h4>Preferred Version - {{=it.preferred}}</h4>
+          <h4>Preferred Version - {{it.preferred}}</h4>
           <ul class="preferred-api">
-            <li><a href="{{=it.api.swaggerUrl}}" target="_blank" >JSON</a></li>
-            <li><a href='{{=it.api.swaggerYamlUrl}}' target="_blank" >YAML</a></li>
-            <li><a href="{{=it.origUrl}}" target='_blank'>Orig</a></li>
-            <li><a href='https://redocly.github.io/redoc/?url={{=it.api.swaggerUrl}}' target="_blank" >Docs</a></li>
+            <li><a href="{{it.api.swaggerUrl}}" target="_blank" >JSON</a></li>
+            <li><a href='{{it.api.swaggerYamlUrl}}' target="_blank" >YAML</a></li>
+            <li><a href="{{it.origUrl}}" target='_blank'>Orig</a></li>
+            <li><a href='https://redocly.github.io/redoc/?url={{it.api.swaggerUrl}}' target="_blank" >Docs</a></li>
           </ul>
-          {{? it.versions }}
+          {{#if it.versions }}
           <details>
             <summary><h4>All Versions</h4></summary>
             <ul class="other-versions">
-              {{~it.versions :version:index}}
+              {{#each it.versions as version}}
               <li>
-                <span>{{=version.version}}</span>
+                <span>{{version.version}}</span>
                 <ul>
-                  <li><a href="{{=version.swaggerUrl}}" target="_blank" >JSON</a></li>
-                  <li><a href="{{=version.swaggerYamlUrl}}" target='_blank'>YAML</a></li>
-                  <li><a href='https://redocly.github.io/redoc/?url={{=version.swaggerUrl}}' target="_blank" >Docs</a></li>
+                  <li><a href="{{version.swaggerUrl}}" target="_blank" >JSON</a></li>
+                  <li><a href="{{version.swaggerYamlUrl}}" target='_blank'>YAML</a></li>
+                  <li><a href='https://redocly.github.io/redoc/?url={{version.swaggerUrl}}' target="_blank" >Docs</a></li>
                 </ul>
               </li>
-              {{~}}
+              {{/each}}
             </ul>
           </details>
-          {{?}}
+          {{/if}}
           <details>
             <summary><h4>Tools</h4></summary>
             <ul class="tools">
-              {{~it.integrations :integration:index}}
-              <li><a href="{{=integration.template}}" target="_blank" >{{=integration.text}}</a></li>
-              {{~}}
+              {{#each it.integrations as integration}}
+              <li><a href="{{integration.template}}" target="_blank" >{{integration.text}}</a></li>
+              {{/each}}
             </ul>
           </details>
         </footer>

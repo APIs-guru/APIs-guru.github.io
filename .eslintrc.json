@@ -6,7 +6,8 @@
         "jquery": true
     },
     "parserOptions": {
-        "ecmaVersion": 2017
+        "ecmaVersion": 2017,
+        "sourceType": "module"
     },
     "extends": "eslint:recommended",
     "rules": {
@@ -37,7 +38,7 @@
         "callback-return": "off",
         "camelcase": "off",
         "class-methods-use-this": "error",
-        "comma-dangle": "error",
+        "comma-dangle": "warn",
         "comma-spacing": "off",
         "comma-style": [
             "error",
@@ -131,6 +132,7 @@
         "no-extra-parens": "off",
         "no-floating-decimal": "error",
         "no-global-assign": "error",
+        "no-cond-assign": "warn",
         "no-implicit-globals": "error",
         "no-implied-eval": "error",
         "no-inline-comments": "off",
@@ -151,7 +153,7 @@
         "no-multi-spaces": "off",
         "no-multi-str": "error",
         "no-multiple-empty-lines": "error",
-        "no-negated-condition": "error",
+        "no-negated-condition": "warn",
         "no-nested-ternary": "off",
         "no-new": "error",
         "no-new-func": "error",
@@ -252,7 +254,7 @@
         "spaced-comment": "off",
         "strict": "error",
         "symbol-description": "error",
-        "template-curly-spacing": "error",
+        "template-curly-spacing": "warn",
         "unicode-bom": [
             "error",
             "never"
