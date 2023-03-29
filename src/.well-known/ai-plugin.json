@@ -1,7 +1,7 @@
 {
   "schema_version": "v1",
   "name_for_human": "APIs.guru Plugin",
-  "name_for_model": "apis.giru",
+  "name_for_model": "apis.guru",
   "description_for_human": "Plugin for accessing APIs.guru OpenAPI Directory.",
   "description_for_model": "Plugin for accessing APIs.guru OpenAPI Directory.",
   "auth": {
