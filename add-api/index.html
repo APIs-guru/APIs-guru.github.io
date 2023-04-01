@@ -329,7 +329,7 @@
         alert(`Error ${res.status} accessing that URL`);
         return false;
       }
-      if (ct && ct.startsWith('text/html')) {
+      if (res.ok && ct && ct.startsWith('text/html')) {
         alert('That looks like a web-page, not a machine-readable API definition');
         return(false);
       }
