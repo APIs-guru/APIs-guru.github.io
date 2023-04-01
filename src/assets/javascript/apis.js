@@ -71,7 +71,7 @@ CardModel.prototype.fromAPIs = function(name, apis) {
     this.info = this.api.info;
     this.externalDocs = this.api.externalDocs || {};
     this.contact = this.info.contact || {};
-    this.externalUrl = this.externalDocs.url || this.contact.url || 'https://'+name.split(':')[0];
+    this.externalUrl = this.externalDocs.url || this.contact.url || (name.indexOf('.local') < 0 ? 'https://'+name.split(':')[0] : '');
     this.logo = this.info['x-logo'] || {};
     if (this.api.info['x-origin']) {
       this.origUrl = this.api.info['x-origin'][0].url;
