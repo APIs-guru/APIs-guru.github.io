@@ -15,8 +15,8 @@ const dummy = {
 };
 
 const integrations = [
- { "text": "Swagger UI", "template": "http://petstore.swagger.io/?url={swaggerUrl}" },
- { "text": "Swagger Editor", "template": "http://editor.swagger.io/?url={swaggerUrl}" },
+ { "text": "Swagger UI", "template": "https://petstore.swagger.io/?url={swaggerUrl}" },
+ { "text": "Swagger Editor", "template": "https://editor.swagger.io/?url={swaggerUrl}" },
  { "text": "OpenAPI-GUI", "template": "https://mermade.github.io/openapi-gui/?url={swaggerUrl}" },
  { "text": "Stoplight Elements", "template": "https://elements-demo.stoplight.io/?spec={swaggerUrl}" }
 ];
