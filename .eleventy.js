@@ -8,6 +8,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/.nojekyll");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
   eleventyConfig.addPassthroughCopy("src/.well-known/ai-plugin.json");
+  eleventyConfig.addPassthroughCopy("src/.well-known/ai-openapi.yaml");
   eleventyConfig.addPassthroughCopy("src/apis/*");
   return {
     dir: {

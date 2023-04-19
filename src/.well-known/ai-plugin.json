@@ -9,7 +9,7 @@
   },
   "api": {
     "type": "openapi",
-    "url": "https://api.apis.guru/v2/ai-openapi.yaml",
+    "url": "https://apis.guru/.well-known/ai-openapi.yaml",
     "is_user_authenticated": false
   },
   "logo_url": "https://api.apis.guru/logo.svg",
