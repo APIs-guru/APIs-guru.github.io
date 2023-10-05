@@ -3,3 +3,4 @@ _site/
 src/assets/stylesheets
 *.swp
 .DS_Store
+check*.sh
