@@ -152,7 +152,6 @@ if (window.$) {
         var fragment = $(document.createDocumentFragment());
         $.each(data, function (name, apis) {
             var model = new CardModel().fromAPIs(name, apis);
-            console.log(model)
             var view = cardTemplate(model);
             fragment.append($(view));
         });
@@ -217,7 +216,6 @@ if (window.$) {
         let api = resultApiList[apiName];
         if (api && ratingItem.score !== null) {
           const badgeColor = getScoreStrokeColor(ratingItem.score);
-
           resultApiList[apiName] = {
             ...api,
             versions: {
@@ -226,13 +224,12 @@ if (window.$) {
                 ...api.versions[version],
                 rating: {
                   score: ratingItem.score,
-                  ratingId: ratingItem.ratingId,
+                  reportId: ratingItem.reportId,
                   color: badgeColor, 
                 }
               }
             }
           };
-          console.log(resultApiList[apiName])
         }
       });
 
