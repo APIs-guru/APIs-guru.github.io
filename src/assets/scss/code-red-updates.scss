@@ -113,7 +113,7 @@
     font-size: 0.8em;
 }
 
-.card footer a {
+.card footer a:not(.badge) {
     padding: .1em .5em .1em;
     background-color: #388c9a;
     border-radius: 2px;
@@ -126,6 +126,10 @@
 
 .card footer summary {
     cursor: pointer;
+}
+
+.card footer .rating {
+    padding-bottom: 7px;
 }
 
 .support {
