@@ -63,12 +63,14 @@ function CardModel() {
     this.cardDescription = '';
     this.added = null;
     this.updated = null;
+    this.score = null;
 }
 
 CardModel.prototype.fromAPIs = function(name, apis) {
     this.preferred = apis.preferred;
     this.api = apis.versions[this.preferred];
     this.info = this.api.info;
+    this.score = this.api.score;
     this.externalDocs = this.api.externalDocs || {};
     this.contact = this.info.contact || {};
     this.externalUrl = this.externalDocs.url || this.contact.url || (name.indexOf('.local') < 0 ? 'https://'+name.split(':')[0] : '');
@@ -187,38 +189,58 @@ if (window.$) {
        newData = true;
     }
 
-    $.ajax({
-      type: "GET",
-      url: (newData ? "https://raw.githubusercontent.com/APIs-guru/openapi-directory/gh-pages/v2/list.json" : "https://api.apis.guru/v2/list.json"),
-      dataType: 'json',
-      cache: true,
-      success: function (data) {
-        $('#apis-list').empty();
+    $.ajaxSetup({ cache: true });
+    $.when(
+      $.getJSON(newData ? "https://raw.githubusercontent.com/APIs-guru/openapi-directory/gh-pages/v2/list.json" : "https://api.apis.guru/v2/list.json"),
+      $.getJSON("https://storage.googleapis.com/rate-my-openapi-public/apis-guru/ratings.json"),
+    )
+    .done(function(apiList, apiRatings) {
+      const [ratings] = apiRatings;
+      let [resultApiList] = apiList;
+
+      ratings.forEach(function(ratingItem) {
+        const [_, apiName, version] = ratingItem.file.split('/');
+        let api = resultApiList[apiName];
+
+        if (api) {
+          resultApiList[apiName] = {
+            ...api,
+            versions: {
+              ...api.versions,
+              [version]: {
+                ...api.versions[version],
+                score: ratingItem.score 
+              }
+            }
+          };
+        }
+      });
+
+      $('#apis-list').empty();
         let search = $('#search-input').val().toLowerCase();
         if (search || category || tag || status) {
-            let result = filter(data, search, category, tag, status);
-            updateCards(result);
+          let result = filter(resultApiList, search, category, tag, status);
+          updateCards(result);
         }
         else {
-            updateCards(data);
+          updateCards(resultApiList);
         }
 
         var searchInput = $('#search-input')[0];
         searchInput.addEventListener('keyup', debounce(function() {
-            $('#apis-list').empty();
+          $('#apis-list').empty();
 
-            let search = $('#search-input').val().toLowerCase();
-            history.replaceState(null, '', '/' + (search ? '?q='+encodeURIComponent(search) : ''));
-            if (search) {
-              $('#btnCopy').show();
-            }
-            else {
-              $('#btnCopy').hide();
-            }
-            let result = filter(data, search, category, tag, status);
-            updateCards(result);
+          let search = $('#search-input').val().toLowerCase();
+          history.replaceState(null, '', '/' + (search ? '?q='+encodeURIComponent(search) : ''));
+          if (search) {
+            $('#btnCopy').show();
+          }
+          else {
+            $('#btnCopy').hide();
+          }
+          let result = filter(resultApiList, search, category, tag, status);
+          updateCards(result);
         }, 333), false);
-      }
     });
 
     for (let i=0;i<15;i++) { updateCards(dummy); }
