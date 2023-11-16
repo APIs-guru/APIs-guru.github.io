@@ -63,14 +63,14 @@ function CardModel() {
     this.cardDescription = '';
     this.added = null;
     this.updated = null;
-    this.score = null;
+    this.badge = '';
 }
 
 CardModel.prototype.fromAPIs = function(name, apis) {
     this.preferred = apis.preferred;
     this.api = apis.versions[this.preferred];
     this.info = this.api.info;
-    this.score = this.api.score;
+    this.badge = this.api.badge;
     this.externalDocs = this.api.externalDocs || {};
     this.contact = this.info.contact || {};
     this.externalUrl = this.externalDocs.url || this.contact.url || (name.indexOf('.local') < 0 ? 'https://'+name.split(':')[0] : '');
@@ -129,6 +129,19 @@ CardModel.prototype.fromAPIs = function(name, apis) {
 
     return this;
 };
+
+function getScoreStrokeColor(score) {
+  switch (true) {
+    case score === 0:
+      return "gray";
+    case score >= 80:
+      return "green";
+    case score >= 50 && score < 80:
+      return "yellow";
+    case score > 0 && score < 50:
+      return "red";
+  }
+}
 
 if (window.$) {
   $(document).ready(function () {
@@ -201,15 +214,17 @@ if (window.$) {
       ratings.forEach(function(ratingItem) {
         const [_, apiName, version] = ratingItem.file.split('/');
         let api = resultApiList[apiName];
+        
+        if (api && ratingItem.score !== null) {
+          const badgeColor = getScoreStrokeColor(ratingItem.score);
 
-        if (api) {
           resultApiList[apiName] = {
             ...api,
             versions: {
               ...api.versions,
               [version]: {
                 ...api.versions[version],
-                score: ratingItem.score 
+                badge: `https://img.shields.io/badge/ratemyopenapi-${ratingItem.score}-${badgeColor}`
               }
             }
           };

@@ -22,6 +22,11 @@
         <footer>
           <h3> OpenAPI: </h3>
           <h4>Preferred Version - {{=it.preferred}}</h4>
+          {{? it.badge }}
+            <div class="badge">
+              <img src="{{=it.badge}}" alt="{{=it.info.title }} badge">
+            </div>
+          {{?}}
           <ul class="preferred-api">
             <li><a href="{{=it.api.swaggerUrl}}" target="_blank" >JSON</a></li>
             <li><a href='{{=it.api.swaggerYamlUrl}}' target="_blank" >YAML</a></li>
