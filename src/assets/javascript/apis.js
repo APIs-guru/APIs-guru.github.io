@@ -63,14 +63,14 @@ function CardModel() {
     this.cardDescription = '';
     this.added = null;
     this.updated = null;
-    this.badge = '';
+    this.rating = null;
 }
 
 CardModel.prototype.fromAPIs = function(name, apis) {
     this.preferred = apis.preferred;
     this.api = apis.versions[this.preferred];
     this.info = this.api.info;
-    this.badge = this.api.badge;
+    this.rating = this.api.rating;
     this.externalDocs = this.api.externalDocs || {};
     this.contact = this.info.contact || {};
     this.externalUrl = this.externalDocs.url || this.contact.url || (name.indexOf('.local') < 0 ? 'https://'+name.split(':')[0] : '');
@@ -152,6 +152,7 @@ if (window.$) {
         var fragment = $(document.createDocumentFragment());
         $.each(data, function (name, apis) {
             var model = new CardModel().fromAPIs(name, apis);
+            console.log(model)
             var view = cardTemplate(model);
             fragment.append($(view));
         });
@@ -212,9 +213,8 @@ if (window.$) {
       let [resultApiList] = apiList;
 
       ratings.forEach(function(ratingItem) {
-        const [_, apiName, version] = ratingItem.file.split('/');
+        const { name: apiName, version } = ratingItem;
         let api = resultApiList[apiName];
-        
         if (api && ratingItem.score !== null) {
           const badgeColor = getScoreStrokeColor(ratingItem.score);
 
@@ -224,10 +224,15 @@ if (window.$) {
               ...api.versions,
               [version]: {
                 ...api.versions[version],
-                badge: `https://img.shields.io/badge/ratemyopenapi-${ratingItem.score}-${badgeColor}`
+                rating: {
+                  score: ratingItem.score,
+                  ratingId: ratingItem.ratingId,
+                  color: badgeColor, 
+                }
               }
             }
           };
+          console.log(resultApiList[apiName])
         }
       });
 

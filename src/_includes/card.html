@@ -22,9 +22,11 @@
         <footer>
           <h3> OpenAPI: </h3>
           <h4>Preferred Version - {{=it.preferred}}</h4>
-          {{? it.badge }}
-            <div class="badge">
-              <img src="{{=it.badge}}" alt="{{=it.info.title }} badge">
+          {{? it.rating }}
+            <div class="rating">
+              <a class="badge" href="https://ratemyopenapi.com/report/{{=it.rating.reportId }}?source=external" target="_blank">
+                <img src="https://img.shields.io/badge/ratemyopenapi-{{=it.rating.score }}-{{=it.rating.color }}" alt="API score {{=it.rating.score }}">
+              </a>
             </div>
           {{?}}
           <ul class="preferred-api">

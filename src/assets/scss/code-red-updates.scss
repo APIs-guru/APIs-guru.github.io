@@ -113,7 +113,7 @@
     font-size: 0.8em;
 }
 
-.card footer a {
+.card footer a:not(.badge) {
     padding: .1em .5em .1em;
     background-color: #388c9a;
     border-radius: 2px;
@@ -128,9 +128,10 @@
     cursor: pointer;
 }
 
-.card footer .badge {
-    padding: 5px 0 7px;
+.card footer .rating {
+    padding-bottom: 7px;
 }
+
 .support {
     text-align: center;
     & p {
