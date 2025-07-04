@@ -1,33 +1,38 @@
 {
-  "name": "ag",
-  "version": "1.0.0",
-  "description": "APIs.guru github pages",
-  "main": "index.js",
+  "name": "apis-guru-next",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "npx eslint src/assets/javascript/*.js",
-    "sass.all": "sass --update --style compressed --no-source-map ./src/assets/scss:./src/assets/stylesheets",
-    "sass": "npx sass --style compressed --no-source-map ./src/assets/scss/style.scss:./src/assets/stylesheets/style.css",
-    "debug": "DEBUG=Eleventy* npx eleventy --input=./src --output=./_site",
-    "build": "npx eleventy --input=./src --output=./_site",
-    "serve": "npx eleventy --serve --input=./src --output=./_site"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next build"
   },
-  "author": "Mike Ralphson",
-  "license": "MIT",
   "dependencies": {
-    "@11ty/eleventy": "^2.0.0",
-    "eleventy-xml-plugin": "^0.1.0",
-    "sass": "1.60"
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-radio-group": "^1.3.7",
+    "@radix-ui/react-slot": "^1.2.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.525.0",
+    "next": "15.3.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "redoc": "^2.5.0",
+    "sass": "^1.89.2",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
-    "eslint": "^8.36.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MikeRalphson/ag.git"
-  },
-  "bugs": {
-    "url": "https://github.com/MikeRalphson/ag/issues"
-  },
-  "homepage": "https://github.com/MikeRalphson/ag#readme"
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.4",
+    "tailwindcss": "^4",
+    "tw-animate-css": "^1.3.4",
+    "typescript": "^5"
+  }
 }
