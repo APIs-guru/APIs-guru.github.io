@@ -28,7 +28,23 @@ export const metadata = {
   description: "Wikipedia for Web APIs. Directory of REST API specs",
   viewport: "width=device-width, initial-scale=1",
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      {
+        url: "/images/favicons/icon-16x16.png",
+        sizes: "16x16",
+        type: "image/png",
+      },
+      {
+        url: "/images/favicons/icon-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+      {
+        url: "/images/favicons/icon-96x96.png",
+        sizes: "96x96",
+        type: "image/png",
+      },
+    ],
   },
   openGraph: {
     title: "APIs.guru - Wikipedia for Web APIs",
@@ -47,9 +63,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} antialiased`}
       >
         <Header />
-    
+
         <main className="min-h-screen bg-white">{children}</main>
-        
+
         <Footer />
 
         {/* Google Analytics - Replace with your GA ID */}
