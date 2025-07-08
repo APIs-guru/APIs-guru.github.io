@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export", // Enables static exports for GitHub Pages
-  basePath: "/apis-guru-next", // Replace with your repository name
+  output: "export",
+  basePath: "",
   images: {
     remotePatterns: [
       {
@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
-    unoptimized: true, // Required for static export with images
+    unoptimized: true,
   },
 };
 
