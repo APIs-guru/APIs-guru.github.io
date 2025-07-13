@@ -1,189 +1,105 @@
-'use client';
+"use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
-  const toggleMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+  const navItems = [
+    { href: "/", label: "Browse APIs" },
+    { href: "/about", label: "About" },
+    { href: "/api-doc", label: "Our API" },
+    { href: "/add-api", label: "Add API" },
+    { href: "https://blog.apis.guru/", label: "Blog", external: true },
+    {
+      href: "https://apis.guru/awesome-openapi3/",
+      label: "OpenAPI Tools",
+      external: true,
+    },
+  ];
 
   return (
     <>
-      {/* Mobile header */}
-      <div className="fixed w-full z-50 bg-white border-b border-gray-200 md:hidden">
-        <div className="flex items-center justify-between px-4 h-14">
-          <button
-            className="toggle-button relative flex-none w-[35px] h-[30px] my-auto mx-2 cursor-pointer"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            <span
-              className={cn(
-                "absolute h-[6px] w-full bg-amber-400 rounded-lg opacity-100 left-0 transition-all duration-250 ease-in-out",
-                mobileMenuOpen ? "top-3 w-0 left-1/2" : "top-0"
-              )}
-            ></span>
-            <span
-              className={cn(
-                "absolute h-[6px] w-full bg-amber-400 rounded-lg opacity-100 left-0 top-3 transition-all duration-250 ease-in-out",
-                mobileMenuOpen ? "rotate-45" : ""
-              )}
-            ></span>
-            <span
-              className={cn(
-                "absolute h-[6px] w-full bg-amber-400 rounded-lg opacity-100 left-0 top-3 transition-all duration-250 ease-in-out",
-                mobileMenuOpen ? "-rotate-45" : ""
-              )}
-            ></span>
-            <span
-              className={cn(
-                "absolute h-[6px] w-full bg-amber-400 rounded-lg opacity-100 left-0 transition-all duration-250 ease-in-out",
-                mobileMenuOpen ? "top-[18px] w-0 left-1/2" : "top-6"
-              )}
-            ></span>
-          </button>
-          <div className="text-center font-bold text-xl leading-[3.5rem]">
-            APIS.GURU
-          </div>
+      {/* Header */}
+      <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200">
+        <div className="flex items-center justify-between h-14 px-4 max-w-7xl mx-auto">
+          {/* Logo and Text */}
+          <Link href="/" className="flex items-center space-x-2">
+            <Image
+              src="/images/svg/logo.svg"
+              alt="APIS.GURU Logo"
+              width={120} // Adjust width as needed
+              height={40} // Adjust height as needed
+              priority // Preload the logo for faster rendering
+              className="h-8 w-auto"
+            />
+            <span className="text-xl font-bold text-gray-800">APIS.GURU</span>
+          </Link>
+
+          {/* Mobile Menu Trigger */}
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden"
+                aria-label="Toggle menu"
+              >
+                <Menu className="h-6 w-6 text-amber-500" />
+              </Button>
+            </SheetTrigger>
+
+            {/* Mobile Menu Content */}
+            <SheetContent side="left" className="w-[255px] p-0">
+              <nav className="flex flex-col pt-4">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block py-3 px-6 text-gray-700 hover:bg-gray-50 border-b border-gray-100"
+                    onClick={() => setMobileMenuOpen(false)}
+                    {...(item.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+            </SheetContent>
+          </Sheet>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "relative text-gray-800 px-4 py-2 text-sm font-medium",
+                  "hover:text-amber-500",
+                  // Show underline if active
+                  !item.external && pathname === item.href
+                    ? 'after:block after:content-[""] after:h-0.5 after:bg-amber-500 after:absolute after:bottom-0 after:left-0 after:right-0 after:scale-x-100'
+                    : 'hover:after:scale-x-100 after:block after:content-[""] after:h-0.5 after:bg-amber-500 after:absolute after:bottom-0 after:left-0 after:right-0 after:transform after:scale-x-0 after:transition-transform after:duration-200'
+                )}
+                {...(item.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
         </div>
-      </div>
-
-      {/* Desktop header */}
-      <header
-        id="menu"
-        className={cn(
-          "site-header fixed w-full z-40 bg-white border-b border-gray-200 overflow-hidden hidden md:block",
-          mobileMenuOpen ? "slideout-menu block" : ""
-        )}
-      >
-        <nav className="site-nav w-full text-center leading-[3.5rem] px-4">
-          <Link
-            href="/"
-            className={cn(
-              "relative inline-block align-middle text-gray-800 leading-normal px-4 mx-2 box-border outline-none",
-              "hover:after:transform hover:after:scale-x-100 hover:after:block hover:after:content-[''] hover:after:border-b-2 hover:after:border-amber-500 hover:after:w-full",
-              "after:block after:content-[''] after:border-b-2 after:border-amber-500 after:w-full after:transform after:scale-x-0 after:transition-all after:duration-200 after:ease"
-            )}
-          >
-            Browse APIs
-          </Link>
-          <Link
-            href="/about"
-            className={cn(
-              "relative inline-block align-middle text-gray-800 leading-normal px-4 mx-2 box-border outline-none",
-              "hover:after:transform hover:after:scale-x-100 hover:after:block hover:after:content-[''] hover:after:border-b-2 hover:after:border-amber-500 hover:after:w-full",
-              "after:block after:content-[''] after:border-b-2 after:border-amber-500 after:w-full after:transform after:scale-x-0 after:transition-all after:duration-200 after:ease"
-            )}
-          >
-            About
-          </Link>
-          <Link
-            href="/api-doc"
-            className={cn(
-              "relative inline-block align-middle text-gray-800 leading-normal px-4 mx-2 box-border outline-none",
-              "hover:after:transform hover:after:scale-x-100 hover:after:block hover:after:content-[''] hover:after:border-b-2 hover:after:border-amber-500 hover:after:w-full",
-              "after:block after:content-[''] after:border-b-2 after:border-amber-500 after:w-full after:transform after:scale-x-0 after:transition-all after:duration-200 after:ease"
-            )}
-          >
-            Our API
-          </Link>
-          <Link
-            href="/add-api"
-            className={cn(
-              "relative inline-block align-middle text-gray-800 leading-normal px-4 mx-2 box-border outline-none",
-              "hover:after:transform hover:after:scale-x-100 hover:after:block hover:after:content-[''] hover:after:border-b-2 hover:after:border-amber-500 hover:after:w-full",
-              "after:block after:content-[''] after:border-b-2 after:border-amber-500 after:w-full after:transform after:scale-x-0 after:transition-all after:duration-200 after:ease"
-            )}
-          >
-            Add API
-          </Link>
-          <Link
-            href="https://blog.apis.guru/"
-            className={cn(
-              "relative inline-block align-middle text-gray-800 leading-normal px-4 mx-2 box-border outline-none",
-              "hover:after:transform hover:after:scale-x-100 hover:after:block hover:after:content-[''] hover:after:border-b-2 hover:after:border-amber-500 hover:after:w-full",
-              "after:block after:content-[''] after:border-b-2 after:border-amber-500 after:w-full after:transform after:scale-x-0 after:transition-all after:duration-200 after:ease"
-            )}
-          >
-            Blog
-          </Link>
-          <Link
-            href="https://apis.guru/awesome-openapi3/"
-            className={cn(
-              "relative inline-block align-middle text-gray-800 leading-normal px-4 mx-2 box-border outline-none",
-              "hover:after:transform hover:after:scale-x-100 hover:after:block hover:after:content-[''] hover:after:border-b-2 hover:after:border-amber-500 hover:after:w-full",
-              "after:block after:content-[''] after:border-b-2 after:border-amber-500 after:w-full after:transform after:scale-x-0 after:transition-all after:duration-200 after:ease"
-            )}
-          
-          >
-        OpenAPI Tools
-          </Link>
-        </nav>
       </header>
-
-      {/* Mobile menu slideout panel */}
-      <div
-        className={cn(
-          "fixed inset-0 z-30 w-[255px] overflow-y-auto border-r border-gray-100 bg-white pt-14",
-          mobileMenuOpen ? "block" : "hidden"
-        )}
-      >
-        <nav className="w-full">
-          <Link
-            href="/"
-            className="block py-3 px-6 border-b border-gray-100 text-gray-700 hover:bg-gray-50"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Browse APIs
-          </Link>
-          <Link
-            href="/about"
-            className="block py-3 px-6 border-b border-gray-100 text-gray-700 hover:bg-gray-50"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            About
-          </Link>
-          <Link
-            href="/api-doc"
-            className="block py-3 px-6 border-b border-gray-100 text-gray-700 hover:bg-gray-50"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Our API
-          </Link>
-          <Link
-            href="/add-api"
-            className="block py-3 px-6 border-b border-gray-100 text-gray-700 hover:bg-gray-50"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Add API
-          </Link>
-          <Link
-            href="https://blog.apis.guru/"
-            className="block py-3 px-6 border-b border-gray-100 text-gray-700 hover:bg-gray-50"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Blog
-          </Link>
-          <Link
-            href="https://apis.guru/awesome-openapi3/"
-            className="block py-3 px-6 border-b border-gray-100 text-gray-700 hover:bg-gray-50"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-        OpenAPI Tools
-          </Link>
-        </nav>
-      </div>
-
-      {/* Add overlay for mobile menu */}
-      {mobileMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden"
-          onClick={() => setMobileMenuOpen(false)}
-        />
-      )}
 
       {/* Spacer to prevent content from being hidden under fixed header */}
       <div className="h-14"></div>
