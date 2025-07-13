@@ -1,4 +1,9 @@
-import { ApiList, ApiEntry, ApiCardModel, createSearchableText } from "../models/ApiCardModel";
+import {
+  ApiList,
+  ApiEntry,
+  ApiCardModel,
+  createSearchableText,
+} from "../models/ApiCardModel";
 
 const integrations = [
   {
@@ -21,27 +26,241 @@ const integrations = [
 
 const monthAgo = new Date(new Date().setDate(new Date().getDate() - 30));
 
-// Modified to better support static site generation
-export async function fetchApis(newData = false): Promise<ApiList> {
+export async function fetchApis(
+  options: {
+    search?: string;
+    category?: string;
+    tag?: string;
+    status?: string;
+    page?: number;
+    pageSize?: number;
+    sortBy?: string;
+    sortOrder?: "asc" | "desc";
+  } = {}
+): Promise<{
+  apis: ApiCardModel[];
+  pagination: {
+    page: number;
+    pageSize: number;
+    total: number;
+    totalPages: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+    nextPage: number | null;
+    prevPage: number | null;
+  };
+  filters: {
+    search: string | null;
+    category: string | null;
+    tag: string | null;
+    status: string | null;
+    sortBy: string;
+    sortOrder: string;
+  };
+}> {
   try {
-    // Use fixed data source for static generation
-    const url = "https://api.apis.guru/v2/list.json";
+    const params = new URLSearchParams();
+
+    if (options.search) params.append("search", options.search);
+    if (options.category) params.append("category", options.category);
+    if (options.tag) params.append("tag", options.tag);
+    if (options.status) params.append("status", options.status);
+    params.append("page", (options.page || 1).toString());
+    params.append("pageSize", (options.pageSize || 20).toString());
+    if (options.sortBy) params.append("sortBy", options.sortBy);
+    if (options.sortOrder) params.append("sortOrder", options.sortOrder);
+
+    const url = `/api/fetch-apis${
+      params.toString() ? "?" + params.toString() : ""
+    }`;
 
     const response = await fetch(url, {
-      // Add cache control for static site generation
-      next: { revalidate: 3600 }, // Revalidate every hour during build time
+      next: { revalidate: 300 },
     });
 
     if (!response.ok) {
       throw new Error(`Failed to fetch API list: ${response.status}`);
     }
 
-    return await response.json();
+    const data = await response.json();
+
+    const apis = data.apis.map((api: any) =>
+      createApiCardModelFromWorkerData(api)
+    );
+
+    return {
+      apis,
+      pagination: data.pagination,
+      filters: data.filters,
+    };
   } catch (error) {
     console.error("Error fetching APIs:", error);
-    // Return empty API list as fallback for static build
+
+    return {
+      apis: [],
+      pagination: {
+        page: 1,
+        pageSize: 20,
+        total: 0,
+        totalPages: 0,
+        hasNextPage: false,
+        hasPrevPage: false,
+        nextPage: null,
+        prevPage: null,
+      },
+      filters: {
+        search: null,
+        category: null,
+        tag: null,
+        status: null,
+        sortBy: "name",
+        sortOrder: "asc",
+      },
+    };
+  }
+}
+
+export async function fetchApisInfinite(
+  page: number = 1,
+  search?: string,
+  pageSize: number = 20
+): Promise<{
+  apis: ApiCardModel[];
+  hasMore: boolean;
+  nextPage: number | null;
+}> {
+  try {
+    const response = await fetchApis({
+      search: search || undefined,
+      page,
+      pageSize,
+      sortBy: "name",
+      sortOrder: "asc",
+    });
+
+    return {
+      apis: response.apis,
+      hasMore: response.pagination.hasNextPage,
+      nextPage: response.pagination.nextPage,
+    };
+  } catch (error) {
+    console.error("Error fetching APIs for infinite scroll:", error);
+    return {
+      apis: [],
+      hasMore: false,
+      nextPage: null,
+    };
+  }
+}
+
+export async function fetchApisLegacy(): Promise<ApiList> {
+  try {
+    const response = await fetchApis({ pageSize: 10000 });
+    const apiList: ApiList = {};
+
+    response.apis.forEach((api) => {
+      apiList[api.name] = {
+        added: api.added.toISOString(),
+        preferred: api.preferred,
+        versions: {
+          [api.preferred]: {
+            swaggerUrl: api.api.swaggerUrl,
+            swaggerYamlUrl: api.api.swaggerYamlUrl || "",
+            info: api.info,
+            updated: api.updated.toISOString(),
+            externalDocs: api.api.externalDocs,
+          },
+        },
+      };
+    });
+
+    return apiList;
+  } catch (error) {
+    console.error("Error fetching APIs (legacy):", error);
     return {};
   }
+}
+
+function createApiCardModelFromWorkerData(workerApi: any): ApiCardModel {
+  const info = {
+    title: workerApi.title,
+    description: workerApi.description,
+    contact: workerApi.contact,
+    license: workerApi.license,
+    "x-apisguru-categories": workerApi.categories,
+    "x-tags": workerApi.tags,
+    "x-logo": workerApi.logoUrl ? { url: workerApi.logoUrl } : undefined,
+  };
+
+  const api = {
+    info,
+    swaggerUrl: workerApi.swaggerUrl,
+    swaggerYamlUrl: workerApi.swaggerYamlUrl,
+    externalDocs: { url: workerApi.externalUrl },
+  };
+
+  const logo = info["x-logo"] || {};
+  const externalUrl = workerApi.externalUrl;
+  const origUrl = workerApi.swaggerUrl;
+  const added = new Date(workerApi.added);
+  const updated = new Date(workerApi.updated);
+
+  let classes = "";
+  let flashText = "";
+  let flashTitle = "";
+
+  if (added >= monthAgo) {
+    classes = "flash flash-green";
+    flashText = "New!";
+    flashTitle = added.toLocaleString();
+  } else if (updated >= monthAgo) {
+    classes = "flash flash-yellow";
+    flashText = "Updated";
+    flashTitle = updated.toLocaleString();
+  }
+
+  if (workerApi.tags && workerApi.tags.indexOf("helpWanted") >= 0) {
+    const link = "https://github.com/APIs-guru/openapi-directory/issues";
+    classes = "flash flash-red";
+    flashText = `<a href="${link}" target="_blank">Help Wanted</a>`;
+    flashTitle = updated.toLocaleString();
+  }
+
+  const description = info.description || "";
+  const cardDescription = description
+    .replace(/(<([^>]+)>)/gi, "")
+    .split(" ")
+    .splice(0, 50)
+    .join(" ");
+
+  const apiIntegrations = integrations.map((i) => ({
+    text: i.text,
+    template: i.template.replace("{swaggerUrl}", workerApi.swaggerUrl),
+  }));
+
+  const model: ApiCardModel = {
+    name: workerApi.name,
+    classes,
+    flashText,
+    flashTitle,
+    preferred: workerApi.version,
+    api,
+    info: info as any,
+    logo,
+    externalUrl,
+    origUrl,
+    versions: null,
+    markedDescription: description,
+    cardDescription,
+    categories: workerApi.categories,
+    tags: workerApi.tags,
+    added,
+    updated,
+    integrations: apiIntegrations,
+  };
+
+  model.searchableText = createSearchableText(model);
+  return model;
 }
 
 export function createApiCardModel(name: string, apis: ApiEntry): ApiCardModel {
@@ -110,9 +329,12 @@ export function createApiCardModel(name: string, apis: ApiEntry): ApiCardModel {
   }
 
   const description = info.description || "";
-  const cardDescription =  description.replace(/(<([^>]+)>)/gi, "").split(" ").splice(0,50).join(" ")
-  
-  // Extract categories and tags for better search
+  const cardDescription = description
+    .replace(/(<([^>]+)>)/gi, "")
+    .split(" ")
+    .splice(0, 50)
+    .join(" ");
+
   const categories = info["x-apisguru-categories"] || [];
   const tags = info["x-tags"] || [];
 
@@ -141,14 +363,12 @@ export function createApiCardModel(name: string, apis: ApiEntry): ApiCardModel {
     updated,
     integrations: apiIntegrations,
   };
-  
-  // Add searchable text field
+
   model.searchableText = createSearchableText(model);
-  
+
   return model;
 }
 
-// Enhanced filterApis function for better search capabilities
 export function filterApis(
   data: ApiList,
   search?: string,
@@ -159,46 +379,42 @@ export function filterApis(
   if (!(search || category || tag || status)) return data;
 
   const result: ApiList = {};
-  const searchLower = search ? search.toLowerCase() : '';
+  const searchLower = search ? search.toLowerCase() : "";
 
   for (const [name, apis] of Object.entries(data)) {
     const version = apis.versions[apis.preferred];
     const info = version.info;
-    
-    // Check if this API matches any of the search criteria
+
     let matches = false;
-    
-    // Name match
+
     if (search && name.toLowerCase().includes(searchLower)) {
       matches = true;
     }
-    
-    // Description match
-    if (search && info.description && info.description.toLowerCase().includes(searchLower)) {
+
+    if (
+      search &&
+      info.description &&
+      info.description.toLowerCase().includes(searchLower)
+    ) {
       matches = true;
     }
-    
-    // Category match
+
     if (category && (info["x-apisguru-categories"] || []).includes(category)) {
       matches = true;
     }
-    
-    // Tag match
+
     if (tag && (info["x-tags"] || []).includes(tag)) {
       matches = true;
     }
-    
-    // Status: updated
+
     if (status === "updated" && new Date(version.updated || "") >= monthAgo) {
       matches = true;
     }
-    
-    // Status: new
+
     if (status === "new" && new Date(apis.added) >= monthAgo) {
       matches = true;
     }
-    
-    // Add to results if matches
+
     if (matches) {
       result[name] = apis;
     }
@@ -207,66 +423,59 @@ export function filterApis(
   return result;
 }
 
-// Generate static search paths for all possible search combinations
 export async function generateStaticSearchPaths() {
   try {
-    const apiList = await fetchApis();
-    
-    // Extract unique categories and tags
+    const apiList = await fetchApisLegacy();
+
     const categories = new Set<string>();
     const tags = new Set<string>();
-    
-    Object.values(apiList).forEach(api => {
-      const version = api.versions[api.preferred];
+
+    Object.values(apiList).forEach((apiEntry) => {
+      const version = apiEntry.versions[apiEntry.preferred];
       const info = version.info;
-      
-      // Add categories
+
       if (info["x-apisguru-categories"]) {
-        info["x-apisguru-categories"].forEach(cat => categories.add(cat));
+        info["x-apisguru-categories"].forEach((cat: string) =>
+          categories.add(cat)
+        );
       }
-      
-      // Add tags
+
       if (info["x-tags"]) {
-        info["x-tags"].forEach(tag => tags.add(tag));
+        info["x-tags"].forEach((tag: string) => tags.add(tag));
       }
     });
-    
-    // Define a type for path objects that can have various properties
+
     type PathObject = {
       q?: string;
       category?: string;
       tag?: string;
       status?: string;
     };
-    
-    // Generate paths for common search queries
+
     const paths: PathObject[] = [
-      { q: 'google' },
-      { q: 'aws' },
-      { q: 'azure' },
-      { q: 'twitter' },
-      { q: 'facebook' },
-      { q: 'payment' },
-      { q: 'analytics' },
-      { q: 'cloud' },
-      { q: 'data' },
-      { q: 'api' },
+      { q: "google" },
+      { q: "aws" },
+      { q: "azure" },
+      { q: "twitter" },
+      { q: "facebook" },
+      { q: "payment" },
+      { q: "analytics" },
+      { q: "cloud" },
+      { q: "data" },
+      { q: "api" },
     ];
-    
-    // Add category paths
-    Array.from(categories).forEach(category => {
+
+    Array.from(categories).forEach((category) => {
       paths.push({ category });
     });
-    
-    // Add tag paths
-    Array.from(tags).forEach(tag => {
+
+    Array.from(tags).forEach((tag) => {
       paths.push({ tag });
     });
-    
-    // Add status paths
-    paths.push({ status: 'new' });
-    paths.push({ status: 'updated' });
-    
+
+    paths.push({ status: "new" });
+    paths.push({ status: "updated" });
+
     return paths;
   } catch (error) {
     console.error("Error generating static search paths:", error);
