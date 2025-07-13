@@ -2,7 +2,9 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ApiCardModel } from "../../../models/ApiCardModel";
+import DescriptionSection from "../../../components/DescriptionSection";
 import list from "../../../list.json";
+import { marked } from "marked";
 
 interface ApiVersion {
   version: string;
@@ -79,11 +81,8 @@ function getData(slug: string): any | null {
           );
 
           const description = info.description || "No description available";
-          const cardDescription = description
-            .replace(/(<([^>]+)>)/gi, "")
-            .split(" ")
-            .splice(0, 50)
-            .join(" ");
+
+          const cardDescription = marked(description);
 
           return {
             name: key,
@@ -112,6 +111,7 @@ function getData(slug: string): any | null {
   console.warn(`No API found for slug: ${slug}`);
   return null;
 }
+
 export default async function Page({
   params,
 }: {
@@ -165,7 +165,7 @@ export default async function Page({
               <Link
                 href={api.externalUrl}
                 target="_blank"
-                className="hover:underline"
+                className="hover:underline  text-decoration-line:none text-[#388c9a]"
               >
                 {api.info.title}
               </Link>
@@ -228,10 +228,7 @@ export default async function Page({
         </div>
       </div>
 
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">Description</h2>
-        <p className="text-gray-700 leading-relaxed">{api.cardDescription}</p>
-      </div>
+      <DescriptionSection description={api.cardDescription} />
 
       {api.versions && api.versions.length > 0 && (
         <div>

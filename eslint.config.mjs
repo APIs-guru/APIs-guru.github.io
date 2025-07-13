@@ -20,6 +20,7 @@ const eslintConfig = [
    
       "react/no-unescaped-entities": "off",
       "@typescript-eslint/no-unused-vars":"off", // Disable 
+      "@typescript-eslint/no-require-imports": "off",
     }
   }
 ];
