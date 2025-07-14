@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://apis.guru/
+
+# Sitemaps
+Sitemap: https://apis.guru/sitemap.xml
+Sitemap: https://apis.guru/server-sitemap-index.xml
