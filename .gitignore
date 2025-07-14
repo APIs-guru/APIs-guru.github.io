@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 .wrangler
+
+public/robots.txt
+public/sitemap-0.xml
+public/sitemap.xml
