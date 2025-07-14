@@ -37,5 +37,5 @@ wrangler deploy
 wrangler dev
 
 # Test API endpoint
-curl http://localhost:8787/api/fetch-apis
+curl -X POST http://localhost:8788/api/sync-apis
 ```
