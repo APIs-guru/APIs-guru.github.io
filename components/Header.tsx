@@ -86,7 +86,9 @@ export default function Header() {
                   "relative text-gray-800 px-4 py-2 text-sm font-medium",
                   "hover:text-amber-500",
                   // Show underline if active
-                  !item.external && pathname === item.href
+                  !item.external &&
+                  (pathname === item.href ||
+                    (item.href === "/" && pathname.startsWith("/apis/")))
                     ? 'after:block after:content-[""] after:h-0.5 after:bg-amber-500 after:absolute after:bottom-0 after:left-0 after:right-0 after:scale-x-100'
                     : 'hover:after:scale-x-100 after:block after:content-[""] after:h-0.5 after:bg-amber-500 after:absolute after:bottom-0 after:left-0 after:right-0 after:transform after:scale-x-0 after:transition-transform after:duration-200'
                 )}
