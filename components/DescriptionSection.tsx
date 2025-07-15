@@ -13,36 +13,46 @@ export default function DescriptionSection({
   return (
     <div className="mb-8">
       <h2 className="text-2xl font-bold mb-4">Description</h2>
-
       {isLongDescription ? (
-        <>
+        <div className="relative">
           <input
             type="checkbox"
             id="expand-description"
             className="hidden peer"
           />
-          <div className="prose prose-neutral dark:prose-invert max-w-none hidden peer-checked:block">
-            <div dangerouslySetInnerHTML={{ __html: description }} />
+          
+          {/* Content container with collapse effect */}
+          <div className="overflow-hidden transition-all duration-300 ease-in-out peer-checked:max-h-[9999px] max-h-[6.5em]">
+            <div className="prose prose-neutral dark:prose-invert max-w-none">
+              <div dangerouslySetInnerHTML={{ __html: description }} />
+            </div>
+          </div>
+          
+          {/* Semi-transparent gradient overlay - positioned after content */}
+          <div className="relative -mt-12 h-12 peer-checked:hidden">
+            <div className="absolute inset-0 bg-gradient-to-t from-white/80 dark:from-gray-800/80 to-transparent pointer-events-none"></div>
+          </div>
+          
+          {/* Show more button */}
+          <div className="text-center mt-2 peer-checked:hidden">
             <label
               htmlFor="expand-description"
-              className="text-[#388c9a] hover:underline mt-2 inline-block cursor-pointer"
+              className="text-[#388c9a] hover:underline cursor-pointer block w-full"
+            >
+              Show more
+            </label>
+          </div>
+          
+          {/* Show less button */}
+          <div className="text-center mt-2 hidden peer-checked:block">
+            <label
+              htmlFor="expand-description"
+              className="text-[#388c9a] hover:underline cursor-pointer block w-full"
             >
               Show less
             </label>
           </div>
-          <div className="relative prose prose-neutral dark:prose-invert max-w-none block peer-checked:hidden">
-            <div
-              className="line-clamp-3"
-              dangerouslySetInnerHTML={{ __html: description }}
-            />
-            <label
-              htmlFor="expand-description"
-              className="absolute bottom-0 right-0 bg-white dark:bg-gray-800 px-1 text-[#388c9a] hover:underline cursor-pointer"
-            >
-              ...more
-            </label>
-          </div>
-        </>
+        </div>
       ) : (
         <div className="prose prose-neutral dark:prose-invert max-w-none">
           <div dangerouslySetInnerHTML={{ __html: description }} />
