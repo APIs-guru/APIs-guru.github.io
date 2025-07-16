@@ -134,8 +134,8 @@ function SearchClientComponentInner({
           searchTerm={searchTerm}
           apiCount={apiMetrics.numAPIs}
           onSearchChange={handleSearch}
-          onCopyLink={copyToClipboard}
-          isCopied={isCopied}
+          
+       
         />
 
         <ApiGrid
