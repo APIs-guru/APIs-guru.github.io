@@ -22,8 +22,8 @@ export default function DescriptionSection({
           />
           
           {/* Content container with collapse effect */}
-          <div className="overflow-hidden transition-all duration-300 ease-in-out peer-checked:max-h-[9999px] max-h-[6.5em]">
-            <div className="prose prose-neutral dark:prose-invert max-w-none">
+          <div className="overflow-hidden transition-all duration-300 ease-in-out peer-checked:max-h-[9999px] max-h-[12.5em]">
+            <div className="prose prose-h1:font-bold prose-p:text-gray-700 prose-a:text-blue-600 prose-max-w-none">
               <div dangerouslySetInnerHTML={{ __html: description }} />
             </div>
           </div>
@@ -54,7 +54,7 @@ export default function DescriptionSection({
           </div>
         </div>
       ) : (
-        <div className="prose prose-neutral dark:prose-invert max-w-none">
+        <div className="prose prose-h1:font-bold prose-p:text-gray-700 prose-a:text-blue-600 prose-max-w-none">
           <div dangerouslySetInnerHTML={{ __html: description }} />
         </div>
       )}
