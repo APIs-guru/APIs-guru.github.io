@@ -4,7 +4,7 @@ module.exports = {
   generateRobotsTxt: true, // Generate a robots.txt file
   sitemapSize: 5000, // Split sitemap into chunks of 5,000 URLs
   exclude: ['/protected-page', '/admin/*'], // Exclude specific pages
-
+  outDir: './out',
   transform: async (config, path) => {
     return {
       loc: path,
