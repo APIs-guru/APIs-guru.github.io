@@ -5,54 +5,45 @@ interface SearchSectionProps {
   searchTerm: string;
   apiCount: number;
   onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onCopyLink: () => void;
-  isCopied: boolean;
 }
 
 export function SearchSection({
   searchTerm,
   apiCount,
   onSearchChange,
-  onCopyLink,
-  isCopied,
 }: SearchSectionProps) {
   return (
-    <div id="search" className="mb-6 max-w-2xl mx-auto">
-      <div className="mb-2 flex justify-between items-center">
-        <label
-          htmlFor="search-input"
-          className="text-lg font-medium text-gray-700"
-        >
-          Filter {apiCount.toLocaleString()} APIs&nbsp;
-          <button
-            id="btnCopy"
-            onClick={onCopyLink}
-            className={`inline-flex items-center ${searchTerm ? "" : "hidden"}`}
-            title="Copy search link to clipboard"
+    <div id="search" className="mb-8 max-w-3xl mx-auto">
+      <div className="relative">
+        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <svg
+            className="h-5 w-5 text-gray-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              className="h-5 w-5 text-gray-600"
-            >
-              <title>Copy search link to clipboard</title>
-              <path d="M18 6v-6h-18v18h6v6h18v-18h-6zm-12 10h-4v-14h14v4h-10v10zm16 6h-14v-14h14v14z"></path>
-            </svg>
-            {isCopied && (
-              <span className="ml-1 text-sm text-green-600">Copied!</span>
-            )}
-          </button>
-        </label>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </div>
+        <Input
+          id="search-input"
+          type="search"
+          placeholder={`Search through ${apiCount.toLocaleString()} APIs...`}
+          value={searchTerm}
+          onChange={onSearchChange}
+          className="w-full pl-12 pr-4 py-6 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 shadow-sm hover:shadow-md"
+        />
       </div>
-      <Input
-        id="search-input"
-        type="search"
-        placeholder="Search…"
-        value={searchTerm}
-        onChange={onSearchChange}
-        className="w-full"
-        required
-      />
+      {searchTerm && (
+        <div className="mt-3 text-lg text-gray-600 text-center">
+          Filtering {apiCount.toLocaleString()} APIs
+        </div>
+      )}
     </div>
   );
 }
