@@ -23,7 +23,7 @@ DEFAULT_PAGE_SIZE = "20"
 [[env.preview.d1_databases]]
 binding = "DB"
 database_name = "apis-guru-data-dev"
-database_id = "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+database_id = "1090248d-84f7-4ffe-ab4f-5fd27c98d3e0"
 [env.preview.vars]
 SYNC_URL = "https://api.apis.guru/v2/list.json"
 BATCH_SIZE = "100"
