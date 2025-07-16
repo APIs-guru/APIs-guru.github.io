@@ -1,34 +1,43 @@
-
-account_id = "0a1e198cb1084d1aa05c6b269aa7a6f7"
 name = "apis-guru-workers"
 compatibility_date = "2025-07-01"
 compatibility_flags = ["nodejs_compat"]
 
-
+# Environment configuration for Pages Functions
 pages_build_output_dir = "out"
 
-
+# D1 Database binding (default, used for local development)
 [[d1_databases]]
 binding = "DB"
 database_name = "apis-guru-data-dev"
 database_id = "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
 
-
+# Environment variables (default)
 [vars]
 SYNC_URL = "https://api.apis.guru/v2/list.json"
 BATCH_SIZE = "100"
 MAX_PAGE_SIZE = "100"
 DEFAULT_PAGE_SIZE = "20"
 
-
+# Preview configuration (development/staging)
 [env.preview]
 [[env.preview.d1_databases]]
 binding = "DB"
 database_name = "apis-guru-data-dev"
-database_id = "a1b2c3d4-e5f6-7890-abcd-ef1234567890" 
+database_id = "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+[env.preview.vars]
+SYNC_URL = "https://api.apis.guru/v2/list.json"
+BATCH_SIZE = "100"
+MAX_PAGE_SIZE = "100"
+DEFAULT_PAGE_SIZE = "20"
 
+# Production configuration
 [env.production]
 [[env.production.d1_databases]]
 binding = "DB"
 database_name = "apis-guru-data"
 database_id = "660cdfd3-7c06-44ea-8e6d-f658f4fc39ca"
+[env.production.vars]
+SYNC_URL = "https://api.apis.guru/v2/list.json"
+BATCH_SIZE = "100"
+MAX_PAGE_SIZE = "100"
+DEFAULT_PAGE_SIZE = "20"
