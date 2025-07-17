@@ -6,10 +6,23 @@ import DescriptionSection from "../../../components/DescriptionSection";
 import list from "../../../list.json";
 import { marked } from "marked";
 
+import { Metadata, ResolvingMetadata } from "next";
+
 interface ApiVersion {
   version: string;
   swaggerUrl: string;
   swaggerYamlUrl: string;
+}
+function stripMarkdown(markdown: string): string {
+  return markdown
+    .replace(/(\*\*|__)(.*?)\1/g, "$2") // Remove bold
+    .replace(/(\*|_)(.*?)\1/g, "$2") // Remove italic
+    .replace(/#{1,6}\s/g, "") // Remove headers
+    .replace(/\[([^\]]+)\]\([^\)]+\)/g, "$1") // Remove links
+    .replace(/!\[([^\]]*)\]\([^\)]+\)/g, "$1") // Remove image alt text
+    .replace(/`{1,3}([^`]+)`{1,3}/g, "$1") // Remove code
+    .replace(/(\n\s*){2,}/g, "\n\n") // Normalize newlines
+    .replace(/^\s+|\s+$/g, ""); // Trim whitespace
 }
 
 export async function generateStaticParams() {
@@ -25,6 +38,56 @@ export async function generateStaticParams() {
       slug: apiSlug,
     };
   });
+}
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { slug } = await params;
+  const api = getData(slug);
+
+  if (!api) {
+    return {
+      title: "API Not Found | API Directory",
+      description: "The requested API was not found in the directory.",
+    };
+  }
+
+  const title = `${api.info.title} | API Directory`;
+  const description =
+    api.cardDescriptionPlain || "Explore this API in the API Directory.";
+
+  return {
+    title,
+    description,
+    keywords: [
+      ...(api.categories || []),
+      ...(api.tags || []),
+      "API",
+      "developer tools",
+    ],
+    openGraph: {
+      title,
+      description,
+      url: `https://apis.guru/apis/${slug}`,
+      type: "website",
+      images: [
+        {
+          url: api.logo.url || "/images/logo.svg",
+          width: 1200,
+          height: 630,
+          alt: `${api.info.title} API logo`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [api.logo.url || "/images/logo.svg"],
+    },
+  };
 }
 
 function getData(slug: string): any | null {
@@ -77,12 +140,12 @@ function getData(slug: string): any | null {
               version,
               swaggerUrl: details?.swaggerUrl || "",
               swaggerYamlUrl: details?.swaggerYamlUrl || "",
-            }),
+            })
           );
 
           const description = info.description || "No description available";
-
           const cardDescription = marked(description);
+          const cardDescriptionPlain = stripMarkdown(description);
 
           return {
             name: key,
@@ -97,6 +160,7 @@ function getData(slug: string): any | null {
             origUrl,
             versions: versionsArray,
             cardDescription,
+            cardDescriptionPlain,
             categories,
             tags,
             integrations: api.integrations || [],
