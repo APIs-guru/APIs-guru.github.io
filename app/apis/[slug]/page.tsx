@@ -77,7 +77,7 @@ function getData(slug: string): any | null {
               version,
               swaggerUrl: details?.swaggerUrl || "",
               swaggerYamlUrl: details?.swaggerYamlUrl || "",
-            })
+            }),
           );
 
           const description = info.description || "No description available";

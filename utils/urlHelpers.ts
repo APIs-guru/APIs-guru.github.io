@@ -1,6 +1,6 @@
 export const updateQueryParam = (
   searchParams: URLSearchParams | null,
-  term: string
+  term: string,
 ) => {
   if (!searchParams) return "";
 

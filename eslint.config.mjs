@@ -15,14 +15,14 @@ const eslintConfig = [
     rules: {
       "@typescript-eslint/no-explicit-any": "off", // Disable the error for any types
       "react-hooks/exhaustive-deps": "warn", // Downgrade missing dependency warnings to warnings
-           // FIXME
-      "react/no-unescaped-entities": "warn" ,
-   
+      // FIXME
+      "react/no-unescaped-entities": "warn",
+
       "react/no-unescaped-entities": "off",
-      "@typescript-eslint/no-unused-vars":"off", // Disable 
+      "@typescript-eslint/no-unused-vars": "off", // Disable
       "@typescript-eslint/no-require-imports": "off",
-    }
-  }
+    },
+  },
 ];
 
 export default eslintConfig;

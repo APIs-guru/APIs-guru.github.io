@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { RedocStandalone } from 'redoc';
-import { useEffect } from 'react';
+import { RedocStandalone } from "redoc";
+import { useEffect } from "react";
 
 export default function ApiDocPage() {
-
   useEffect(() => {
-    const robotoFont = document.createElement('link');
-    robotoFont.rel = 'stylesheet';
-    robotoFont.href = '//fonts.googleapis.com/css?family=Roboto:300,400,700';
+    const robotoFont = document.createElement("link");
+    robotoFont.rel = "stylesheet";
+    robotoFont.href = "//fonts.googleapis.com/css?family=Roboto:300,400,700";
     document.head.appendChild(robotoFont);
 
-    const montserratFont = document.createElement('link');
-    montserratFont.rel = 'stylesheet';
-    montserratFont.href = '//fonts.googleapis.com/css?family=Montserrat:400,700';
+    const montserratFont = document.createElement("link");
+    montserratFont.rel = "stylesheet";
+    montserratFont.href =
+      "//fonts.googleapis.com/css?family=Montserrat:400,700";
     document.head.appendChild(montserratFont);
 
     return () => {
@@ -28,8 +28,8 @@ export default function ApiDocPage() {
         specUrl="https://api.apis.guru/v2/openapi.yaml"
         options={{
           nativeScrollbars: true,
-   
-          scrollYOffset: '#menu', 
+
+          scrollYOffset: "#menu",
         }}
       />
     </div>

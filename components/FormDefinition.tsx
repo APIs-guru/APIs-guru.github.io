@@ -4,26 +4,44 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 interface FormDefinitionProps {
-  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => void;
   values: {
     url: string;
-    'spec-format': string;
+    "spec-format": string;
   };
 }
 
-export default function FormDefinition({ onChange, values }: FormDefinitionProps) {
+export default function FormDefinition({
+  onChange,
+  values,
+}: FormDefinitionProps) {
   const formatOptions = [
-    { name: "openapi", label: "OpenAPI/Swagger", url: "https://www.openapis.org/", checked: true },
-    { name: "api_blueprint", label: "API Blueprint", url: "https://apiblueprint.org/" },
+    {
+      name: "openapi",
+      label: "OpenAPI/Swagger",
+      url: "https://www.openapis.org/",
+      checked: true,
+    },
+    {
+      name: "api_blueprint",
+      label: "API Blueprint",
+      url: "https://apiblueprint.org/",
+    },
     { name: "raml", label: "RAML", url: "https://raml.org/" },
     { name: "wadl", label: "WADL", url: "http://www.w3.org/Submission/wadl/" },
-    { name: "google", label: "Google Discovery", url: "https://developers.google.com/discovery" },
-    { name: "other", label: "Other", url: "#" }
+    {
+      name: "google",
+      label: "Google Discovery",
+      url: "https://developers.google.com/discovery",
+    },
+    { name: "other", label: "Other", url: "#" },
   ];
 
   const handleRadioChange = (value: string) => {
     const syntheticEvent = {
-      target: { name: 'spec-format', value }
+      target: { name: "spec-format", value },
     } as React.ChangeEvent<HTMLInputElement>;
     onChange(syntheticEvent);
   };
@@ -45,13 +63,13 @@ export default function FormDefinition({ onChange, values }: FormDefinitionProps
             onChange={onChange}
           />
         </div>
-        
+
         <div>
           <Label className="font-medium block mb-2">
             Format of the definition: <span className="text-red-500">*</span>
           </Label>
-          <RadioGroup 
-            value={values['spec-format']} 
+          <RadioGroup
+            value={values["spec-format"]}
             onValueChange={handleRadioChange}
             className="grid grid-cols-2 gap-y-3 gap-x-4"
           >
@@ -69,11 +87,11 @@ export default function FormDefinition({ onChange, values }: FormDefinitionProps
                   htmlFor={`format-${format.name}`}
                   className="ml-3 text-gray-600 hover:text-gray-900 cursor-pointer flex items-center"
                 >
-                  {format.label} {" "}
-                  <a 
-                    href={format.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                  {format.label}{" "}
+                  <a
+                    href={format.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-blue-600 hover:underline ml-1 text-sm"
                     title={`${format.label} definition details`}
                   >

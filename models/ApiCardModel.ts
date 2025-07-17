@@ -77,11 +77,11 @@ export interface ApiCardModel {
 export function createSearchableText(model: ApiCardModel): string {
   const parts = [
     model.name,
-    model.description || '',
-    model.cardDescription || '',
+    model.description || "",
+    model.cardDescription || "",
     ...(model.categories || []),
     ...(model.tags || []),
   ];
-  
-  return parts.join(' ').toLowerCase();
+
+  return parts.join(" ").toLowerCase();
 }

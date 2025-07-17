@@ -36,7 +36,7 @@ export async function fetchApis(
     pageSize?: number;
     sortBy?: string;
     sortOrder?: "asc" | "desc";
-  } = {}
+  } = {},
 ): Promise<{
   apis: ApiCardModel[];
   pagination: {
@@ -85,7 +85,7 @@ export async function fetchApis(
     const data = await response.json();
 
     const apis = data.apis.map((api: any) =>
-      createApiCardModelFromWorkerData(api)
+      createApiCardModelFromWorkerData(api),
     );
 
     return {
@@ -123,7 +123,7 @@ export async function fetchApis(
 export async function fetchApisInfinite(
   page: number = 1,
   search?: string,
-  pageSize: number = 20
+  pageSize: number = 20,
 ): Promise<{
   apis: ApiCardModel[];
   hasMore: boolean;
@@ -374,7 +374,7 @@ export function filterApis(
   search?: string,
   category?: string,
   tag?: string,
-  status?: string
+  status?: string,
 ): ApiList {
   if (!(search || category || tag || status)) return data;
 
@@ -436,7 +436,7 @@ export async function generateStaticSearchPaths() {
 
       if (info["x-apisguru-categories"]) {
         info["x-apisguru-categories"].forEach((cat: string) =>
-          categories.add(cat)
+          categories.add(cat),
         );
       }
 

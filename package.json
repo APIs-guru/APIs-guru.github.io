@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next build",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
@@ -39,6 +40,7 @@
     "@types/sanitize-html": "^2.16.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
+    "prettier": "^3.6.2",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.4",
     "typescript": "^5"

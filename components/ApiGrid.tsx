@@ -41,7 +41,7 @@ export function ApiGrid({
           {Array.from({ length: Math.min(pageSize, gridColumns * 2) }).map(
             (_, index) => (
               <CardSkeleton key={`skeleton-${index}`} />
-            )
+            ),
           )}
         </div>
       )}

@@ -11,12 +11,12 @@ import { FormField } from "./FormFields";
 
 export default function FormAddApi() {
   const [formData, setFormData] = useState({
-    url: '',
-    'spec-format': 'openapi',
-    official: 'false',
-    name: '',
-    category: '',
-    logo: ''
+    url: "",
+    "spec-format": "openapi",
+    official: "false",
+    name: "",
+    category: "",
+    logo: "",
   });
 
   // Define the fields for FormFields component
@@ -26,7 +26,7 @@ export default function FormAddApi() {
       label: "API Name",
       type: "text",
       placeholder: "API Name as you want to see it in the directory",
-      required: true
+      required: true,
     },
     {
       name: "logo",
@@ -34,8 +34,8 @@ export default function FormAddApi() {
       type: "url",
       placeholder: "URL to API logo (optional)",
       note: "Square SVG or PNG preferred. Will be displayed at 100x100px max.",
-      hintId: "logo-hint"
-    }
+      hintId: "logo-hint",
+    },
   ];
 
   const handleSubmit = async (e: FormEvent) => {
@@ -43,80 +43,91 @@ export default function FormAddApi() {
 
     try {
       const up = new URL(formData.url);
-      if (!up.pathname || up.pathname === '/') {
-        alert('Please specify a machine-readable API definition location, not a website root URL');
+      if (!up.pathname || up.pathname === "/") {
+        alert(
+          "Please specify a machine-readable API definition location, not a website root URL",
+        );
         return false;
       }
-      if (up.pathname.endsWith('.html')) {
-        alert('Please specify a machine-readable API definition location, not an html page');
+      if (up.pathname.endsWith(".html")) {
+        alert(
+          "Please specify a machine-readable API definition location, not an html page",
+        );
         return false;
       }
-      if ((up.hostname.indexOf('localhost') >= 0) || (up.hostname.indexOf('127.0.0.1') >= 0)) {
-        alert('Please specify a non-localhost URL');
+      if (
+        up.hostname.indexOf("localhost") >= 0 ||
+        up.hostname.indexOf("127.0.0.1") >= 0
+      ) {
+        alert("Please specify a non-localhost URL");
         return false;
       }
-    }
-    catch (ex) {
+    } catch (ex) {
       alert((ex as Error).message);
       return false;
     }
 
     try {
-      const res = await fetch(`https://cors.redoc.ly/${formData.url}`,
-        { method: 'get', headers: { 'Origin': 'https://apis.guru', 'Accept': 'application/json' } });
-      const ct = res.headers.get('content-type');
+      const res = await fetch(`https://cors.redoc.ly/${formData.url}`, {
+        method: "get",
+        headers: { Origin: "https://apis.guru", Accept: "application/json" },
+      });
+      const ct = res.headers.get("content-type");
       if (res.status >= 400) {
         alert(`Error ${res.status} accessing that URL`);
         return false;
       }
-      if (res.ok && ct && ct.startsWith('text/html')) {
-        alert('That looks like a web-page, not a machine-readable API definition');
+      if (res.ok && ct && ct.startsWith("text/html")) {
+        alert(
+          "That looks like a web-page, not a machine-readable API definition",
+        );
         return false;
       }
-      if (res.ok && formData.url.endsWith('ai-plugin.json')) {
+      if (res.ok && formData.url.endsWith("ai-plugin.json")) {
         const content = await res.json();
         console.log(content);
-        setFormData(prev => ({
+        setFormData((prev) => ({
           ...prev,
           name: content.name_for_human,
-          category: 'machine_learning',
+          category: "machine_learning",
           logo: content.logo_url,
-          url: content.api.url
+          url: content.api.url,
         }));
-        alert('AI Plugin detected, please select Add API again');
+        alert("AI Plugin detected, please select Add API again");
         return false;
       }
-    }
-    catch (ex) {
+    } catch (ex) {
       console.log((ex as Error).message);
     }
 
     // Build GitHub issue URL
     const details = {
-      format: formData['spec-format'],
+      format: formData["spec-format"],
       official: formData.official,
       url: formData.url,
       name: formData.name,
       category: formData.category,
-      logo: formData.logo
+      logo: formData.logo,
     };
 
-    let body = '';
+    let body = "";
     for (const [key, value] of Object.entries(details)) {
       body += `**${capitalizeFirstLetter(key)}**: ${value}\n`;
     }
 
     const issueUrl = `https://github.com/APIs-guru/openapi-directory/issues/new?labels=add%20API&title=Add "${encodeURIComponent(details.name)}" API&body=${encodeURIComponent(body)}`;
-    
+
     window.location.href = issueUrl;
     return false;
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -133,7 +144,11 @@ export default function FormAddApi() {
     >
       <FormDefinition onChange={handleInputChange} values={formData} />
       <FormOfficial onChange={handleInputChange} values={formData} />
-      <FormFields fields={apiFields} onChange={handleInputChange} values={formData} />
+      <FormFields
+        fields={apiFields}
+        onChange={handleInputChange}
+        values={formData}
+      />
       <FormCategory onChange={handleInputChange} values={formData} />
       <div>
         <Button type="submit" className="w-full text-lg py-6" variant="cta">
