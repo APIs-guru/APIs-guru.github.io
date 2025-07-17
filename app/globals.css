@@ -5,25 +5,28 @@
 @custom-variant dark (&:is(.dark *));
 
 @font-face {
-  font-family: 'Sansation';
-  src: url('/fonts/Sansation-Regular-webfont.woff2') format('woff2'),
-       url('/fonts/Sansation-Regular-webfont.woff') format('woff');
+  font-family: "Sansation";
+  src:
+    url("/fonts/Sansation-Regular-webfont.woff2") format("woff2"),
+    url("/fonts/Sansation-Regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Sansation';
-  src: url('/fonts/Sansation-Bold-webfont.woff2') format('woff2'),
-       url('/fonts/Sansation-Bold-webfont.woff') format('woff');
+  font-family: "Sansation";
+  src:
+    url("/fonts/Sansation-Bold-webfont.woff2") format("woff2"),
+    url("/fonts/Sansation-Bold-webfont.woff") format("woff");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Sansation';
-  src: url('/fonts/Sansation-Light-webfont.woff2') format('woff2'),
-       url('/fonts/Sansation-Light-webfont.woff') format('woff');
+  font-family: "Sansation";
+  src:
+    url("/fonts/Sansation-Light-webfont.woff2") format("woff2"),
+    url("/fonts/Sansation-Light-webfont.woff") format("woff");
   font-weight: 200;
   font-style: normal;
 }
@@ -83,36 +86,36 @@
   --card-foreground: #333333;
   --popover: #ffffff;
   --popover-foreground: #333333;
-  --primary: #F5C01B;
+  --primary: #f5c01b;
   --primary-foreground: #ffffff;
-  --secondary: #48ACBD;
+  --secondary: #48acbd;
   --secondary-foreground: #ffffff;
   --muted: #f1f1f1;
   --muted-foreground: #666666;
-  --accent: #F7D16F;
+  --accent: #f7d16f;
   --accent-foreground: #333333;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #dddddd;
   --input: #dddddd;
-  --ring: #F5C01B;
-  --chart-1: #F5C01B;
-  --chart-2: #F7D16F;
-  --chart-3: #F39925;
-  --chart-4: #48ACBD;
-  --chart-5: #9DD4E1;
+  --ring: #f5c01b;
+  --chart-1: #f5c01b;
+  --chart-2: #f7d16f;
+  --chart-3: #f39925;
+  --chart-4: #48acbd;
+  --chart-5: #9dd4e1;
   --sidebar: #ffffff;
   --sidebar-foreground: #333333;
-  --sidebar-primary: #F5C01B;
+  --sidebar-primary: #f5c01b;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #F7D16F;
+  --sidebar-accent: #f7d16f;
   --sidebar-accent-foreground: #333333;
   --sidebar-border: #dddddd;
-  --sidebar-ring: #F5C01B;
-  --brand: #F5C01B;
-  --brand-light: #F7D16F;
-  --brand-dark: #F39925;
-  --sec: #48ACBD;
-  --sec-light: #9DD4E1;
+  --sidebar-ring: #f5c01b;
+  --brand: #f5c01b;
+  --brand-light: #f7d16f;
+  --brand-dark: #f39925;
+  --sec: #48acbd;
+  --sec-light: #9dd4e1;
 }
 
 .dark {
@@ -122,36 +125,36 @@
   --card-foreground: #ffffff;
   --popover: #222222;
   --popover-foreground: #ffffff;
-  --primary: #F7D16F;
+  --primary: #f7d16f;
   --primary-foreground: #333333;
-  --secondary: #48ACBD;
+  --secondary: #48acbd;
   --secondary-foreground: #ffffff;
   --muted: #333333;
   --muted-foreground: #999999;
-  --accent: #F5C01B;
+  --accent: #f5c01b;
   --accent-foreground: #ffffff;
   --destructive: oklch(0.704 0.191 22.216);
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.15);
-  --ring: #F7D16F;
-  --chart-1: #F7D16F;
-  --chart-2: #F5C01B;
-  --chart-3: #F39925;
-  --chart-4: #48ACBD;
-  --chart-5: #9DD4E1;
+  --ring: #f7d16f;
+  --chart-1: #f7d16f;
+  --chart-2: #f5c01b;
+  --chart-3: #f39925;
+  --chart-4: #48acbd;
+  --chart-5: #9dd4e1;
   --sidebar: #222222;
   --sidebar-foreground: #ffffff;
-  --sidebar-primary: #F7D16F;
+  --sidebar-primary: #f7d16f;
   --sidebar-primary-foreground: #333333;
   --sidebar-accent: #333333;
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #F7D16F;
-  --brand: #F5C01B;
-  --brand-light: #F7D16F;
-  --brand-dark: #F39925;
-  --sec: #48ACBD;
-  --sec-light: #9DD4E1;
+  --sidebar-ring: #f7d16f;
+  --brand: #f5c01b;
+  --brand-light: #f7d16f;
+  --brand-dark: #f39925;
+  --sec: #48acbd;
+  --sec-light: #9dd4e1;
 }
 
 @layer base {
@@ -168,5 +171,4 @@
   .text-sm {
     font-size: var(--small-font-size, 14px);
   }
-
 }

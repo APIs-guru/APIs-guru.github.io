@@ -25,7 +25,7 @@ export function useInfiniteScroll({
       {
         threshold: 0.1,
         rootMargin: "100px",
-      }
+      },
     );
 
     if (observerRef.current) {

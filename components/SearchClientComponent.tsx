@@ -57,7 +57,7 @@ function SearchClientComponentInner({
 
         // Fetch metrics
         const apiMetricsResponse = await fetch(
-          "https://api.apis.guru/v2/metrics.json"
+          "https://api.apis.guru/v2/metrics.json",
         );
         const metrics = await apiMetricsResponse.json();
         setApiMetrics(metrics);
@@ -103,7 +103,7 @@ function SearchClientComponentInner({
   useEffect(() => {
     Object.entries(repoStarCounts).forEach(([name, stars]) => {
       const elements = document.querySelectorAll(
-        `[data-proj="${name}"].stars-count`
+        `[data-proj="${name}"].stars-count`,
       );
       elements.forEach((el) => {
         if (el) el.textContent = stars.toString();
@@ -134,8 +134,6 @@ function SearchClientComponentInner({
           searchTerm={searchTerm}
           apiCount={apiMetrics.numAPIs}
           onSearchChange={handleSearch}
-          
-       
         />
 
         <ApiGrid

@@ -23,10 +23,10 @@ export default function ApiCard({ model }: { model: ApiCardModel }) {
               model.classes.includes("flash-green")
                 ? "bg-[#2c7]"
                 : model.classes.includes("flash-yellow")
-                ? "bg-[#fed16e]"
-                : model.classes.includes("flash-red")
-                ? "bg-red-500"
-                : ""
+                  ? "bg-[#fed16e]"
+                  : model.classes.includes("flash-red")
+                    ? "bg-red-500"
+                    : ""
             }`}
             title={model.flashTitle}
           >

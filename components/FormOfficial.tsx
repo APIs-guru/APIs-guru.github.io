@@ -15,10 +15,7 @@ interface FormOfficialProps {
   };
 }
 
-export default function FormOfficial({
-  onChange,
-  values,
-}: FormOfficialProps) {
+export default function FormOfficial({ onChange, values }: FormOfficialProps) {
   const options = [
     { label: "Yes, by API owner", value: "true" },
     { label: "No, 3rd party", value: "false", checked: true },
@@ -26,7 +23,7 @@ export default function FormOfficial({
 
   const handleRadioChange = (value: string) => {
     const syntheticEvent = {
-      target: { name: 'official', value }
+      target: { name: "official", value },
     } as React.ChangeEvent<HTMLInputElement>;
     onChange(syntheticEvent);
   };
@@ -38,8 +35,8 @@ export default function FormOfficial({
         <Label htmlFor="official" className="font-medium block mb-2">
           Is the definition official? <span className="text-red-500">*</span>
         </Label>
-        <RadioGroup 
-          value={values.official} 
+        <RadioGroup
+          value={values.official}
           onValueChange={handleRadioChange}
           className="flex flex-wrap gap-6"
         >

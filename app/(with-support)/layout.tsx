@@ -2,8 +2,6 @@ import { Geist, Geist_Mono, Roboto } from "next/font/google";
 
 import Support from "@/components/Support";
 
-
-
 export default function RootLayout({
   children,
 }: {
@@ -11,11 +9,8 @@ export default function RootLayout({
 }) {
   return (
     <>
-      
-        <Support />
-        {children}
-     
-       
-        </>
+      <Support />
+      {children}
+    </>
   );
 }

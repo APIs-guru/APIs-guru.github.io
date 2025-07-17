@@ -16,12 +16,12 @@ export function useApiSearch(initialSearchTerm: string, pageSize: number) {
       const cleanedCard = { ...card };
       if (cleanedCard.cardDescription) {
         cleanedCard.cardDescription = cleanDescription(
-          cleanedCard.cardDescription
+          cleanedCard.cardDescription,
         );
       }
       if (cleanedCard.markedDescription) {
         cleanedCard.markedDescription = cleanDescription(
-          cleanedCard.markedDescription
+          cleanedCard.markedDescription,
         );
       }
       return cleanedCard;
@@ -36,7 +36,7 @@ export function useApiSearch(initialSearchTerm: string, pageSize: number) {
       const response = await fetchApisInfinite(
         currentPage + 1,
         searchTerm,
-        pageSize
+        pageSize,
       );
 
       if (response.apis.length > 0) {
@@ -76,14 +76,14 @@ export function useApiSearch(initialSearchTerm: string, pageSize: number) {
         setLoading(false);
       }
     },
-    [pageSize, cleanApiData]
+    [pageSize, cleanApiData],
   );
 
   const searchApis = useCallback(
     async (term: string) => {
       await resetSearch(term);
     },
-    [resetSearch]
+    [resetSearch],
   );
 
   return {
