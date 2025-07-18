@@ -15,47 +15,42 @@ interface FormOfficialProps {
   };
 }
 
-export default function FormOfficial({ onChange, values }: FormOfficialProps) {
-  const options = [
+export function FormOfficial({ onChange, values }: FormOfficialProps) {
+  const options: OfficialOption[] = [
     { label: "Yes, by API owner", value: "true" },
-    { label: "No, 3rd party", value: "false", checked: true },
+    { label: "No, 3rd party", value: "false" },
   ];
 
   const handleRadioChange = (value: string) => {
-    const syntheticEvent = {
-      target: { name: "official", value },
-    } as React.ChangeEvent<HTMLInputElement>;
+    const syntheticEvent = { target: { name: "official", value } } as React.ChangeEvent<HTMLInputElement>;
     onChange(syntheticEvent);
   };
 
   return (
-    <div className="mb-6">
-      <h2 className="text-xl font-semibold mb-3">API Source</h2>
-      <div>
-        <Label htmlFor="official" className="font-medium block mb-2">
+    <div className="space-y-4 rounded-lg border border-gray-200 p-6">
+      <h2 className="text-xl font-semibold text-gray-900">API Source</h2>
+      <div className="space-y-3">
+        <Label className="text-base font-medium text-gray-700">
           Is the definition official? <span className="text-red-500">*</span>
         </Label>
         <RadioGroup
           value={values.official}
           onValueChange={handleRadioChange}
-          className="flex flex-wrap gap-6"
+          className="flex flex-col gap-3 md:flex-row md:gap-6"
         >
-          {options.map((off) => (
-            <div key={off.value} className="relative flex items-center gap-3">
+          {options.map((option) => (
+            <div key={option.value} className="flex items-center space-x-3">
               <RadioGroupItem
-                value={off.value}
-                id={`official-${off.value}`}
-                className="w-5 h-5 rounded-full border-2 border-gray-300 bg-gray-100 
-                  data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600
-                  hover:bg-gray-200 hover:border-blue-600
-                  focus:bg-gray-200 focus:border-blue-600"
+                value={option.value}
+                id={`official-${option.value}`}
+                className="h-5 w-5 rounded-full border-2 border-gray-300 data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600"
               />
-              <label
-                htmlFor={`official-${off.value}`}
-                className="font-medium text-gray-600 hover:text-gray-900 cursor-pointer"
+              <Label
+                htmlFor={`official-${option.value}`}
+                className="text-base text-gray-700 hover:text-gray-900"
               >
-                {off.label}
-              </label>
+                {option.label}
+              </Label>
             </div>
           ))}
         </RadioGroup>

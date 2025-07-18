@@ -8,7 +8,6 @@ export const metadata = {
   description: "Learn more about the APIs.guru project and its contributors",
 };
 
-// SVG Components can be imported from separate files in a real implementation
 const NumberRomb = () => (
   <svg viewBox="0 0 100 100" className="number-romb-svg">
     <rect
@@ -24,7 +23,6 @@ const NumberRomb = () => (
   </svg>
 );
 
-// Fetch metrics on the server
 async function getMetrics() {
   try {
     const response = await fetch("https://api.apis.guru/v2/metrics.json", {
@@ -34,12 +32,11 @@ async function getMetrics() {
     return response.json();
   } catch (error) {
     console.error("Error fetching metrics:", error);
-    return { numAPIs: 2232, numEndpoints: 75747 }; // Fallback values
+    return { numAPIs: 2232, numEndpoints: 75747 };
   }
 }
 
 export default async function AboutPage() {
-  // Fetch metrics on the server
   const metrics = await getMetrics();
 
   return (
@@ -126,7 +123,7 @@ export default async function AboutPage() {
 
           {/* Main connecting line from lightbulb */}
           <div className="relative max-w-2xl mx-auto">
-            <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-400 transform -translate-x-px"></div>
+            <div className="absolute max-lg:hidden left-1/2 top-0 bottom-0 w-0.5 bg-gray-400 transform -translate-x-px"></div>
 
             <div className="activities-row flex flex-col lg:flex-row relative">
               <div className="activities-column w-full lg:w-1/2 lg:pr-8">

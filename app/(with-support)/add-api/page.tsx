@@ -3,17 +3,19 @@ import FormAddApi from "@/components/FormAddApi";
 
 export default function AddApiPage() {
   return (
-    <div className="container mx-auto py-10">
-      <h1 className="text-5xl font-bold mb-8 text-center">Add API</h1>
+    <div className="container mx-auto px-4 py-6 md:py-10">
+      <h1 className="text-3xl md:text-5xl font-bold mb-6 md:mb-8 text-center">
+        Add API
+      </h1>
 
-      <div className="description mb-8 max-w-2xl mx-auto text-gray-700 text-lg">
-        <p className="mb-6">
+      <div className="description mb-6 md:mb-8 max-w-2xl mx-auto text-gray-700 text-base md:text-lg">
+        <p className="mb-4 md:mb-6">
           This page helps you submit your API into the APIs.guru directory. The
           most important requirement is the presence of a machine-readable API
           definition in one of the popular formats, such as: OpenAPI (formerly
           known as Swagger), RAML, API Blueprint, etc.
         </p>
-        <p className="mb-6">
+        <p className="mb-4 md:mb-6">
           <strong>Important note:</strong> we only aggregate API definitions,
           not host them. So please, provide us with a stable URL to the
           definition. We will use it to keep your definition up to date: see our{" "}
@@ -27,11 +29,11 @@ export default function AddApiPage() {
         </p>
         <p>
           <strong>Note:</strong> If you enter a{" "}
-          <code className="bg-gray-100 px-1.5 py-0.5 rounded text-base">
+          <code className="bg-gray-100 px-1 py-0.5 rounded text-xs md:text-base">
             .well-known/ai-plugin.json
           </code>{" "}
           URL in the{" "}
-          <code className="bg-gray-100 px-1.5 py-0.5 rounded text-base">
+          <code className="bg-gray-100 px-1 py-0.5 rounded text-xs md:text-base">
             URL
           </code>{" "}
           field, the linked OpenAPI definition will be looked up and the name

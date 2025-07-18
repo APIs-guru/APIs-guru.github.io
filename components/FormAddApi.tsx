@@ -3,11 +3,12 @@
 import React, { FormEvent, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import FormCategory from "./FormCategory";
-import FormFields from "./FormFields";
+
 import FormDefinition from "./FormDefinition";
-import FormOfficial from "./FormOfficial";
-import { FormField } from "./FormFields";
+
+import { FormField, FormFields } from "./FormFields";
+import { FormOfficial } from "./FormOfficial";
+import { FormCategory } from "./FormCategory";
 
 export default function FormAddApi() {
   const [formData, setFormData] = useState({
@@ -45,13 +46,13 @@ export default function FormAddApi() {
       const up = new URL(formData.url);
       if (!up.pathname || up.pathname === "/") {
         alert(
-          "Please specify a machine-readable API definition location, not a website root URL",
+          "Please specify a machine-readable API definition location, not a website root URL"
         );
         return false;
       }
       if (up.pathname.endsWith(".html")) {
         alert(
-          "Please specify a machine-readable API definition location, not an html page",
+          "Please specify a machine-readable API definition location, not an html page"
         );
         return false;
       }
@@ -79,7 +80,7 @@ export default function FormAddApi() {
       }
       if (res.ok && ct && ct.startsWith("text/html")) {
         alert(
-          "That looks like a web-page, not a machine-readable API definition",
+          "That looks like a web-page, not a machine-readable API definition"
         );
         return false;
       }
@@ -122,7 +123,7 @@ export default function FormAddApi() {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -139,7 +140,7 @@ export default function FormAddApi() {
   return (
     <form
       id="add_api_form"
-      className="space-y-8 bg-white rounded-lg shadow p-8 max-w-2xl mx-auto text-lg"
+      className="space-y-8 bg-white rounded-lg shadow p-4 md:p-8 max-w-2xl mx-auto text-base md:text-lg"
       onSubmit={handleSubmit}
     >
       <FormDefinition onChange={handleInputChange} values={formData} />
@@ -151,7 +152,11 @@ export default function FormAddApi() {
       />
       <FormCategory onChange={handleInputChange} values={formData} />
       <div>
-        <Button type="submit" className="w-full text-lg py-6" variant="cta">
+        <Button
+          type="submit"
+          className="w-full text-base md:text-lg py-4 md:py-6"
+          variant="cta"
+        >
           Add API
         </Button>
       </div>
