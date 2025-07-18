@@ -167,6 +167,25 @@
     font-size: 16px;
     line-height: 1.5;
   }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: "Sansation", Helvetica, Arial, sans-serif;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-feature-settings:
+      "kern" 1,
+      "liga" off;
+    font-feature-settings:
+      "kern" 1,
+      "liga" off;
+    font-kerning: normal;
+    width: 100%;
+    height: 100%;
+  }
   /* Ensure small text matches SCSS small-font-size */
   .text-sm {
     font-size: var(--small-font-size, 14px);

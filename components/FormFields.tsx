@@ -1,63 +1,54 @@
-import React, { ChangeEvent } from "react";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 export type FormField = {
   name: string;
   label: string;
   type: string;
-  note?: string;
-  hintId?: string;
   placeholder?: string;
   required?: boolean;
-  error?: string;
+  note?: string;
+  hintId?: string;
 };
 
-type FormFieldsProps = {
-  fields?: FormField[];
-  onChange?: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
-  values?: Record<string, string>;
-};
+interface FormFieldsProps {
+  fields: FormField[];
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  values: { [key: string]: string };
+}
 
-export default function FormFields({
-  fields = [],
-  onChange,
-  values = {},
-}: FormFieldsProps) {
+export function FormFields({ fields, onChange, values }: FormFieldsProps) {
   return (
-    <>
-      {fields.map((field) => (
-        <div className="space-y-1" key={field.name}>
-          <label
-            htmlFor={field.name}
-            className={
-              field.required
-                ? "font-semibold text-sm text-gray-700"
-                : "text-sm text-gray-700"
-            }
-          >
-            {field.label}
-            {field.required && <span className="text-red-500 ml-1">*</span>}
-          </label>
-          {field.note && (
-            <p className="text-xs text-gray-500" id={field.hintId}>
-              {field.note}
-              {field.error && (
-                <span className="text-red-500 ml-2">{field.error}</span>
-              )}
-            </p>
-          )}
-          <input
-            name={field.name}
-            id={field.name}
-            type={field.type}
-            aria-describedby={field.note ? field.hintId : undefined}
-            placeholder={field.placeholder}
-            required={field.required}
-            value={values[field.name] || ""}
-            onChange={onChange}
-            className="block w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 bg-white"
-          />
-        </div>
-      ))}
-    </>
+    <div className="space-y-4 rounded-lg border border-gray-200 p-6">
+      <h2 className="text-xl font-semibold text-gray-900">API Details</h2>
+      <div className="space-y-4">
+        {fields.map((field) => (
+          <div key={field.name} className="space-y-3">
+            <Label
+              htmlFor={field.name}
+              className="text-base font-medium text-gray-700"
+            >
+              {field.label}{" "}
+              {field.required && <span className="text-red-500">*</span>}
+            </Label>
+            {field.note && (
+              <p id={field.hintId} className="text-sm text-gray-500">
+                {field.note}
+              </p>
+            )}
+            <Input
+              id={field.name}
+              name={field.name}
+              type={field.type}
+              placeholder={field.placeholder}
+              required={field.required}
+              value={values[field.name]}
+              onChange={onChange}
+              className="w-full rounded-md border-gray-300 text-base"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

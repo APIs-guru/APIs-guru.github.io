@@ -1,6 +1,19 @@
+"use client";
+
 import React from "react";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Button } from "@/components/ui/button";
 
+// FormCategory Component
 interface FormCategoryProps {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   values: {
@@ -8,7 +21,7 @@ interface FormCategoryProps {
   };
 }
 
-export default function FormCategory({ onChange, values }: FormCategoryProps) {
+export function FormCategory({ onChange, values }: FormCategoryProps) {
   const categories = [
     { value: "ai", name: "Artificial Intelligence" },
     { value: "analytics", name: "Analytics" },
@@ -58,32 +71,39 @@ export default function FormCategory({ onChange, values }: FormCategoryProps) {
   ];
 
   return (
-    <div>
-      <h2 className="text-xl font-semibold mb-3">API Metadata</h2>
-      <div className="space-y-4">
-        <div>
-          <Label htmlFor="category" className="font-medium">
-            Category <span className="text-red-500">*</span>
-          </Label>
-          <p className="text-sm text-gray-500 mb-1">
-            Choose a category that best describes your API
-          </p>
-          <select
-            id="category"
-            name="category"
-            className="w-full border border-gray-300 rounded p-2"
-            value={values.category}
-            onChange={onChange}
-            required
-          >
-            <option value=""></option>
+    <div className="space-y-4 rounded-lg border border-gray-200 p-6">
+      <h2 className="text-xl font-semibold text-gray-900">API Metadata</h2>
+      <div className="space-y-3">
+        <Label
+          htmlFor="category"
+          className="text-base font-medium text-gray-700"
+        >
+          Category <span className="text-red-500">*</span>
+        </Label>
+        <p className="text-sm text-gray-500">
+          Choose a category that best describes your API
+        </p>
+        <Select
+          name="category"
+          value={values.category}
+          onValueChange={(value) => {
+            const syntheticEvent = {
+              target: { name: "category", value },
+            } as React.ChangeEvent<HTMLSelectElement>;
+            onChange(syntheticEvent);
+          }}
+        >
+          <SelectTrigger className="w-full rounded-md border-gray-300 text-base">
+            <SelectValue placeholder="Select a category" />
+          </SelectTrigger>
+          <SelectContent>
             {categories.map((cat) => (
-              <option key={cat.value} value={cat.value}>
+              <SelectItem key={cat.value} value={cat.value}>
                 {cat.name}
-              </option>
+              </SelectItem>
             ))}
-          </select>
-        </div>
+          </SelectContent>
+        </Select>
       </div>
     </div>
   );

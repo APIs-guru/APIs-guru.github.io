@@ -5,7 +5,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 interface FormDefinitionProps {
   onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
   values: {
     url: string;
@@ -48,7 +48,7 @@ export default function FormDefinition({
 
   return (
     <div className="mb-6">
-      <h2 className="text-xl font-semibold mb-3">API Definition</h2>
+      <h2 className="text-lg md:text-xl font-semibold mb-3">API Definition</h2>
       <div className="space-y-5">
         <div>
           <Label htmlFor="url" className="font-medium block mb-2">
@@ -61,6 +61,7 @@ export default function FormDefinition({
             required
             value={values.url}
             onChange={onChange}
+            className="text-base md:text-lg"
           />
         </div>
 
@@ -71,7 +72,7 @@ export default function FormDefinition({
           <RadioGroup
             value={values["spec-format"]}
             onValueChange={handleRadioChange}
-            className="grid grid-cols-2 gap-y-3 gap-x-4"
+            className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-4"
           >
             {formatOptions.map((format) => (
               <div key={format.name} className="relative flex items-center">
@@ -85,7 +86,7 @@ export default function FormDefinition({
                 />
                 <label
                   htmlFor={`format-${format.name}`}
-                  className="ml-3 text-gray-600 hover:text-gray-900 cursor-pointer flex items-center"
+                  className="ml-3 text-gray-600 hover:text-gray-900 cursor-pointer flex items-center text-base md:text-lg"
                 >
                   {format.label}{" "}
                   <a
