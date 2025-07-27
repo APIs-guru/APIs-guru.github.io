@@ -29,7 +29,7 @@ export default function ApiDocPage() {
         options={{
           nativeScrollbars: true,
 
-          scrollYOffset: "#menu",
+          scrollYOffset: 56,
         }}
       />
     </div>

@@ -11,11 +11,15 @@ interface FormDefinitionProps {
     url: string;
     "spec-format": string;
   };
+  urlRef?: React.RefObject<HTMLInputElement | null>;
+  error?: string;
 }
 
 export default function FormDefinition({
   onChange,
   values,
+  urlRef,
+  error,
 }: FormDefinitionProps) {
   const formatOptions = [
     {
@@ -61,8 +65,10 @@ export default function FormDefinition({
             required
             value={values.url}
             onChange={onChange}
-            className="text-base md:text-lg"
+            className={`text-base md:text-lg ${error ? "border-red-500" : ""}`}
+            ref={urlRef}
           />
+          {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
         </div>
 
         <div>
