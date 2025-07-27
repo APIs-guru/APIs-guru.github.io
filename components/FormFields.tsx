@@ -1,5 +1,6 @@
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
+import React from "react";
 
 export type FormField = {
   name: string;
@@ -15,9 +16,17 @@ interface FormFieldsProps {
   fields: FormField[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   values: { [key: string]: string };
+  nameRef?: React.RefObject<HTMLInputElement | null>;
+  errors?: Record<string, string>;
 }
 
-export function FormFields({ fields, onChange, values }: FormFieldsProps) {
+export function FormFields({
+  fields,
+  onChange,
+  values,
+  nameRef,
+  errors = {},
+}: FormFieldsProps) {
   return (
     <div className="space-y-4 rounded-lg border border-gray-200 p-6">
       <h2 className="text-xl font-semibold text-gray-900">API Details</h2>
@@ -44,8 +53,12 @@ export function FormFields({ fields, onChange, values }: FormFieldsProps) {
               required={field.required}
               value={values[field.name]}
               onChange={onChange}
-              className="w-full rounded-md border-gray-300 text-base"
+              className={`w-full rounded-md border-gray-300 text-base ${errors[field.name] ? "border-red-500" : ""}`}
+              ref={field.name === "name" ? nameRef : undefined}
             />
+            {errors[field.name] && (
+              <p className="mt-1 text-sm text-red-500">{errors[field.name]}</p>
+            )}
           </div>
         ))}
       </div>

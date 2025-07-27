@@ -19,9 +19,16 @@ interface FormCategoryProps {
   values: {
     category: string;
   };
+  categoryRef?: React.RefObject<HTMLDivElement | null>;
+  error?: string;
 }
 
-export function FormCategory({ onChange, values }: FormCategoryProps) {
+export function FormCategory({
+  onChange,
+  values,
+  categoryRef,
+  error,
+}: FormCategoryProps) {
   const categories = [
     { value: "ai", name: "Artificial Intelligence" },
     { value: "analytics", name: "Analytics" },
@@ -71,7 +78,10 @@ export function FormCategory({ onChange, values }: FormCategoryProps) {
   ];
 
   return (
-    <div className="space-y-4 rounded-lg border border-gray-200 p-6">
+    <div
+      className="space-y-4 rounded-lg border border-gray-200 p-6"
+      ref={categoryRef}
+    >
       <h2 className="text-xl font-semibold text-gray-900">API Metadata</h2>
       <div className="space-y-3">
         <Label
@@ -93,7 +103,9 @@ export function FormCategory({ onChange, values }: FormCategoryProps) {
             onChange(syntheticEvent);
           }}
         >
-          <SelectTrigger className="w-full rounded-md border-gray-300 text-base">
+          <SelectTrigger
+            className={`w-full rounded-md border-gray-300 text-base ${error ? "border-red-500" : ""}`}
+          >
             <SelectValue placeholder="Select a category" />
           </SelectTrigger>
           <SelectContent>
@@ -104,6 +116,7 @@ export function FormCategory({ onChange, values }: FormCategoryProps) {
             ))}
           </SelectContent>
         </Select>
+        {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
       </div>
     </div>
   );

@@ -251,7 +251,7 @@ export default async function AboutPage() {
         </section>
 
         <section className=" text-center mb-16">
-          <Link href="/browse-apis/">
+          <Link href="/">
             <Button variant={"cta"} className="text-lg font-semibold">
               Browse APIs
             </Button>

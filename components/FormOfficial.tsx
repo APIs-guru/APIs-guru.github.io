@@ -13,16 +13,19 @@ interface FormOfficialProps {
   values: {
     official: string;
   };
+  error?: string; // Add the error property
 }
 
-export function FormOfficial({ onChange, values }: FormOfficialProps) {
+export function FormOfficial({ onChange, values, error }: FormOfficialProps) {
   const options: OfficialOption[] = [
     { label: "Yes, by API owner", value: "true" },
     { label: "No, 3rd party", value: "false" },
   ];
 
   const handleRadioChange = (value: string) => {
-    const syntheticEvent = { target: { name: "official", value } } as React.ChangeEvent<HTMLInputElement>;
+    const syntheticEvent = {
+      target: { name: "official", value },
+    } as React.ChangeEvent<HTMLInputElement>;
     onChange(syntheticEvent);
   };
 
@@ -54,6 +57,7 @@ export function FormOfficial({ onChange, values }: FormOfficialProps) {
             </div>
           ))}
         </RadioGroup>
+        {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
       </div>
     </div>
   );
