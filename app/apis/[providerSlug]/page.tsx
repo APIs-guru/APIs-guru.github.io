@@ -82,7 +82,7 @@ export default async function ProviderPage({
   const services = apis.filter((api) => api.serviceName);
   if (services.length > 0) {
     return (
-      <div className="container mx-auto px-4 py-4 relative h-screen">
+      <div className=" mx-auto px-4  relative">
         <SearchClientComponent
           repoStarCounts={{}}
           providerSlug={providerSlug}
