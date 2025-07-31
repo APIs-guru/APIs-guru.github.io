@@ -22,10 +22,8 @@ function getProviderApis(providerSlug: string): Api[] {
   for (const key in apiList) {
     if (Object.prototype.hasOwnProperty.call(apiList, key)) {
       const [provider, service] = key.split(":");
-      const normalizedProviderSlug = provider
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, "");
+      const normalizedProviderSlug = provider.toLowerCase();
+
       if (normalizedProviderSlug === providerSlug) {
         const api = apiList[key];
         const preferred =
@@ -62,10 +60,8 @@ export function generateStaticParams() {
         console.warn(`Invalid key format: ${key}`);
         continue;
       }
-      const providerSlug = provider
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, "");
+      const providerSlug = provider.toLowerCase();
+
       providerSlugs.add(providerSlug);
     }
   }
@@ -82,20 +78,6 @@ export default async function ProviderPage({
 }) {
   const { providerSlug } = await params;
   const apis = getProviderApis(providerSlug);
-
-  if (apis.length === 0) {
-    return (
-      <div className="container mx-auto p-6 max-w-4xl">
-        <Link
-          href="/"
-          className="text-[#388c9a] hover:underline mb-4 inline-block"
-        >
-          ← Back to APIs
-        </Link>
-        <div>Provider not found</div>
-      </div>
-    );
-  }
 
   const services = apis.filter((api) => api.serviceName);
   if (services.length > 0) {

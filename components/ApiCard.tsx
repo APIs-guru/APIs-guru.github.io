@@ -7,16 +7,10 @@ import Image from "next/image";
 export default function ApiCard({ model }: { model: ApiCardModel }) {
   const [provider, service] = model.name.split(":");
 
-  const providerSlug = provider
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+  const providerSlug = provider.toLowerCase();
 
   const href = service
-    ? `/apis/${providerSlug}/${service
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, "")}`
+    ? `/apis/${providerSlug}/${service.toLowerCase()}`
     : `/apis/${providerSlug}`;
 
   return (

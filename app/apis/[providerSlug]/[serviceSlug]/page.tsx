@@ -29,10 +29,10 @@ export function getData(
   serviceSlug?: string | null
 ): any | null {
   const apiList = list as Record<string, any>;
-  const normalizedProvider = providerSlug.replace(/-/g, ".");
+
   const targetKey = serviceSlug
-    ? `${normalizedProvider}:${serviceSlug}`
-    : normalizedProvider;
+    ? `${providerSlug}:${serviceSlug}`
+    : providerSlug;
 
   for (const key in apiList) {
     if (apiList.hasOwnProperty(key) && key === targetKey) {
@@ -121,13 +121,11 @@ export async function generateStaticParams() {
       const [provider, service] = key.split(":");
       const providerSlug = provider
         .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, "");
+    
       const serviceSlug = service
         ? service
             .toLowerCase()
-            .replace(/[^a-z0-9]+/g, "-")
-            .replace(/(^-|-$)/g, "")
+          
         : providerSlug;
 
       params.push({
