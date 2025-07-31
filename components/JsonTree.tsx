@@ -1,7 +1,7 @@
 "use client";
 
 import { JSONTree } from "react-json-tree";
-import { ReactNode } from "react";
+import { ReactNode, useState, useEffect } from "react";
 
 // Define the theme for JSONTree
 const theme = {
@@ -47,9 +47,51 @@ export function JsonTree({ jsonData }: { jsonData: any }) {
           <span className="text-[#f8f8f2] font-semibold">{key}</span>
         )}
         valueRenderer={(raw: unknown): ReactNode => (
-          <span className="text-[#a6e22e] ">{String(raw)}</span>
+          <span className="text-[#a6e22e]">{String(raw)}</span>
         )}
       />
     </div>
   );
+}
+
+export default function JsonTreeContainer({
+  swaggerUrl,
+}: {
+  swaggerUrl: string;
+}) {
+  const [jsonData, setJsonData] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchJson() {
+      if (!swaggerUrl) {
+        setError("No Swagger URL available");
+        return;
+      }
+
+      try {
+        const response = await fetch(swaggerUrl, {
+          cache: "force-cache",
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch OpenAPI JSON");
+        }
+
+        const data = await response.json();
+        setJsonData(data);
+      } catch (err) {
+        console.error("Error fetching OpenAPI JSON:", err);
+        setError("Unable to load OpenAPI JSON");
+      }
+    }
+
+    fetchJson();
+  }, [swaggerUrl]);
+
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
+
+  return <JsonTree jsonData={jsonData} />;
 }

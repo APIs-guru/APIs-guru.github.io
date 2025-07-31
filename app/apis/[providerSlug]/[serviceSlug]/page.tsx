@@ -6,7 +6,7 @@ import { Metadata, ResolvingMetadata } from "next";
 import DescriptionSection from "../../../../components/DescriptionSection";
 import list from "../../../../list.json";
 import { Badge } from "@/components/ui/badge";
-import { JsonTree } from "@/components/JsonTree";
+import JsonTreeContainer, { JsonTree } from "@/components/JsonTree";
 import ApiButtons from "@/components/ApiButtons";
 
 interface ApiVersion {
@@ -196,26 +196,6 @@ export default async function ApiPage({
   const { providerSlug, serviceSlug } = await params;
   const api = getData(providerSlug, serviceSlug);
 
-  let jsonData: any = null;
-  let error: string | null = null;
-
-  if (api?.api.swaggerUrl) {
-    try {
-      const response = await fetch(api.api.swaggerUrl, {
-        cache: "force-cache",
-      });
-      if (!response.ok) {
-        throw new Error("Failed to fetch OpenAPI JSON");
-      }
-      jsonData = await response.json();
-    } catch (err) {
-      console.error("Error fetching OpenAPI JSON:", err);
-      error = "Unable to load OpenAPI JSON";
-    }
-  } else {
-    error = "No Swagger URL available";
-  }
-
   if (!api) {
     return (
       <div className="container mx-auto p-6 max-w-4xl">
@@ -307,11 +287,8 @@ export default async function ApiPage({
 
       <div className="mb-8">
         <h2 className="text-2xl font-bold mb-4">OpenAPI/Swagger JSON</h2>
-        {error ? (
-          <div className="text-red-500">{error}</div>
-        ) : (
-          <JsonTree jsonData={jsonData} />
-        )}
+
+        <JsonTreeContainer swaggerUrl={api.api.swaggerUrl} />
       </div>
 
       {api.versions && api.versions.length > 0 && (
