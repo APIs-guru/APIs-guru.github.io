@@ -5,15 +5,23 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function ApiCard({ model }: { model: ApiCardModel }) {
-  // Generate slug using the same logic as the detail page
-  const apiSlug = model.name
+  const [provider, service] = model.name.split(":");
+
+  const providerSlug = provider
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
+  const href = service
+    ? `/apis/${providerSlug}/${service
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "")}`
+    : `/apis/${providerSlug}`;
+
   return (
     <Link
-      href={`/apis/${apiSlug}`}
+      href={href}
       className="block hover:scale-105 transition-transform duration-200"
     >
       <Card className="flex flex-col text-center border border-[#388c9a] rounded-md bg-[#eee] overflow-hidden h-full cursor-pointer hover:shadow-lg transition-shadow duration-200">
