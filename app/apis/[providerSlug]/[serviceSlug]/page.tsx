@@ -5,6 +5,9 @@ import { marked } from "marked";
 import { Metadata, ResolvingMetadata } from "next";
 import DescriptionSection from "../../../../components/DescriptionSection";
 import list from "../../../../list.json";
+import { Badge } from "@/components/ui/badge";
+import { JsonTree } from "@/components/JsonTree";
+import ApiButtons from "@/components/ApiButtons";
 
 interface ApiVersion {
   version: string;
@@ -119,14 +122,8 @@ export async function generateStaticParams() {
   for (const key in apiList) {
     if (Object.prototype.hasOwnProperty.call(apiList, key)) {
       const [provider, service] = key.split(":");
-      const providerSlug = provider
-        .toLowerCase()
-    
-      const serviceSlug = service
-        ? service
-            .toLowerCase()
-          
-        : providerSlug;
+      const providerSlug = provider.toLowerCase();
+      const serviceSlug = service ? service.toLowerCase() : providerSlug;
 
       params.push({
         providerSlug,
@@ -135,7 +132,7 @@ export async function generateStaticParams() {
     }
   }
 
-  console.log("Generated static params:", params); // Debug output
+  console.log("Generated static params:", params);
   return params;
 }
 
@@ -199,6 +196,26 @@ export default async function ApiPage({
   const { providerSlug, serviceSlug } = await params;
   const api = getData(providerSlug, serviceSlug);
 
+  let jsonData: any = null;
+  let error: string | null = null;
+
+  if (api?.api.swaggerUrl) {
+    try {
+      const response = await fetch(api.api.swaggerUrl, {
+        cache: "force-cache",
+      });
+      if (!response.ok) {
+        throw new Error("Failed to fetch OpenAPI JSON");
+      }
+      jsonData = await response.json();
+    } catch (err) {
+      console.error("Error fetching OpenAPI JSON:", err);
+      error = "Unable to load OpenAPI JSON";
+    }
+  } else {
+    error = "No Swagger URL available";
+  }
+
   if (!api) {
     return (
       <div className="container mx-auto p-6 max-w-4xl">
@@ -215,12 +232,12 @@ export default async function ApiPage({
 
   return (
     <div className="container mx-auto p-6 max-w-4xl">
-      <Link
+      {/* <Link
         href="/"
         className="text-[#388c9a] hover:underline mb-4 inline-block"
       >
         ← Back to APIs
-      </Link>
+      </Link> */}
 
       <div className="flex flex-col md:flex-row gap-6 mb-8">
         <div className="flex-shrink-0">
@@ -237,7 +254,7 @@ export default async function ApiPage({
         </div>
 
         <div className="flex-grow">
-          <h1 className="text-3xl font-bold text-[#388c9a] mb-2">
+          <div className="text-3xl font-bold text-[#388c9a] mb-2 gap-6 flex items-center">
             {api.externalUrl ? (
               <Link
                 href={api.externalUrl}
@@ -249,41 +266,23 @@ export default async function ApiPage({
             ) : (
               api.info.title
             )}
-          </h1>
+            <Badge variant="outline" className="text-sm">
+              <span className="text-sm text-gray-500">OpenAPI / Swagger</span>
+            </Badge>
+          </div>
 
           <h3 className="text-lg mb-4">Preferred Version: {api.preferred}</h3>
 
-          <div className="flex flex-wrap gap-3 mb-6">
-            <Link
-              href={api.api.swaggerUrl}
-              target="_blank"
-              className="py-2 px-4 bg-[#388c9a] rounded text-white hover:bg-[#2a6b77]"
-            >
-              JSON
-            </Link>
-            <Link
-              href={api.api.swaggerYamlUrl}
-              target="_blank"
-              className="py-2 px-4 bg-[#388c9a] rounded text-white hover:bg-[#2a6b77]"
-            >
-              YAML
-            </Link>
-            <Link
-              href={api.origUrl}
-              target="_blank"
-              className="py-2 px-4 bg-[#388c9a] rounded text-white hover:bg-[#2a6b77]"
-            >
-              Original
-            </Link>
-            <Link
-              href={`https://redocly.github.io/redoc/?url=${api.api.swaggerUrl}`}
-              target="_blank"
-              className="py-2 px-4 bg-[#388c9a] rounded text-white hover:bg-[#2a6b77]"
-            >
-              Documentation
-            </Link>
+          <div className="relative flex flex-wrap gap-3 mb-6">
+            <div className="flex flex-wrap gap-3">
+              <ApiButtons
+                swaggerUrl={api.api.swaggerUrl}
+                swaggerYamlUrl={api.api.swaggerYamlUrl}
+                origUrl={api.origUrl}
+                title={api.info.title}
+              />
+            </div>
           </div>
-
           {api.integrations && api.integrations.length > 0 && (
             <div className="mb-6">
               <h4 className="text-lg font-semibold mb-3">Tools</h4>
@@ -306,6 +305,15 @@ export default async function ApiPage({
 
       <DescriptionSection description={api.cardDescription} />
 
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">OpenAPI/Swagger JSON</h2>
+        {error ? (
+          <div className="text-red-500">{error}</div>
+        ) : (
+          <JsonTree jsonData={jsonData} />
+        )}
+      </div>
+
       {api.versions && api.versions.length > 0 && (
         <div>
           <h2 className="text-2xl font-bold mb-4">All Versions</h2>
@@ -319,27 +327,13 @@ export default async function ApiPage({
                 >
                   <span className="font-semibold">{version.version}</span>
                   <div className="flex gap-2">
-                    <Link
-                      href={version.swaggerUrl}
-                      target="_blank"
-                      className="py-1 px-3 bg-[#388c9a] rounded text-white text-sm hover:bg-[#2a6b77]"
-                    >
-                      JSON
-                    </Link>
-                    <Link
-                      href={version.swaggerYamlUrl}
-                      target="_blank"
-                      className="py-1 px-3 bg-[#388c9a] rounded text-white text-sm hover:bg-[#2a6b77]"
-                    >
-                      YAML
-                    </Link>
-                    <Link
-                      href={`https://redocly.github.io/redoc/?url=${version.swaggerUrl}`}
-                      target="_blank"
-                      className="py-1 px-3 bg-[#388c9a] rounded text-white text-sm hover:bg-[#2a6b77]"
-                    >
-                      Docs
-                    </Link>
+                    <ApiButtons
+                      swaggerUrl={version.swaggerUrl}
+                      swaggerYamlUrl={version.swaggerYamlUrl}
+                      origUrl={`https://redocly.github.io/redoc/?url=${version.swaggerUrl}`}
+                      title={`${api.info.title}-v${version.version}`}
+                      version={version.version}
+                    />
                   </div>
                 </div>
               ))}
