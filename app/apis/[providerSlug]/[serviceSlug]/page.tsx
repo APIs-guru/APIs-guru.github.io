@@ -1,51 +1,154 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ApiCardModel } from "../../../models/ApiCardModel";
-import DescriptionSection from "../../../components/DescriptionSection";
-import list from "../../../list.json";
 import { marked } from "marked";
-
 import { Metadata, ResolvingMetadata } from "next";
+import DescriptionSection from "../../../../components/DescriptionSection";
+import list from "../../../../list.json";
 
 interface ApiVersion {
   version: string;
   swaggerUrl: string;
   swaggerYamlUrl: string;
 }
+
 function stripMarkdown(markdown: string): string {
   return markdown
-    .replace(/(\*\*|__)(.*?)\1/g, "$2") // Remove bold
-    .replace(/(\*|_)(.*?)\1/g, "$2") // Remove italic
-    .replace(/#{1,6}\s/g, "") // Remove headers
-    .replace(/\[([^\]]+)\]\([^\)]+\)/g, "$1") // Remove links
-    .replace(/!\[([^\]]*)\]\([^\)]+\)/g, "$1") // Remove image alt text
-    .replace(/`{1,3}([^`]+)`{1,3}/g, "$1") // Remove code
-    .replace(/(\n\s*){2,}/g, "\n\n") // Normalize newlines
-    .replace(/^\s+|\s+$/g, ""); // Trim whitespace
+    .replace(/(\*\*|__)(.*?)\1/g, "$2")
+    .replace(/(\*|_)(.*?)\1/g, "$2")
+    .replace(/#{1,6}\s/g, "")
+    .replace(/\[([^\]]+)\]\([^\)]+\)/g, "$1")
+    .replace(/!\[([^\]]*)\]\([^\)]+\)/g, "$1")
+    .replace(/`{1,3}([^`]+)`{1,3}/g, "$1")
+    .replace(/(\n\s*){2,}/g, "\n\n")
+    .replace(/^\s+|\s+$/g, "");
+}
+
+export function getData(
+  providerSlug: string,
+  serviceSlug?: string | null
+): any | null {
+  const apiList = list as Record<string, any>;
+  const normalizedProvider = providerSlug.replace(/-/g, ".");
+  const targetKey = serviceSlug
+    ? `${normalizedProvider}:${serviceSlug}`
+    : normalizedProvider;
+
+  for (const key in apiList) {
+    if (apiList.hasOwnProperty(key) && key === targetKey) {
+      try {
+        const api = apiList[key];
+        const versions = api.versions || {};
+        const preferred = api.preferred || Object.keys(versions)[0] || "";
+        const preferredVersion = versions[preferred] || {};
+        const info = preferredVersion.info || {};
+        const externalDocs = preferredVersion.externalDocs || {};
+        const contact = info.contact || {};
+
+        const logo = {
+          url: info["x-logo"]?.url || "/assets/images/no-logo.svg",
+          backgroundColor: info["x-logo"]?.backgroundColor || null,
+        };
+
+        const externalUrl =
+          externalDocs.url ||
+          contact.url ||
+          (key.indexOf(".local") < 0 ? `https://${key.split(":")[0]}` : "");
+
+        let origUrl = "";
+        if (
+          info["x-origin"] &&
+          Array.isArray(info["x-origin"]) &&
+          info["x-origin"].length > 0
+        ) {
+          origUrl =
+            info["x-origin"][0]?.url || preferredVersion.swaggerUrl || "";
+        } else {
+          origUrl = preferredVersion.swaggerUrl || "";
+        }
+
+        const categories = info["x-apisguru-categories"] || [];
+        const tags = info["x-tags"] || [];
+
+        const versionsArray = Object.entries(versions).map(
+          ([version, details]: [string, any]) => ({
+            version,
+            swaggerUrl: details?.swaggerUrl || "",
+            swaggerYamlUrl: details?.swaggerYamlUrl || "",
+          })
+        );
+
+        const description = info.description || "No description available";
+        const cardDescription = marked(description);
+        const cardDescriptionPlain = stripMarkdown(description);
+
+        return {
+          name: key,
+          preferred: api.preferred || "",
+          info,
+          api: {
+            swaggerUrl: preferredVersion.swaggerUrl || "",
+            swaggerYamlUrl: preferredVersion.swaggerYamlUrl || "",
+          },
+          logo,
+          externalUrl,
+          origUrl,
+          versions: versionsArray,
+          cardDescription,
+          cardDescriptionPlain,
+          categories,
+          tags,
+          integrations: api.integrations || [],
+        };
+      } catch (error) {
+        console.error(`Error processing API ${key}:`, error);
+        return null;
+      }
+    }
+  }
+  console.warn(
+    `No API found for provider: ${providerSlug}, service: ${serviceSlug}`
+  );
+  return null;
 }
 
 export async function generateStaticParams() {
   const apiList = list as Record<string, any>;
+  const params: { providerSlug: string; serviceSlug: string }[] = [];
 
-  return Object.keys(apiList).map((key) => {
-    const apiSlug = key
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
+  for (const key in apiList) {
+    if (Object.prototype.hasOwnProperty.call(apiList, key)) {
+      const [provider, service] = key.split(":");
+      const providerSlug = provider
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+      const serviceSlug = service
+        ? service
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/(^-|-$)/g, "")
+        : providerSlug;
 
-    return {
-      slug: apiSlug,
-    };
-  });
+      params.push({
+        providerSlug,
+        serviceSlug,
+      });
+    }
+  }
+
+  console.log("Generated static params:", params); // Debug output
+  return params;
 }
 
 export async function generateMetadata(
-  { params }: { params: Promise<{ slug: string }> },
+  {
+    params,
+  }: { params: Promise<{ providerSlug: string; serviceSlug: string }> },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug } = await params;
-  const api = getData(slug);
+  const { providerSlug, serviceSlug } = await params;
+  const api = getData(providerSlug, serviceSlug);
 
   if (!api) {
     return {
@@ -70,11 +173,11 @@ export async function generateMetadata(
     openGraph: {
       title,
       description,
-      url: `https://apis.guru/apis/${slug}`,
+      url: `/apis/${providerSlug}/${serviceSlug}`,
       type: "website",
       images: [
         {
-          url: api.logo.url || "/images/logo.svg",
+          url: api.logo.url,
           width: 1200,
           height: 630,
           alt: `${api.info.title} API logo`,
@@ -85,104 +188,18 @@ export async function generateMetadata(
       card: "summary_large_image",
       title,
       description,
-      images: [api.logo.url || "/images/logo.svg"],
+      images: [api.logo.url],
     },
   };
 }
 
-function getData(slug: string): any | null {
-  const apiList = list as Record<string, any>;
-
-  for (const key in apiList) {
-    if (apiList.hasOwnProperty(key)) {
-      const api = apiList[key];
-      const apiSlug = key
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, "");
-
-      if (apiSlug === slug) {
-        try {
-          const versions = api.versions || {};
-          const preferred = api.preferred || Object.keys(versions)[0] || "";
-          const preferredVersion = versions[preferred] || {};
-          const info = preferredVersion.info || {};
-          const externalDocs = preferredVersion.externalDocs || {};
-          const contact = info.contact || {};
-
-          const logo = {
-            url: info["x-logo"]?.url || null,
-            backgroundColor: info["x-logo"]?.backgroundColor || null,
-          };
-
-          const externalUrl =
-            externalDocs.url ||
-            contact.url ||
-            (key.indexOf(".local") < 0 ? `https://${key.split(":")[0]}` : "");
-
-          let origUrl = "";
-          if (
-            info["x-origin"] &&
-            Array.isArray(info["x-origin"]) &&
-            info["x-origin"].length > 0
-          ) {
-            origUrl =
-              info["x-origin"][0]?.url || preferredVersion.swaggerUrl || "";
-          } else {
-            origUrl = preferredVersion.swaggerUrl || "";
-          }
-
-          const categories = info["x-apisguru-categories"] || [];
-          const tags = info["x-tags"] || [];
-
-          const versionsArray = Object.entries(versions).map(
-            ([version, details]: [string, any]) => ({
-              version,
-              swaggerUrl: details?.swaggerUrl || "",
-              swaggerYamlUrl: details?.swaggerYamlUrl || "",
-            })
-          );
-
-          const description = info.description || "No description available";
-          const cardDescription = marked(description);
-          const cardDescriptionPlain = stripMarkdown(description);
-
-          return {
-            name: key,
-            preferred: api.preferred || "",
-            info,
-            api: {
-              swaggerUrl: preferredVersion.swaggerUrl || "",
-              swaggerYamlUrl: preferredVersion.swaggerYamlUrl || "",
-            },
-            logo,
-            externalUrl,
-            origUrl,
-            versions: versionsArray,
-            cardDescription,
-            cardDescriptionPlain,
-            categories,
-            tags,
-            integrations: api.integrations || [],
-          };
-        } catch (error) {
-          console.error(`Error processing API ${key}:`, error);
-          return null;
-        }
-      }
-    }
-  }
-  console.warn(`No API found for slug: ${slug}`);
-  return null;
-}
-
-export default async function Page({
+export default async function ApiPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ providerSlug: string; serviceSlug: string | null }>;
 }) {
-  const { slug } = await params;
-  const api = getData(slug);
+  const { providerSlug, serviceSlug } = await params;
+  const api = getData(providerSlug, serviceSlug);
 
   if (!api) {
     return (
@@ -207,12 +224,10 @@ export default async function Page({
         ← Back to APIs
       </Link>
 
-      {/* Header with logo and buttons */}
       <div className="flex flex-col md:flex-row gap-6 mb-8">
-        {/* Logo Section */}
         <div className="flex-shrink-0">
           <Image
-            src={api.logo.url || "/assets/images/no-logo.svg"}
+            src={api.logo.url}
             alt={`${api.info.title} API logo`}
             width={200}
             height={200}
@@ -229,7 +244,7 @@ export default async function Page({
               <Link
                 href={api.externalUrl}
                 target="_blank"
-                className="hover:underline  text-decoration-line:none text-[#388c9a]"
+                className="hover:underline text-decoration-line:none text-[#388c9a]"
               >
                 {api.info.title}
               </Link>
@@ -271,7 +286,6 @@ export default async function Page({
             </Link>
           </div>
 
-          {/* Tools */}
           {api.integrations && api.integrations.length > 0 && (
             <div className="mb-6">
               <h4 className="text-lg font-semibold mb-3">Tools</h4>

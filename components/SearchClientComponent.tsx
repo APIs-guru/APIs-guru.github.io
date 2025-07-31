@@ -14,13 +14,20 @@ import { LoadingSkeleton } from "@/components/LoadingSkeleton";
 
 interface SearchClientComponentProps {
   repoStarCounts: Record<string, number>;
+  providerSlug?: string; // Add providerSlug as an optional prop
 }
 
 function SearchClientComponentInner({
   repoStarCounts,
+  providerSlug,
 }: SearchClientComponentProps) {
   const searchParams = useSearchParams();
   const initialSearchTerm = searchParams?.get("q") || "";
+
+  // Combine providerSlug with initial search term if providerSlug is provided
+  const initialCombinedSearchTerm = providerSlug
+    ? `${providerSlug} ${initialSearchTerm}`.trim()
+    : initialSearchTerm;
 
   const { gridColumns, pageSize } = useGridLayout();
   const {
@@ -36,7 +43,7 @@ function SearchClientComponentInner({
     loadMoreApis,
     searchApis,
     resetSearch,
-  } = useApiSearch(initialSearchTerm, pageSize);
+  } = useApiSearch(initialCombinedSearchTerm, pageSize);
 
   const observerRef = useInfiniteScroll({
     hasMore,
@@ -62,8 +69,8 @@ function SearchClientComponentInner({
         const metrics = await apiMetricsResponse.json();
         setApiMetrics(metrics);
 
-        // Initialize with search term from URL
-        await resetSearch(initialSearchTerm);
+        // Initialize with combined search term
+        await resetSearch(initialCombinedSearchTerm);
       } catch (error) {
         console.error("Error fetching initial data:", error);
       } finally {
@@ -72,19 +79,24 @@ function SearchClientComponentInner({
     };
 
     fetchInitialData();
-  }, [pageSize, initialSearchTerm, resetSearch, setLoading]);
+  }, [pageSize, initialCombinedSearchTerm, resetSearch, setLoading]);
 
   // Handle search term changes with proper debouncing and reset
   useEffect(() => {
     const handleSearchChange = async () => {
-      if (searchTerm !== initialSearchTerm) {
-        await resetSearch(searchTerm);
+      // Ensure providerSlug is included in the search term if provided
+      const combinedSearchTerm = providerSlug
+        ? `${providerSlug} ${searchTerm}`.trim()
+        : searchTerm;
+
+      if (combinedSearchTerm !== initialCombinedSearchTerm) {
+        await resetSearch(combinedSearchTerm);
       }
     };
 
     const debounceTimer = setTimeout(handleSearchChange, 300);
     return () => clearTimeout(debounceTimer);
-  }, [searchTerm, initialSearchTerm, resetSearch]);
+  }, [searchTerm, initialCombinedSearchTerm, providerSlug, resetSearch]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -153,10 +165,14 @@ function SearchClientComponentInner({
 
 export default function SearchClientComponent({
   repoStarCounts,
+  providerSlug,
 }: SearchClientComponentProps) {
   return (
     <Suspense fallback={<LoadingSkeleton pageSize={30} />}>
-      <SearchClientComponentInner repoStarCounts={repoStarCounts} />
+      <SearchClientComponentInner
+        repoStarCounts={repoStarCounts}
+        providerSlug={providerSlug}
+      />
     </Suspense>
   );
 }
