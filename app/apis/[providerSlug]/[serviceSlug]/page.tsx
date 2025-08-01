@@ -26,7 +26,6 @@ function stripMarkdown(markdown: string): string {
     .replace(/(\n\s*){2,}/g, "\n\n")
     .replace(/^\s+|\s+$/g, "");
 }
-
 export function getData(
   providerSlug: string,
   serviceSlug?: string | null
@@ -102,6 +101,7 @@ export function getData(
           categories,
           tags,
           integrations: api.integrations || [],
+          updated: preferredVersion.updated || "", // Include the updated field
         };
       } catch (error) {
         console.error(`Error processing API ${key}:`, error);
@@ -246,12 +246,19 @@ export default async function ApiPage({
             ) : (
               api.info.title
             )}
-            <Badge variant="outline" className="text-sm">
+            {/* <Badge variant="outline" className="text-sm">
               <span className="text-sm text-gray-500">OpenAPI / Swagger</span>
-            </Badge>
+            </Badge> */}
           </div>
 
-          <h3 className="text-lg mb-4">Preferred Version: {api.preferred}</h3>
+          <h3 className="text-lg mb-4">
+            Last updated at:{" "}
+            {new Date(api.updated).toLocaleString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </h3>
 
           <div className="relative flex flex-wrap gap-3 mb-6">
             <div className="flex flex-wrap gap-3">
