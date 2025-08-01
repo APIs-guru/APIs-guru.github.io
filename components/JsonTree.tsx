@@ -27,7 +27,7 @@ const theme = {
 
 export function JsonTree({ jsonData }: { jsonData: any }) {
   if (!jsonData) {
-    return <div className="text-gray-500">No OpenAPI JSON available</div>;
+    return <div className="text-gray-500">Loading...</div>;
   }
 
   return (
