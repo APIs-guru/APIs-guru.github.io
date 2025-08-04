@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 interface VisitCounterProps {
   providerSlug: string;
-  serviceSlug: string;
+  serviceSlug: string | null;
 }
 
 export default function VisitCounter({
@@ -14,7 +14,9 @@ export default function VisitCounter({
   useEffect(() => {
     const countVisit = async () => {
       try {
-        const apiName = `${providerSlug}:${serviceSlug}`;
+        const apiName = serviceSlug
+          ? `${providerSlug}:${serviceSlug}`
+          : providerSlug;
 
         const response = await fetch("/api/count-visit", {
           method: "POST",

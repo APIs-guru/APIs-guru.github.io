@@ -215,7 +215,7 @@ export default async function ApiPage({
     <div className="container mx-auto p-6 max-w-4xl">
       <VisitCounter
         providerSlug={providerSlug}
-        serviceSlug={serviceSlug || providerSlug}
+        serviceSlug={serviceSlug}
       />
 
       <div className="flex flex-col md:flex-row gap-6 mb-8">
