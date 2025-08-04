@@ -43,6 +43,7 @@ function SearchClientComponentInner({
     loadMoreApis,
     searchApis,
     resetSearch,
+    totalCount,
   } = useApiSearch(initialCombinedSearchTerm, pageSize);
 
   const observerRef = useInfiniteScroll({
@@ -54,21 +55,12 @@ function SearchClientComponentInner({
 
   const [copyText, setCopyText] = useState("");
   const [isCopied, setIsCopied] = useState(false);
-  const [apiMetrics, setApiMetrics] = useState({ numAPIs: 0, numEndpoints: 0 });
 
   // Initial data fetch
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
         setLoading(true);
-
-        // Fetch metrics
-        const apiMetricsResponse = await fetch(
-          "https://api.apis.guru/v2/metrics.json"
-        );
-        const metrics = await apiMetricsResponse.json();
-        setApiMetrics(metrics);
-
         // Initialize with combined search term
         await resetSearch(initialCombinedSearchTerm);
       } catch (error) {
@@ -144,7 +136,7 @@ function SearchClientComponentInner({
       <div className="relative z-10">
         <SearchSection
           searchTerm={searchTerm}
-          apiCount={apiMetrics.numAPIs}
+          apiCount={totalCount}
           onSearchChange={handleSearch}
         />
 

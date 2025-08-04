@@ -10,18 +10,19 @@ export function useApiSearch(initialSearchTerm: string, pageSize: number) {
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
 
   const cleanApiData = useCallback((apis: ApiCardModel[]) => {
     return apis.map((card) => {
       const cleanedCard = { ...card };
       if (cleanedCard.cardDescription) {
         cleanedCard.cardDescription = cleanDescription(
-          cleanedCard.cardDescription,
+          cleanedCard.cardDescription
         );
       }
       if (cleanedCard.markedDescription) {
         cleanedCard.markedDescription = cleanDescription(
-          cleanedCard.markedDescription,
+          cleanedCard.markedDescription
         );
       }
       return cleanedCard;
@@ -36,7 +37,7 @@ export function useApiSearch(initialSearchTerm: string, pageSize: number) {
       const response = await fetchApisInfinite(
         currentPage + 1,
         searchTerm,
-        pageSize,
+        pageSize
       );
 
       if (response.apis.length > 0) {
@@ -44,6 +45,9 @@ export function useApiSearch(initialSearchTerm: string, pageSize: number) {
         setAllApiCards((prev) => [...prev, ...cleanedApis]);
         setCurrentPage((prev) => prev + 1);
         setHasMore(response.hasMore);
+        if (response.totalCount !== undefined) {
+          setTotalCount(response.totalCount);
+        }
       } else {
         setHasMore(false);
       }
@@ -68,22 +72,24 @@ export function useApiSearch(initialSearchTerm: string, pageSize: number) {
         setAllApiCards(cleanedApis);
         setHasMore(response.hasMore);
         setCurrentPage(1);
+        setTotalCount(response.totalCount || 0);
       } catch (error) {
         console.error("Error searching APIs:", error);
         setAllApiCards([]);
         setHasMore(false);
+        setTotalCount(0);
       } finally {
         setLoading(false);
       }
     },
-    [pageSize, cleanApiData],
+    [pageSize, cleanApiData]
   );
 
   const searchApis = useCallback(
     async (term: string) => {
       await resetSearch(term);
     },
-    [resetSearch],
+    [resetSearch]
   );
 
   return {
@@ -99,5 +105,6 @@ export function useApiSearch(initialSearchTerm: string, pageSize: number) {
     loadMoreApis,
     searchApis,
     resetSearch,
+    totalCount,
   };
 }

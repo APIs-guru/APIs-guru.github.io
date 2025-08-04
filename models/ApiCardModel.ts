@@ -71,6 +71,7 @@ export interface ApiCardModel {
   updated: Date;
   integrations: any[];
   searchableText?: string; // Added for improved search
+  visits?: number; // Added visits property
 }
 
 // Export a function to create a searchable text field from an API model
