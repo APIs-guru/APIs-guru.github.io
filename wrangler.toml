@@ -10,6 +10,7 @@ pages_build_output_dir = "out"
 binding = "DB"
 database_name = "apis-guru-data-dev"
 database_id = "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+migrations_dir = "migrations"
 
 # Environment variables (default)
 [vars]
@@ -24,6 +25,7 @@ DEFAULT_PAGE_SIZE = "20"
 binding = "DB"
 database_name = "apis-guru-data-dev"
 database_id = "1090248d-84f7-4ffe-ab4f-5fd27c98d3e0"
+migrations_dir = "migrations"
 [env.preview.vars]
 SYNC_URL = "https://api.apis.guru/v2/list.json"
 BATCH_SIZE = "100"
@@ -36,6 +38,7 @@ DEFAULT_PAGE_SIZE = "20"
 binding = "DB"
 database_name = "apis-guru-data"
 database_id = "660cdfd3-7c06-44ea-8e6d-f658f4fc39ca"
+migrations_dir = "migrations"
 [env.production.vars]
 SYNC_URL = "https://api.apis.guru/v2/list.json"
 BATCH_SIZE = "100"

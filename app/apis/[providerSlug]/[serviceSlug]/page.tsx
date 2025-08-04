@@ -8,6 +8,7 @@ import list from "../../../../list.json";
 import { Badge } from "@/components/ui/badge";
 import JsonTreeContainer, { JsonTree } from "@/components/JsonTree";
 import ApiButtons from "@/components/ApiButtons";
+import VisitCounter from "@/components/VisitCounter";
 
 interface ApiVersion {
   version: string;
@@ -212,12 +213,10 @@ export default async function ApiPage({
 
   return (
     <div className="container mx-auto p-6 max-w-4xl">
-      {/* <Link
-        href="/"
-        className="text-[#388c9a] hover:underline mb-4 inline-block"
-      >
-        ← Back to APIs
-      </Link> */}
+      <VisitCounter
+        providerSlug={providerSlug}
+        serviceSlug={serviceSlug || providerSlug}
+      />
 
       <div className="flex flex-col md:flex-row gap-6 mb-8">
         <div className="flex-shrink-0">

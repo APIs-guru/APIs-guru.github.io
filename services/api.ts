@@ -36,7 +36,7 @@ export async function fetchApis(
     pageSize?: number;
     sortBy?: string;
     sortOrder?: "asc" | "desc";
-  } = {},
+  } = {}
 ): Promise<{
   apis: ApiCardModel[];
   pagination: {
@@ -67,8 +67,8 @@ export async function fetchApis(
     if (options.status) params.append("status", options.status);
     params.append("page", (options.page || 1).toString());
     params.append("pageSize", (options.pageSize || 20).toString());
-    if (options.sortBy) params.append("sortBy", options.sortBy);
-    if (options.sortOrder) params.append("sortOrder", options.sortOrder);
+    params.append("sortBy", options.sortBy || "name");
+    params.append("sortOrder", options.sortOrder || "asc");
 
     const url = `/api/fetch-apis${
       params.toString() ? "?" + params.toString() : ""
@@ -85,7 +85,7 @@ export async function fetchApis(
     const data = await response.json();
 
     const apis = data.apis.map((api: any) =>
-      createApiCardModelFromWorkerData(api),
+      createApiCardModelFromWorkerData(api)
     );
 
     return {
@@ -124,24 +124,28 @@ export async function fetchApisInfinite(
   page: number = 1,
   search?: string,
   pageSize: number = 20,
+  sortBy: string = "visits",
+  sortOrder: "asc" | "desc" = "desc"
 ): Promise<{
   apis: ApiCardModel[];
   hasMore: boolean;
   nextPage: number | null;
+  totalCount: number;
 }> {
   try {
     const response = await fetchApis({
       search: search || undefined,
       page,
       pageSize,
-      sortBy: "name",
-      sortOrder: "asc",
+      sortBy,
+      sortOrder,
     });
 
     return {
       apis: response.apis,
       hasMore: response.pagination.hasNextPage,
       nextPage: response.pagination.nextPage,
+      totalCount: response.pagination.total,
     };
   } catch (error) {
     console.error("Error fetching APIs for infinite scroll:", error);
@@ -149,6 +153,7 @@ export async function fetchApisInfinite(
       apis: [],
       hasMore: false,
       nextPage: null,
+      totalCount: 0,
     };
   }
 }
@@ -257,6 +262,7 @@ function createApiCardModelFromWorkerData(workerApi: any): ApiCardModel {
     added,
     updated,
     integrations: apiIntegrations,
+    visits: workerApi.visits || 0,
   };
 
   model.searchableText = createSearchableText(model);
@@ -374,7 +380,7 @@ export function filterApis(
   search?: string,
   category?: string,
   tag?: string,
-  status?: string,
+  status?: string
 ): ApiList {
   if (!(search || category || tag || status)) return data;
 
@@ -436,7 +442,7 @@ export async function generateStaticSearchPaths() {
 
       if (info["x-apisguru-categories"]) {
         info["x-apisguru-categories"].forEach((cat: string) =>
-          categories.add(cat),
+          categories.add(cat)
         );
       }
 
