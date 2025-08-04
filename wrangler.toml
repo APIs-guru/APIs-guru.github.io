@@ -9,8 +9,16 @@ pages_build_output_dir = "out"
 [[d1_databases]]
 binding = "DB"
 database_name = "apis-guru-data-dev"
-database_id = "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+database_id = "1090248d-84f7-4ffe-ab4f-5fd27c98d3e0"
 migrations_dir = "migrations"
+
+# Production D1 Database binding (for direct CLI access)
+[[d1_databases]]
+binding = "PROD_DB"
+database_name = "apis-guru-data"
+database_id = "660cdfd3-7c06-44ea-8e6d-f658f4fc39ca"
+migrations_dir = "migrations"
+
 
 # Environment variables (default)
 [vars]
