@@ -5,11 +5,11 @@ export async function onRequestGet({ request, env }) {
     const pageSize = Math.min(
       Math.max(
         parseInt(
-          url.searchParams.get("pageSize") || env.DEFAULT_PAGE_SIZE || "20",
+          url.searchParams.get("pageSize") || env.DEFAULT_PAGE_SIZE || "20"
         ),
-        1,
+        1
       ),
-      parseInt(env.MAX_PAGE_SIZE || "100"),
+      parseInt(env.MAX_PAGE_SIZE || "100")
     );
     const page = Math.max(parseInt(url.searchParams.get("page") || "1"), 1);
     const search = url.searchParams.get("search")?.toLowerCase().trim();
@@ -31,7 +31,7 @@ export async function onRequestGet({ request, env }) {
 
     if (search) {
       conditions.push(
-        "(LOWER(name) LIKE ? OR LOWER(description) LIKE ? OR LOWER(title) LIKE ?)",
+        "(LOWER(name) LIKE ? OR LOWER(description) LIKE ? OR LOWER(title) LIKE ?)"
       );
       bindings.push(`%${search}%`, `%${search}%`, `%${search}%`);
     }
@@ -63,7 +63,7 @@ export async function onRequestGet({ request, env }) {
       baseQuery += whereClause;
     }
 
-    const validSortFields = ["name", "title", "added", "updated"];
+    const validSortFields = ["name", "title", "added", "updated", "visits"];
     const sortField = validSortFields.includes(sortBy) ? sortBy : "name";
     baseQuery += ` ORDER BY ${sortField} ${sortOrder}`;
 
@@ -76,7 +76,7 @@ export async function onRequestGet({ request, env }) {
         .all(),
       env.DB.prepare(
         countQuery +
-          (conditions.length > 0 ? " AND " + conditions.join(" AND ") : ""),
+          (conditions.length > 0 ? " AND " + conditions.join(" AND ") : "")
       )
         .bind(...bindings)
         .first(),
@@ -149,7 +149,7 @@ export async function onRequestGet({ request, env }) {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
-      },
+      }
     );
   }
 }
