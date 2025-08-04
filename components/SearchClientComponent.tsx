@@ -14,7 +14,7 @@ import { LoadingSkeleton } from "@/components/LoadingSkeleton";
 
 interface SearchClientComponentProps {
   repoStarCounts: Record<string, number>;
-  providerSlug?: string; // Add providerSlug as an optional prop
+  providerSlug?: string; 
 }
 
 function SearchClientComponentInner({
@@ -24,7 +24,7 @@ function SearchClientComponentInner({
   const searchParams = useSearchParams();
   const initialSearchTerm = searchParams?.get("q") || "";
 
-  // Combine providerSlug with initial search term if providerSlug is provided
+  
   const initialCombinedSearchTerm = providerSlug
     ? `${providerSlug} ${initialSearchTerm}`.trim()
     : initialSearchTerm;
@@ -56,12 +56,12 @@ function SearchClientComponentInner({
   const [copyText, setCopyText] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
-  // Initial data fetch
+  
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
         setLoading(true);
-        // Initialize with combined search term
+        
         await resetSearch(initialCombinedSearchTerm);
       } catch (error) {
         console.error("Error fetching initial data:", error);
@@ -73,10 +73,10 @@ function SearchClientComponentInner({
     fetchInitialData();
   }, [pageSize, initialCombinedSearchTerm, resetSearch, setLoading]);
 
-  // Handle search term changes with proper debouncing and reset
+  
   useEffect(() => {
     const handleSearchChange = async () => {
-      // Ensure providerSlug is included in the search term if provided
+      
       const combinedSearchTerm = providerSlug
         ? `${providerSlug} ${searchTerm}`.trim()
         : searchTerm;
@@ -103,7 +103,7 @@ function SearchClientComponentInner({
     setTimeout(() => setIsCopied(false), 2000);
   };
 
-  // Update star counts
+  
   useEffect(() => {
     Object.entries(repoStarCounts).forEach(([name, stars]) => {
       const elements = document.querySelectorAll(
@@ -115,7 +115,7 @@ function SearchClientComponentInner({
     });
   }, [repoStarCounts]);
 
-  // Initialize copy text from URL
+  
   useEffect(() => {
     if (!searchParams) return;
 

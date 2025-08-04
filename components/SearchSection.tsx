@@ -41,7 +41,7 @@ export function SearchSection({
       </div>
       {searchTerm && (
         <div className="mt-3 text-lg text-gray-600 text-center">
-          Filtering {apiCount.toLocaleString()} APIs
+          {apiCount.toLocaleString()} APIs found
         </div>
       )}
     </div>
