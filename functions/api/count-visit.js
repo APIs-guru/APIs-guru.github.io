@@ -8,6 +8,27 @@ export default worker;
 
 export async function onRequestPost({ request, env }) {
   try {
+    const isProduction = env.ENVIRONMENT === "production";
+
+    if (isProduction) {
+      const country = request.headers.get("CF-IPCountry");
+      if (country === "UA") {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: "Access from Ukraine is restricted",
+          }),
+          {
+            status: 403,
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
+        );
+      }
+    }
+
     const { name } = await request.json();
 
     if (!name) {
@@ -64,7 +85,6 @@ export async function onRequestPost({ request, env }) {
 }
 
 async function updateApiVisits(db, apiName) {
-  // First check if the API exists
   const apiExists = await db
     .prepare("SELECT name FROM Apis WHERE name = ?")
     .bind(apiName)
@@ -74,7 +94,6 @@ async function updateApiVisits(db, apiName) {
     throw new Error(`API '${apiName}' not found`);
   }
 
-  // Insert or update the visit count
   const result = await db
     .prepare(
       `
