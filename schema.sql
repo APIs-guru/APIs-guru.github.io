@@ -16,10 +16,15 @@ CREATE TABLE Apis (
   externalUrl TEXT,
   contact TEXT, -- JSON string for contact info
   license TEXT, -- JSON string for license info
-  visits INTEGER DEFAULT 0,
+
   created_at TEXT DEFAULT CURRENT_TIMESTAMP,
   updated_at TEXT DEFAULT CURRENT_TIMESTAMP
 
+);
+CREATE TABLE ApiVisits (
+  api_name TEXT PRIMARY KEY,
+  visits INTEGER DEFAULT 0,
+  FOREIGN KEY (api_name) REFERENCES Apis(name) ON DELETE CASCADE
 );
 
 -- Create indexes for better query performance
@@ -28,4 +33,5 @@ CREATE INDEX idx_tags ON Apis(tags);
 CREATE INDEX idx_added ON Apis(added);
 CREATE INDEX idx_updated ON Apis(updated);
 CREATE INDEX idx_name_search ON Apis(name);
-CREATE INDEX idx_visits ON Apis(visits);
+
+CREATE INDEX idx_visits ON ApiVisits(visits);

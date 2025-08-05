@@ -23,49 +23,57 @@ export async function onRequestGet({ request, env }) {
         : "ASC";
 
     const offset = (page - 1) * pageSize;
-    let baseQuery = 'SELECT * FROM Apis WHERE name != "__sync_metadata__"';
-    const countQuery =
-      'SELECT COUNT(*) as total FROM Apis WHERE name != "__sync_metadata__"';
+    let baseQuery = `
+      SELECT a.*, COALESCE(av.visits, 0) as visits 
+      FROM Apis a 
+      LEFT JOIN ApiVisits av ON a.name = av.api_name
+    `;
+    const countQuery = `SELECT COUNT(*) as total FROM Apis a`;
     const bindings = [];
     const conditions = [];
 
     if (search) {
       conditions.push(
-        "(LOWER(name) LIKE ? OR LOWER(description) LIKE ? OR LOWER(title) LIKE ?)"
+        "(LOWER(a.name) LIKE ? OR LOWER(a.description) LIKE ? OR LOWER(a.title) LIKE ?)"
       );
       bindings.push(`%${search}%`, `%${search}%`, `%${search}%`);
     }
 
     if (category) {
-      conditions.push("categories LIKE ?");
+      conditions.push("a.categories LIKE ?");
       bindings.push(`%"${category}"%`);
     }
 
     if (tag) {
-      conditions.push("tags LIKE ?");
+      conditions.push("a.tags LIKE ?");
       bindings.push(`%"${tag}"%`);
     }
 
     if (status === "new") {
       const monthAgo = new Date();
       monthAgo.setDate(monthAgo.getDate() - 30);
-      conditions.push("added >= ?");
+      conditions.push("a.added >= ?");
       bindings.push(monthAgo.toISOString().split("T")[0]);
     } else if (status === "updated") {
       const monthAgo = new Date();
       monthAgo.setDate(monthAgo.getDate() - 30);
-      conditions.push("updated >= ?");
+      conditions.push("a.updated >= ?");
       bindings.push(monthAgo.toISOString().split("T")[0]);
     }
 
     if (conditions.length > 0) {
-      const whereClause = " AND " + conditions.join(" AND ");
+      const whereClause = " WHERE " + conditions.join(" AND ");
       baseQuery += whereClause;
     }
 
     const validSortFields = ["name", "title", "added", "updated", "visits"];
     const sortField = validSortFields.includes(sortBy) ? sortBy : "name";
-    baseQuery += ` ORDER BY ${sortField} ${sortOrder}`;
+
+    if (sortField === "visits") {
+      baseQuery += ` ORDER BY COALESCE(av.visits, 0) ${sortOrder}`;
+    } else {
+      baseQuery += ` ORDER BY a.${sortField} ${sortOrder}`;
+    }
 
     baseQuery += " LIMIT ? OFFSET ?";
     const finalBindings = [...bindings, pageSize, offset];
@@ -76,7 +84,7 @@ export async function onRequestGet({ request, env }) {
         .all(),
       env.DB.prepare(
         countQuery +
-          (conditions.length > 0 ? " AND " + conditions.join(" AND ") : "")
+          (conditions.length > 0 ? " WHERE " + conditions.join(" AND ") : "")
       )
         .bind(...bindings)
         .first(),
@@ -97,6 +105,7 @@ export async function onRequestGet({ request, env }) {
       externalUrl: row.externalUrl,
       contact: JSON.parse(row.contact || "{}"),
       license: JSON.parse(row.license || "{}"),
+      visits: row.visits || 0,
     }));
 
     const total = countResult?.total || 0;

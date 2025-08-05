@@ -64,33 +64,37 @@ export async function onRequestPost({ request, env }) {
 }
 
 async function updateApiVisits(db, apiName) {
+  // First check if the API exists
+  const apiExists = await db
+    .prepare("SELECT name FROM Apis WHERE name = ?")
+    .bind(apiName)
+    .first();
+
+  if (!apiExists) {
+    throw new Error(`API '${apiName}' not found`);
+  }
+
+  // Insert or update the visit count
   const result = await db
     .prepare(
       `
-    UPDATE Apis 
-    SET visits = visits + 1
-    WHERE name = ?
-  `
+      INSERT INTO ApiVisits (api_name, visits) 
+      VALUES (?, 1)
+      ON CONFLICT(api_name) 
+      DO UPDATE SET visits = visits + 1
+    `
     )
     .bind(apiName)
     .run();
 
-  if (result.changes === 0) {
-    throw new Error(`API '${apiName}' not found`);
-  }
-
-  const updatedApi = await db
-    .prepare(
-      `
-    SELECT name, visits FROM Apis WHERE name = ?
-  `
-    )
+  const updatedVisits = await db
+    .prepare("SELECT api_name, visits FROM ApiVisits WHERE api_name = ?")
     .bind(apiName)
     .first();
 
   return {
-    name: updatedApi.name,
-    visits: updatedApi.visits,
+    name: updatedVisits.api_name,
+    visits: updatedVisits.visits,
   };
 }
 
