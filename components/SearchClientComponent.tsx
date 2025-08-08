@@ -73,17 +73,32 @@ function SearchClientComponentInner({
         : searchTerm;
 
       if (combinedSearchTerm !== initialCombinedSearchTerm) {
-        await resetSearch(combinedSearchTerm);
+        try {
+          await resetSearch(combinedSearchTerm);
+        } catch (error) {
+          console.error("Error in debounced search:", error);
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        setLoading(false);
       }
     };
 
-    const debounceTimer = setTimeout(handleSearchChange, 300);
+    const debounceTimer = setTimeout(handleSearchChange, 1000);
     return () => clearTimeout(debounceTimer);
-  }, [searchTerm, initialCombinedSearchTerm, providerSlug, resetSearch]);
+  }, [
+    searchTerm,
+    initialCombinedSearchTerm,
+    providerSlug,
+    resetSearch,
+    setLoading,
+  ]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);
+    setLoading(true);
   };
 
   useEffect(() => {
