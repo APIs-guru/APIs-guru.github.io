@@ -4,7 +4,6 @@ import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchApisInfinite } from "@/services/api";
 import { cleanDescription } from "@/utils/textProcessing";
-import { updateQueryParam } from "@/utils/urlHelpers";
 import { useGridLayout } from "@/hooks/useGridLayout";
 import { useApiSearch } from "@/hooks/useApiSearch";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
@@ -52,14 +51,10 @@ function SearchClientComponentInner({
     loadMore: loadMoreApis,
   }) as React.RefObject<HTMLDivElement>;
 
-  const [copyText, setCopyText] = useState("");
-  const [isCopied, setIsCopied] = useState(false);
-
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
         setLoading(true);
-
         await resetSearch(initialCombinedSearchTerm);
       } catch (error) {
         console.error("Error fetching initial data:", error);
@@ -74,7 +69,7 @@ function SearchClientComponentInner({
   useEffect(() => {
     const handleSearchChange = async () => {
       const combinedSearchTerm = providerSlug
-        ? `${providerSlug} ${searchTerm}`.trim()
+        ? `${providerSlug}:${searchTerm}`.trim()
         : searchTerm;
 
       if (combinedSearchTerm !== initialCombinedSearchTerm) {
@@ -82,15 +77,13 @@ function SearchClientComponentInner({
       }
     };
 
-    const debounceTimer = setTimeout(handleSearchChange, 1000);
+    const debounceTimer = setTimeout(handleSearchChange, 300);
     return () => clearTimeout(debounceTimer);
   }, [searchTerm, initialCombinedSearchTerm, providerSlug, resetSearch]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);
-    const newUrl = updateQueryParam(searchParams, value);
-    setCopyText(newUrl);
   };
 
   useEffect(() => {
@@ -103,21 +96,6 @@ function SearchClientComponentInner({
       });
     });
   }, [repoStarCounts]);
-
-  useEffect(() => {
-    if (!searchParams) return;
-
-    const term = searchParams.get("q") || "";
-    if (term !== searchTerm) {
-      setSearchTerm(term);
-    }
-
-    const params = new URLSearchParams(searchParams.toString());
-    const url =
-      window.location.pathname +
-      (params.toString() ? `?${params.toString()}` : "");
-    setCopyText(`${window.location.origin}${url}`);
-  }, [searchParams, searchTerm, setSearchTerm]);
 
   return (
     <div className="container mx-auto px-4 relative">
