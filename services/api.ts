@@ -124,8 +124,8 @@ export async function fetchApisInfinite(
   page: number = 1,
   search?: string,
   pageSize: number = 20,
-  sortBy: string = "visits",
-  sortOrder: "asc" | "desc" = "desc"
+  sortBy: string = "name",
+  sortOrder: "asc" | "desc" = "asc"
 ): Promise<{
   apis: ApiCardModel[];
   hasMore: boolean;
@@ -262,7 +262,6 @@ function createApiCardModelFromWorkerData(workerApi: any): ApiCardModel {
     added,
     updated,
     integrations: apiIntegrations,
-    visits: workerApi.visits || 0,
   };
 
   model.searchableText = createSearchableText(model);
