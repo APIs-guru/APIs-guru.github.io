@@ -14,7 +14,7 @@ import { LoadingSkeleton } from "@/components/LoadingSkeleton";
 
 interface SearchClientComponentProps {
   repoStarCounts: Record<string, number>;
-  providerSlug?: string; 
+  providerSlug?: string;
 }
 
 function SearchClientComponentInner({
@@ -24,7 +24,6 @@ function SearchClientComponentInner({
   const searchParams = useSearchParams();
   const initialSearchTerm = searchParams?.get("q") || "";
 
-  
   const initialCombinedSearchTerm = providerSlug
     ? `${providerSlug} ${initialSearchTerm}`.trim()
     : initialSearchTerm;
@@ -56,12 +55,11 @@ function SearchClientComponentInner({
   const [copyText, setCopyText] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
-  
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
         setLoading(true);
-        
+
         await resetSearch(initialCombinedSearchTerm);
       } catch (error) {
         console.error("Error fetching initial data:", error);
@@ -73,10 +71,8 @@ function SearchClientComponentInner({
     fetchInitialData();
   }, [pageSize, initialCombinedSearchTerm, resetSearch, setLoading]);
 
-  
   useEffect(() => {
     const handleSearchChange = async () => {
-      
       const combinedSearchTerm = providerSlug
         ? `${providerSlug} ${searchTerm}`.trim()
         : searchTerm;
@@ -86,7 +82,7 @@ function SearchClientComponentInner({
       }
     };
 
-    const debounceTimer = setTimeout(handleSearchChange, 300);
+    const debounceTimer = setTimeout(handleSearchChange, 1000);
     return () => clearTimeout(debounceTimer);
   }, [searchTerm, initialCombinedSearchTerm, providerSlug, resetSearch]);
 
@@ -97,13 +93,6 @@ function SearchClientComponentInner({
     setCopyText(newUrl);
   };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(copyText);
-    setIsCopied(true);
-    setTimeout(() => setIsCopied(false), 2000);
-  };
-
-  
   useEffect(() => {
     Object.entries(repoStarCounts).forEach(([name, stars]) => {
       const elements = document.querySelectorAll(
@@ -115,7 +104,6 @@ function SearchClientComponentInner({
     });
   }, [repoStarCounts]);
 
-  
   useEffect(() => {
     if (!searchParams) return;
 
