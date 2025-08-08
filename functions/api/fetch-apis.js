@@ -24,9 +24,8 @@ export async function onRequestGet({ request, env }) {
 
     const offset = (page - 1) * pageSize;
     let baseQuery = `
-      SELECT a.*, COALESCE(av.visits, 0) as visits 
+      SELECT a.* 
       FROM Apis a 
-      LEFT JOIN ApiVisits av ON a.name = av.api_name
     `;
     const countQuery = `SELECT COUNT(*) as total FROM Apis a`;
     const bindings = [];
@@ -66,14 +65,10 @@ export async function onRequestGet({ request, env }) {
       baseQuery += whereClause;
     }
 
-    const validSortFields = ["name", "title", "added", "updated", "visits"];
+    const validSortFields = ["name", "title", "added", "updated"];
     const sortField = validSortFields.includes(sortBy) ? sortBy : "name";
 
-    if (sortField === "visits") {
-      baseQuery += ` ORDER BY COALESCE(av.visits, 0) ${sortOrder}`;
-    } else {
-      baseQuery += ` ORDER BY a.${sortField} ${sortOrder}`;
-    }
+    baseQuery += ` ORDER BY a.${sortField} ${sortOrder}`;
 
     baseQuery += " LIMIT ? OFFSET ?";
     const finalBindings = [...bindings, pageSize, offset];
@@ -105,7 +100,6 @@ export async function onRequestGet({ request, env }) {
       externalUrl: row.externalUrl,
       contact: JSON.parse(row.contact || "{}"),
       license: JSON.parse(row.license || "{}"),
-      visits: row.visits || 0,
     }));
 
     const total = countResult?.total || 0;
