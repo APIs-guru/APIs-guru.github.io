@@ -13,9 +13,7 @@ export async function onRequestGet({ request, env }) {
     );
     const page = Math.max(parseInt(url.searchParams.get("page") || "1"), 1);
     const search = url.searchParams.get("search")?.toLowerCase().trim();
-    const category = url.searchParams.get("category")?.toLowerCase().trim();
-    const tag = url.searchParams.get("tag")?.toLowerCase().trim();
-    const status = url.searchParams.get("status")?.toLowerCase();
+
     const sortBy = url.searchParams.get("sortBy") || "name";
     const sortOrder =
       url.searchParams.get("sortOrder")?.toLowerCase() === "desc"
@@ -36,28 +34,6 @@ export async function onRequestGet({ request, env }) {
         "(LOWER(a.name) LIKE ? OR LOWER(a.description) LIKE ? OR LOWER(a.title) LIKE ?)"
       );
       bindings.push(`%${search}%`, `%${search}%`, `%${search}%`);
-    }
-
-    if (category) {
-      conditions.push("a.categories LIKE ?");
-      bindings.push(`%"${category}"%`);
-    }
-
-    if (tag) {
-      conditions.push("a.tags LIKE ?");
-      bindings.push(`%"${tag}"%`);
-    }
-
-    if (status === "new") {
-      const monthAgo = new Date();
-      monthAgo.setDate(monthAgo.getDate() - 30);
-      conditions.push("a.added >= ?");
-      bindings.push(monthAgo.toISOString().split("T")[0]);
-    } else if (status === "updated") {
-      const monthAgo = new Date();
-      monthAgo.setDate(monthAgo.getDate() - 30);
-      conditions.push("a.updated >= ?");
-      bindings.push(monthAgo.toISOString().split("T")[0]);
     }
 
     if (conditions.length > 0) {
@@ -121,9 +97,6 @@ export async function onRequestGet({ request, env }) {
       },
       filters: {
         search: search || null,
-        category: category || null,
-        tag: tag || null,
-        status: status || null,
         sortBy,
         sortOrder: sortOrder.toLowerCase(),
       },

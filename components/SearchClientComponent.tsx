@@ -1,9 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { fetchApisInfinite } from "@/services/api";
-import { cleanDescription } from "@/utils/textProcessing";
 import { useGridLayout } from "@/hooks/useGridLayout";
 import { useApiSearch } from "@/hooks/useApiSearch";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
@@ -32,14 +30,11 @@ function SearchClientComponentInner({
     searchTerm,
     setSearchTerm,
     allApiCards,
-    setAllApiCards,
     loading,
     setLoading,
     loadingMore,
     hasMore,
-    currentPage,
     loadMoreApis,
-    searchApis,
     resetSearch,
     totalCount,
   } = useApiSearch(initialCombinedSearchTerm, pageSize);
@@ -52,19 +47,8 @@ function SearchClientComponentInner({
   }) as React.RefObject<HTMLDivElement>;
 
   useEffect(() => {
-    const fetchInitialData = async () => {
-      try {
-        setLoading(true);
-        await resetSearch(initialCombinedSearchTerm);
-      } catch (error) {
-        console.error("Error fetching initial data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchInitialData();
-  }, [pageSize, initialCombinedSearchTerm, resetSearch, setLoading]);
+    resetSearch(initialCombinedSearchTerm);
+  }, [pageSize, initialCombinedSearchTerm, resetSearch]);
 
   useEffect(() => {
     const handleSearchChange = async () => {
@@ -73,31 +57,16 @@ function SearchClientComponentInner({
         : searchTerm;
 
       if (combinedSearchTerm !== initialCombinedSearchTerm) {
-        try {
-          await resetSearch(combinedSearchTerm);
-        } catch (error) {
-          console.error("Error in debounced search:", error);
-        } finally {
-          setLoading(false);
-        }
-      } else {
-        setLoading(false);
+        await resetSearch(combinedSearchTerm);
       }
     };
 
     const debounceTimer = setTimeout(handleSearchChange, 1000);
     return () => clearTimeout(debounceTimer);
-  }, [
-    searchTerm,
-    initialCombinedSearchTerm,
-    providerSlug,
-    resetSearch,
-    setLoading,
-  ]);
+  }, [searchTerm, initialCombinedSearchTerm, providerSlug, resetSearch]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearchTerm(value);
+    setSearchTerm(e.target.value);
     setLoading(true);
   };
 
