@@ -1,12 +1,13 @@
-const worker = {
-  async scheduled(event, env, ctx) {
-    ctx.waitUntil(syncApis(env));
-  },
-};
+import type { RequestContext, VisitResult } from "../../types/api";
+import { drizzle } from "drizzle-orm/d1";
+import { apis, apiVisits } from "@/db/schema";
+import { eq, sql } from "drizzle-orm";
+import type { D1Database } from "@cloudflare/workers-types";
 
-export default worker;
-
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({
+  request,
+  env,
+}: RequestContext): Promise<Response> {
   try {
     const isProduction = env.ENVIRONMENT === "production";
 
@@ -29,7 +30,8 @@ export async function onRequestPost({ request, env }) {
       }
     }
 
-    const { name } = await request.json();
+    const body = (await request.json()) as { name: string };
+    const { name } = body;
 
     if (!name) {
       return new Response(
@@ -71,7 +73,7 @@ export async function onRequestPost({ request, env }) {
       JSON.stringify({
         success: false,
         error: "Visit count update failed",
-        message: error.message,
+        message: error instanceof Error ? error.message : "Unknown error",
       }),
       {
         status: 500,
@@ -84,32 +86,47 @@ export async function onRequestPost({ request, env }) {
   }
 }
 
-async function updateApiVisits(db, apiName) {
+async function updateApiVisits(
+  database: D1Database,
+  apiName: string
+): Promise<VisitResult> {
+  const db = drizzle(database);
+
   const apiExists = await db
-    .prepare("SELECT name FROM Apis WHERE name = ?")
-    .bind(apiName)
-    .first();
+    .select({ name: apis.name })
+    .from(apis)
+    .where(eq(apis.name, apiName))
+    .get();
 
   if (!apiExists) {
     throw new Error(`API '${apiName}' not found`);
   }
 
-  const result = await db
-    .prepare(
-      `
-      INSERT INTO ApiVisits (api_name, visits) 
-      VALUES (?, 1)
-      ON CONFLICT(api_name) 
-      DO UPDATE SET visits = visits + 1
-    `
-    )
-    .bind(apiName)
-    .run();
+  await db
+    .insert(apiVisits)
+    .values({
+      api_name: apiName,
+      visits: 1,
+    })
+    .onConflictDoUpdate({
+      target: apiVisits.api_name,
+      set: {
+        visits: sql`${apiVisits.visits} + 1`,
+      },
+    });
 
   const updatedVisits = await db
-    .prepare("SELECT api_name, visits FROM ApiVisits WHERE api_name = ?")
-    .bind(apiName)
-    .first();
+    .select({
+      api_name: apiVisits.api_name,
+      visits: apiVisits.visits,
+    })
+    .from(apiVisits)
+    .where(eq(apiVisits.api_name, apiName))
+    .get();
+
+  if (!updatedVisits) {
+    throw new Error(`Failed to retrieve updated visit count for '${apiName}'`);
+  }
 
   return {
     name: updatedVisits.api_name,
@@ -117,7 +134,7 @@ async function updateApiVisits(db, apiName) {
   };
 }
 
-export async function onRequestOptions() {
+export async function onRequestOptions(): Promise<Response> {
   return new Response(null, {
     status: 204,
     headers: {

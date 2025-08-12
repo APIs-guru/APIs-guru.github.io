@@ -10,7 +10,7 @@ export interface ApiInfo {
   }>;
   "x-tags"?: string[];
   "x-apisguru-categories"?: string[];
-  "x-issues"?: string[]; // Added to fix TypeScript error
+  "x-issues"?: string[];
   contact?: {
     url?: string;
   };
@@ -52,15 +52,15 @@ export interface ApiList {
 
 export interface ApiCardModel {
   name: string;
-  description?: string;
-  cardDescription?: string;
-  markedDescription?: string;
-  categories?: string[]; // Added for improved search
-  tags?: string[]; // Added for improved search
+  description: string | null;
+  cardDescription: string | null;
+  markedDescription: string | null;
+  categories: string[] | null;
+  tags: string[] | null;
   classes: string;
   flashText: string;
   flashTitle: string;
-  preferred: string;
+  preferred: string | null;
   api: any;
   info: ApiInfo;
   logo: any;
@@ -70,19 +70,6 @@ export interface ApiCardModel {
   added: Date;
   updated: Date;
   integrations: any[];
-  searchableText?: string; // Added for improved search
-  visits?: number; // Added visits property
-}
-
-// Export a function to create a searchable text field from an API model
-export function createSearchableText(model: ApiCardModel): string {
-  const parts = [
-    model.name,
-    model.description || "",
-    model.cardDescription || "",
-    ...(model.categories || []),
-    ...(model.tags || []),
-  ];
-
-  return parts.join(" ").toLowerCase();
+  searchableText?: string;
+  visits: number | null;
 }
