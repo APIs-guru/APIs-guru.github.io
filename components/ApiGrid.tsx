@@ -1,10 +1,12 @@
 import React from "react";
-import { ApiCardModel } from "@/models/ApiCardModel";
-import Card from "@/components/Card";
+
+import Card from "./ApiCard";
+
 import { CardSkeleton } from "@/components/ui/CardSkeleton";
+import { ApiCard } from "@/types/api";
 
 interface ApiGridProps {
-  cards: ApiCardModel[];
+  cards: ApiCard[];
   searchTerm: string;
   loading: boolean;
   loadingMore: boolean;
@@ -26,7 +28,6 @@ export function ApiGrid({
 }: ApiGridProps) {
   return (
     <section id="apis-list" className="cards">
-      {/* Show skeletons when loading initial data */}
       {loading ? (
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-4">
           {Array.from({ length: Math.min(pageSize, gridColumns * 2) }).map(
@@ -37,7 +38,6 @@ export function ApiGrid({
         </div>
       ) : (
         <>
-          {/* Show skeletons when loading more data */}
           {loadingMore && (
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-4">
               {Array.from({ length: Math.min(pageSize, gridColumns * 2) }).map(
@@ -61,10 +61,8 @@ export function ApiGrid({
         </>
       )}
 
-      {/* Intersection observer target */}
       <div ref={observerRef} className="h-10 mt-4" />
 
-      {/* End of results indicator */}
       {!hasMore && cards.length > 0 && (
         <div className="text-center py-6 text-gray-500">
           That's all the APIs! 🎉

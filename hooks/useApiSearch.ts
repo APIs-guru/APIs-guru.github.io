@@ -1,18 +1,18 @@
 import { useState, useCallback } from "react";
-import { ApiCardModel } from "@/models/ApiCardModel";
+import { ApiCard } from "@/types/api";
 import { fetchApisInfinite } from "@/services/api";
 import { cleanDescription } from "@/utils/textProcessing";
 
 export function useApiSearch(initialSearchTerm: string, pageSize: number) {
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
-  const [allApiCards, setAllApiCards] = useState<ApiCardModel[]>([]);
+  const [allApiCards, setAllApiCards] = useState<ApiCard[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
 
-  const cleanApiData = useCallback((apis: ApiCardModel[]) => {
+  const cleanApiData = useCallback((apis: ApiCard[]) => {
     return apis.map((card) => ({
       ...card,
       cardDescription: card.cardDescription

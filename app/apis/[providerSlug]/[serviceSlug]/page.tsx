@@ -9,12 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import JsonTreeContainer, { JsonTree } from "@/components/JsonTree";
 import ApiButtons from "@/components/ApiButtons";
 import VisitCounter from "@/components/VisitCounter";
-
-interface ApiVersion {
-  version: string;
-  swaggerUrl: string;
-  swaggerYamlUrl: string;
-}
+import type { ApiVersion } from "@/types/api";
 
 function stripMarkdown(markdown: string): string {
   return markdown
@@ -37,83 +32,93 @@ export function getData(
     ? `${providerSlug}:${serviceSlug}`
     : providerSlug;
 
+  if (apiList[targetKey]) {
+    return processApiData(targetKey, apiList[targetKey]);
+  }
+
   for (const key in apiList) {
-    if (apiList.hasOwnProperty(key) && key === targetKey) {
-      try {
-        const api = apiList[key];
-        const versions = api.versions || {};
-        const preferred = api.preferred || Object.keys(versions)[0] || "";
-        const preferredVersion = versions[preferred] || {};
-        const info = preferredVersion.info || {};
-        const externalDocs = preferredVersion.externalDocs || {};
-        const contact = info.contact || {};
-
-        const logo = {
-          url: info["x-logo"]?.url || "/assets/images/no-logo.svg",
-          backgroundColor: info["x-logo"]?.backgroundColor || null,
-        };
-
-        const externalUrl =
-          externalDocs.url ||
-          contact.url ||
-          (key.indexOf(".local") < 0 ? `https://${key.split(":")[0]}` : "");
-
-        let origUrl = "";
-        if (
-          info["x-origin"] &&
-          Array.isArray(info["x-origin"]) &&
-          info["x-origin"].length > 0
-        ) {
-          origUrl =
-            info["x-origin"][0]?.url || preferredVersion.swaggerUrl || "";
-        } else {
-          origUrl = preferredVersion.swaggerUrl || "";
-        }
-
-        const categories = info["x-apisguru-categories"] || [];
-        const tags = info["x-tags"] || [];
-
-        const versionsArray = Object.entries(versions).map(
-          ([version, details]: [string, any]) => ({
-            version,
-            swaggerUrl: details?.swaggerUrl || "",
-            swaggerYamlUrl: details?.swaggerYamlUrl || "",
-          })
-        );
-
-        const description = info.description || "No description available";
-        const cardDescription = marked(description);
-        const cardDescriptionPlain = stripMarkdown(description);
-
-        return {
-          name: key,
-          preferred: api.preferred || "",
-          info,
-          api: {
-            swaggerUrl: preferredVersion.swaggerUrl || "",
-            swaggerYamlUrl: preferredVersion.swaggerYamlUrl || "",
-          },
-          logo,
-          externalUrl,
-          origUrl,
-          versions: versionsArray,
-          cardDescription,
-          cardDescriptionPlain,
-          categories,
-          tags,
-          integrations: api.integrations || [],
-          updated: preferredVersion.updated || "", // Include the updated field
-        };
-      } catch (error) {
-        console.error(`Error processing API ${key}:`, error);
-        return null;
-      }
+    if (
+      apiList.hasOwnProperty(key) &&
+      key.toLowerCase() === targetKey.toLowerCase()
+    ) {
+      return processApiData(key, apiList[key]);
     }
   }
+
   console.warn(
     `No API found for provider: ${providerSlug}, service: ${serviceSlug}`
   );
   return null;
+}
+
+function processApiData(key: string, api: any) {
+  try {
+    const versions = api.versions || {};
+    const preferred = api.preferred || Object.keys(versions)[0] || "";
+    const preferredVersion = versions[preferred] || {};
+    const info = preferredVersion.info || {};
+    const externalDocs = preferredVersion.externalDocs || {};
+    const contact = info.contact || {};
+
+    const logo = {
+      url: info["x-logo"]?.url || "/assets/images/no-logo.svg",
+      backgroundColor: info["x-logo"]?.backgroundColor || null,
+    };
+
+    const externalUrl =
+      externalDocs.url ||
+      contact.url ||
+      (key.indexOf(".local") < 0 ? `https://${key.split(":")[0]}` : "");
+
+    let origUrl = "";
+    if (
+      info["x-origin"] &&
+      Array.isArray(info["x-origin"]) &&
+      info["x-origin"].length > 0
+    ) {
+      origUrl = info["x-origin"][0]?.url || preferredVersion.swaggerUrl || "";
+    } else {
+      origUrl = preferredVersion.swaggerUrl || "";
+    }
+
+    const categories = info["x-apisguru-categories"] || [];
+    const tags = info["x-tags"] || [];
+
+    const versionsArray = Object.entries(versions).map(
+      ([version, details]: [string, any]) => ({
+        version,
+        swaggerUrl: details?.swaggerUrl || "",
+        swaggerYamlUrl: details?.swaggerYamlUrl || "",
+      })
+    );
+
+    const description = info.description || "No description available";
+    const cardDescription = marked(description);
+    const cardDescriptionPlain = stripMarkdown(description);
+
+    return {
+      name: key,
+      preferred: api.preferred || "",
+      info,
+      api: {
+        swaggerUrl: preferredVersion.swaggerUrl || "",
+        swaggerYamlUrl: preferredVersion.swaggerYamlUrl || "",
+      },
+      logo,
+      externalUrl,
+      origUrl,
+      versions: versionsArray,
+      cardDescription,
+      cardDescriptionPlain,
+      categories,
+      tags,
+      integrations: api.integrations || [],
+      updated: preferredVersion.updated || "",
+    };
+  } catch (error) {
+    console.error(`Error processing API ${key}:`, error);
+    return null;
+  }
 }
 
 export async function generateStaticParams() {
@@ -213,10 +218,7 @@ export default async function ApiPage({
 
   return (
     <div className="container mx-auto p-6 max-w-4xl">
-      <VisitCounter
-        providerSlug={providerSlug}
-        serviceSlug={serviceSlug}
-      />
+      <VisitCounter providerSlug={providerSlug} serviceSlug={serviceSlug} />
 
       <div className="flex flex-col md:flex-row gap-6 mb-8">
         <div className="flex-shrink-0">
