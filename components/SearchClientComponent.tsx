@@ -26,6 +26,7 @@ function SearchClientComponentInner({
     : initialSearchTerm;
 
   const { gridColumns, pageSize } = useGridLayout();
+
   const {
     searchTerm,
     setSearchTerm,
@@ -56,12 +57,10 @@ function SearchClientComponentInner({
         ? `${providerSlug}:${searchTerm}`.trim()
         : searchTerm;
 
-      if (combinedSearchTerm !== initialCombinedSearchTerm) {
-        await resetSearch(combinedSearchTerm);
-      }
+      await resetSearch(combinedSearchTerm);
     };
 
-    const debounceTimer = setTimeout(handleSearchChange, 1000);
+    const debounceTimer = setTimeout(handleSearchChange, 300);
     return () => clearTimeout(debounceTimer);
   }, [searchTerm, initialCombinedSearchTerm, providerSlug, resetSearch]);
 
