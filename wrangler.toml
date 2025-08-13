@@ -26,6 +26,7 @@ SYNC_URL = "https://api.apis.guru/v2/list.json"
 BATCH_SIZE = "100"
 MAX_PAGE_SIZE = "100"
 DEFAULT_PAGE_SIZE = "20"
+SENTRY_DSN="https://8296abef723d97e7b8d5a15d1e93be1f@o4509816683823104.ingest.us.sentry.io/4509831375683584"
 
 # Preview configuration (development/staging)
 [env.preview]
@@ -52,3 +53,4 @@ SYNC_URL = "https://api.apis.guru/v2/list.json"
 BATCH_SIZE = "100"
 MAX_PAGE_SIZE = "100"
 DEFAULT_PAGE_SIZE = "20"
+
