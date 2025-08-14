@@ -4,10 +4,16 @@ import React, { useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useGridLayout } from "@/hooks/useGridLayout";
 import { useApiSearch } from "@/hooks/useApiSearch";
-import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
-import { SearchSection } from "@/components/SearchSection";
-import { ApiGrid } from "@/components/ApiGrid";
 import { LoadingSkeleton } from "@/components/LoadingSkeleton";
+import { ApiGrid } from "@/components/ApiGrid";
+import { liteClient as algoliasearch } from "algoliasearch/lite";
+import { InstantSearch, Hits } from "react-instantsearch";
+import { SearchSection } from "@/components/SearchSection";
+
+const searchClient = algoliasearch(
+  "D29MLR0AMY",
+  "03da9918f8ebfdb40e9b37cfd43ed8c4"
+);
 
 interface SearchClientComponentProps {
   repoStarCounts: Record<string, number>;
@@ -20,54 +26,15 @@ function SearchClientComponentInner({
 }: SearchClientComponentProps) {
   const searchParams = useSearchParams();
   const initialSearchTerm = searchParams?.get("q") || "";
-
   const initialCombinedSearchTerm = providerSlug
     ? `${providerSlug} ${initialSearchTerm}`.trim()
     : initialSearchTerm;
 
   const { gridColumns, pageSize } = useGridLayout();
-
-  const {
-    searchTerm,
-    setSearchTerm,
-    allApiCards,
-    loading,
-    setLoading,
-    loadingMore,
-    hasMore,
-    loadMoreApis,
-    resetSearch,
-    totalCount,
-  } = useApiSearch(initialCombinedSearchTerm, pageSize);
-
-  const observerRef = useInfiniteScroll({
-    hasMore,
-    loadingMore,
-    loading,
-    loadMore: loadMoreApis,
-  }) as React.RefObject<HTMLDivElement>;
-
-  useEffect(() => {
-    resetSearch(initialCombinedSearchTerm);
-  }, [pageSize, initialCombinedSearchTerm, resetSearch]);
-
-  useEffect(() => {
-    const handleSearchChange = async () => {
-      const combinedSearchTerm = providerSlug
-        ? `${providerSlug}:${searchTerm}`.trim()
-        : searchTerm;
-
-      await resetSearch(combinedSearchTerm);
-    };
-
-    const debounceTimer = setTimeout(handleSearchChange, 300);
-    return () => clearTimeout(debounceTimer);
-  }, [searchTerm, initialCombinedSearchTerm, providerSlug, resetSearch]);
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-    setLoading(true);
-  };
+  const { searchTerm, setSearchTerm, resetSearch, totalCount } = useApiSearch(
+    initialCombinedSearchTerm,
+    pageSize
+  );
 
   useEffect(() => {
     Object.entries(repoStarCounts).forEach(([name, stars]) => {
@@ -80,25 +47,30 @@ function SearchClientComponentInner({
     });
   }, [repoStarCounts]);
 
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
     <div className="container mx-auto px-4 relative">
       <div className="relative z-10">
-        <SearchSection
-          searchTerm={searchTerm}
-          apiCount={totalCount}
-          onSearchChange={handleSearch}
-        />
+        <InstantSearch
+          indexName="test_apis_guru"
+          searchClient={searchClient}
+          initialUiState={{
+            test_apis_guru: {
+              sortBy: "test_apis_guru_by_name_asc",
+            },
+          }}
+        >
+          <SearchSection searchTerm={searchTerm} apiCount={totalCount} />
 
-        <ApiGrid
-          cards={allApiCards}
-          searchTerm={searchTerm}
-          loading={loading}
-          loadingMore={loadingMore}
-          hasMore={hasMore}
-          gridColumns={gridColumns}
-          pageSize={pageSize}
-          observerRef={observerRef}
-        />
+          <ApiGrid
+            gridColumns={gridColumns}
+            pageSize={pageSize}
+            searchTerm={searchTerm}
+          />
+        </InstantSearch>
       </div>
     </div>
   );
