@@ -1,5 +1,4 @@
 import React from "react";
-import { ApiCardModel } from "../models/ApiCardModel";
 import { Card, CardContent, CardHeader } from "./ui/card";
 import Link from "next/link";
 import Image from "next/image";
@@ -43,7 +42,7 @@ export default function ApiCard({ model }: { model: ApiCard }) {
               }}
             />
             <p className="leading-[1.2] overflow-hidden text-ellipsis h-[calc(1em*1.2*3)] text-sm text-gray-700">
-              {model.cardDescription}
+              {model.description}
             </p>
           </div>
         </CardContent>

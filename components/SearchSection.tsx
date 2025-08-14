@@ -1,21 +1,25 @@
-import React from "react";
-import { Input } from "@/components/ui/input";
+import React, { useEffect } from "react";
+import { SearchBox, useInstantSearch } from "react-instantsearch";
 
 interface SearchSectionProps {
   searchTerm: string;
   apiCount: number;
-  onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+
 }
 
 export function SearchSection({
   searchTerm,
   apiCount,
-  onSearchChange,
+ 
 }: SearchSectionProps) {
+  const { results } = useInstantSearch({});
+  useEffect(() => {
+    console.log(results);
+  }, [results]);
   return (
     <div id="search" className="mb-8 max-w-3xl mx-auto">
       <div className="relative">
-        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
           <svg
             className="h-5 w-5 text-gray-400"
             fill="none"
@@ -30,13 +34,16 @@ export function SearchSection({
             />
           </svg>
         </div>
-        <Input
-          id="search-input"
-          type="search"
-          placeholder={`Search through ${apiCount.toLocaleString()} APIs...`}
-          value={searchTerm}
-          onChange={onSearchChange}
-          className="w-full pl-12 pr-4 py-6 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 shadow-sm hover:shadow-md"
+        <SearchBox
+          placeholder={`Search through APIs...`}
+          classNames={{
+            form: "relative",
+            input:
+              "w-full pl-12 pr-4 py-2 text-lg border-2 border-gray-200 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md",
+            submit: "hidden",
+            reset: "hidden",
+            loadingIndicator: "hidden", // Hide the loading indicator
+          }}
         />
       </div>
       {searchTerm && (
