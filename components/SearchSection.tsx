@@ -1,18 +1,10 @@
 import React, { useEffect } from "react";
-import { SearchBox, useInstantSearch } from "react-instantsearch";
+import { SearchBox, useInstantSearch, useSearchBox } from "react-instantsearch";
 
-interface SearchSectionProps {
-  searchTerm: string;
-  apiCount: number;
-
-}
-
-export function SearchSection({
-  searchTerm,
-  apiCount,
- 
-}: SearchSectionProps) {
+export function SearchSection() {
   const { results } = useInstantSearch({});
+  const { query } = useSearchBox();
+
   useEffect(() => {
     console.log(results);
   }, [results]);
@@ -42,13 +34,13 @@ export function SearchSection({
               "w-full pl-12 pr-4 py-2 text-lg border-2 border-gray-200 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md",
             submit: "hidden",
             reset: "hidden",
-            loadingIndicator: "hidden", // Hide the loading indicator
+            loadingIndicator: "hidden",
           }}
         />
       </div>
-      {searchTerm && (
+      {query && (
         <div className="mt-3 text-lg text-gray-600 text-center">
-          {apiCount.toLocaleString()} APIs found
+          {results.nbHits.toLocaleString()} APIs found
         </div>
       )}
     </div>

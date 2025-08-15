@@ -31,10 +31,6 @@ function SearchClientComponentInner({
     : initialSearchTerm;
 
   const { gridColumns, pageSize } = useGridLayout();
-  const { searchTerm, setSearchTerm, resetSearch, totalCount } = useApiSearch(
-    initialCombinedSearchTerm,
-    pageSize
-  );
 
   useEffect(() => {
     Object.entries(repoStarCounts).forEach(([name, stars]) => {
@@ -47,10 +43,6 @@ function SearchClientComponentInner({
     });
   }, [repoStarCounts]);
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
-
   return (
     <div className="container mx-auto px-4 relative">
       <div className="relative z-10">
@@ -59,17 +51,14 @@ function SearchClientComponentInner({
           searchClient={searchClient}
           initialUiState={{
             test_apis_guru: {
+              query: initialCombinedSearchTerm,
               sortBy: "test_apis_guru_by_name_asc",
             },
           }}
         >
-          <SearchSection searchTerm={searchTerm} apiCount={totalCount} />
+          <SearchSection />
 
-          <ApiGrid
-            gridColumns={gridColumns}
-            pageSize={pageSize}
-            searchTerm={searchTerm}
-          />
+          <ApiGrid gridColumns={gridColumns} pageSize={pageSize} />
         </InstantSearch>
       </div>
     </div>
