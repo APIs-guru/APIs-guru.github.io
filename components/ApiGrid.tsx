@@ -1,16 +1,19 @@
 import React, { useEffect, useRef, useCallback } from "react";
-import { useInfiniteHits, useInstantSearch } from "react-instantsearch";
+import {
+  useInfiniteHits,
+  useInstantSearch,
+  useSearchBox,
+} from "react-instantsearch";
 import Card from "./ApiCard";
 import { CardSkeleton } from "@/components/ui/CardSkeleton";
 import { cleanDescription } from "@/utils/textProcessing";
 
 interface ApiGridProps {
-  searchTerm: string;
   gridColumns: number;
   pageSize: number;
 }
+
 const transformItems = (items: any[]) => {
-  console.log("Transforming items:", items);
   return items.map((item) => ({
     ...item,
     name: item.name || item.objectID,
@@ -30,9 +33,10 @@ const transformItems = (items: any[]) => {
   }));
 };
 
-export function ApiGrid({ searchTerm, gridColumns, pageSize }: ApiGridProps) {
+export function ApiGrid({ gridColumns, pageSize }: ApiGridProps) {
+  const { query } = useSearchBox(); // <-- Get current search term
   const { status, error } = useInstantSearch({ catchError: true });
-  const { hits, isLastPage, showMore, results } = useInfiniteHits({
+  const { hits, isLastPage, showMore } = useInfiniteHits({
     transformItems,
     showPrevious: false,
   });
@@ -95,13 +99,12 @@ export function ApiGrid({ searchTerm, gridColumns, pageSize }: ApiGridProps) {
         <>
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-4">
             {hits.length > 0 ? (
-              hits.map((hit, index) => {
-                console.log("Rendering hit:", hit);
-                return <Card key={`${hit.objectID}-${index}`} model={hit} />;
-              })
+              hits.map((hit, index) => (
+                <Card key={`${hit.objectID}-${index}`} model={hit} />
+              ))
             ) : (
               <div className="col-span-full text-center py-6 bg-gray-50 rounded-lg border border-gray-100">
-                No APIs found matching &quot;{searchTerm}&quot;
+                No APIs found matching &quot;{query}&quot;
               </div>
             )}
           </div>
