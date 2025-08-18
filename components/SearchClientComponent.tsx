@@ -47,12 +47,12 @@ function SearchClientComponentInner({
     <div className="container mx-auto px-4 relative">
       <div className="relative z-10">
         <InstantSearch
-          indexName="test_apis_guru"
+          indexName="prod_apis_guru"
           searchClient={searchClient}
           initialUiState={{
-            test_apis_guru: {
+            prod_apis_guru: {
               query: initialCombinedSearchTerm,
-              sortBy: "test_apis_guru_by_name_asc",
+              sortBy: "prod_apis_guru_by_name_asc",
             },
           }}
         >
