@@ -1,56 +1,56 @@
-name = "apis-guru-workers"
+name = "apis-guru"
 compatibility_date = "2025-07-01"
 compatibility_flags = ["nodejs_compat"]
 
-# Environment configuration for Pages Functions
-pages_build_output_dir = "out"
+main = "./out/_worker.js"
 
-# D1 Database binding (default, used for local development)
+[assets]
+directory = "./out"
+binding = "ASSETS"
+
 [[d1_databases]]
 binding = "DB"
 database_name = "apis-guru-data-dev"
 database_id = "1090248d-84f7-4ffe-ab4f-5fd27c98d3e0"
 migrations_dir = "migrations"
 
-# Production D1 Database binding (for direct CLI access)
 [[d1_databases]]
 binding = "PROD_DB"
 database_name = "apis-guru-data"
 database_id = "660cdfd3-7c06-44ea-8e6d-f658f4fc39ca"
 migrations_dir = "migrations"
 
-
-# Environment variables (default)
 [vars]
 SYNC_URL = "https://api.apis.guru/v2/list.json"
 BATCH_SIZE = "100"
 MAX_PAGE_SIZE = "100"
 DEFAULT_PAGE_SIZE = "20"
-SENTRY_DSN="https://8296abef723d97e7b8d5a15d1e93be1f@o4509816683823104.ingest.us.sentry.io/4509831375683584"
+SENTRY_DSN = "https://8296abef723d97e7b8d5a15d1e93be1f@o4509816683823104.ingest.us.sentry.io/4509831375683584"
 
-# Preview configuration (development/staging)
 [env.preview]
+
 [[env.preview.d1_databases]]
 binding = "DB"
 database_name = "apis-guru-data-dev"
 database_id = "1090248d-84f7-4ffe-ab4f-5fd27c98d3e0"
 migrations_dir = "migrations"
+
 [env.preview.vars]
 SYNC_URL = "https://api.apis.guru/v2/list.json"
 BATCH_SIZE = "100"
 MAX_PAGE_SIZE = "100"
 DEFAULT_PAGE_SIZE = "20"
 
-# Production configuration
 [env.production]
+
 [[env.production.d1_databases]]
 binding = "DB"
 database_name = "apis-guru-data"
 database_id = "660cdfd3-7c06-44ea-8e6d-f658f4fc39ca"
 migrations_dir = "migrations"
+
 [env.production.vars]
 SYNC_URL = "https://api.apis.guru/v2/list.json"
 BATCH_SIZE = "100"
 MAX_PAGE_SIZE = "100"
 DEFAULT_PAGE_SIZE = "20"
-
