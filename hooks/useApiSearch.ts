@@ -32,7 +32,7 @@ export function useApiSearch(initialSearchTerm: string, pageSize: number) {
       const response = await fetchApisInfinite(
         currentPage + 1,
         searchTerm,
-        pageSize
+        pageSize,
       );
 
       if (response.apis.length > 0) {
@@ -75,7 +75,7 @@ export function useApiSearch(initialSearchTerm: string, pageSize: number) {
         setLoading(false);
       }
     },
-    [pageSize, cleanApiData]
+    [pageSize, cleanApiData],
   );
 
   return {

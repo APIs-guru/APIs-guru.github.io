@@ -11,7 +11,7 @@ import { SearchSection } from "@/components/SearchSection";
 
 const searchClient = algoliasearch(
   "D29MLR0AMY",
-  "03da9918f8ebfdb40e9b37cfd43ed8c4"
+  "03da9918f8ebfdb40e9b37cfd43ed8c4",
 );
 
 interface SearchClientComponentProps {

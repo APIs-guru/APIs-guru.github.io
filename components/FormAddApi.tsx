@@ -111,13 +111,13 @@ export default function FormAddApi() {
       const up = new URL(formData.url);
       if (!up.pathname || up.pathname === "/") {
         alert(
-          "Please specify a machine-readable API definition location, not a website root URL"
+          "Please specify a machine-readable API definition location, not a website root URL",
         );
         return false;
       }
       if (up.pathname.endsWith(".html")) {
         alert(
-          "Please specify a machine-readable API definition location, not an html page"
+          "Please specify a machine-readable API definition location, not an html page",
         );
         return false;
       }
@@ -145,7 +145,7 @@ export default function FormAddApi() {
       }
       if (res.ok && ct && ct.startsWith("text/html")) {
         alert(
-          "That looks like a web-page, not a machine-readable API definition"
+          "That looks like a web-page, not a machine-readable API definition",
         );
         return false;
       }
@@ -188,7 +188,7 @@ export default function FormAddApi() {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
