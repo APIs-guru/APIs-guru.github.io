@@ -38,7 +38,6 @@ export async function POST(req: NextRequest) {
     });
 
     const response = await fetch(newRequest);
-    console.error("Sentry proxy response status:", response.status);
 
     return new Response(response.body, {
       status: response.status,

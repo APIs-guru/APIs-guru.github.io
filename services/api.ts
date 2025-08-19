@@ -5,7 +5,7 @@ export async function fetchApis(
     search?: string;
     page?: number;
     pageSize?: number;
-  } = {}
+  } = {},
 ): Promise<ApiResponse> {
   try {
     const params = new URLSearchParams();
@@ -52,7 +52,7 @@ export async function fetchApis(
 export async function fetchApisInfinite(
   page: number = 1,
   search?: string,
-  pageSize: number = 20
+  pageSize: number = 20,
 ): Promise<InfiniteApiResponse> {
   try {
     const response = await fetchApis({

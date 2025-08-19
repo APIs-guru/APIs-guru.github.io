@@ -43,7 +43,7 @@ export default function ApiButtons({
         onClick={() =>
           downloadFile(
             swaggerUrl,
-            `${title}${version ? `-v${version}` : ""}-swagger.json`
+            `${title}${version ? `-v${version}` : ""}-swagger.json`,
           )
         }
         className="py-2 px-4 bg-[#388c9a] rounded text-white hover:bg-[#2a6b77] flex items-center gap-2 transition-colors duration-200"
@@ -57,7 +57,7 @@ export default function ApiButtons({
         onClick={() =>
           downloadFile(
             swaggerYamlUrl,
-            `${title}${version ? `-v${version}` : ""}-swagger.yaml`
+            `${title}${version ? `-v${version}` : ""}-swagger.yaml`,
           )
         }
         className="py-2 px-4 bg-[#388c9a] rounded text-white hover:bg-[#2a6b77] flex items-center gap-2 transition-colors duration-200"
@@ -71,7 +71,7 @@ export default function ApiButtons({
         onClick={() =>
           downloadFile(
             origUrl,
-            `${title}${version ? `-v${version}` : ""}-original.json`
+            `${title}${version ? `-v${version}` : ""}-original.json`,
           )
         }
         className="py-2 px-4 bg-[#388c9a] rounded text-white hover:bg-[#2a6b77] flex items-center gap-2 transition-colors duration-200"

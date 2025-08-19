@@ -22,11 +22,11 @@ export async function onRequestGet({
     const pageSize = Math.min(
       Math.max(
         parseInt(
-          url.searchParams.get("pageSize") || env.DEFAULT_PAGE_SIZE || "20"
+          url.searchParams.get("pageSize") || env.DEFAULT_PAGE_SIZE || "20",
         ),
-        1
+        1,
       ),
-      parseInt(env.MAX_PAGE_SIZE || "100")
+      parseInt(env.MAX_PAGE_SIZE || "100"),
     );
     const page = Math.max(parseInt(url.searchParams.get("page") || "1"), 1);
     const search = url.searchParams.get("search")?.toLowerCase().trim();
@@ -39,8 +39,8 @@ export async function onRequestGet({
         or(
           like(apis.name, `%${search}%`),
           like(apis.description, `%${search}%`),
-          like(apis.title, `%${search}%`)
-        )
+          like(apis.title, `%${search}%`),
+        ),
       );
     }
 
@@ -155,7 +155,7 @@ export async function onRequestGet({
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
-      }
+      },
     );
   }
 }

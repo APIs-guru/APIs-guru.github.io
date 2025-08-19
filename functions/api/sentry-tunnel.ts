@@ -55,7 +55,7 @@ export async function onRequestPost({
       {
         status: 500,
         headers: corsHeaders(),
-      }
+      },
     );
   }
 }

@@ -25,7 +25,7 @@ export async function onRequestPost({
               "Content-Type": "application/json",
               "Access-Control-Allow-Origin": "*",
             },
-          }
+          },
         );
       }
     }
@@ -45,7 +45,7 @@ export async function onRequestPost({
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
           },
-        }
+        },
       );
     }
 
@@ -64,7 +64,7 @@ export async function onRequestPost({
           "Access-Control-Allow-Methods": "POST, OPTIONS",
           "Access-Control-Allow-Headers": "Content-Type",
         },
-      }
+      },
     );
   } catch (error) {
     console.error("Visit count update failed:", error);
@@ -81,14 +81,14 @@ export async function onRequestPost({
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
-      }
+      },
     );
   }
 }
 
 async function updateApiVisits(
   database: D1Database,
-  apiName: string
+  apiName: string,
 ): Promise<VisitResult> {
   const db = drizzle(database);
 

@@ -24,7 +24,7 @@ function stripMarkdown(markdown: string): string {
 }
 export function getData(
   providerSlug: string,
-  serviceSlug?: string | null
+  serviceSlug?: string | null,
 ): any | null {
   const apiList = list as Record<string, any>;
 
@@ -46,7 +46,7 @@ export function getData(
   }
 
   console.warn(
-    `No API found for provider: ${providerSlug}, service: ${serviceSlug}`
+    `No API found for provider: ${providerSlug}, service: ${serviceSlug}`,
   );
   return null;
 }
@@ -89,7 +89,7 @@ function processApiData(key: string, api: any) {
         version,
         swaggerUrl: details?.swaggerUrl || "",
         swaggerYamlUrl: details?.swaggerYamlUrl || "",
-      })
+      }),
     );
 
     const description = info.description || "No description available";
@@ -146,7 +146,7 @@ export async function generateMetadata(
   {
     params,
   }: { params: Promise<{ providerSlug: string; serviceSlug: string }> },
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { providerSlug, serviceSlug } = await params;
   const api = getData(providerSlug, serviceSlug);

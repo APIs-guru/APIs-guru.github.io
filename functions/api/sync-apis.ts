@@ -22,7 +22,7 @@ export async function onRequestPost({
           "Access-Control-Allow-Methods": "POST, OPTIONS",
           "Access-Control-Allow-Headers": "Content-Type",
         },
-      }
+      },
     );
   } catch (error) {
     console.error("Manual sync failed:", error);
@@ -39,7 +39,7 @@ export async function onRequestPost({
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
-      }
+      },
     );
   }
 }
@@ -57,12 +57,12 @@ async function syncApis(env: any): Promise<SyncResult> {
         headers: {
           "User-Agent": "APIs-Guru-Cloudflare-Worker/1.0",
         },
-      }
+      },
     );
 
     if (!response.ok) {
       throw new Error(
-        `HTTP error fetching API list: ${response.status} ${response.statusText}`
+        `HTTP error fetching API list: ${response.status} ${response.statusText}`,
       );
     }
 
@@ -85,7 +85,7 @@ async function syncApis(env: any): Promise<SyncResult> {
           const info = versionData.info;
 
           const categories = (info["x-apisguru-categories"] || []).map((c) =>
-            c.toLowerCase()
+            c.toLowerCase(),
           );
           const tags = (info["x-tags"] || []).map((t) => t.toLowerCase());
           const contact = info.contact || {};
@@ -143,13 +143,13 @@ async function syncApis(env: any): Promise<SyncResult> {
 
         console.log(
           `Processed batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(
-            entries.length / batchSize
-          )} (${batch.length} APIs)`
+            entries.length / batchSize,
+          )} (${batch.length} APIs)`,
         );
       } catch (error) {
         console.error(
           `Error processing batch ${Math.floor(i / batchSize) + 1}:`,
-          error
+          error,
         );
         totalErrors += batch.length;
       }
@@ -157,7 +157,7 @@ async function syncApis(env: any): Promise<SyncResult> {
 
     const duration = Date.now() - startTime;
     console.log(
-      `Sync completed in ${duration}ms. Processed: ${totalProcessed}, Errors: ${totalErrors}`
+      `Sync completed in ${duration}ms. Processed: ${totalProcessed}, Errors: ${totalErrors}`,
     );
 
     return {

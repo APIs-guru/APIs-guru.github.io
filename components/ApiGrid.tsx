@@ -56,7 +56,7 @@ export function ApiGrid({ gridColumns, pageSize }: ApiGridProps) {
         showMore();
       }
     },
-    [hasMore, loading, stalled, showMore]
+    [hasMore, loading, stalled, showMore],
   );
 
   useEffect(() => {
@@ -92,7 +92,7 @@ export function ApiGrid({ gridColumns, pageSize }: ApiGridProps) {
           {Array.from({ length: Math.min(pageSize, gridColumns * 2) }).map(
             (_, index) => (
               <CardSkeleton key={`skeleton-loading-${index}`} />
-            )
+            ),
           )}
         </div>
       ) : (
@@ -114,7 +114,7 @@ export function ApiGrid({ gridColumns, pageSize }: ApiGridProps) {
               {Array.from({ length: Math.min(pageSize, gridColumns) }).map(
                 (_, index) => (
                   <CardSkeleton key={`skeleton-more-${index}`} />
-                )
+                ),
               )}
             </div>
           )}
