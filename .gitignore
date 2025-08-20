@@ -17,7 +17,7 @@
 /.next/
 /out/*
 !/out/.assetsignore
-
+/.open-next
 # production
 /build
 
