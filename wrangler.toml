@@ -1,11 +1,9 @@
 name = "apis-guru"
-compatibility_date = "2025-07-01"
+compatibility_date = "2025-03-25"
 compatibility_flags = ["nodejs_compat"]
-
-main = "./out/_worker.js"
-
+main = ".open-next/worker.js"
 [assets]
-directory = "./out"
+directory = ".open-next/assets"
 binding = "ASSETS"
 
 [[d1_databases]]
