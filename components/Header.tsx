@@ -17,7 +17,7 @@ export default function Header() {
     { href: "/about", label: "About" },
     { href: "/api-doc", label: "Our API" },
     { href: "/add-api", label: "Add API" },
-    { href: "https://blog.apis.guru/", label: "Blog", external: true },
+    { href: "/blog", label: "Blog" },
     {
       href: "https://old.apis.guru/awesome-openapi3/",
       label: "OpenAPI Tools",
@@ -90,7 +90,7 @@ export default function Header() {
                     (pathname === item.href ||
                       (item.href === "/" && pathname?.startsWith("/apis/")))
                     ? 'after:block after:content-[""] after:h-0.5 after:bg-amber-500 after:absolute after:bottom-0 after:left-0 after:right-0 after:scale-x-100'
-                    : 'hover:after:scale-x-100 after:block after:content-[""] after:h-0.5 after:bg-amber-500 after:absolute after:bottom-0 after:left-0 after:right-0 after:transform after:scale-x-0 after:transition-transform after:duration-200',
+                    : 'hover:after:scale-x-100 after:block after:content-[""] after:h-0.5 after:bg-amber-500 after:absolute after:bottom-0 after:left-0 after:right-0 after:transform after:scale-x-0 after:transition-transform after:duration-200'
                 )}
                 {...(item.external
                   ? { target: "_blank", rel: "noopener noreferrer" }
