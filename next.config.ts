@@ -11,8 +11,12 @@ const nextConfig: NextConfig = {
         hostname: "api.apis.guru",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: "/**",
+      },
     ],
- 
   },
 };
 
