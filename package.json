@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && wrangler pages functions build --outdir=./out/_worker.js/",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "export": "next build",
