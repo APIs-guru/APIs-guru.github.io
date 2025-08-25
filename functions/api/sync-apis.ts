@@ -46,7 +46,7 @@ export async function onRequestPost({
 
 async function syncApis(env: any): Promise<SyncResult> {
   const startTime = Date.now();
-  console.log("Starting API sync process...");
+
 
   try {
     const db = drizzle(env.DB);
@@ -69,7 +69,7 @@ async function syncApis(env: any): Promise<SyncResult> {
     const apiList: GuruApiList = await response.json();
     const entries = Object.entries(apiList);
 
-    console.log(`Fetched ${entries.length} APIs to sync`);
+  
 
     const batchSize = parseInt(env.BATCH_SIZE || "100");
     let totalProcessed = 0;
@@ -141,11 +141,7 @@ async function syncApis(env: any): Promise<SyncResult> {
 
         totalProcessed += batch.length;
 
-        console.log(
-          `Processed batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(
-            entries.length / batchSize,
-          )} (${batch.length} APIs)`,
-        );
+      
       } catch (error) {
         console.error(
           `Error processing batch ${Math.floor(i / batchSize) + 1}:`,
@@ -156,10 +152,7 @@ async function syncApis(env: any): Promise<SyncResult> {
     }
 
     const duration = Date.now() - startTime;
-    console.log(
-      `Sync completed in ${duration}ms. Processed: ${totalProcessed}, Errors: ${totalErrors}`,
-    );
-
+   
     return {
       duration,
       totalProcessed,

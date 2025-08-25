@@ -20,7 +20,7 @@ export default function SectionContainer({
         `bg-${color} relative`,
         padding?.top ? "pt-16 xl:pt-20" : undefined,
         padding?.bottom ? "pb-16 xl:pb-20" : undefined,
-        className
+        className,
       )}
     >
       <div className="container">{children}</div>
