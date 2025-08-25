@@ -27,23 +27,20 @@ export default function Header() {
 
   return (
     <>
-      {/* Header */}
       <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200">
         <div className="flex items-center justify-between h-14 px-4 max-w-7xl mx-auto">
-          {/* Logo and Text */}
           <Link href="/" className="flex items-center space-x-2">
             <Image
               src="/images/svg/logo.svg"
               alt="APIS.GURU Logo"
-              width={120} // Adjust width as needed
-              height={40} // Adjust height as needed
-              priority // Preload the logo for faster rendering
+              width={120}
+              height={40}
+              priority
               className="h-8 w-auto"
             />
             <span className="text-xl font-bold text-gray-800">APIS.GURU</span>
           </Link>
 
-          {/* Mobile Menu Trigger */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button
@@ -56,7 +53,6 @@ export default function Header() {
               </Button>
             </SheetTrigger>
 
-            {/* Mobile Menu Content */}
             <SheetContent side="left" className="w-[255px] p-0">
               <nav className="flex flex-col pt-4">
                 {navItems.map((item) => (
@@ -76,7 +72,6 @@ export default function Header() {
             </SheetContent>
           </Sheet>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-4">
             {navItems.map((item) => (
               <Link
@@ -85,12 +80,13 @@ export default function Header() {
                 className={cn(
                   "relative text-gray-800 px-4 py-2 text-sm font-medium",
                   "hover:text-amber-500",
-                  // Show underline if active
+
                   !item.external &&
                     (pathname === item.href ||
-                      (item.href === "/" && pathname?.startsWith("/apis/")))
+                      (item.href === "/" && pathname?.startsWith("/apis/")) ||
+                      (item.href === "/blog" && pathname?.startsWith("/blog")))
                     ? 'after:block after:content-[""] after:h-0.5 after:bg-amber-500 after:absolute after:bottom-0 after:left-0 after:right-0 after:scale-x-100'
-                    : 'hover:after:scale-x-100 after:block after:content-[""] after:h-0.5 after:bg-amber-500 after:absolute after:bottom-0 after:left-0 after:right-0 after:transform after:scale-x-0 after:transition-transform after:duration-200',
+                    : 'hover:after:scale-x-100 after:block after:content-[""] after:h-0.5 after:bg-amber-500 after:absolute after:bottom-0 after:left-0 after:right-0 after:transform after:scale-x-0 after:transition-transform after:duration-200'
                 )}
                 {...(item.external
                   ? { target: "_blank", rel: "noopener noreferrer" }
@@ -103,7 +99,6 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Spacer to prevent content from being hidden under fixed header */}
       <div className="h-14"></div>
     </>
   );
