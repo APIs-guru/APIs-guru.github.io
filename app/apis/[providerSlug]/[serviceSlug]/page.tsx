@@ -138,7 +138,7 @@ export async function generateStaticParams() {
     }
   }
 
-  console.log("Generated static params:", params);
+ 
   return params;
 }
 

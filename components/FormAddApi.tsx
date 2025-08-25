@@ -151,7 +151,7 @@ export default function FormAddApi() {
       }
       if (res.ok && formData.url.endsWith("ai-plugin.json")) {
         const content = await res.json();
-        console.log(content);
+       
         setFormData((prev) => ({
           ...prev,
           name: content.name_for_human,
