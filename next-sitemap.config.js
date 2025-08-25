@@ -3,7 +3,6 @@ module.exports = {
   siteUrl: process.env.SITE_URL || "https://apis.guru",
   generateRobotsTxt: true,
   sitemapSize: 5000,
-  outDir: "./.next/static",
   exclude: ["/studio/*", "/api/*", "/blog/*"],
   robotsTxtOptions: {
     additionalSitemaps: [`https://apis.guru/blog/sitemap/0.xml`],
