@@ -84,7 +84,7 @@ export default async function ProviderPage({
     return (
       <div className=" mx-auto px-4  relative">
         <SearchClientComponent
-          repoStarCounts={{}}
+     
           providerSlug={providerSlug}
         />
       </div>
