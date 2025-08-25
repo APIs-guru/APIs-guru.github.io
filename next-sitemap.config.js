@@ -1,10 +1,13 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || "https://apis.guru/",
-  generateRobotsTxt: true, // Generate a robots.txt file
-  sitemapSize: 5000, // Split sitemap into chunks of 5,000 URLs
-  exclude: ["/protected-page", "/admin/*"], // Exclude specific pages
-  outDir: "./out",
+  siteUrl: process.env.SITE_URL || "https://apis.guru",
+  generateRobotsTxt: true,
+  sitemapSize: 5000,
+  outDir: "./.next/static",
+  exclude: ["/studio/*", "/api/*", "/blog/*"],
+  robotsTxtOptions: {
+    additionalSitemaps: [`https://apis.guru/blog/sitemap/0.xml`],
+  },
   transform: async (config, path) => {
     return {
       loc: path,
