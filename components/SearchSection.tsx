@@ -1,7 +1,8 @@
 "use client";
 
 import { SearchIcon } from "lucide-react";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   SearchBox,
   useInstantSearch,
@@ -10,15 +11,40 @@ import {
 } from "react-instantsearch";
 
 export function SearchSection() {
-  const { results } = useInstantSearch({});
-  const { query } = useSearchBox();
+  const { results } = useInstantSearch();
+  const { query, refine } = useSearchBox();
+  const isInitialMount = useRef(true);
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    console.log(results);
-  }, [results]);
+    if (isInitialMount.current) {
+      const initialQuery = searchParams.get("query") || "";
+      if (initialQuery !== query) {
+        refine(initialQuery);
+      }
+      isInitialMount.current = false;
+    }
+  }, [refine, searchParams]);
+
+  useEffect(() => {
+    if (isInitialMount.current) return;
+
+    const currentQuery = searchParams.get("query") || "";
+
+    if (currentQuery !== query) {
+      const params = new URLSearchParams(searchParams);
+      if (query) {
+        params.set("query", query);
+      } else {
+        params.delete("query");
+      }
+      router.push(`?${params.toString()}`, { scroll: false });
+    }
+  }, [query, router, searchParams]);
 
   return (
-    <div id="search" className="mb-8 max-w-3xl mx-auto">
+    <div className="max-w-3xl mx-auto">
       <div className="border-2 border-gray-200 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md">
         <div className="flex items-center">
           <div className="relative flex-1">
@@ -26,7 +52,7 @@ export function SearchSection() {
               <SearchIcon className="h-5 w-5 text-gray-400" />
             </div>
             <SearchBox
-              placeholder={`Search through APIs...`}
+              placeholder={`Search through ${results.nbHits.toLocaleString()} APIs...`}
               classNames={{
                 form: "relative",
                 input:
@@ -48,11 +74,18 @@ export function SearchSection() {
           </div>
         </div>
       </div>
-      {query && (
-        <div className="mt-3 text-lg text-gray-600 text-center">
+      <div
+        className="my-3 min-h-[1.75rem] text-lg text-gray-600 text-center"
+        aria-live="polite"
+      >
+        <span
+          className={`inline-block transition-opacity duration-200 ${
+            query ? "opacity-100" : "opacity-0"
+          }`}
+        >
           {results.nbHits.toLocaleString()} APIs found
-        </div>
-      )}
+        </span>
+      </div>
     </div>
   );
 }
