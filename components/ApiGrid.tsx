@@ -88,7 +88,7 @@ export function ApiGrid({ gridColumns, pageSize }: ApiGridProps) {
   return (
     <section id="apis-list" className="cards">
       {initialLoading ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 ">
           {Array.from({ length: Math.min(pageSize, gridColumns * 2) }).map(
             (_, index) => (
               <CardSkeleton key={`skeleton-loading-${index}`} />
@@ -97,7 +97,7 @@ export function ApiGrid({ gridColumns, pageSize }: ApiGridProps) {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 ">
             {hits.length > 0 ? (
               hits.map((hit, index) => (
                 <Card key={`${hit.objectID}-${index}`} model={hit} />
@@ -110,7 +110,7 @@ export function ApiGrid({ gridColumns, pageSize }: ApiGridProps) {
           </div>
 
           {loadingMore && (
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 ">
               {Array.from({ length: Math.min(pageSize, gridColumns) }).map(
                 (_, index) => (
                   <CardSkeleton key={`skeleton-more-${index}`} />
