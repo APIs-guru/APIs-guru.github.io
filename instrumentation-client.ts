@@ -12,6 +12,7 @@ Sentry.init({
     Sentry.replayIntegration({
       maskAllText: false,
       maskAllInputs: false,
+      stickySession: true,
     }),
   ],
   enabled: process.env.NODE_ENV === "production",
