@@ -8,7 +8,12 @@ Sentry.init({
   dsn: "https://8296abef723d97e7b8d5a15d1e93be1f@o4509816683823104.ingest.us.sentry.io/4509831375683584",
   tunnel: "/api/sentry-tunnel",
   // Add optional integrations for additional features
-  integrations: [Sentry.replayIntegration()],
+  integrations: [
+    Sentry.replayIntegration({
+      maskAllText: false,
+      maskAllInputs: false,
+    }),
+  ],
   enabled: process.env.NODE_ENV === "production",
   // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
   tracesSampleRate: 1,
@@ -18,7 +23,7 @@ Sentry.init({
   // Define how likely Replay events are sampled.
   // This sets the sample rate to be 10%. You may want this to be 100% while
   // in development and sample at a lower rate in production
-  replaysSessionSampleRate: 0.1,
+  replaysSessionSampleRate: 0.5,
 
   // Define how likely Replay events are sampled when an error occurs.
   replaysOnErrorSampleRate: 1.0,
