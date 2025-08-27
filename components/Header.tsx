@@ -23,6 +23,11 @@ export default function Header() {
       label: "OpenAPI Tools",
       external: true,
     },
+    {
+      href: "https://apis.guru/graphql-voyager/",
+      label: "GraphQL Voyager",
+      external: true,
+    },
   ];
 
   return (
