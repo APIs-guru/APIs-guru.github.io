@@ -1,8 +1,7 @@
 "use client";
 
 import { SearchIcon } from "lucide-react";
-import React, { useEffect, useRef } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import React from "react";
 import {
   SearchBox,
   useInstantSearch,
@@ -12,36 +11,7 @@ import {
 
 export function SearchSection() {
   const { results } = useInstantSearch();
-  const { query, refine } = useSearchBox();
-  const isInitialMount = useRef(true);
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    if (isInitialMount.current) {
-      const initialQuery = searchParams.get("query") || "";
-      if (initialQuery !== query) {
-        refine(initialQuery);
-      }
-      isInitialMount.current = false;
-    }
-  }, [refine, searchParams]);
-
-  useEffect(() => {
-    if (isInitialMount.current) return;
-
-    const currentQuery = searchParams.get("query") || "";
-
-    if (currentQuery !== query) {
-      const params = new URLSearchParams(searchParams);
-      if (query) {
-        params.set("query", query);
-      } else {
-        params.delete("query");
-      }
-      router.push(`?${params.toString()}`, { scroll: false });
-    }
-  }, [query, router, searchParams]);
+  const { query } = useSearchBox();
 
   return (
     <div className="max-w-3xl mx-auto">
@@ -89,3 +59,4 @@ export function SearchSection() {
     </div>
   );
 }
+     
