@@ -13,6 +13,7 @@ Sentry.init({
       maskAllText: false,
       maskAllInputs: false,
       stickySession: true,
+      workerUrl: "/worker.min.js",
     }),
   ],
   enabled: process.env.NODE_ENV === "production",
