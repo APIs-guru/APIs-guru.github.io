@@ -212,4 +212,50 @@
   .text-sm {
     font-size: var(--small-font-size, 14px);
   }
+
+  /* Custom markdown table styling */
+  .prose table {
+    width: 100%;
+    margin: 2rem 0;
+    font-size: 0.875rem;
+  }
+
+  .prose table th {
+    text-align: left;
+    font-weight: 600;
+    vertical-align: top;
+  }
+
+  .prose table td {
+    vertical-align: top;
+  }
+
+  .prose table th:nth-child(3),
+  .prose table td:nth-child(3) {
+    text-align: center;
+    width: 100px;
+  }
+
+  .prose table th:nth-child(4),
+  .prose table td:nth-child(4) {
+    text-align: center;
+    width: 120px;
+  }
+
+  /* Improve link styling in tables */
+  .prose table a {
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 2px 6px;
+    transition: all 0.2s ease;
+  }
+
+  /* Emoji support */
+  .prose img[alt*="smile"] {
+    display: inline;
+    margin: 0;
+    width: 1em;
+    height: 1em;
+  }
 }

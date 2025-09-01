@@ -5,9 +5,8 @@ import { useGridLayout } from "@/hooks/useGridLayout";
 import { LoadingSkeleton } from "@/components/LoadingSkeleton";
 import { ApiGrid } from "@/components/ApiGrid";
 import { liteClient as algoliasearch } from "algoliasearch/lite";
-import { InstantSearch } from "react-instantsearch";
+import { InstantSearchNext } from "react-instantsearch-nextjs";
 import { SearchSection } from "@/components/SearchSection";
-import { history } from "instantsearch.js/es/lib/routers";
 
 const searchClient = algoliasearch(
   "D29MLR0AMY",
@@ -17,7 +16,9 @@ const searchClient = algoliasearch(
 const indexName = "prod_apis_guru";
 
 const routing = {
-  router: history(),
+  router: {
+    cleanUrlOnDispose: false,
+  },
   stateMapping: {
     stateToRoute(uiState: any) {
       const indexUiState = uiState[indexName] || {};
@@ -47,7 +48,7 @@ function SearchClientComponentInner({
   return (
     <div className="container mx-auto px-4 relative">
       <div className="relative z-10">
-        <InstantSearch
+        <InstantSearchNext
           indexName={indexName}
           searchClient={searchClient}
           routing={routing}
@@ -55,7 +56,7 @@ function SearchClientComponentInner({
           <SearchSection />
 
           <ApiGrid gridColumns={gridColumns} pageSize={pageSize} />
-        </InstantSearch>
+        </InstantSearchNext>
       </div>
     </div>
   );
