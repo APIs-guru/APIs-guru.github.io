@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useCallback } from "react";
+"use client";
+
+import React, { useEffect, useRef, useCallback, useState } from "react";
 import {
   useInfiniteHits,
   useInstantSearch,
@@ -34,29 +36,64 @@ const transformItems = (items: any[]) => {
 };
 
 export function ApiGrid({ gridColumns, pageSize }: ApiGridProps) {
-  const { query } = useSearchBox(); // <-- Get current search term
+  const { query } = useSearchBox();
   const { status, error } = useInstantSearch({ catchError: true });
-  const { hits, isLastPage, showMore } = useInfiniteHits({
-    transformItems,
-    showPrevious: false,
-  });
+  const {
+    hits,
+    isLastPage,
+    showMore: originalShowMore,
+  } = useInfiniteHits(
+    {
+      transformItems,
+      showPrevious: false,
+    },
+    { skipSuspense: true }
+  );
+
+  const [hasInitiallyLoaded, setHasInitiallyLoaded] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const observerRef = useRef<HTMLDivElement | null>(null);
+  const prevQueryRef = useRef(query);
 
   const loading = status === "loading";
   const stalled = status === "stalled";
   const hasError = status === "error";
-  const initialLoading = (loading || stalled) && hits.length === 0;
-  const loadingMore = (loading || stalled) && hits.length > 0;
+  const isSearching = loading || stalled;
   const hasMore = !isLastPage && !hasError;
 
-  const observerRef = useRef<HTMLDivElement | null>(null);
+  const showMore = useCallback(() => {
+    if (hasMore && !isSearching) {
+      setIsLoadingMore(true);
+      originalShowMore();
+    }
+  }, [hasMore, isSearching, originalShowMore]);
+
+  useEffect(() => {
+    if (isLoadingMore && status === "idle") {
+      setIsLoadingMore(false);
+    }
+  }, [isLoadingMore, status]);
+
+  useEffect(() => {
+    if (query !== prevQueryRef.current) {
+      setIsLoadingMore(false);
+      prevQueryRef.current = query;
+    }
+  }, [query]);
+
+  useEffect(() => {
+    if (!isSearching && hits.length >= 0) {
+      setHasInitiallyLoaded(true);
+    }
+  }, [isSearching, hits.length]);
 
   const handleIntersection = useCallback(
     (entries: IntersectionObserverEntry[]) => {
-      if (entries[0].isIntersecting && hasMore && !loading && !stalled) {
+      if (entries[0].isIntersecting && hasMore && !isSearching) {
         showMore();
       }
     },
-    [hasMore, loading, stalled, showMore],
+    [hasMore, isSearching, showMore]
   );
 
   useEffect(() => {
@@ -69,10 +106,7 @@ export function ApiGrid({ gridColumns, pageSize }: ApiGridProps) {
     });
 
     intersectionObserver.observe(observer);
-
-    return () => {
-      intersectionObserver.disconnect();
-    };
+    return () => intersectionObserver.disconnect();
   }, [handleIntersection]);
 
   if (hasError && error) {
@@ -85,36 +119,45 @@ export function ApiGrid({ gridColumns, pageSize }: ApiGridProps) {
     );
   }
 
+  const shouldShowInitialSkeleton =
+    isSearching && !hasInitiallyLoaded && hits.length === 0;
+  const shouldShowNoResults =
+    hits.length === 0 && hasInitiallyLoaded && query.length > 0;
+
   return (
     <section id="apis-list" className="cards">
-      {initialLoading ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 ">
+      {stalled && (
+        <div className="fixed top-0 left-0 w-full h-1 bg-blue-500 animate-pulse z-50" />
+      )}
+
+      {shouldShowInitialSkeleton ? (
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {Array.from({ length: Math.min(pageSize, gridColumns * 2) }).map(
             (_, index) => (
               <CardSkeleton key={`skeleton-loading-${index}`} />
-            ),
+            )
           )}
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 ">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {hits.length > 0 ? (
               hits.map((hit, index) => (
                 <Card key={`${hit.objectID}-${index}`} model={hit} />
               ))
-            ) : (
+            ) : shouldShowNoResults ? (
               <div className="col-span-full text-center py-6 bg-gray-50 rounded-lg border border-gray-100">
                 No APIs found matching &quot;{query}&quot;
               </div>
-            )}
+            ) : null}
           </div>
 
-          {loadingMore && (
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 ">
+          {isLoadingMore && (
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-4">
               {Array.from({ length: Math.min(pageSize, gridColumns) }).map(
                 (_, index) => (
                   <CardSkeleton key={`skeleton-more-${index}`} />
-                ),
+                )
               )}
             </div>
           )}

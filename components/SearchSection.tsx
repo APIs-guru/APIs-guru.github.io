@@ -12,6 +12,11 @@ import {
 export function SearchSection() {
   const { results } = useInstantSearch();
   const { query } = useSearchBox();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <div className="max-w-3xl mx-auto">
@@ -22,7 +27,11 @@ export function SearchSection() {
               <SearchIcon className="h-5 w-5 text-gray-400" />
             </div>
             <SearchBox
-              placeholder={`Search through ${results.nbHits.toLocaleString()} APIs...`}
+              placeholder={
+                mounted
+                  ? `Search through ${results.nbHits.toLocaleString("en-US")} APIs...`
+                  : "Search APIs..."
+              }
               classNames={{
                 form: "relative",
                 input:
@@ -34,13 +43,18 @@ export function SearchSection() {
             />
           </div>
           <div className="flex items-center pr-4 border-l border-gray-200 ml-2 pl-4">
-            <PoweredBy
-              classNames={{
-                root: "text-sm text-gray-500",
-                link: "text-blue-600 hover:text-blue-800 no-underline",
-                logo: "h-4 w-auto ml-1",
-              }}
-            />
+            {/* Render PoweredBy only after mount to avoid hydration mismatch */}
+            {mounted ? (
+              <PoweredBy
+                classNames={{
+                  root: "text-sm text-gray-500",
+                  link: "text-blue-600 hover:text-blue-800 no-underline",
+                  logo: "h-4 w-auto ml-1",
+                }}
+              />
+            ) : (
+              <div aria-hidden="true" className="h-4 w-[90px]" />
+            )}
           </div>
         </div>
       </div>
@@ -49,14 +63,16 @@ export function SearchSection() {
         aria-live="polite"
       >
         <span
+          suppressHydrationWarning
           className={`inline-block transition-opacity duration-200 ${
-            query ? "opacity-100" : "opacity-0"
+            mounted && query ? "opacity-100" : "opacity-0"
           }`}
         >
-          {results.nbHits.toLocaleString()} APIs found
+          {mounted && query
+            ? `${results.nbHits.toLocaleString("en-US")} APIs found`
+            : ""}
         </span>
       </div>
     </div>
   );
 }
-     
