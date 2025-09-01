@@ -1,22 +1,53 @@
 "use client";
 
 import { SearchIcon } from "lucide-react";
-import React from "react";
+
+import * as Sentry from "@sentry/browser";
 import {
   SearchBox,
   useInstantSearch,
   useSearchBox,
   PoweredBy,
 } from "react-instantsearch";
+import { useEffect, useState } from "react";
 
 export function SearchSection() {
   const { results } = useInstantSearch();
   const { query } = useSearchBox();
-  const [mounted, setMounted] = React.useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (mounted && query) {
+      Sentry.addBreadcrumb({
+        category: "search",
+        message: `Search query executed: ${query}`,
+        level: "info",
+        data: {
+          query_length: query.length,
+          results_count: results.nbHits,
+          search_timestamp: new Date().toISOString(),
+          search_interface: "main_search",
+        },
+      });
+    }
+  }, [mounted, query, results.nbHits]);
+
+  const handleSearchFocus = () => {
+    Sentry.addBreadcrumb({
+      category: "ui.interaction",
+      message: "User focused on main search input field",
+      level: "info",
+      data: {
+        search_interface: "main_search",
+        query_length: query ? query.length : 0,
+        timestamp: new Date().toISOString(),
+      },
+    });
+  };
 
   return (
     <div className="max-w-3xl mx-auto">
@@ -40,10 +71,10 @@ export function SearchSection() {
                 reset: "hidden",
                 loadingIndicator: "hidden",
               }}
+              onFocus={handleSearchFocus}
             />
           </div>
           <div className="flex items-center pr-4 border-l border-gray-200 ml-2 pl-4">
-            {/* Render PoweredBy only after mount to avoid hydration mismatch */}
             {mounted ? (
               <PoweredBy
                 classNames={{
