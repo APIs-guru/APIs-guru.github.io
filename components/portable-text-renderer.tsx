@@ -77,8 +77,8 @@ const mdComponents = {
     }
 
     return (
-      <div className="grid my-4 overflow-x-auto rounded-lg border border-border text-xs lg:text-sm bg-primary/80 dark:bg-muted/80">
-        <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-primary/80 dark:bg-muted">
+      <div className="grid my-4 overflow-x-auto rounded-lg border border-border text-xs lg:text-sm bg-neutral-900 text-neutral-200">
+        <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-neutral-800">
           <div className="text-muted-foreground font-mono">{lang}</div>
           <CopyButton code={codeStr} />
         </div>
@@ -149,8 +149,8 @@ const portableTextComponents: PortableTextProps["components"] = {
     },
     code: ({ value }) => {
       return (
-        <div className="grid my-4 overflow-x-auto rounded-lg border border-border text-xs lg:text-sm bg-primary/80 dark:bg-muted/80">
-          <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-primary/80 dark:bg-muted">
+        <div className="grid my-4 overflow-x-auto rounded-lg border border-border text-xs lg:text-sm bg-neutral-900 text-neutral-200">
+          <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-neutral-800">
             <div className="text-muted-foreground font-mono">
               {value.filename || ""}
             </div>
