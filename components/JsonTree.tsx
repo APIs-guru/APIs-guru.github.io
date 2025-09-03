@@ -2,6 +2,8 @@
 
 import { JSONTree } from "react-json-tree";
 import { ReactNode, useState, useEffect } from "react";
+import React from "react";
+import JsonTreeActions from "./JsonTreeActions";
 
 // Define the theme for JSONTree
 const theme = {
@@ -56,8 +58,14 @@ export function JsonTree({ jsonData }: { jsonData: any }) {
 
 export default function JsonTreeContainer({
   swaggerUrl,
+  swaggerYamlUrl,
+  title,
+  version,
 }: {
   swaggerUrl: string;
+  swaggerYamlUrl?: string;
+  title: string;
+  version?: string;
 }) {
   const [jsonData, setJsonData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
@@ -93,5 +101,16 @@ export default function JsonTreeContainer({
     return <div className="text-red-500">{error}</div>;
   }
 
-  return <JsonTree jsonData={jsonData} />;
+  return (
+    <div className="relative bg-[#272822] p-4 rounded-lg max-h-[600px] overflow-auto json-tree-container">
+      <JsonTreeActions
+        swaggerUrl={swaggerUrl}
+        swaggerYamlUrl={swaggerYamlUrl || swaggerUrl.replace(".json", ".yaml")}
+        title={title}
+        version={version}
+        jsonData={jsonData}
+      />
+      <JsonTree jsonData={jsonData} />
+    </div>
+  );
 }
