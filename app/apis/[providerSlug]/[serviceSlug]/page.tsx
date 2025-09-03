@@ -10,6 +10,7 @@ import JsonTreeContainer, { JsonTree } from "@/components/JsonTree";
 import ApiButtons from "@/components/ApiButtons";
 import VisitCounter from "@/components/VisitCounter";
 import type { ApiVersion } from "@/types/api";
+import { ExternalLink } from "lucide-react";
 
 function stripMarkdown(markdown: string): string {
   return markdown
@@ -24,7 +25,7 @@ function stripMarkdown(markdown: string): string {
 }
 export function getData(
   providerSlug: string,
-  serviceSlug?: string | null,
+  serviceSlug?: string | null
 ): any | null {
   const apiList = list as Record<string, any>;
 
@@ -46,7 +47,7 @@ export function getData(
   }
 
   console.warn(
-    `No API found for provider: ${providerSlug}, service: ${serviceSlug}`,
+    `No API found for provider: ${providerSlug}, service: ${serviceSlug}`
   );
   return null;
 }
@@ -89,7 +90,7 @@ function processApiData(key: string, api: any) {
         version,
         swaggerUrl: details?.swaggerUrl || "",
         swaggerYamlUrl: details?.swaggerYamlUrl || "",
-      }),
+      })
     );
 
     const description = info.description || "No description available";
@@ -138,7 +139,6 @@ export async function generateStaticParams() {
     }
   }
 
- 
   return params;
 }
 
@@ -146,7 +146,7 @@ export async function generateMetadata(
   {
     params,
   }: { params: Promise<{ providerSlug: string; serviceSlug: string }> },
-  parent: ResolvingMetadata,
+  parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { providerSlug, serviceSlug } = await params;
   const api = getData(providerSlug, serviceSlug);
@@ -217,72 +217,73 @@ export default async function ApiPage({
   }
 
   return (
-    <div className="container mx-auto p-6 max-w-4xl">
+    <div className="container mx-auto p-6 max-w-6xl">
       <VisitCounter providerSlug={providerSlug} serviceSlug={serviceSlug} />
 
       <div className="flex flex-col md:flex-row gap-6 mb-8">
         <div className="flex-shrink-0">
-          <Image
-            src={api.logo.url}
-            alt={`${api.info.title} API logo`}
-            width={200}
-            height={200}
-            className="max-w-full max-h-[200px] p-[10px]"
-            style={{
-              backgroundColor: api.logo.backgroundColor || "transparent",
-            }}
-          />
+          <div className="bg-white rounded-lg px-6 ">
+            <Image
+              src={api.logo.url}
+              alt={`${api.info.title} API logo`}
+              width={200}
+              height={200}
+              className="max-w-full max-h-[200px] mx-auto"
+              style={{
+                backgroundColor: api.logo.backgroundColor || "transparent",
+              }}
+            />
+          </div>
         </div>
 
         <div className="flex-grow">
-          <div className="text-3xl font-bold text-[#388c9a] mb-2 gap-6 flex items-center">
-            {api.externalUrl ? (
-              <Link
-                href={api.externalUrl}
-                target="_blank"
-                className="hover:underline text-decoration-line:none text-[#388c9a]"
-              >
-                {api.info.title}
-              </Link>
-            ) : (
-              api.info.title
-            )}
-            {/* <Badge variant="outline" className="text-sm">
-              <span className="text-sm text-gray-500">OpenAPI / Swagger</span>
-            </Badge> */}
-          </div>
+          <div className="mb-6">
+            <h1 className="text-4xl font-bold text-gray-900 mb-3">
+              {api.externalUrl ? (
+                <Link
+                  href={api.externalUrl}
+                  target="_blank"
+                  className="hover:text-[#388c9a] transition-colors duration-200"
+                >
+                  {api.info.title}
+                </Link>
+              ) : (
+                api.info.title
+              )}
+            </h1>
 
-          <h3 className="text-lg mb-4">
-            Last updated at:{" "}
-            {new Date(api.updated).toLocaleString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </h3>
+            <p className="text-lg text-gray-600 mb-4">
+              Last updated:{" "}
+              {new Date(api.updated).toLocaleString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
 
-          <div className="relative flex flex-wrap gap-3 mb-6">
-            <div className="flex flex-wrap gap-3">
+            <div className="mb-6">
               <ApiButtons
                 swaggerUrl={api.api.swaggerUrl}
-                swaggerYamlUrl={api.api.swaggerYamlUrl}
-                origUrl={api.origUrl}
                 title={api.info.title}
               />
             </div>
           </div>
+
           {api.integrations && api.integrations.length > 0 && (
             <div className="mb-6">
-              <h4 className="text-lg font-semibold mb-3">Tools</h4>
-              <div className="flex flex-wrap gap-2">
+              <h3 className="text-xl font-semibold mb-3 text-gray-900">
+                Available Tools
+              </h3>
+              <div className="flex flex-wrap gap-3">
                 {api.integrations.map((integration: any, index: any) => (
                   <Link
                     key={index}
                     href={integration.template}
                     target="_blank"
-                    className="py-1 px-3 bg-gray-600 rounded text-white text-sm hover:bg-gray-700"
+                    className="inline-flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-lg transition-colors duration-200 text-sm font-medium"
                   >
                     {integration.text}
+                    <ExternalLink className="w-3 h-3 ml-1" />
                   </Link>
                 ))}
               </div>
@@ -294,29 +295,48 @@ export default async function ApiPage({
       <DescriptionSection description={api.cardDescription} />
 
       <div className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">OpenAPI/Swagger JSON</h2>
-
-        <JsonTreeContainer swaggerUrl={api.api.swaggerUrl} />
+        <h2 className="text-3xl font-bold mb-6 text-gray-900">
+          OpenAPI Specification
+        </h2>
+        <JsonTreeContainer
+          swaggerUrl={api.api.swaggerUrl}
+          swaggerYamlUrl={api.api.swaggerYamlUrl}
+          title={api.info.title}
+        />
       </div>
 
       {api.versions && api.versions.length > 0 && (
         <div>
-          <h2 className="text-2xl font-bold mb-4">All Versions</h2>
+          <h2 className="text-3xl font-bold mb-6 text-gray-900">
+            All Versions
+          </h2>
           <div className="space-y-4">
             {api.versions
               .reverse()
               .map((version: ApiVersion, index: number) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-4 bg-gray-50 rounded"
+                  className="bg-white border rounded-lg p-6 shadow-sm"
                 >
-                  <span className="font-semibold">{version.version}</span>
-                  <div className="flex gap-2">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-xl font-semibold text-gray-900">
+                      Version {version.version}
+                    </h3>
                     <ApiButtons
                       swaggerUrl={version.swaggerUrl}
+                      title={api.info.title}
+                      version={version.version}
+                    />
+                  </div>
+
+                  <div className="mb-4">
+                    <h4 className="text-lg font-medium mb-3 text-gray-800">
+                      OpenAPI Specification
+                    </h4>
+                    <JsonTreeContainer
+                      swaggerUrl={version.swaggerUrl}
                       swaggerYamlUrl={version.swaggerYamlUrl}
-                      origUrl={`https://redocly.github.io/redoc/?url=${version.swaggerUrl}`}
-                      title={`${api.info.title}-v${version.version}`}
+                      title={api.info.title}
                       version={version.version}
                     />
                   </div>
