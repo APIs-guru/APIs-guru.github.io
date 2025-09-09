@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 
 import PostHero from "@/components/blocks/post-hero";
+import RecentArticles from "@/components/blocks/recent-articles";
 
 import PortableTextRenderer from "@/components/portable-text-renderer";
 import {
@@ -47,6 +48,7 @@ export default async function PostPage(props: {
           <PostHero {...post} />
           {post.body && <PortableTextRenderer value={post.body} />}
         </article>
+        <RecentArticles currentSlug={params.slug} />
       </div>
     </section>
   );
