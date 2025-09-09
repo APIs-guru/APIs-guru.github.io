@@ -4,9 +4,7 @@ module.exports = {
   generateRobotsTxt: true,
   sitemapSize: 5000,
   exclude: ["/studio/*", "/api/*", "/blog/*"],
-  robotsTxtOptions: {
-    additionalSitemaps: [`https://apis.guru/blog/sitemap/0.xml`],
-  },
+
   transform: async (config, path) => {
     return {
       loc: path,
