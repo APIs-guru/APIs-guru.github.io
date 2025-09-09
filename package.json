@@ -11,8 +11,8 @@
     "postbuild": "next-sitemap",
     "prettier": "prettier --write .",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "deploy:preview": "opennextjs-cloudflare build && npx wrangler versions upload --env=preview",
+    "deploy": "NEXT_PUBLIC_SITE_ENV=production opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "deploy:preview": "NEXT_PUBLIC_SITE_ENV=development opennextjs-cloudflare build && npx wrangler versions upload --env=preview",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "prettier:check": "prettier --check .",
     "test": "npm run lint && npm run prettier:check"
