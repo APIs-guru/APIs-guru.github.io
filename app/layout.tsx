@@ -24,8 +24,12 @@ const roboto = Roboto({
 });
 
 export const metadata = {
-  title: "APIs.guru - Wikipedia for Web APIs",
-  description: "Wikipedia for Web APIs. Directory of REST API specs",
+  title: {
+    default: "APIs.guru - Wikipedia for Web APIs",
+    template: "%s | Api Directory",
+  },
+  description:
+    "Wikipedia for Web APIs. Directory of REST API specs in OpenAPI 3.0 format",
   viewport: "width=device-width, initial-scale=1",
   icons: {
     icon: [
@@ -46,10 +50,9 @@ export const metadata = {
       },
     ],
   },
-  openGraph: {
-    title: "APIs.guru - Wikipedia for Web APIs",
-    description: "Wikipedia for Web APIs. Directory of REST API specs",
-  },
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://apis.guru"
+  ),
 };
 
 export default function RootLayout({

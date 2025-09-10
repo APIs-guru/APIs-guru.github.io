@@ -2,11 +2,16 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { generateSimpleMetadata } from "@/sanity/lib/metadata";
 
-export const metadata = {
-  title: "About APIs.guru",
-  description: "Learn more about the APIs.guru project and its contributors",
-};
+export async function generateMetadata() {
+  return generateSimpleMetadata({
+    title: "About APIs.guru",
+    description:
+      "Learn more about the APIs.guru project and its contributors. Discover how we maintain the largest repository of machine-readable API specifications.",
+    slug: "about",
+  });
+}
 
 const NumberRomb = () => (
   <svg viewBox="0 0 100 100" className="number-romb-svg">

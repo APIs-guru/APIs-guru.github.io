@@ -1,5 +1,15 @@
 import React from "react";
 import FormAddApi from "@/components/FormAddApi";
+import { generateSimpleMetadata } from "@/sanity/lib/metadata";
+
+export async function generateMetadata() {
+  return generateSimpleMetadata({
+    title: "Add API",
+    description:
+      "Submit your API to the APIs.guru directory. We aggregate OpenAPI specifications, RAML, API Blueprint and other machine-readable API definitions.",
+    slug: "add-api",
+  });
+}
 
 export default function AddApiPage() {
   return (

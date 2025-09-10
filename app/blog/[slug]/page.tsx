@@ -28,7 +28,7 @@ export async function generateMetadata(props: {
     notFound();
   }
 
-  return generatePageMetadata({ page: post, slug: `/blog/${params.slug}` });
+  return generatePageMetadata({ page: post, slug: `blog/${params.slug}` });
 }
 
 export default async function PostPage(props: {
