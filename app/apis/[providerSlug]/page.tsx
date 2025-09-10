@@ -110,9 +110,37 @@ export default async function ProviderPage({
 
   const services = apis.filter((api) => api.serviceName);
   if (services.length > 0) {
+    const providerName = apis[0]?.providerName || providerSlug;
     return (
-      <div className=" mx-auto px-4  relative">
-        <SearchClientComponent providerSlug={providerSlug} />
+      <div className="min-h-screen ">
+        <div className="bg-white">
+          <div className="container mx-auto px-4 py-12">
+            <div className="text-center">
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                {providerName} <span className="text-primary">APIs</span>
+              </h1>
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
+                Discover and explore {services.length} API
+                {services.length > 1 ? "s" : ""} from {providerName}. Access
+                comprehensive documentation, endpoints, and integration guides
+                to power your applications.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <div className="bg-indigo-100 text-secondary px-6 py-3 rounded-full">
+                  <span className="font-semibold text-lg">
+                    {services.length} Service{services.length > 1 ? "s" : ""}{" "}
+                    Available
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="container mx-auto px-4 py-8">
+          <SearchClientComponent providerSlug={providerSlug} />
+        </div>
       </div>
     );
   } else {

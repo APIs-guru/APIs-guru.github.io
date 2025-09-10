@@ -27,9 +27,19 @@ const routing = {
       };
     },
     routeToState(routeState: any) {
+      // Extract providerSlug from pathname if available
+      let providerSlug = "";
+      if (typeof window !== "undefined") {
+        const pathSegments = window.location.pathname.split("/");
+        const apisIndex = pathSegments.indexOf("apis");
+        if (apisIndex !== -1 && pathSegments[apisIndex + 1]) {
+          providerSlug = pathSegments[apisIndex + 1];
+        }
+      }
+
       return {
         [indexName]: {
-          query: routeState.query || "",
+          query: providerSlug || routeState.query || "",
         },
       };
     },
@@ -53,7 +63,7 @@ function SearchClientComponentInner({
           searchClient={searchClient}
           routing={routing}
         >
-          <SearchSection />
+          {!providerSlug && <SearchSection />}
 
           <ApiGrid gridColumns={gridColumns} pageSize={pageSize} />
         </InstantSearchNext>

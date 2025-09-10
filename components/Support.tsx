@@ -32,9 +32,9 @@ export default function Support({
               className="mx-auto"
             />
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 leading-tight">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-800 leading-tight">
             Wikipedia for Web APIs. Directory of REST API definitions.
-          </h2>
+          </h1>
         </div>
       </div>
 
