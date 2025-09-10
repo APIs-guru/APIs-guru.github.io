@@ -150,17 +150,22 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { providerSlug, serviceSlug } = await params;
   const api = getData(providerSlug, serviceSlug);
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://apis.guru";
+  const isProduction = process.env.NEXT_PUBLIC_SITE_ENV === "production";
 
   if (!api) {
     return {
-      title: "API Not Found | API Directory",
+      title: "API Not Found",
       description: "The requested API was not found in the directory.",
+      alternates: {
+        canonical: `${siteUrl}/apis/${providerSlug}/${serviceSlug}`,
+      },
     };
   }
 
-  const title = `${api.info.title} | API Directory`;
-  const description =
-    api.cardDescriptionPlain || "Explore this API in the API Directory.";
+  const title = `${api.info.title} API`;
+  const description = `Documentation and specification of the ${api.info.title} API. Explore endpoints, methods, and integration options to use ${api.info.title} in your applications.`;
+  const canonicalUrl = `${siteUrl}/apis/${providerSlug}/${serviceSlug}`;
 
   return {
     title,
@@ -174,8 +179,9 @@ export async function generateMetadata(
     openGraph: {
       title,
       description,
-      url: `/apis/${providerSlug}/${serviceSlug}`,
+      url: canonicalUrl,
       type: "website",
+      locale: "en_US",
       images: [
         {
           url: api.logo.url,
@@ -190,6 +196,10 @@ export async function generateMetadata(
       title,
       description,
       images: [api.logo.url],
+    },
+    robots: !isProduction ? "noindex, nofollow" : "index, follow",
+    alternates: {
+      canonical: canonicalUrl,
     },
   };
 }

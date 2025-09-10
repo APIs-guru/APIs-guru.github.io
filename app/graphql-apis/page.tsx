@@ -1,6 +1,16 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import { generateSimpleMetadata } from "@/sanity/lib/metadata";
+
+export async function generateMetadata() {
+  return generateSimpleMetadata({
+    title: "Public GraphQL APIs",
+    description:
+      "A collective list of public GraphQL APIs. Discover and explore GraphQL endpoints from various providers.",
+    slug: "graphql-apis",
+  });
+}
 
 // Define your markdown content here
 const markdownContent = `# Public GraphQL APIs

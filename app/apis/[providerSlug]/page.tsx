@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import list from "../../../list.json";
+import { generateSimpleMetadata } from "@/sanity/lib/metadata";
 
 import ApiPage, { getData } from "./[serviceSlug]/page";
 import SearchClientComponent from "@/components/SearchClientComponent";
@@ -71,6 +72,34 @@ export function generateStaticParams() {
   }));
   return params;
 }
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ providerSlug: string }>;
+}) {
+  const { providerSlug } = await params;
+  const apis = getProviderApis(providerSlug);
+
+  const providerName = apis.length > 0 ? apis[0].providerName : providerSlug;
+  const services = apis.filter((api) => api.serviceName);
+
+  const title =
+    services.length > 0
+      ? `${providerName} APIs`
+      : `${apis[0]?.title || providerName} API`;
+
+  const description =
+    services.length > 0
+      ? `Explore ${providerName} APIs. Browse ${services.length} API${services.length > 1 ? "s" : ""} from ${providerName}.`
+      : `Documentation and specification of the ${apis[0]?.title || providerName} API. Explore endpoints, methods, and integration options to use ${apis[0]?.title || providerName} in your applications.`;
+
+  return generateSimpleMetadata({
+    title,
+    description,
+    slug: `apis/${providerSlug}`,
+  });
+}
 export default async function ProviderPage({
   params,
 }: {
@@ -83,10 +112,7 @@ export default async function ProviderPage({
   if (services.length > 0) {
     return (
       <div className=" mx-auto px-4  relative">
-        <SearchClientComponent
-     
-          providerSlug={providerSlug}
-        />
+        <SearchClientComponent providerSlug={providerSlug} />
       </div>
     );
   } else {
