@@ -3,9 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { marked } from "marked";
 import { Metadata, ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
 import DescriptionSection from "../../../../components/DescriptionSection";
 import list from "../../../../list.json";
-import { Badge } from "@/components/ui/badge";
+
 import JsonTreeContainer, { JsonTree } from "@/components/JsonTree";
 import ApiButtons from "@/components/ApiButtons";
 import VisitCounter from "@/components/VisitCounter";
@@ -154,13 +155,7 @@ export async function generateMetadata(
   const isProduction = process.env.NEXT_PUBLIC_SITE_ENV === "production";
 
   if (!api) {
-    return {
-      title: "API Not Found",
-      description: "The requested API was not found in the directory.",
-      alternates: {
-        canonical: `${siteUrl}/apis/${providerSlug}/${serviceSlug}`,
-      },
-    };
+    notFound();
   }
 
   const title = `${api.info.title} API`;
@@ -213,17 +208,7 @@ export default async function ApiPage({
   const api = getData(providerSlug, serviceSlug);
 
   if (!api) {
-    return (
-      <div className="container mx-auto p-6 max-w-4xl">
-        <Link
-          href="/"
-          className="text-[#388c9a] hover:underline mb-4 inline-block"
-        >
-          ← Back to APIs
-        </Link>
-        <div>API not found</div>
-      </div>
-    );
+    notFound();
   }
 
   return (

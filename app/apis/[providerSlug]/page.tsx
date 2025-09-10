@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import list from "../../../list.json";
 import { generateSimpleMetadata } from "@/sanity/lib/metadata";
 
@@ -107,6 +108,10 @@ export default async function ProviderPage({
 }) {
   const { providerSlug } = await params;
   const apis = getProviderApis(providerSlug);
+
+  if (apis.length === 0) {
+    notFound();
+  }
 
   const services = apis.filter((api) => api.serviceName);
   if (services.length > 0) {

@@ -1,6 +1,6 @@
 import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
-
+import list from "./list.json";
 const nextConfig: NextConfig = {
   output: "standalone",
   basePath: "",
@@ -31,36 +31,69 @@ const nextConfig: NextConfig = {
 
     return config;
   },
+  async redirects() {
+    const redirectList = [];
+
+    const normalizeSlug = (text: string, preserveDots = false) => {
+      return text
+        .toLowerCase()
+        .replace(preserveDots ? /[^a-z0-9.]+/g : /[^a-z0-9]+/g, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-+|-+$/g, "");
+    };
+
+    const normalizeServiceSlug = (service: string) => {
+      return service
+        .toLowerCase()
+        .replace(/[\(\)]/g, "")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-+|-+$/g, "");
+    };
+
+    for (const key in list) {
+      if (!Object.prototype.hasOwnProperty.call(list, key)) continue;
+
+      const [provider, service] = key.split(":");
+      if (!provider) {
+        console.warn(`Invalid key format: ${key}`);
+        continue;
+      }
+
+      const legacyFullSlug = normalizeSlug(key);
+      const currentProviderSlug = normalizeSlug(provider, true);
+      const legacyProviderSlug = normalizeSlug(provider.replace(/\./g, "-"));
+
+      const destination = service
+        ? `/apis/${encodeURIComponent(currentProviderSlug)}/${encodeURIComponent(normalizeServiceSlug(service))}`
+        : `/apis/${encodeURIComponent(currentProviderSlug)}`;
+
+      if (legacyFullSlug !== currentProviderSlug) {
+        redirectList.push({
+          source: `/apis/${encodeURIComponent(legacyFullSlug)}`,
+          destination,
+          permanent: true,
+        });
+      }
+
+      if (legacyProviderSlug !== currentProviderSlug) {
+        redirectList.push({
+          source: `/apis/${encodeURIComponent(legacyProviderSlug)}`,
+          destination: `/apis/${encodeURIComponent(currentProviderSlug)}`,
+          permanent: true,
+        });
+      }
+    }
+
+    return redirectList;
+  },
 };
 
 export default withSentryConfig(nextConfig, {
-  // For all available options, see:
-  // https://www.npmjs.com/package/@sentry/webpack-plugin#options
-
   org: "apisguru",
   project: "apis-guru",
-
-  // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
-
-  // For all available options, see:
-  // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
-
-  // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: true,
-
-  // Uncomment to route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
-  // This can increase your server load as well as your hosting bill.
-  // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
-  // side errors will fail.
-  // tunnelRoute: "/monitoring",
-
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
   disableLogger: true,
-
-  // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
-  // See the following for more information:
-  // https://docs.sentry.io/product/crons/
-  // https://vercel.com/docs/cron-jobs
   automaticVercelMonitors: true,
 });
