@@ -130,13 +130,16 @@ export async function generateStaticParams() {
   for (const key in apiList) {
     if (Object.prototype.hasOwnProperty.call(apiList, key)) {
       const [provider, service] = key.split(":");
-      const providerSlug = provider.toLowerCase();
-      const serviceSlug = service ? service.toLowerCase() : providerSlug;
 
-      params.push({
-        providerSlug,
-        serviceSlug,
-      });
+      if (service) {
+        const providerSlug = provider.toLowerCase();
+        const serviceSlug = service.toLowerCase();
+
+        params.push({
+          providerSlug,
+          serviceSlug,
+        });
+      }
     }
   }
 
