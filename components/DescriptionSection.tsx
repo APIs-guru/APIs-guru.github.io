@@ -8,10 +8,25 @@ interface DescriptionSectionProps {
 export default function DescriptionSection({
   description,
 }: DescriptionSectionProps) {
+  // Transform heading levels: h1->h2, h2->h3, h3->h4, h4->h5, h5->h6, h6->h6
+  const transformedDescription = description
+    .replace(/<h6([^>]*)>/g, "<h6$1>")
+    .replace(/<\/h6>/g, "</h6>")
+    .replace(/<h5([^>]*)>/g, "<h6$1>")
+    .replace(/<\/h5>/g, "</h6>")
+    .replace(/<h4([^>]*)>/g, "<h5$1>")
+    .replace(/<\/h4>/g, "</h5>")
+    .replace(/<h3([^>]*)>/g, "<h4$1>")
+    .replace(/<\/h3>/g, "</h4>")
+    .replace(/<h2([^>]*)>/g, "<h3$1>")
+    .replace(/<\/h2>/g, "</h3>")
+    .replace(/<h1([^>]*)>/g, "<h2$1>")
+    .replace(/<\/h1>/g, "</h2>");
+
   const isLongDescription =
-    description.length > 300 ||
-    (description.match(/<\/p>/g) || []).length > 1 ||
-    (description.match(/<h[1-6]>/g) || []).length > 0;
+    transformedDescription.length > 300 ||
+    (transformedDescription.match(/<\/p>/g) || []).length > 1 ||
+    (transformedDescription.match(/<h[1-6]>/g) || []).length > 0;
 
   return (
     <div className="mb-8">
@@ -25,8 +40,10 @@ export default function DescriptionSection({
           />
           {/* Content container with collapse effect */}
           <div className="overflow-hidden transition-all duration-300 ease-in-out peer-checked:max-h-[9999px] max-h-[12.5em]">
-            <div className="prose prose-h1:font-bold prose-p:text-gray-700 prose-a:text-blue-600 !max-w-none">
-              <div dangerouslySetInnerHTML={{ __html: description }} />
+            <div className="prose prose-h2:font-bold prose-h3:font-bold prose-h4:font-bold prose-h5:font-bold prose-h6:font-bold prose-p:text-gray-700 prose-a:text-blue-600 !max-w-none">
+              <div
+                dangerouslySetInnerHTML={{ __html: transformedDescription }}
+              />
             </div>
           </div>
 
@@ -78,8 +95,8 @@ export default function DescriptionSection({
           </div>
         </div>
       ) : (
-        <div className="prose prose-h1:font-bold prose-p:text-gray-700 prose-a:text-blue-600 prose-max-w-none">
-          <div dangerouslySetInnerHTML={{ __html: description }} />
+        <div className="prose prose-h2:font-bold prose-h3:font-bold prose-h4:font-bold prose-h5:font-bold prose-h6:font-bold prose-p:text-gray-700 prose-a:text-blue-600 prose-max-w-none">
+          <div dangerouslySetInnerHTML={{ __html: transformedDescription }} />
         </div>
       )}
     </div>

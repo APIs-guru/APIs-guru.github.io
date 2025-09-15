@@ -68,6 +68,14 @@ const nextConfig: NextConfig = {
         ? `/apis/${encodeURIComponent(currentProviderSlug)}/${encodeURIComponent(normalizeServiceSlug(service))}`
         : `/apis/${encodeURIComponent(currentProviderSlug)}`;
 
+      if (!service) {
+        redirectList.push({
+          source: `/apis/${encodeURIComponent(currentProviderSlug)}/${encodeURIComponent(currentProviderSlug)}`,
+          destination: `/apis/${encodeURIComponent(currentProviderSlug)}`,
+          permanent: true,
+        });
+      }
+
       if (legacyFullSlug !== currentProviderSlug) {
         redirectList.push({
           source: `/apis/${encodeURIComponent(legacyFullSlug)}`,
