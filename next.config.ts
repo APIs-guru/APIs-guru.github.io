@@ -34,6 +34,9 @@ const nextConfig: NextConfig = {
   async redirects() {
     const redirectList = [];
 
+    // Normalizes text to a URL-friendly slug
+    // e.g., "Example API" -> "example-api"
+    // With preserveDots=true: "twilio.com" -> "twilio.com"
     const normalizeSlug = (text: string, preserveDots = false) => {
       return text
         .toLowerCase()
@@ -42,7 +45,9 @@ const nextConfig: NextConfig = {
         .replace(/^-+|-+$/g, "");
     };
 
-    const normalizeServiceSlug = (service: string) => {
+    // Converts service name to legacy format (underscores become dashes)
+    // e.g., "twilio_media_v1" -> "twilio-media-v1"
+    const toLegacyServiceSlug = (service: string) => {
       return service
         .toLowerCase()
         .replace(/[\(\)]/g, "")
@@ -51,23 +56,38 @@ const nextConfig: NextConfig = {
         .replace(/^-+|-+$/g, "");
     };
 
+    // Preserves the original service slug format (keeps underscores)
+    // e.g., "twilio_media_v1" -> "twilio_media_v1"
+    const toCurrentServiceSlug = (service: string) => {
+      return service.toLowerCase();
+    };
+
     for (const key in list) {
       if (!Object.prototype.hasOwnProperty.call(list, key)) continue;
 
+      // Parse the key format "provider:service" or just "provider"
       const [provider, service] = key.split(":");
       if (!provider) {
         console.warn(`Invalid key format: ${key}`);
         continue;
       }
 
-      const legacyFullSlug = normalizeSlug(key);
-      const currentProviderSlug = normalizeSlug(provider, true);
-      const legacyProviderSlug = normalizeSlug(provider.replace(/\./g, "-"));
+      // Generate different slug formats for redirects
+      // e.g., key="twilio.com:twilio_media_v1"
+      const legacyFullSlug = normalizeSlug(key); // "twilio-com-twilio-media-v1"
+      const currentProviderSlug = normalizeSlug(provider, true); // "twilio.com"
+      const legacyProviderSlug = normalizeSlug(provider.replace(/\./g, "-")); // "twilio-com"
 
+      const currentServiceSlug = service ? toCurrentServiceSlug(service) : null; // "twilio_media_v1"
+      const legacyServiceSlug = service ? toLegacyServiceSlug(service) : null; // "twilio-media-v1"
+
+      // Build the canonical destination URL
       const destination = service
-        ? `/apis/${encodeURIComponent(currentProviderSlug)}/${encodeURIComponent(normalizeServiceSlug(service))}`
+        ? `/apis/${encodeURIComponent(currentProviderSlug)}/${encodeURIComponent(currentServiceSlug!)}`
         : `/apis/${encodeURIComponent(currentProviderSlug)}`;
 
+      // Redirect duplicate provider-only URLs
+      // e.g., /apis/example.com/example.com -> /apis/example.com
       if (!service) {
         redirectList.push({
           source: `/apis/${encodeURIComponent(currentProviderSlug)}/${encodeURIComponent(currentProviderSlug)}`,
@@ -76,6 +96,18 @@ const nextConfig: NextConfig = {
         });
       }
 
+      // Redirect from legacy service slug (dashes) to current service slug (underscores preserved)
+      // e.g., /apis/twilio.com/twilio-media-v1 -> /apis/twilio.com/twilio_media_v1
+      if (service && legacyServiceSlug !== currentServiceSlug) {
+        redirectList.push({
+          source: `/apis/${encodeURIComponent(currentProviderSlug)}/${encodeURIComponent(legacyServiceSlug!)}`,
+          destination,
+          permanent: true,
+        });
+      }
+
+      // Redirect from legacy full slug format
+      // e.g., /apis/twilio-com-twilio-media-v1 -> /apis/twilio.com/twilio_media_v1
       if (legacyFullSlug !== currentProviderSlug) {
         redirectList.push({
           source: `/apis/${encodeURIComponent(legacyFullSlug)}`,
@@ -84,6 +116,8 @@ const nextConfig: NextConfig = {
         });
       }
 
+      // Redirect from legacy provider slug (dots replaced with dashes)
+      // e.g., /apis/twilio-com -> /apis/twilio.com
       if (legacyProviderSlug !== currentProviderSlug) {
         redirectList.push({
           source: `/apis/${encodeURIComponent(legacyProviderSlug)}`,
