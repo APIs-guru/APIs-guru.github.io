@@ -45,8 +45,9 @@ const nextConfig: NextConfig = {
         .replace(/^-+|-+$/g, "");
     };
 
-    // Converts service name to legacy format (underscores become dashes)
+    // Converts service name to legacy format (all special chars become dashes)
     // e.g., "twilio_media_v1" -> "twilio-media-v1"
+    // e.g., "subscriptions-api-(v2)" -> "subscriptions-api-v2"
     const toLegacyServiceSlug = (service: string) => {
       return service
         .toLowerCase()
@@ -56,10 +57,15 @@ const nextConfig: NextConfig = {
         .replace(/^-+|-+$/g, "");
     };
 
-    // Preserves the original service slug format (keeps underscores)
+    // Normalizes service slug for current URLs (removes parentheses, preserves underscores)
     // e.g., "twilio_media_v1" -> "twilio_media_v1"
+    // e.g., "subscriptions-api-(v2)" -> "subscriptions-api-v2"
     const toCurrentServiceSlug = (service: string) => {
-      return service.toLowerCase();
+      return service
+        .toLowerCase()
+        .replace(/[\(\)]/g, "")
+        .replace(/--+/g, "-")
+        .replace(/^-+|-+$/g, "");
     };
 
     for (const key in list) {

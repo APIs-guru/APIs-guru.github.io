@@ -24,6 +24,16 @@ function stripMarkdown(markdown: string): string {
     .replace(/(\n\s*){2,}/g, "\n\n")
     .replace(/^\s+|\s+$/g, "");
 }
+
+
+export function normalizeServiceSlug(service: string): string {
+  return service
+    .toLowerCase()
+    .replace(/[\(\)]/g, "")
+    .replace(/--+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 export function getData(
   providerSlug: string,
   serviceSlug?: string | null
@@ -38,12 +48,30 @@ export function getData(
     return processApiData(targetKey, apiList[targetKey]);
   }
 
+
   for (const key in apiList) {
     if (
       apiList.hasOwnProperty(key) &&
       key.toLowerCase() === targetKey.toLowerCase()
     ) {
       return processApiData(key, apiList[key]);
+    }
+  }
+
+
+  if (serviceSlug) {
+    for (const key in apiList) {
+      if (apiList.hasOwnProperty(key)) {
+        const [keyProvider, keyService] = key.split(":");
+        if (
+          keyProvider &&
+          keyService &&
+          keyProvider.toLowerCase() === providerSlug.toLowerCase() &&
+          normalizeServiceSlug(keyService) === serviceSlug.toLowerCase()
+        ) {
+          return processApiData(key, apiList[key]);
+        }
+      }
     }
   }
 
@@ -133,7 +161,8 @@ export async function generateStaticParams() {
 
       if (service) {
         const providerSlug = provider.toLowerCase();
-        const serviceSlug = service.toLowerCase();
+      
+        const serviceSlug = normalizeServiceSlug(service);
 
         params.push({
           providerSlug,
