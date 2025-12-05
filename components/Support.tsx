@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SocialLinks from "./SocialLinks";
-import { Button } from "./ui/button";
 
 export default function Support({
   showSupport = true,
@@ -42,23 +41,17 @@ export default function Support({
       <div className="text-center px-4 max-w-3xl mx-auto">
         <SocialLinks className="flex justify-center gap-4 mb-4" />
         {showSupport && (
-          <>
-            <p className="text-gray-800 mb-3">
-              Help support the work that we do by contributing to our{" "}
-              <Link
-                href="https://opencollective.com/openapi-directory"
-                className="text-blue-600 hover:underline"
+          <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-100 inline-block">
+            <p className="text-lg text-gray-800">
+              Need help with APIs — hire true gurus:{" "}
+              <a
+                href="mailto:help@apis.guru"
+                className="font-bold text-blue-600 hover:underline"
               >
-                Open Collective campaign
-              </Link>
-              !
+                help@apis.guru
+              </a>
             </p>
-            <Button variant="cta" size="lg">
-              <Link href="https://opencollective.com/openapi-directory">
-                Support APIs.guru
-              </Link>
-            </Button>
-          </>
+          </div>
         )}
       </div>
     </section>
