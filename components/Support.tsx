@@ -45,10 +45,10 @@ export default function Support({
             <p className="text-lg text-gray-800">
               Need help with APIs — hire true gurus:{" "}
               <a
-                href="mailto:help@apis.guru"
+                href="mailto:labs@keenethics.com"
                 className="font-bold text-blue-600 hover:underline"
               >
-                help@apis.guru
+                labs@keenethics.com
               </a>
             </p>
           </div>
