@@ -1,4 +1,4 @@
-name = "apis-guru"
+name = "workers-apis-guru"
 compatibility_date = "2025-03-25"
 compatibility_flags = ["nodejs_compat"]
 main = ".open-next/worker.js"
